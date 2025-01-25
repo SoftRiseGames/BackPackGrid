@@ -20,8 +20,6 @@ public class TwobyOne : MonoBehaviour,IInventoryObject, IRotatable,IHelper
     public void RotateLeft(Action<int> callback)
     {
         //Rotate Object
-        throw new System.NotImplementedException();
-
         //Call Callback
         Action<int> callback1 = callback;
         callback1(3);

@@ -11,6 +11,7 @@ public class GridSystem : MonoBehaviour
 
     private void Start()
     {
+        Inv = GameObject.Find("ObjectReference").GetComponent<IInventoryObject>();
         if (Inv is IRotatable)
         {
             ((IRotatable)Inv).RotateLeft(RegisterYourself);
@@ -26,6 +27,9 @@ public class GridSystem : MonoBehaviour
 
             float PivotDistanceX = SidePosx*0.5f;
             float PivotDistancey= SidePosY*0.5f;
+
+            Debug.Log(PivotDistanceX);
+            Debug.Log(PivotDistancey);
 
         }
         //handledObject.transform.position = grid.GetCellCenterWorld(cellPosition);
