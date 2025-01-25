@@ -130,9 +130,10 @@ GameObject:
   - component: {fileID: 71204247}
   - component: {fileID: 71204249}
   - component: {fileID: 71204248}
+  - component: {fileID: 71204250}
   m_Layer: 3
-  m_Name: Square (10)
-  m_TagString: Untagged
+  m_Name: GridTile
+  m_TagString: tile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -257,6 +258,31 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &71204250
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 71204246}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cbd16e15bc274704cbf6b0f032810069, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isRaycast: 0
+  layer:
+    serializedVersion: 2
+    m_Bits: 72
+  OnUp: 0
+  OnDown: 1
+  onLeft: 0
+  onRight: 0
+  collisionRadius: 0.07
+  bottomOffset: {x: 0, y: -0.67}
+  rightOffset: {x: 0.64, y: 0}
+  leftOffset: {x: -0.64, y: 0}
+  UpOffset: {x: 0, y: 0.62}
 --- !u!1 &107346199
 GameObject:
   m_ObjectHideFlags: 0
@@ -268,9 +294,10 @@ GameObject:
   - component: {fileID: 107346200}
   - component: {fileID: 107346202}
   - component: {fileID: 107346201}
+  - component: {fileID: 107346203}
   m_Layer: 3
-  m_Name: Square (9)
-  m_TagString: Untagged
+  m_Name: GridTile
+  m_TagString: tile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -395,6 +422,31 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &107346203
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 107346199}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cbd16e15bc274704cbf6b0f032810069, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isRaycast: 0
+  layer:
+    serializedVersion: 2
+    m_Bits: 72
+  OnUp: 0
+  OnDown: 1
+  onLeft: 0
+  onRight: 0
+  collisionRadius: 0.07
+  bottomOffset: {x: 0, y: -0.67}
+  rightOffset: {x: 0.64, y: 0}
+  leftOffset: {x: -0.64, y: 0}
+  UpOffset: {x: 0, y: 0.62}
 --- !u!1 &339059199
 GameObject:
   m_ObjectHideFlags: 0
@@ -516,9 +568,10 @@ GameObject:
   - component: {fileID: 503063220}
   - component: {fileID: 503063222}
   - component: {fileID: 503063221}
+  - component: {fileID: 503063223}
   m_Layer: 3
-  m_Name: Square (12)
-  m_TagString: Untagged
+  m_Name: GridTile
+  m_TagString: tile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -643,6 +696,31 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &503063223
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 503063219}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cbd16e15bc274704cbf6b0f032810069, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isRaycast: 0
+  layer:
+    serializedVersion: 2
+    m_Bits: 72
+  OnUp: 0
+  OnDown: 1
+  onLeft: 0
+  onRight: 0
+  collisionRadius: 0.07
+  bottomOffset: {x: 0, y: -0.67}
+  rightOffset: {x: 0.64, y: 0}
+  leftOffset: {x: -0.64, y: 0}
+  UpOffset: {x: 0, y: 0.62}
 --- !u!1 &510324864
 GameObject:
   m_ObjectHideFlags: 0
@@ -654,9 +732,10 @@ GameObject:
   - component: {fileID: 510324865}
   - component: {fileID: 510324867}
   - component: {fileID: 510324866}
+  - component: {fileID: 510324868}
   m_Layer: 3
-  m_Name: Square (4)
-  m_TagString: Untagged
+  m_Name: GridTile
+  m_TagString: tile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -781,6 +860,31 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &510324868
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 510324864}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cbd16e15bc274704cbf6b0f032810069, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isRaycast: 0
+  layer:
+    serializedVersion: 2
+    m_Bits: 72
+  OnUp: 0
+  OnDown: 1
+  onLeft: 0
+  onRight: 0
+  collisionRadius: 0.07
+  bottomOffset: {x: 0, y: -0.67}
+  rightOffset: {x: 0.64, y: 0}
+  leftOffset: {x: -0.64, y: 0}
+  UpOffset: {x: 0, y: 0.62}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -1013,9 +1117,10 @@ GameObject:
   - component: {fileID: 886980389}
   - component: {fileID: 886980391}
   - component: {fileID: 886980390}
+  - component: {fileID: 886980392}
   m_Layer: 3
-  m_Name: Square (11)
-  m_TagString: Untagged
+  m_Name: GridTile
+  m_TagString: tile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1140,6 +1245,31 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &886980392
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 886980388}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cbd16e15bc274704cbf6b0f032810069, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isRaycast: 0
+  layer:
+    serializedVersion: 2
+    m_Bits: 72
+  OnUp: 0
+  OnDown: 1
+  onLeft: 0
+  onRight: 0
+  collisionRadius: 0.07
+  bottomOffset: {x: 0, y: -0.67}
+  rightOffset: {x: 0.64, y: 0}
+  leftOffset: {x: -0.64, y: 0}
+  UpOffset: {x: 0, y: 0.62}
 --- !u!1 &901687647
 GameObject:
   m_ObjectHideFlags: 0
@@ -1151,9 +1281,10 @@ GameObject:
   - component: {fileID: 901687648}
   - component: {fileID: 901687650}
   - component: {fileID: 901687649}
+  - component: {fileID: 901687651}
   m_Layer: 3
-  m_Name: Square (3)
-  m_TagString: Untagged
+  m_Name: GridTile
+  m_TagString: tile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1278,6 +1409,31 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &901687651
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 901687647}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cbd16e15bc274704cbf6b0f032810069, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isRaycast: 0
+  layer:
+    serializedVersion: 2
+    m_Bits: 72
+  OnUp: 0
+  OnDown: 1
+  onLeft: 0
+  onRight: 0
+  collisionRadius: 0.07
+  bottomOffset: {x: 0, y: -0.67}
+  rightOffset: {x: 0.64, y: 0}
+  leftOffset: {x: -0.64, y: 0}
+  UpOffset: {x: 0, y: 0.62}
 --- !u!1 &918297214
 GameObject:
   m_ObjectHideFlags: 0
@@ -1365,9 +1521,10 @@ GameObject:
   - component: {fileID: 1000242424}
   - component: {fileID: 1000242426}
   - component: {fileID: 1000242425}
+  - component: {fileID: 1000242427}
   m_Layer: 3
-  m_Name: Square (1)
-  m_TagString: Untagged
+  m_Name: GridTile
+  m_TagString: tile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1492,6 +1649,31 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1000242427
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1000242423}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cbd16e15bc274704cbf6b0f032810069, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isRaycast: 0
+  layer:
+    serializedVersion: 2
+    m_Bits: 72
+  OnUp: 0
+  OnDown: 1
+  onLeft: 0
+  onRight: 0
+  collisionRadius: 0.07
+  bottomOffset: {x: 0, y: -0.67}
+  rightOffset: {x: 0.64, y: 0}
+  leftOffset: {x: -0.64, y: 0}
+  UpOffset: {x: 0, y: 0.62}
 --- !u!1 &1055063357
 GameObject:
   m_ObjectHideFlags: 0
@@ -1503,9 +1685,10 @@ GameObject:
   - component: {fileID: 1055063358}
   - component: {fileID: 1055063360}
   - component: {fileID: 1055063359}
+  - component: {fileID: 1055063361}
   m_Layer: 3
-  m_Name: Square (15)
-  m_TagString: Untagged
+  m_Name: GridTile
+  m_TagString: tile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1630,6 +1813,31 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1055063361
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1055063357}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cbd16e15bc274704cbf6b0f032810069, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isRaycast: 0
+  layer:
+    serializedVersion: 2
+    m_Bits: 72
+  OnUp: 0
+  OnDown: 1
+  onLeft: 0
+  onRight: 0
+  collisionRadius: 0.07
+  bottomOffset: {x: 0, y: -0.67}
+  rightOffset: {x: 0.64, y: 0}
+  leftOffset: {x: -0.64, y: 0}
+  UpOffset: {x: 0, y: 0.62}
 --- !u!1 &1056413131
 GameObject:
   m_ObjectHideFlags: 0
@@ -1641,9 +1849,10 @@ GameObject:
   - component: {fileID: 1056413132}
   - component: {fileID: 1056413134}
   - component: {fileID: 1056413133}
+  - component: {fileID: 1056413135}
   m_Layer: 3
-  m_Name: Square (13)
-  m_TagString: Untagged
+  m_Name: GridTile
+  m_TagString: tile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1768,6 +1977,31 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1056413135
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1056413131}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cbd16e15bc274704cbf6b0f032810069, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isRaycast: 0
+  layer:
+    serializedVersion: 2
+    m_Bits: 72
+  OnUp: 0
+  OnDown: 1
+  onLeft: 0
+  onRight: 0
+  collisionRadius: 0.07
+  bottomOffset: {x: 0, y: -0.67}
+  rightOffset: {x: 0.64, y: 0}
+  leftOffset: {x: -0.64, y: 0}
+  UpOffset: {x: 0, y: 0.62}
 --- !u!1 &1066569127
 GameObject:
   m_ObjectHideFlags: 0
@@ -1779,9 +2013,10 @@ GameObject:
   - component: {fileID: 1066569128}
   - component: {fileID: 1066569130}
   - component: {fileID: 1066569129}
+  - component: {fileID: 1066569131}
   m_Layer: 3
-  m_Name: Square (7)
-  m_TagString: Untagged
+  m_Name: GridTile
+  m_TagString: tile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1906,6 +2141,31 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1066569131
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1066569127}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cbd16e15bc274704cbf6b0f032810069, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isRaycast: 0
+  layer:
+    serializedVersion: 2
+    m_Bits: 72
+  OnUp: 0
+  OnDown: 1
+  onLeft: 0
+  onRight: 0
+  collisionRadius: 0.07
+  bottomOffset: {x: 0, y: -0.67}
+  rightOffset: {x: 0.64, y: 0}
+  leftOffset: {x: -0.64, y: 0}
+  UpOffset: {x: 0, y: 0.62}
 --- !u!1 &1068629053
 GameObject:
   m_ObjectHideFlags: 0
@@ -1917,9 +2177,10 @@ GameObject:
   - component: {fileID: 1068629054}
   - component: {fileID: 1068629056}
   - component: {fileID: 1068629055}
+  - component: {fileID: 1068629057}
   m_Layer: 3
-  m_Name: Square (14)
-  m_TagString: Untagged
+  m_Name: GridTile
+  m_TagString: tile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2044,6 +2305,31 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1068629057
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1068629053}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cbd16e15bc274704cbf6b0f032810069, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isRaycast: 0
+  layer:
+    serializedVersion: 2
+    m_Bits: 72
+  OnUp: 0
+  OnDown: 1
+  onLeft: 0
+  onRight: 0
+  collisionRadius: 0.07
+  bottomOffset: {x: 0, y: -0.67}
+  rightOffset: {x: 0.64, y: 0}
+  leftOffset: {x: -0.64, y: 0}
+  UpOffset: {x: 0, y: 0.62}
 --- !u!1 &1104499987
 GameObject:
   m_ObjectHideFlags: 0
@@ -2055,9 +2341,10 @@ GameObject:
   - component: {fileID: 1104499988}
   - component: {fileID: 1104499990}
   - component: {fileID: 1104499989}
+  - component: {fileID: 1104499991}
   m_Layer: 3
-  m_Name: Square (2)
-  m_TagString: Untagged
+  m_Name: GridTile
+  m_TagString: tile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2182,6 +2469,31 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1104499991
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1104499987}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cbd16e15bc274704cbf6b0f032810069, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isRaycast: 0
+  layer:
+    serializedVersion: 2
+    m_Bits: 72
+  OnUp: 0
+  OnDown: 1
+  onLeft: 0
+  onRight: 0
+  collisionRadius: 0.07
+  bottomOffset: {x: 0, y: -0.67}
+  rightOffset: {x: 0.64, y: 0}
+  leftOffset: {x: -0.64, y: 0}
+  UpOffset: {x: 0, y: 0.62}
 --- !u!1 &1211598094
 GameObject:
   m_ObjectHideFlags: 0
@@ -2193,9 +2505,10 @@ GameObject:
   - component: {fileID: 1211598095}
   - component: {fileID: 1211598097}
   - component: {fileID: 1211598096}
+  - component: {fileID: 1211598098}
   m_Layer: 3
-  m_Name: Square (6)
-  m_TagString: Untagged
+  m_Name: GridTile
+  m_TagString: tile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2320,6 +2633,31 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1211598098
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1211598094}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cbd16e15bc274704cbf6b0f032810069, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isRaycast: 0
+  layer:
+    serializedVersion: 2
+    m_Bits: 72
+  OnUp: 0
+  OnDown: 1
+  onLeft: 0
+  onRight: 0
+  collisionRadius: 0.07
+  bottomOffset: {x: 0, y: -0.67}
+  rightOffset: {x: 0.64, y: 0}
+  leftOffset: {x: -0.64, y: 0}
+  UpOffset: {x: 0, y: 0.62}
 --- !u!1 &1215828355
 GameObject:
   m_ObjectHideFlags: 0
@@ -2331,9 +2669,10 @@ GameObject:
   - component: {fileID: 1215828356}
   - component: {fileID: 1215828357}
   - component: {fileID: 1215828358}
+  - component: {fileID: 1215828359}
   m_Layer: 3
-  m_Name: Square
-  m_TagString: Untagged
+  m_Name: ' '
+  m_TagString: tile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2458,6 +2797,31 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &1215828359
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1215828355}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cbd16e15bc274704cbf6b0f032810069, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isRaycast: 0
+  layer:
+    serializedVersion: 2
+    m_Bits: 72
+  OnUp: 0
+  OnDown: 0
+  onLeft: 0
+  onRight: 0
+  collisionRadius: 0.07
+  bottomOffset: {x: 0, y: -0.67}
+  rightOffset: {x: 0.64, y: 0}
+  leftOffset: {x: -0.64, y: 0}
+  UpOffset: {x: 0, y: 0.62}
 --- !u!1 &1412027316
 GameObject:
   m_ObjectHideFlags: 0
@@ -2469,8 +2833,9 @@ GameObject:
   - component: {fileID: 1412027318}
   - component: {fileID: 1412027317}
   - component: {fileID: 1412027319}
+  - component: {fileID: 1412027320}
   m_Layer: 0
-  m_Name: Square (1)
+  m_Name: ObjectReference
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2540,11 +2905,11 @@ Transform:
   m_GameObject: {fileID: 1412027316}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -3.277, y: -0.5, z: 0}
-  m_LocalScale: {x: 2, y: 1, z: 1}
+  m_LocalPosition: {x: -2.7494, y: -1.26, z: 0}
+  m_LocalScale: {x: 3, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1859701188}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1412027319
 MonoBehaviour:
@@ -2558,8 +2923,62 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da131083fcc464f46bc6f4c03f51117d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SidePosXValue: 1
+  SidePosXValue: 2
   SidePosYValue: 0
+  collisionRadius: 0.2
+  bottomOffset: {x: 0, y: 0}
+  rightOffset: {x: 1.11, y: 0}
+  leftOffset: {x: -1.05, y: 0}
+  UpOffset: {x: 0, y: 0}
+  layer:
+    serializedVersion: 2
+    m_Bits: 64
+--- !u!61 &1412027320
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1412027316}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1, y: 1}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Size: {x: 1, y: 1}
+  m_EdgeRadius: 0
 --- !u!1 &1630761054
 GameObject:
   m_ObjectHideFlags: 0
@@ -2571,9 +2990,10 @@ GameObject:
   - component: {fileID: 1630761055}
   - component: {fileID: 1630761057}
   - component: {fileID: 1630761056}
+  - component: {fileID: 1630761058}
   m_Layer: 3
-  m_Name: Square (5)
-  m_TagString: Untagged
+  m_Name: GridTile
+  m_TagString: tile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2698,6 +3118,31 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1630761058
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1630761054}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cbd16e15bc274704cbf6b0f032810069, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isRaycast: 0
+  layer:
+    serializedVersion: 2
+    m_Bits: 72
+  OnUp: 0
+  OnDown: 1
+  onLeft: 0
+  onRight: 0
+  collisionRadius: 0.07
+  bottomOffset: {x: 0, y: -0.67}
+  rightOffset: {x: 0.64, y: 0}
+  leftOffset: {x: -0.64, y: 0}
+  UpOffset: {x: 0, y: 0.62}
 --- !u!1 &1859701186
 GameObject:
   m_ObjectHideFlags: 0
@@ -2743,7 +3188,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 918297215}
-  - {fileID: 1412027318}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1859701189
@@ -2776,7 +3220,9 @@ MonoBehaviour:
   sceneCamera: {fileID: 519420031}
   groundLayerMask:
     serializedVersion: 2
-    m_Bits: 8
+    m_Bits: 72
+  instance: {fileID: 0}
+  Object: {fileID: 0}
 --- !u!1 &1891007885
 GameObject:
   m_ObjectHideFlags: 0
@@ -2848,9 +3294,10 @@ GameObject:
   - component: {fileID: 2054208211}
   - component: {fileID: 2054208213}
   - component: {fileID: 2054208212}
+  - component: {fileID: 2054208214}
   m_Layer: 3
-  m_Name: Square (8)
-  m_TagString: Untagged
+  m_Name: GridTile
+  m_TagString: tile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2975,6 +3422,31 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &2054208214
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2054208210}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cbd16e15bc274704cbf6b0f032810069, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isRaycast: 0
+  layer:
+    serializedVersion: 2
+    m_Bits: 72
+  OnUp: 0
+  OnDown: 1
+  onLeft: 0
+  onRight: 0
+  collisionRadius: 0.07
+  bottomOffset: {x: 0, y: -0.67}
+  rightOffset: {x: 0.64, y: 0}
+  leftOffset: {x: -0.64, y: 0}
+  UpOffset: {x: 0, y: 0.62}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -2985,3 +3457,4 @@ SceneRoots:
   - {fileID: 339059200}
   - {fileID: 1859701188}
   - {fileID: 1891007887}
+  - {fileID: 1412027318}

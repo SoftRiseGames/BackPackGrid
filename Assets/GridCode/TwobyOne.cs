@@ -2,12 +2,28 @@ using UnityEngine;
 using UnityEngine.Events;
 using System;
 
-
-public class TwobyOne : MonoBehaviour,IInventoryObject, IRotatable,IHelper
+public class TwobyOne : MonoBehaviour, IInventoryObject, IRotatable, IHelper
 {
     public int SidePosXValue;
     public int SidePosYValue;
-    public  void Consume()
+
+   
+    public bool OnDown { get; private set; }
+    public bool OnUp { get; private set; }
+    public bool onLeft { get; private set; }
+    public bool onRight { get; private set; }
+
+    public float collisionRadius = 0.25f;
+    public Vector2 bottomOffset, rightOffset, leftOffset, UpOffset;
+    private Color debugCollisionColor = Color.red;
+    public LayerMask layer;
+
+    private void Update()
+    {
+        Ray();
+    }
+
+    public void Consume()
     {
         throw new System.NotImplementedException();
     }
@@ -19,10 +35,9 @@ public class TwobyOne : MonoBehaviour,IInventoryObject, IRotatable,IHelper
 
     public void RotateLeft(Action<int> callback)
     {
-        //Rotate Object
-        //Call Callback
-        Action<int> callback1 = callback;
-        callback1(3);
+        // Rotate Object
+        // Call Callback
+        callback?.Invoke(3);
     }
 
     public void RotateRight()
@@ -32,24 +47,51 @@ public class TwobyOne : MonoBehaviour,IInventoryObject, IRotatable,IHelper
 
     public int SidePosX()
     {
-        return this.SidePosXValue;
+        return SidePosXValue;
     }
 
     public int SidePosY()
     {
         return SidePosYValue;
     }
+
+    void Ray()
+    {
+        OnUp = Physics2D.OverlapCircle((Vector2)transform.position + UpOffset, collisionRadius, layer);
+        OnDown = Physics2D.OverlapCircle((Vector2)transform.position + bottomOffset, collisionRadius, layer);
+        onRight = Physics2D.OverlapCircle((Vector2)transform.position + rightOffset, collisionRadius, layer);
+        onLeft = Physics2D.OverlapCircle((Vector2)transform.position + leftOffset, collisionRadius, layer);
+
+        Debug.Log(onRight);
+    }
+
+    void OnDrawGizmos()
+    {
+        Gizmos.color = Color.green;
+
+        Gizmos.DrawWireSphere((Vector2)transform.position + bottomOffset, collisionRadius);
+        Gizmos.DrawWireSphere((Vector2)transform.position + UpOffset, collisionRadius);
+        Gizmos.DrawWireSphere((Vector2)transform.position + rightOffset, collisionRadius);
+        Gizmos.DrawWireSphere((Vector2)transform.position + leftOffset, collisionRadius);
+    }
+
 }
 
-internal interface IRotatable
+public interface IRotatable
 {
-    public void RotateLeft(Action<int> callback);
-    public void RotateRight();
+    void RotateLeft(Action<int> callback);
+    void RotateRight();
 }
 
 public interface IInventoryObject
 {
-    public void RegisterYourself();
-    public void Consume();
+    void RegisterYourself();
+    void Consume();
 
+    // Yeni Eklenen Properties
+    
+   public bool OnUp { get; }
+   public bool OnDown { get; }
+   public bool onRight { get; }
+   public bool onLeft { get; }
 }

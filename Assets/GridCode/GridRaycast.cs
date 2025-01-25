@@ -4,9 +4,16 @@ public class GridRaycast : MonoBehaviour
 {
     public Camera sceneCamera; 
     private Vector3 m_lastPosition;
-    public LayerMask groundLayerMask; 
+    public LayerMask groundLayerMask;
+    public GridRaycast instance;
 
-    
+    public GameObject Object;
+
+    private void Start()
+    {
+        instance = this;
+    }
+
     public Vector3 GetSelectedMapPosition()
     {
         Vector3 mousePos = Input.mousePosition;
@@ -19,8 +26,12 @@ public class GridRaycast : MonoBehaviour
         if (hit.collider != null)
         {
             m_lastPosition = hit.point;
+            Object = hit.collider.gameObject;
         }
 
+       
+
+       
         return m_lastPosition;
     }
     public bool GetPlacementInput() => Input.GetMouseButtonDown(0);
