@@ -2,14 +2,17 @@ using UnityEngine;
 using UnityEngine.Events;
 using System;
 
-public class TwobyOne : InventoryObject, IRotatable
+
+public class TwobyOne : MonoBehaviour,IInventoryObject, IRotatable,IHelper
 {
-    public override void Consume()
+    public int SidePosXValue;
+    public int SidePosYValue;
+    public  void Consume()
     {
         throw new System.NotImplementedException();
     }
 
-    public override void RegisterYourself()
+    public void RegisterYourself()
     {
         throw new System.NotImplementedException();
     }
@@ -27,6 +30,16 @@ public class TwobyOne : InventoryObject, IRotatable
     public void RotateRight()
     {
         throw new System.NotImplementedException();
+    }
+
+    public int SidePosX()
+    {
+        return this.SidePosXValue;
+    }
+
+    public int SidePosY()
+    {
+        return SidePosYValue;
     }
 }
 

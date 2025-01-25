@@ -18,7 +18,16 @@ public class GridSystem : MonoBehaviour
         else {
             Debug.Log("This object is not rotatable");
         }
-                
+        if(Inv is IHelper)
+        {
+
+            int SidePosx = ((IHelper)Inv).SidePosX();
+            int SidePosY = ((IHelper)Inv).SidePosY();
+
+            float PivotDistanceX = SidePosx*0.5f;
+            float PivotDistancey= SidePosY*0.5f;
+
+        }
         //handledObject.transform.position = grid.GetCellCenterWorld(cellPosition);
 
     }
