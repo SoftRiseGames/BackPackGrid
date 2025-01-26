@@ -2930,7 +2930,10 @@ MonoBehaviour:
   rightOffset: {x: 1.11, y: 0}
   leftOffset: {x: -1.05, y: 0}
   UpOffset: {x: 0, y: 0}
-  layer:
+  LayerSide:
+    serializedVersion: 2
+    m_Bits: 64
+  LayerBottomUp:
     serializedVersion: 2
     m_Bits: 64
 --- !u!61 &1412027320

@@ -16,7 +16,8 @@ public class TwobyOne : MonoBehaviour, IInventoryObject, IRotatable, IHelper
     public float collisionRadius = 0.25f;
     public Vector2 bottomOffset, rightOffset, leftOffset, UpOffset;
     private Color debugCollisionColor = Color.red;
-    public LayerMask layer;
+    public LayerMask LayerSide;
+    public LayerMask LayerBottomUp;
 
     private void Update()
     {
@@ -57,10 +58,10 @@ public class TwobyOne : MonoBehaviour, IInventoryObject, IRotatable, IHelper
 
     void Ray()
     {
-        OnUp = Physics2D.OverlapCircle((Vector2)transform.position + UpOffset, collisionRadius, layer);
-        OnDown = Physics2D.OverlapCircle((Vector2)transform.position + bottomOffset, collisionRadius, layer);
-        onRight = Physics2D.OverlapCircle((Vector2)transform.position + rightOffset, collisionRadius, layer);
-        onLeft = Physics2D.OverlapCircle((Vector2)transform.position + leftOffset, collisionRadius, layer);
+        OnUp = Physics2D.OverlapCircle((Vector2)transform.position + UpOffset, collisionRadius, LayerBottomUp);
+        OnDown = Physics2D.OverlapCircle((Vector2)transform.position + bottomOffset, collisionRadius, LayerBottomUp);
+        onRight = Physics2D.OverlapCircle((Vector2)transform.position + rightOffset, collisionRadius, LayerSide);
+        onLeft = Physics2D.OverlapCircle((Vector2)transform.position + leftOffset, collisionRadius, LayerSide);
 
         Debug.Log(onRight);
     }
