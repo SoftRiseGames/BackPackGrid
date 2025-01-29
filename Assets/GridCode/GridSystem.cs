@@ -1,4 +1,4 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 
 public class GridSystem : MonoBehaviour
 {
@@ -46,7 +46,6 @@ public class GridSystem : MonoBehaviour
         Vector3 selectedPosition = gridInput.GetSelectedMapPosition();
         Vector3Int cellPosition = grid.WorldToCell(selectedPosition);
 
-        // Sað ve sol hareket kontrolü
         if (handledObject.GetComponent<IInventoryObject>().onRight && !handledObject.GetComponent<IInventoryObject>().onLeft && cellPosition.x < Mathf.Round(handledObject.transform.position.x))
             handledObject.transform.position = new Vector2(grid.GetCellCenterWorld(cellPosition).x, handledObject.transform.position.y);
 
@@ -56,30 +55,34 @@ public class GridSystem : MonoBehaviour
         else if (!handledObject.GetComponent<IInventoryObject>().onRight && !handledObject.GetComponent<IInventoryObject>().onLeft)
             handledObject.transform.position = new Vector2(grid.GetCellCenterWorld(cellPosition).x, handledObject.transform.position.y);
 
-        // Yukarý ve aþaðý hareket kontrolü
+        else if(handledObject.GetComponent<IInventoryObject>().onLeft && handledObject.GetComponent<IInventoryObject>().onRightNext && cellPosition.x >= Mathf.Round(handledObject.transform.position.x))
+            handledObject.transform.position = new Vector2(grid.GetCellCenterWorld(cellPosition).x, handledObject.transform.position.y);
+
+
+        else if (handledObject.GetComponent<IInventoryObject>().onRight && handledObject.GetComponent<IInventoryObject>().onLeftNext && cellPosition.x < Mathf.Round(handledObject.transform.position.x))
+            handledObject.transform.position = new Vector2(grid.GetCellCenterWorld(cellPosition).x, handledObject.transform.position.y);
+
+
+        // YukarÃ½ ve aÃ¾aÃ°Ã½ hareket kontrolÃ¼
         if (!handledObject.GetComponent<IInventoryObject>().OnUp && handledObject.GetComponent<IInventoryObject>().OnDown && cellPosition.y < handledObject.transform.position.y)
             handledObject.transform.position = new Vector2(grid.GetCellCenterWorld(cellPosition).x, grid.GetCellCenterWorld(cellPosition).y);
 
         else if (handledObject.GetComponent<IInventoryObject>().OnUp && !handledObject.GetComponent<IInventoryObject>().OnDown && cellPosition.y >= handledObject.transform.position.y)
             handledObject.transform.position = new Vector2(handledObject.transform.position.x, grid.GetCellCenterWorld(cellPosition).y);
 
-        else if (!handledObject.GetComponent<IInventoryObject>().OnUp && !handledObject.GetComponent<IInventoryObject>().OnDown )
+        else if (!handledObject.GetComponent<IInventoryObject>().OnUp && !handledObject.GetComponent<IInventoryObject>().OnDown)
             handledObject.transform.position = new Vector2(handledObject.transform.position.x, grid.GetCellCenterWorld(cellPosition).y);
-        /*
-        // Eðer yanlara hareket edemiyorsa yukarýya çýkmayý dene
-        else if (!handledObject.GetComponent<IInventoryObject>().onRight && !handledObject.GetComponent<IInventoryObject>().onLeft)
-        {
-            if (handledObject.GetComponent<IInventoryObject>().OnUp && cellPosition.y >= Mathf.Round(handledObject.transform.position.y))
-            {
-                handledObject.transform.position = new Vector2(handledObject.transform.position.x, grid.GetCellCenterWorld(cellPosition).y);
-            }
-            else if (!handledObject.GetComponent<IInventoryObject>().OnUp && !handledObject.GetComponent<IInventoryObject>().OnDown)
-            {
-                handledObject.transform.position = grid.GetCellCenterWorld(cellPosition);
-            }
-        }
-        */
- 
+
+
+        else if (handledObject.GetComponent<IInventoryObject>().OnDown && handledObject.GetComponent<IInventoryObject>().OnUpNext && cellPosition.y >= Mathf.Round(handledObject.transform.position.y))
+            handledObject.transform.position = new Vector2(handledObject.transform.position.x, grid.GetCellCenterWorld(cellPosition).y);
+
+
+        else if (handledObject.GetComponent<IInventoryObject>().OnUp && handledObject.GetComponent<IInventoryObject>().OnDownNext && cellPosition.y< Mathf.Round(handledObject.transform.position.y))
+            handledObject.transform.position = new Vector2(handledObject.transform.position.x, grid.GetCellCenterWorld(cellPosition).y);
+
+
+
     }
 
     void farestTile()
@@ -88,7 +91,7 @@ public class GridSystem : MonoBehaviour
     }
     public void RegisterYourself(int ypos)
     {
-        //matrixe kayýt
+        //matrixe kayÄ±t
         Vector3 selectedPosition = gridInput.GetSelectedMapPosition();
         Vector3Int cellPosition = grid.WorldToCell(selectedPosition);
         handledObject.transform.position = grid.GetCellCenterWorld(cellPosition);

@@ -13,11 +13,17 @@ public class TwobyOne : MonoBehaviour, IInventoryObject, IRotatable, IHelper
     public bool onLeft { get; private set; }
     public bool onRight { get; private set; }
 
+    public bool OnDownNext { get; private set; }
+    public bool OnUpNext { get; private set; }
+    public bool onLeftNext { get; private set; }
+    public bool onRightNext { get; private set; }
+
     public float collisionRadius = 0.25f;
     public Vector2 bottomOffset, rightOffset, leftOffset, UpOffset;
+    public Vector2 bottomNextOffset, rightNextOffset, leftNextOffset, UpNextOffset;
     private Color debugCollisionColor = Color.red;
     public LayerMask LayerSide;
-    public LayerMask LayerBottomUp;
+    public LayerMask LayerNextCheck;
 
     private void Update()
     {
@@ -58,12 +64,18 @@ public class TwobyOne : MonoBehaviour, IInventoryObject, IRotatable, IHelper
 
     void Ray()
     {
-        OnUp = Physics2D.OverlapCircle((Vector2)transform.position + UpOffset, collisionRadius, LayerBottomUp);
-        OnDown = Physics2D.OverlapCircle((Vector2)transform.position + bottomOffset, collisionRadius, LayerBottomUp);
+        OnUp = Physics2D.OverlapCircle((Vector2)transform.position + UpOffset, collisionRadius, LayerSide);
+        OnDown = Physics2D.OverlapCircle((Vector2)transform.position + bottomOffset, collisionRadius, LayerSide);
         onRight = Physics2D.OverlapCircle((Vector2)transform.position + rightOffset, collisionRadius, LayerSide);
         onLeft = Physics2D.OverlapCircle((Vector2)transform.position + leftOffset, collisionRadius, LayerSide);
 
-        Debug.Log(onRight);
+
+        OnUpNext = Physics2D.OverlapCircle((Vector2)transform.position + UpNextOffset, collisionRadius, LayerNextCheck);
+        OnDownNext = Physics2D.OverlapCircle((Vector2)transform.position + bottomNextOffset, collisionRadius, LayerNextCheck);
+        onRightNext = Physics2D.OverlapCircle((Vector2)transform.position + rightNextOffset, collisionRadius, LayerNextCheck);
+        onLeftNext = Physics2D.OverlapCircle((Vector2)transform.position + leftNextOffset, collisionRadius, LayerNextCheck);
+
+
     }
 
     void OnDrawGizmos()
@@ -74,6 +86,12 @@ public class TwobyOne : MonoBehaviour, IInventoryObject, IRotatable, IHelper
         Gizmos.DrawWireSphere((Vector2)transform.position + UpOffset, collisionRadius);
         Gizmos.DrawWireSphere((Vector2)transform.position + rightOffset, collisionRadius);
         Gizmos.DrawWireSphere((Vector2)transform.position + leftOffset, collisionRadius);
+
+        Gizmos.color = Color.blue;
+        Gizmos.DrawWireSphere((Vector2)transform.position + bottomNextOffset, collisionRadius);
+        Gizmos.DrawWireSphere((Vector2)transform.position + UpNextOffset, collisionRadius);
+        Gizmos.DrawWireSphere((Vector2)transform.position + rightNextOffset, collisionRadius);
+        Gizmos.DrawWireSphere((Vector2)transform.position + leftNextOffset, collisionRadius);
     }
 
 }
@@ -95,4 +113,9 @@ public interface IInventoryObject
    public bool OnDown { get; }
    public bool onRight { get; }
    public bool onLeft { get; }
+
+    public bool OnDownNext { get;}
+    public bool OnUpNext { get;}
+    public bool onLeftNext { get;}
+    public bool onRightNext { get;}
 }
