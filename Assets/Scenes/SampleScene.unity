@@ -1122,6 +1122,38 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &824871406
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 824871407}
+  m_Layer: 0
+  m_Name: Pivot
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &824871407
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 824871406}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -1.36, y: -0.93, z: -0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1412027318}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &886980388
 GameObject:
   m_ObjectHideFlags: 0
@@ -2961,11 +2993,11 @@ Transform:
   m_GameObject: {fileID: 1412027316}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -2.7494, y: -1.26, z: 0}
+  m_LocalPosition: {x: -0.64, y: 0.009999931, z: 0.024113655}
   m_LocalScale: {x: 3, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 824871407}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1412027319
 MonoBehaviour:
@@ -2983,12 +3015,12 @@ MonoBehaviour:
   SidePosYValue: 0
   collisionRadius: 0.2
   bottomOffset: {x: 0, y: 0}
-  rightOffset: {x: 0.85, y: 0}
-  leftOffset: {x: -0.91, y: 0}
+  rightOffset: {x: 0.95, y: 0}
+  leftOffset: {x: -1.14, y: 0}
   UpOffset: {x: 0, y: 0}
   bottomNextOffset: {x: 0, y: -0.79}
-  rightNextOffset: {x: 1.85, y: 0}
-  leftNextOffset: {x: -1.82, y: 0}
+  rightNextOffset: {x: 1.91, y: 0}
+  leftNextOffset: {x: -1.85, y: 0}
   UpNextOffset: {x: 0, y: 0.83}
   LayerSide:
     serializedVersion: 2
@@ -3528,4 +3560,4 @@ SceneRoots:
   - {fileID: 339059200}
   - {fileID: 1859701188}
   - {fileID: 1891007887}
-  - {fileID: 1412027318}
+  - {fileID: 824871407}
