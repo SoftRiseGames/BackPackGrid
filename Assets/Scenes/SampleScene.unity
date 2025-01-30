@@ -2994,7 +2994,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0.64, y: 0.009999931, z: 0.024113655}
-  m_LocalScale: {x: 3, y: 1, z: 1}
+  m_LocalScale: {x: 3, y: 2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 824871407}
@@ -3012,16 +3012,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SidePosXValue: 2
-  SidePosYValue: 0
+  SidePosYValue: 1
   collisionRadius: 0.2
-  bottomOffset: {x: 0, y: 0}
+  bottomOffset: {x: 0, y: -0.67}
   rightOffset: {x: 0.95, y: 0}
   leftOffset: {x: -1.14, y: 0}
-  UpOffset: {x: 0, y: 0}
-  bottomNextOffset: {x: 0, y: -0.79}
+  UpOffset: {x: 0, y: 0.69}
+  bottomNextOffset: {x: 0, y: -1.38}
   rightNextOffset: {x: 1.91, y: 0}
   leftNextOffset: {x: -1.85, y: 0}
-  UpNextOffset: {x: 0, y: 0.83}
+  UpNextOffset: {x: 0, y: 1.6}
   LayerSide:
     serializedVersion: 2
     m_Bits: 64

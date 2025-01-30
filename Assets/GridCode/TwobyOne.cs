@@ -102,6 +102,7 @@ public interface IRotatable
     void RotateRight();
 }
 
+
 public interface IInventoryObject
 {
     void RegisterYourself();
