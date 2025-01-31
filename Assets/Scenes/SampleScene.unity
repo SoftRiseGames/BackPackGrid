@@ -273,7 +273,7 @@ MonoBehaviour:
   isRaycast: 0
   layer:
     serializedVersion: 2
-    m_Bits: 72
+    m_Bits: 200
   OnUp: 0
   OnDown: 1
   onLeft: 0
@@ -441,7 +441,7 @@ MonoBehaviour:
   isRaycast: 0
   layer:
     serializedVersion: 2
-    m_Bits: 72
+    m_Bits: 200
   OnUp: 0
   OnDown: 1
   onLeft: 0
@@ -719,7 +719,7 @@ MonoBehaviour:
   isRaycast: 0
   layer:
     serializedVersion: 2
-    m_Bits: 72
+    m_Bits: 200
   OnUp: 0
   OnDown: 1
   onLeft: 0
@@ -887,7 +887,7 @@ MonoBehaviour:
   isRaycast: 0
   layer:
     serializedVersion: 2
-    m_Bits: 72
+    m_Bits: 200
   OnUp: 0
   OnDown: 1
   onLeft: 0
@@ -1150,8 +1150,7 @@ Transform:
   m_LocalPosition: {x: -1.36, y: -0.93, z: -0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 1412027318}
+  m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &886980388
@@ -1308,7 +1307,7 @@ MonoBehaviour:
   isRaycast: 0
   layer:
     serializedVersion: 2
-    m_Bits: 72
+    m_Bits: 200
   OnUp: 0
   OnDown: 1
   onLeft: 0
@@ -1476,7 +1475,7 @@ MonoBehaviour:
   isRaycast: 0
   layer:
     serializedVersion: 2
-    m_Bits: 72
+    m_Bits: 200
   OnUp: 0
   OnDown: 1
   onLeft: 0
@@ -1720,7 +1719,7 @@ MonoBehaviour:
   isRaycast: 0
   layer:
     serializedVersion: 2
-    m_Bits: 72
+    m_Bits: 200
   OnUp: 0
   OnDown: 1
   onLeft: 0
@@ -1888,7 +1887,7 @@ MonoBehaviour:
   isRaycast: 0
   layer:
     serializedVersion: 2
-    m_Bits: 72
+    m_Bits: 200
   OnUp: 0
   OnDown: 1
   onLeft: 0
@@ -2056,7 +2055,7 @@ MonoBehaviour:
   isRaycast: 0
   layer:
     serializedVersion: 2
-    m_Bits: 72
+    m_Bits: 200
   OnUp: 0
   OnDown: 1
   onLeft: 0
@@ -2224,7 +2223,7 @@ MonoBehaviour:
   isRaycast: 0
   layer:
     serializedVersion: 2
-    m_Bits: 72
+    m_Bits: 200
   OnUp: 0
   OnDown: 1
   onLeft: 0
@@ -2392,7 +2391,7 @@ MonoBehaviour:
   isRaycast: 0
   layer:
     serializedVersion: 2
-    m_Bits: 72
+    m_Bits: 200
   OnUp: 0
   OnDown: 1
   onLeft: 0
@@ -2560,7 +2559,7 @@ MonoBehaviour:
   isRaycast: 0
   layer:
     serializedVersion: 2
-    m_Bits: 72
+    m_Bits: 200
   OnUp: 0
   OnDown: 1
   onLeft: 0
@@ -2728,7 +2727,7 @@ MonoBehaviour:
   isRaycast: 0
   layer:
     serializedVersion: 2
-    m_Bits: 72
+    m_Bits: 200
   OnUp: 0
   OnDown: 1
   onLeft: 0
@@ -2896,7 +2895,7 @@ MonoBehaviour:
   isRaycast: 0
   layer:
     serializedVersion: 2
-    m_Bits: 72
+    m_Bits: 200
   OnUp: 0
   OnDown: 0
   onLeft: 0
@@ -2993,11 +2992,11 @@ Transform:
   m_GameObject: {fileID: 1412027316}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.64, y: 0.009999931, z: 0.024113655}
-  m_LocalScale: {x: 3, y: 2, z: 1}
+  m_LocalPosition: {x: -2, y: -0.9200001, z: 0.024113655}
+  m_LocalScale: {x: 2, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 824871407}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1412027319
 MonoBehaviour:
@@ -3011,23 +3010,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da131083fcc464f46bc6f4c03f51117d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SidePosXValue: 2
-  SidePosYValue: 1
+  SidePosXValue: 1
+  SidePosYValue: 0
   collisionRadius: 0.2
-  bottomOffset: {x: 0, y: -0.67}
-  rightOffset: {x: 0.95, y: 0}
-  leftOffset: {x: -1.14, y: 0}
-  UpOffset: {x: 0, y: 0.69}
-  bottomNextOffset: {x: 0, y: -1.38}
-  rightNextOffset: {x: 1.91, y: 0}
-  leftNextOffset: {x: -1.85, y: 0}
-  UpNextOffset: {x: 0, y: 1.6}
+  bottomOffset: {x: 0, y: -0.04}
+  rightOffset: {x: 0.7, y: 0}
+  leftOffset: {x: -0.7, y: 0}
+  UpOffset: {x: 0, y: -0.06}
+  bottomNextOffset: {x: 0, y: -0.97}
+  rightNextOffset: {x: 1.4, y: 0}
+  leftNextOffset: {x: -1.38, y: 0}
+  UpNextOffset: {x: 0, y: 0.94}
   LayerSide:
     serializedVersion: 2
     m_Bits: 64
+  layerUpDown:
+    serializedVersion: 2
+    m_Bits: 128
   LayerNextCheck:
     serializedVersion: 2
-    m_Bits: 72
+    m_Bits: 8
 --- !u!61 &1412027320
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -3228,7 +3230,7 @@ MonoBehaviour:
   isRaycast: 0
   layer:
     serializedVersion: 2
-    m_Bits: 72
+    m_Bits: 200
   OnUp: 0
   OnDown: 1
   onLeft: 0
@@ -3536,7 +3538,7 @@ MonoBehaviour:
   isRaycast: 0
   layer:
     serializedVersion: 2
-    m_Bits: 72
+    m_Bits: 200
   OnUp: 0
   OnDown: 1
   onLeft: 0
@@ -3560,4 +3562,5 @@ SceneRoots:
   - {fileID: 339059200}
   - {fileID: 1859701188}
   - {fileID: 1891007887}
+  - {fileID: 1412027318}
   - {fileID: 824871407}

@@ -28,16 +28,23 @@ public class TileCode : MonoBehaviour
         OnDown = Physics2D.OverlapCircle((Vector2)transform.position + bottomOffset, collisionRadius, layer);
         onRight = Physics2D.OverlapCircle((Vector2)transform.position + rightOffset, collisionRadius, layer);
         onLeft = Physics2D.OverlapCircle((Vector2)transform.position + leftOffset, collisionRadius, layer);
+        /*
 
-
-        if(OnUp == false || OnDown == false || onRight == false || onLeft == false)
+        if (onRight == false || onLeft == false)
         {
-            gameObject.layer = LayerMask.NameToLayer("GridBasementEnded");
+            gameObject.layer = LayerMask.NameToLayer("GridSideBasementEnded");
         }
+        else if (OnUp == false || OnDown == false)
+        {
+            gameObject.layer = LayerMask.NameToLayer("GridBottomUpBasementEnded");
+        }
+        else if ((onRight || onLeft) && (OnUp || OnDown))
+            Debug.Log("double explosure");
         else
         {
             gameObject.layer = LayerMask.NameToLayer("gridBasement");
         }
+        */
     }
 
     // Update is called once per frame
