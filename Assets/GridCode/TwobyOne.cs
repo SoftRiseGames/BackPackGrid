@@ -7,6 +7,11 @@ public class TwobyOne : MonoBehaviour, IInventoryObject, IRotatable, IHelper
     public int SidePosXValue;
     public int SidePosYValue;
 
+    public Grid gridBasement;
+    public GridRaycast gridInput;
+    public GameObject handledObject;
+
+    public GameObject grid;
    
     public bool OnDown { get; private set; }
     public bool OnUp { get; private set; }
@@ -25,20 +30,101 @@ public class TwobyOne : MonoBehaviour, IInventoryObject, IRotatable, IHelper
     public LayerMask LayerSide;
     public LayerMask layerUpDown;
     public LayerMask LayerNextCheck;
-
+    private void Start()
+    {
+        GridIntegration();
+    }
     private void Update()
     {
         Ray();
     }
-
+    private void OnMouseDown()
+    {
+        Debug.Log(gridBasement.GetComponent<GridSystem>().Inv);
+        gridBasement.GetComponent<GridSystem>().Inv = this;
+        Debug.Log("clicked");
+        Debug.Log(gridBasement.GetComponent<GridSystem>().Inv);
+    }
     public void Consume()
     {
         throw new System.NotImplementedException();
     }
+    public void GridIntegration()
+    {
+        gridBasement = GameObject.Find("Grid").GetComponent<Grid>();
+        gridInput = GameObject.Find("Grid").GetComponent<GridRaycast>();
+        handledObject = gameObject;
 
+    }
     public void RegisterYourself()
     {
-        throw new System.NotImplementedException();
+
+        Vector3 selectedPosition = gridInput.GetSelectedMapPosition();
+        Vector3Int cellPosition = gridBasement.WorldToCell(selectedPosition);
+        float pivotoffsetX = 0;
+        float pivotoffsetY = 0;
+
+
+        // Pivot Offsets hesaplama
+        if (handledObject.transform.localScale.x / 2 == 1)
+        {
+            Debug.Log("pivot");
+            pivotoffsetX = .5f * handledObject.GetComponent<TwobyOne>().SidePosXValue;
+        }
+        if (handledObject.transform.localScale.y / 2 == 1)
+        {
+            pivotoffsetY = .5f * handledObject.GetComponent<TwobyOne>().SidePosYValue;
+        }
+
+        Debug.Log(pivotoffsetX);
+
+        if (!handledObject.GetComponent<IInventoryObject>().onRightNext && !handledObject.GetComponent<IInventoryObject>().onLeftNext && !handledObject.GetComponent<IInventoryObject>().OnDownNext && !handledObject.GetComponent<IInventoryObject>().OnUpNext && cellPosition.x < handledObject.transform.position.x)
+        {
+            handledObject.transform.position = new Vector2(gridBasement.GetCellCenterWorld(cellPosition).x - pivotoffsetX, gridBasement.GetCellCenterWorld(cellPosition).y);
+        }
+
+        else if (!handledObject.GetComponent<IInventoryObject>().onRightNext && !handledObject.GetComponent<IInventoryObject>().onLeftNext && !handledObject.GetComponent<IInventoryObject>().OnDownNext && !handledObject.GetComponent<IInventoryObject>().OnUpNext && cellPosition.x >= handledObject.transform.position.x)
+        {
+            handledObject.transform.position = new Vector2(gridBasement.GetCellCenterWorld(cellPosition).x + pivotoffsetX, gridBasement.GetCellCenterWorld(cellPosition).y);
+        }
+
+
+        if (handledObject.GetComponent<IInventoryObject>().OnDownNext && !handledObject.GetComponent<IInventoryObject>().OnUpNext && cellPosition.y < handledObject.transform.position.y)
+        {
+            handledObject.transform.position = new Vector2(handledObject.transform.position.x, gridBasement.GetCellCenterWorld(cellPosition).y - pivotoffsetY);
+        }
+
+
+        else if (handledObject.GetComponent<IInventoryObject>().OnUpNext && !handledObject.GetComponent<IInventoryObject>().OnDownNext && cellPosition.y >= handledObject.transform.position.y)
+        {
+            handledObject.transform.position = new Vector2(handledObject.transform.position.x, gridBasement.GetCellCenterWorld(cellPosition).y + pivotoffsetY);
+        }
+
+
+        else if (handledObject.GetComponent<IInventoryObject>().OnUpNext && handledObject.GetComponent<IInventoryObject>().OnDownNext && cellPosition.y >= handledObject.transform.position.y + 1f)
+        {
+            handledObject.transform.position = new Vector2(handledObject.transform.position.x, gridBasement.GetCellCenterWorld(cellPosition).y + pivotoffsetY);
+        }
+
+        else if (handledObject.GetComponent<IInventoryObject>().OnUpNext && handledObject.GetComponent<IInventoryObject>().OnDownNext && cellPosition.y < handledObject.transform.position.y - 1f)
+        {
+            handledObject.transform.position = new Vector2(handledObject.transform.position.x, gridBasement.GetCellCenterWorld(cellPosition).y - pivotoffsetY);
+        }
+
+        Debug.Log(handledObject.GetComponent<IInventoryObject>().OnDownNext);
+        Debug.Log(handledObject.GetComponent<IInventoryObject>().OnUpNext);
+
+
+
+        if (handledObject.GetComponent<IInventoryObject>().onRightNext && cellPosition.x >= Mathf.Round(handledObject.transform.position.x))
+        {
+            handledObject.transform.position = new Vector2(gridBasement.GetCellCenterWorld(cellPosition).x + pivotoffsetX, handledObject.transform.position.y);
+        }
+        else if (handledObject.GetComponent<IInventoryObject>().onLeftNext && cellPosition.x < Mathf.Round(handledObject.transform.position.x))
+        {
+
+            handledObject.transform.position = new Vector2(gridBasement.GetCellCenterWorld(cellPosition).x - pivotoffsetX, handledObject.transform.position.y);
+        }
     }
 
     public void RotateLeft(Action<int> callback)
@@ -63,6 +149,8 @@ public class TwobyOne : MonoBehaviour, IInventoryObject, IRotatable, IHelper
         return SidePosYValue;
     }
 
+
+
     void Ray()
     {
         OnUp = Physics2D.OverlapCircle((Vector2)transform.position + UpOffset, collisionRadius, layerUpDown);
@@ -78,7 +166,7 @@ public class TwobyOne : MonoBehaviour, IInventoryObject, IRotatable, IHelper
 
 
     }
-
+  
     void OnDrawGizmos()
     {
         Gizmos.color = Color.green;
@@ -95,7 +183,15 @@ public class TwobyOne : MonoBehaviour, IInventoryObject, IRotatable, IHelper
         Gizmos.DrawWireSphere((Vector2)transform.position + leftNextOffset, collisionRadius);
     }
 
+    public void ClickObject()
+    {
+        throw new NotImplementedException();
+    }
+
+  
 }
+
+
 
 public interface IRotatable
 {
@@ -104,13 +200,14 @@ public interface IRotatable
 }
 
 
+
+
 public interface IInventoryObject
 {
+    void GridIntegration();
     void RegisterYourself();
     void Consume();
 
-    // Yeni Eklenen Properties
-    
    public bool OnUp { get; }
    public bool OnDown { get; }
    public bool onRight { get; }

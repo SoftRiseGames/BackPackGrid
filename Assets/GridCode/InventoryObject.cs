@@ -18,7 +18,17 @@ public abstract class InventoryObject:IInventoryObject
 
     public bool onLeftNext => throw new System.NotImplementedException();
 
+    public void ClickObject()
+    {
+        throw new System.NotImplementedException();
+    }
+
     public virtual void Consume()
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public void GridIntegration()
     {
         throw new System.NotImplementedException();
     }
