@@ -78,13 +78,14 @@ public class TwobyOne : MonoBehaviour, IInventoryObject, IRotatable, IHelper
     }
     public void RegisterYourself()
     {
-        if (OnUp || OnDown || onRight || onLeft)
-        {
-            Vector3 selectedPosition = gridInput.GetSelectedMapPosition();
-            Vector3Int cellPosition = gridBasement.WorldToCell(selectedPosition);
-            float pivotoffsetX = 0;
-            float pivotoffsetY = 0;
+        Vector3 selectedPosition = gridInput.GetSelectedMapPosition();
+        Vector3Int cellPosition = gridBasement.WorldToCell(selectedPosition);
+        float pivotoffsetX = 0;
+        float pivotoffsetY = 0;
 
+        if (OnUp && OnDown && onRight && onLeft)
+        {
+           
        
             isDragging = false;
             // Pivot Offsets hesaplama
@@ -100,16 +101,7 @@ public class TwobyOne : MonoBehaviour, IInventoryObject, IRotatable, IHelper
 
             Debug.Log(pivotoffsetX);
 
-            if (!handledObject.GetComponent<IInventoryObject>().onRightNext && !handledObject.GetComponent<IInventoryObject>().onLeftNext && !handledObject.GetComponent<IInventoryObject>().OnDownNext && !handledObject.GetComponent<IInventoryObject>().OnUpNext && cellPosition.x < handledObject.transform.position.x)
-            {
-                handledObject.transform.position = new Vector2(gridBasement.GetCellCenterWorld(cellPosition).x - pivotoffsetX, gridBasement.GetCellCenterWorld(cellPosition).y);
-            }
-
-            else if (!handledObject.GetComponent<IInventoryObject>().onRightNext && !handledObject.GetComponent<IInventoryObject>().onLeftNext && !handledObject.GetComponent<IInventoryObject>().OnDownNext && !handledObject.GetComponent<IInventoryObject>().OnUpNext && cellPosition.x >= handledObject.transform.position.x)
-            {
-                handledObject.transform.position = new Vector2(gridBasement.GetCellCenterWorld(cellPosition).x + pivotoffsetX, gridBasement.GetCellCenterWorld(cellPosition).y);
-            }
-
+         
 
             if (handledObject.GetComponent<IInventoryObject>().OnDownNext && !handledObject.GetComponent<IInventoryObject>().OnUpNext && cellPosition.y < handledObject.transform.position.y)
             {
@@ -137,12 +129,34 @@ public class TwobyOne : MonoBehaviour, IInventoryObject, IRotatable, IHelper
             Debug.Log(handledObject.GetComponent<IInventoryObject>().OnUpNext);
 
 
+            if (!handledObject.GetComponent<IInventoryObject>().onRightNext && !handledObject.GetComponent<IInventoryObject>().onLeftNext && !handledObject.GetComponent<IInventoryObject>().OnDownNext && !handledObject.GetComponent<IInventoryObject>().OnUpNext && cellPosition.x < handledObject.transform.position.x)
+            {
+                handledObject.transform.position = new Vector2(gridBasement.GetCellCenterWorld(cellPosition).x - pivotoffsetX, gridBasement.GetCellCenterWorld(cellPosition).y);
+            }
 
-            if (handledObject.GetComponent<IInventoryObject>().onRightNext && cellPosition.x >= Mathf.Round(handledObject.transform.position.x))
+            else if (!handledObject.GetComponent<IInventoryObject>().onRightNext && !handledObject.GetComponent<IInventoryObject>().onLeftNext && !handledObject.GetComponent<IInventoryObject>().OnDownNext && !handledObject.GetComponent<IInventoryObject>().OnUpNext && cellPosition.x >= handledObject.transform.position.x)
+            {
+                handledObject.transform.position = new Vector2(gridBasement.GetCellCenterWorld(cellPosition).x + pivotoffsetX, gridBasement.GetCellCenterWorld(cellPosition).y);
+            }
+
+
+
+            else if (handledObject.GetComponent<IInventoryObject>().onRightNext && !handledObject.GetComponent<IInventoryObject>().onLeftNext && cellPosition.x >= handledObject.transform.position.x)
             {
                 handledObject.transform.position = new Vector2(gridBasement.GetCellCenterWorld(cellPosition).x + pivotoffsetX, handledObject.transform.position.y);
             }
-            else if (handledObject.GetComponent<IInventoryObject>().onLeftNext && cellPosition.x < Mathf.Round(handledObject.transform.position.x))
+            else if (handledObject.GetComponent<IInventoryObject>().onLeftNext && !handledObject.GetComponent<IInventoryObject>().onRightNext && cellPosition.x < (handledObject.transform.position.x))
+            {
+
+                handledObject.transform.position = new Vector2(gridBasement.GetCellCenterWorld(cellPosition).x - pivotoffsetX, handledObject.transform.position.y);
+            }
+
+            else if (handledObject.GetComponent<IInventoryObject>().onLeftNext && handledObject.GetComponent<IInventoryObject>().onRightNext && cellPosition.x < (handledObject.transform.position.x))
+            {
+
+                handledObject.transform.position = new Vector2(gridBasement.GetCellCenterWorld(cellPosition).x - pivotoffsetX, handledObject.transform.position.y);
+            }
+            else if (handledObject.GetComponent<IInventoryObject>().onLeftNext && handledObject.GetComponent<IInventoryObject>().onRightNext && cellPosition.x >= (handledObject.transform.position.x))
             {
 
                 handledObject.transform.position = new Vector2(gridBasement.GetCellCenterWorld(cellPosition).x - pivotoffsetX, handledObject.transform.position.y);

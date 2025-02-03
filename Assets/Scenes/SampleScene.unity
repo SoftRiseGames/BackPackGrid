@@ -3018,10 +3018,10 @@ MonoBehaviour:
   handledObject: {fileID: 0}
   grid: {fileID: 1859701186}
   collisionRadius: 0.2
-  bottomOffset: {x: 0, y: -0.04}
-  rightOffset: {x: 0.7, y: 0}
-  leftOffset: {x: -0.7, y: 0}
-  UpOffset: {x: 0, y: -0.06}
+  bottomOffset: {x: 0, y: -0.47}
+  rightOffset: {x: 0.92, y: 0}
+  leftOffset: {x: -1.01, y: 0}
+  UpOffset: {x: 0, y: 0.48}
   bottomNextOffset: {x: 0, y: -1.46}
   rightNextOffset: {x: 1.4, y: 0}
   leftNextOffset: {x: -1.38, y: 0}
