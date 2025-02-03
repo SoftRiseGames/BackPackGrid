@@ -2994,7 +2994,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -1.32, y: -0.9200001, z: 0.024113655}
-  m_LocalScale: {x: 2, y: 2, z: 1}
+  m_LocalScale: {x: 2, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -3012,7 +3012,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SidePosXValue: 1
-  SidePosYValue: 1
+  SidePosYValue: 0
   gridBasement: {fileID: 0}
   gridInput: {fileID: 1859701190}
   handledObject: {fileID: 0}

@@ -101,12 +101,12 @@ public class TwobyOne : MonoBehaviour, IInventoryObject, IRotatable, IHelper
         }
 
 
-        else if (handledObject.GetComponent<IInventoryObject>().OnUpNext && handledObject.GetComponent<IInventoryObject>().OnDownNext && cellPosition.y >= handledObject.transform.position.y + 1f)
+        else if (handledObject.GetComponent<IInventoryObject>().OnUpNext && handledObject.GetComponent<IInventoryObject>().OnDownNext && cellPosition.y >= handledObject.transform.position.y + (pivotoffsetY*2))
         {
             handledObject.transform.position = new Vector2(handledObject.transform.position.x, gridBasement.GetCellCenterWorld(cellPosition).y + pivotoffsetY);
         }
 
-        else if (handledObject.GetComponent<IInventoryObject>().OnUpNext && handledObject.GetComponent<IInventoryObject>().OnDownNext && cellPosition.y < handledObject.transform.position.y - 1f)
+        else if (handledObject.GetComponent<IInventoryObject>().OnUpNext && handledObject.GetComponent<IInventoryObject>().OnDownNext && cellPosition.y < handledObject.transform.position.y - (pivotoffsetY*2))
         {
             handledObject.transform.position = new Vector2(handledObject.transform.position.x, gridBasement.GetCellCenterWorld(cellPosition).y - pivotoffsetY);
         }
