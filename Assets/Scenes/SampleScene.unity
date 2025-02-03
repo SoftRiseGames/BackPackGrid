@@ -3012,7 +3012,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SidePosXValue: 1
-  SidePosYValue: 0
+  SidePosYValue: 1
   gridBasement: {fileID: 0}
   gridInput: {fileID: 1859701190}
   handledObject: {fileID: 0}
@@ -3028,10 +3028,10 @@ MonoBehaviour:
   UpNextOffset: {x: 0, y: 1.56}
   LayerSide:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 8
   layerUpDown:
     serializedVersion: 2
-    m_Bits: 128
+    m_Bits: 8
   LayerNextCheck:
     serializedVersion: 2
     m_Bits: 8
