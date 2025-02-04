@@ -2994,7 +2994,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -1.32, y: -0.9200001, z: 0.024113655}
-  m_LocalScale: {x: 2, y: 1, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -3018,10 +3018,10 @@ MonoBehaviour:
   handledObject: {fileID: 0}
   grid: {fileID: 1859701186}
   collisionRadius: 0.2
-  bottomOffset: {x: 0, y: -0.47}
+  bottomOffset: {x: 0, y: -0.6}
   rightOffset: {x: 0.92, y: 0}
   leftOffset: {x: -1.01, y: 0}
-  UpOffset: {x: 0, y: 0.48}
+  UpOffset: {x: 0, y: 0.62}
   bottomNextOffset: {x: 0, y: -1.46}
   rightNextOffset: {x: 1.4, y: 0}
   leftNextOffset: {x: -1.38, y: 0}
