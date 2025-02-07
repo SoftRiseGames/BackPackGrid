@@ -13,7 +13,6 @@ public class TileCode : MonoBehaviour
 
     public float collisionRadius = 0.25f;
     public Vector2 bottomOffset, rightOffset, leftOffset, UpOffset;
-    public Vector2 bottomOffsetNext, rightOffsetNext, leftOffsetNext, UpOffsetNext;
     private Color debugCollisionColor = Color.red;
 
     void Start()
@@ -28,23 +27,6 @@ public class TileCode : MonoBehaviour
         OnDown = Physics2D.OverlapCircle((Vector2)transform.position + bottomOffset, collisionRadius, layer);
         onRight = Physics2D.OverlapCircle((Vector2)transform.position + rightOffset, collisionRadius, layer);
         onLeft = Physics2D.OverlapCircle((Vector2)transform.position + leftOffset, collisionRadius, layer);
-        /*
-
-        if (onRight == false || onLeft == false)
-        {
-            gameObject.layer = LayerMask.NameToLayer("GridSideBasementEnded");
-        }
-        else if (OnUp == false || OnDown == false)
-        {
-            gameObject.layer = LayerMask.NameToLayer("GridBottomUpBasementEnded");
-        }
-        else if ((onRight || onLeft) && (OnUp || OnDown))
-            Debug.Log("double explosure");
-        else
-        {
-            gameObject.layer = LayerMask.NameToLayer("gridBasement");
-        }
-        */
     }
 
     // Update is called once per frame

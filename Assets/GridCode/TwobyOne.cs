@@ -29,8 +29,7 @@ public class TwobyOne : MonoBehaviour, IInventoryObject, IRotatable, IHelper
     public List<Vector2> Vectors;
     public List<Vector2> VectorUp;
     private Color debugCollisionColor = Color.red;
-    public LayerMask LayerSide;
-    public LayerMask layerUpDown;
+    public LayerMask Layer;
     public LayerMask LayerNextCheck;
 
     float pivotOffsetX = 0;
@@ -61,7 +60,7 @@ public class TwobyOne : MonoBehaviour, IInventoryObject, IRotatable, IHelper
         if (isDragging)
         {
             Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            mousePosition.z = 0f; // Z eksenini sabit tut
+            mousePosition.z = 0f; 
             transform.position = mousePosition;
         }
     }
@@ -102,88 +101,61 @@ public class TwobyOne : MonoBehaviour, IInventoryObject, IRotatable, IHelper
         }
     }
 
-    
+
     public void RegisterYourself()
     {
-        
         Vector3 selectedPosition = gridInput.GetSelectedMapPosition();
         Vector3Int cellPosition = gridBasement.WorldToCell(selectedPosition);
-        
 
         if (OnUp && OnDown && onRight && onLeft)
         {
             isDragging = false;
-            // Pivot Offsets hesaplama
-            
+
+            IInventoryObject inventoryObject = handledObject.GetComponent<IInventoryObject>();
+            Vector2 objectPosition = handledObject.transform.position;
+            Vector2 cellCenterPosition = gridBasement.GetCellCenterWorld(cellPosition);
 
             Debug.Log(pivotOffsetX);
+            Debug.Log(inventoryObject.OnDownNext);
+            Debug.Log(inventoryObject.OnUpNext);
 
-         
+            // Y ekseni hizalama
+            if (inventoryObject.OnDownNext && !inventoryObject.OnUpNext && cellPosition.y < objectPosition.y)
+                objectPosition.y = cellCenterPosition.y - pivotOffsetY;
 
-            if (handledObject.GetComponent<IInventoryObject>().OnDownNext && !handledObject.GetComponent<IInventoryObject>().OnUpNext && cellPosition.y < handledObject.transform.position.y)
+            else if (inventoryObject.OnUpNext && !inventoryObject.OnDownNext && cellPosition.y >= objectPosition.y)
+                objectPosition.y = cellCenterPosition.y + pivotOffsetY;
+
+            else if (inventoryObject.OnUpNext && inventoryObject.OnDownNext)
             {
-                handledObject.transform.position = new Vector2(handledObject.transform.position.x, gridBasement.GetCellCenterWorld(cellPosition).y - pivotOffsetY);
+                if (cellPosition.y >= objectPosition.y + (pivotOffsetY * 2))
+                    objectPosition.y = cellCenterPosition.y - pivotOffsetY;
+                else if (cellPosition.y < objectPosition.y - (pivotOffsetY * 2))
+                    objectPosition.y = cellCenterPosition.y + pivotOffsetY;
             }
 
-
-            else if (handledObject.GetComponent<IInventoryObject>().OnUpNext && !handledObject.GetComponent<IInventoryObject>().OnDownNext && cellPosition.y >= handledObject.transform.position.y)
+            // X ekseni hizalama
+            if (!inventoryObject.onRightNext && !inventoryObject.onLeftNext &&
+                !inventoryObject.OnDownNext && !inventoryObject.OnUpNext)
             {
-                handledObject.transform.position = new Vector2(handledObject.transform.position.x, gridBasement.GetCellCenterWorld(cellPosition).y + pivotOffsetY);
+                objectPosition.x = (cellPosition.x < Mathf.Round(objectPosition.x))
+                    ? cellCenterPosition.x - pivotOffsetX
+                    : cellCenterPosition.x + pivotOffsetX;
             }
+            else if (inventoryObject.onRightNext && !inventoryObject.onLeftNext && cellPosition.x >= Mathf.Round(objectPosition.x))
+                objectPosition.x = cellCenterPosition.x - pivotOffsetX;
 
+            else if (inventoryObject.onLeftNext && !inventoryObject.onRightNext && cellPosition.x < Mathf.Round(objectPosition.x))
+                objectPosition.x = cellCenterPosition.x - pivotOffsetX;
 
-            else if (handledObject.GetComponent<IInventoryObject>().OnUpNext && handledObject.GetComponent<IInventoryObject>().OnDownNext && cellPosition.y >= handledObject.transform.position.y + (pivotOffsetY * 2))
-            {
-                handledObject.transform.position = new Vector2(handledObject.transform.position.x, gridBasement.GetCellCenterWorld(cellPosition).y- pivotOffsetY);
-            }
+            else if (inventoryObject.onLeftNext && inventoryObject.onRightNext)
+                objectPosition.x = cellCenterPosition.x - pivotOffsetX;
 
-            else if (handledObject.GetComponent<IInventoryObject>().OnUpNext && handledObject.GetComponent<IInventoryObject>().OnDownNext && cellPosition.y < handledObject.transform.position.y - (pivotOffsetY * 2))
-            {
-                handledObject.transform.position = new Vector2(handledObject.transform.position.x, gridBasement.GetCellCenterWorld(cellPosition).y + pivotOffsetY);
-            }
-
-            Debug.Log(handledObject.GetComponent<IInventoryObject>().OnDownNext);
-            Debug.Log(handledObject.GetComponent<IInventoryObject>().OnUpNext);
-
-
-            if (!handledObject.GetComponent<IInventoryObject>().onRightNext && !handledObject.GetComponent<IInventoryObject>().onLeftNext && !handledObject.GetComponent<IInventoryObject>().OnDownNext && !handledObject.GetComponent<IInventoryObject>().OnUpNext && cellPosition.x < Mathf.Round(handledObject.transform.position.x))
-            {
-                handledObject.transform.position = new Vector2(gridBasement.GetCellCenterWorld(cellPosition).x - pivotOffsetX, gridBasement.GetCellCenterWorld(cellPosition).y);
-            }
-
-            else if (!handledObject.GetComponent<IInventoryObject>().onRightNext && !handledObject.GetComponent<IInventoryObject>().onLeftNext && !handledObject.GetComponent<IInventoryObject>().OnDownNext && !handledObject.GetComponent<IInventoryObject>().OnUpNext && cellPosition.x >= Mathf.Round(handledObject.transform.position.x))
-            {
-                handledObject.transform.position = new Vector2(gridBasement.GetCellCenterWorld(cellPosition).x + pivotOffsetX, gridBasement.GetCellCenterWorld(cellPosition).y);
-            }
-
-
-
-            else if (handledObject.GetComponent<IInventoryObject>().onRightNext && !handledObject.GetComponent<IInventoryObject>().onLeftNext && cellPosition.x >=Mathf.Round( handledObject.transform.position.x))
-            {
-                handledObject.transform.position = new Vector2(gridBasement.GetCellCenterWorld(cellPosition).x -pivotOffsetX, handledObject.transform.position.y);
-            }
-            else if (handledObject.GetComponent<IInventoryObject>().onLeftNext && !handledObject.GetComponent<IInventoryObject>().onRightNext && cellPosition.x <Mathf.Round(handledObject.transform.position.x))
-            {
-
-                handledObject.transform.position = new Vector2(gridBasement.GetCellCenterWorld(cellPosition).x - pivotOffsetX, handledObject.transform.position.y);
-            }
-
-            else if (handledObject.GetComponent<IInventoryObject>().onLeftNext && handledObject.GetComponent<IInventoryObject>().onRightNext && cellPosition.x < Mathf.Round(handledObject.transform.position.x))
-            {
-
-                handledObject.transform.position = new Vector2(gridBasement.GetCellCenterWorld(cellPosition).x - pivotOffsetX, handledObject.transform.position.y);
-            }
-            else if (handledObject.GetComponent<IInventoryObject>().onLeftNext && handledObject.GetComponent<IInventoryObject>().onRightNext && cellPosition.x >= Mathf.Round(handledObject.transform.position.x))
-            {
-
-                handledObject.transform.position = new Vector2(gridBasement.GetCellCenterWorld(cellPosition).x - pivotOffsetX, handledObject.transform.position.y);
-            }
+            handledObject.transform.position = objectPosition;
         }
-
-
     }
 
-    
+
 
     public void RotateLeft(Action<int> callback)
     {
@@ -219,7 +191,6 @@ public class TwobyOne : MonoBehaviour, IInventoryObject, IRotatable, IHelper
     {
         if (VectorIndex1 >= 0 && VectorIndex1 < VectorList.Count && VectorIndex2 >= 0 && VectorIndex2 < VectorList.Count)
         {
-            // x ve y eksenlerini deðiþtirme
             Vector2 temp = VectorList[VectorIndex1];
             VectorList[VectorIndex1] = new Vector2(VectorList[VectorIndex1].y, VectorList[VectorIndex1].x);
 
@@ -233,10 +204,10 @@ public class TwobyOne : MonoBehaviour, IInventoryObject, IRotatable, IHelper
 
     void Ray()
     {
-        OnUp = Physics2D.OverlapCircle((Vector2)transform.position + Vectors[0], collisionRadius, layerUpDown);
-        OnDown = Physics2D.OverlapCircle((Vector2)transform.position + Vectors[1], collisionRadius, layerUpDown);
-        onRight = Physics2D.OverlapCircle((Vector2)transform.position + Vectors[2], collisionRadius, LayerSide);
-        onLeft = Physics2D.OverlapCircle((Vector2)transform.position + Vectors[3], collisionRadius, LayerSide);
+        OnUp = Physics2D.OverlapCircle((Vector2)transform.position + Vectors[0], collisionRadius, Layer);
+        OnDown = Physics2D.OverlapCircle((Vector2)transform.position + Vectors[1], collisionRadius, Layer);
+        onRight = Physics2D.OverlapCircle((Vector2)transform.position + Vectors[2], collisionRadius, Layer);
+        onLeft = Physics2D.OverlapCircle((Vector2)transform.position + Vectors[3], collisionRadius, Layer);
 
 
         OnUpNext = Physics2D.OverlapCircle((Vector2)transform.position + VectorUp[0], collisionRadius, LayerNextCheck);
@@ -269,32 +240,4 @@ public class TwobyOne : MonoBehaviour, IInventoryObject, IRotatable, IHelper
     }
 
   
-}
-
-
-
-public interface IRotatable
-{
-    void RotateLeft(Action<int> callback);
-    void RotateRight();
-}
-
-
-
-
-public interface IInventoryObject
-{
-    void GridIntegration();
-    void RegisterYourself();
-    void Consume();
-
-   public bool OnUp { get; }
-   public bool OnDown { get; }
-   public bool onRight { get; }
-   public bool onLeft { get; }
-
-    public bool OnDownNext { get;}
-    public bool OnUpNext { get;}
-    public bool onLeftNext { get;}
-    public bool onRightNext { get;}
 }

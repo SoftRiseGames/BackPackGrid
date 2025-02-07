@@ -52,11 +52,7 @@ public class GridSystem : MonoBehaviour
                 
         }
     }
-    void farestTile()
-    {
-
-    }
-
+ 
     public void RegisterYourself(int ypos)
     {
         // Matrixe kayýt-
