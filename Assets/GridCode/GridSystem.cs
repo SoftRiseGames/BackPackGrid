@@ -48,6 +48,7 @@ public class GridSystem : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.R))
             {
                 ((IRotatable)Inv).RotateLeft(RegisterYourself);
+                Inv.RegisterYourself();
             }
                 
         }

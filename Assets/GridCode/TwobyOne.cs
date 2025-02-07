@@ -34,6 +34,8 @@ public class TwobyOne : MonoBehaviour, IInventoryObject, IRotatable, IHelper
 
     float pivotOffsetX = 0;
     float pivotOffsetY = 0;
+
+    bool gridEnter;
     
     private void Start()
     {
@@ -43,13 +45,13 @@ public class TwobyOne : MonoBehaviour, IInventoryObject, IRotatable, IHelper
     private void Update()
     {
         Ray();
+        GridEnterBoolCheck();
     }
     private void OnMouseDown()
     {
         Debug.Log(gridBasement.GetComponent<GridSystem>().Inv);
         gridBasement.GetComponent<GridSystem>().Inv = this;
         Debug.Log("clicked");
-        Debug.Log(gridBasement.GetComponent<GridSystem>().Inv);
 
         isDragging = true;
 
@@ -69,6 +71,7 @@ public class TwobyOne : MonoBehaviour, IInventoryObject, IRotatable, IHelper
     void OnMouseUp()
     {
         isDragging = false;
+        gridBasement.GetComponent<GridSystem>().Inv = null;
     }
 
     public void Consume()
@@ -107,7 +110,7 @@ public class TwobyOne : MonoBehaviour, IInventoryObject, IRotatable, IHelper
         Vector3 selectedPosition = gridInput.GetSelectedMapPosition();
         Vector3Int cellPosition = gridBasement.WorldToCell(selectedPosition);
 
-        if (OnUp && OnDown && onRight && onLeft)
+        if (gridEnter)
         {
             isDragging = false;
 
@@ -153,8 +156,16 @@ public class TwobyOne : MonoBehaviour, IInventoryObject, IRotatable, IHelper
 
             handledObject.transform.position = objectPosition;
         }
+      
     }
 
+    void GridEnterBoolCheck()
+    {
+        if (OnUp && OnDown && onRight && onLeft)
+            gridEnter = true;
+        else
+            gridEnter = false;
+    }
 
 
     public void RotateLeft(Action<int> callback)
