@@ -2956,17 +2956,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SidePosXValue: 1
-  SidePosYValue: 1
+  SidePosYValue: 0
   gridBasement: {fileID: 0}
   gridInput: {fileID: 1859701190}
   handledObject: {fileID: 0}
-  grid: {fileID: 1859701186}
+  grid: {fileID: 0}
   collisionRadius: 0.1
   Vectors:
   - {x: 0, y: 0.44}
   - {x: 0, y: -0.4}
-  - {x: 0.85, y: 0}
-  - {x: -0.9, y: 0}
+  - {x: 0.9, y: 0}
+  - {x: -0.91, y: 0}
   VectorUp:
   - {x: 0, y: 0.78}
   - {x: 0, y: -0.72}

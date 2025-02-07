@@ -1,4 +1,4 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 using UnityEngine.Events;
 using System;
 using System.Collections.Generic;
@@ -7,7 +7,7 @@ public class TwobyOne : MonoBehaviour, IInventoryObject, IRotatable, IHelper
 {
     public int SidePosXValue;
     public int SidePosYValue;
-    
+
 
     public Grid gridBasement;
     public GridRaycast gridInput;
@@ -36,7 +36,7 @@ public class TwobyOne : MonoBehaviour, IInventoryObject, IRotatable, IHelper
     float pivotOffsetY = 0;
 
     bool gridEnter;
-    
+
     private void Start()
     {
         GridIntegration();
@@ -62,7 +62,7 @@ public class TwobyOne : MonoBehaviour, IInventoryObject, IRotatable, IHelper
         if (isDragging)
         {
             Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            mousePosition.z = 0f; 
+            mousePosition.z = 0f;
             transform.position = mousePosition;
         }
     }
@@ -83,7 +83,7 @@ public class TwobyOne : MonoBehaviour, IInventoryObject, IRotatable, IHelper
         gridBasement = GameObject.Find("Grid").GetComponent<Grid>();
         gridInput = GameObject.Find("Grid").GetComponent<GridRaycast>();
         handledObject = gameObject;
-        
+
     }
     void ScaleObjectRechange()
     {
@@ -112,11 +112,18 @@ public class TwobyOne : MonoBehaviour, IInventoryObject, IRotatable, IHelper
 
         if (gridEnter)
         {
-            isDragging = false;
+            
 
             IInventoryObject inventoryObject = handledObject.GetComponent<IInventoryObject>();
             Vector2 objectPosition = handledObject.transform.position;
             Vector2 cellCenterPosition = gridBasement.GetCellCenterWorld(cellPosition);
+
+            if (isDragging)
+            {
+                objectPosition.y = cellCenterPosition.y - pivotOffsetY;
+                objectPosition.x = cellCenterPosition.x + pivotOffsetX;
+            }
+            isDragging = false;
 
             Debug.Log(pivotOffsetX);
             Debug.Log(inventoryObject.OnDownNext);
@@ -138,24 +145,11 @@ public class TwobyOne : MonoBehaviour, IInventoryObject, IRotatable, IHelper
             }
 
             // X ekseni hizalama
-            if (!inventoryObject.onRightNext && !inventoryObject.onLeftNext &&
-                !inventoryObject.OnDownNext && !inventoryObject.OnUpNext)
-            {
-                objectPosition.x = (cellPosition.x < Mathf.Round(objectPosition.x))
-                    ? cellCenterPosition.x - pivotOffsetX
-                    : cellCenterPosition.x + pivotOffsetX;
-            }
-            else if (inventoryObject.onRightNext && !inventoryObject.onLeftNext && cellPosition.x >= Mathf.Round(objectPosition.x))
-                objectPosition.x = cellCenterPosition.x - pivotOffsetX;
+            objectPosition.x = cellCenterPosition.x - pivotOffsetX;
 
-            else if (inventoryObject.onLeftNext && !inventoryObject.onRightNext && cellPosition.x < Mathf.Round(objectPosition.x))
-                objectPosition.x = cellCenterPosition.x - pivotOffsetX;
 
-            else if (inventoryObject.onLeftNext && inventoryObject.onRightNext)
-                objectPosition.x = cellCenterPosition.x - pivotOffsetX;
 
-            // Fare belirli bir mesafeye ulaþtýðýnda isDragging aktif olsun
-            float dragThreshold = 0.05f; // Belirlenen uzaklýk eþiði
+            float dragThreshold = 0.05f; 
             if (Input.GetAxis("Mouse X") > dragThreshold && !inventoryObject.onRightNext)
                 isDragging = true;
             else if (Input.GetAxis("Mouse X") < -dragThreshold && !inventoryObject.onLeftNext)
@@ -182,10 +176,10 @@ public class TwobyOne : MonoBehaviour, IInventoryObject, IRotatable, IHelper
     {
         // Rotate Object
         gameObject.transform.Rotate(new Vector3(transform.rotation.x, transform.rotation.y, 90));
-        
+
         SwapElements(Vectors, 0, 2);
         SwapElements(Vectors, 1, 3);
-        
+
         SwapElements(VectorUp, 0, 2);
         SwapElements(VectorUp, 1, 3);
 
@@ -238,7 +232,7 @@ public class TwobyOne : MonoBehaviour, IInventoryObject, IRotatable, IHelper
 
 
     }
-  
+
     void OnDrawGizmos()
     {
         Gizmos.color = Color.green;
@@ -260,5 +254,5 @@ public class TwobyOne : MonoBehaviour, IInventoryObject, IRotatable, IHelper
         throw new NotImplementedException();
     }
 
-  
+
 }
