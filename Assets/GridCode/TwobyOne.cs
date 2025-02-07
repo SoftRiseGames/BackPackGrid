@@ -154,9 +154,19 @@ public class TwobyOne : MonoBehaviour, IInventoryObject, IRotatable, IHelper
             else if (inventoryObject.onLeftNext && inventoryObject.onRightNext)
                 objectPosition.x = cellCenterPosition.x - pivotOffsetX;
 
+            // Fare belirli bir mesafeye ulaþtýðýnda isDragging aktif olsun
+            float dragThreshold = 0.05f; // Belirlenen uzaklýk eþiði
+            if (Input.GetAxis("Mouse X") > dragThreshold && !inventoryObject.onRightNext)
+                isDragging = true;
+            else if (Input.GetAxis("Mouse X") < -dragThreshold && !inventoryObject.onLeftNext)
+                isDragging = true;
+            else if (Input.GetAxis("Mouse Y") > dragThreshold && !inventoryObject.OnUpNext)
+                isDragging = true;
+            else if (Input.GetAxis("Mouse Y") < -dragThreshold && !inventoryObject.OnDownNext)
+                isDragging = true;
+
             handledObject.transform.position = objectPosition;
         }
-      
     }
 
     void GridEnterBoolCheck()

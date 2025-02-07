@@ -283,10 +283,6 @@ MonoBehaviour:
   rightOffset: {x: 0.64, y: 0}
   leftOffset: {x: -0.64, y: 0}
   UpOffset: {x: 0, y: 0.62}
-  bottomOffsetNext: {x: 0, y: 0}
-  rightOffsetNext: {x: 0, y: 0}
-  leftOffsetNext: {x: 0, y: 0}
-  UpOffsetNext: {x: 0, y: 0}
 --- !u!1 &107346199
 GameObject:
   m_ObjectHideFlags: 0
@@ -451,10 +447,6 @@ MonoBehaviour:
   rightOffset: {x: 0.64, y: 0}
   leftOffset: {x: -0.64, y: 0}
   UpOffset: {x: 0, y: 0.62}
-  bottomOffsetNext: {x: 0, y: 0}
-  rightOffsetNext: {x: 0, y: 0}
-  leftOffsetNext: {x: 0, y: 0}
-  UpOffsetNext: {x: 0, y: 0}
 --- !u!1 &339059199
 GameObject:
   m_ObjectHideFlags: 0
@@ -729,10 +721,6 @@ MonoBehaviour:
   rightOffset: {x: 0.64, y: 0}
   leftOffset: {x: -0.64, y: 0}
   UpOffset: {x: 0, y: 0.62}
-  bottomOffsetNext: {x: 0, y: 0}
-  rightOffsetNext: {x: 0, y: 0}
-  leftOffsetNext: {x: 0, y: 0}
-  UpOffsetNext: {x: 0, y: 0}
 --- !u!1 &510324864
 GameObject:
   m_ObjectHideFlags: 0
@@ -897,10 +885,6 @@ MonoBehaviour:
   rightOffset: {x: 0.64, y: 0}
   leftOffset: {x: -0.64, y: 0}
   UpOffset: {x: 0, y: 0.62}
-  bottomOffsetNext: {x: 0, y: 0}
-  rightOffsetNext: {x: 0, y: 0}
-  leftOffsetNext: {x: 0, y: 0}
-  UpOffsetNext: {x: 0, y: 0}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -1317,10 +1301,6 @@ MonoBehaviour:
   rightOffset: {x: 0.64, y: 0}
   leftOffset: {x: -0.64, y: 0}
   UpOffset: {x: 0, y: 0.62}
-  bottomOffsetNext: {x: 0, y: 0}
-  rightOffsetNext: {x: 0, y: 0}
-  leftOffsetNext: {x: 0, y: 0}
-  UpOffsetNext: {x: 0, y: 0}
 --- !u!1 &901687647
 GameObject:
   m_ObjectHideFlags: 0
@@ -1485,10 +1465,6 @@ MonoBehaviour:
   rightOffset: {x: 0.64, y: 0}
   leftOffset: {x: -0.64, y: 0}
   UpOffset: {x: 0, y: 0.62}
-  bottomOffsetNext: {x: 0, y: 0}
-  rightOffsetNext: {x: 0, y: 0}
-  leftOffsetNext: {x: 0, y: 0}
-  UpOffsetNext: {x: 0, y: 0}
 --- !u!1 &918297214
 GameObject:
   m_ObjectHideFlags: 0
@@ -1729,10 +1705,6 @@ MonoBehaviour:
   rightOffset: {x: 0.64, y: 0}
   leftOffset: {x: -0.64, y: 0}
   UpOffset: {x: 0, y: 0.62}
-  bottomOffsetNext: {x: 0, y: 0}
-  rightOffsetNext: {x: 0, y: 0}
-  leftOffsetNext: {x: 0, y: 0}
-  UpOffsetNext: {x: 0, y: 0}
 --- !u!1 &1055063357
 GameObject:
   m_ObjectHideFlags: 0
@@ -1897,10 +1869,6 @@ MonoBehaviour:
   rightOffset: {x: 0.64, y: 0}
   leftOffset: {x: -0.64, y: 0}
   UpOffset: {x: 0, y: 0.62}
-  bottomOffsetNext: {x: 0, y: 0}
-  rightOffsetNext: {x: 0, y: 0}
-  leftOffsetNext: {x: 0, y: 0}
-  UpOffsetNext: {x: 0, y: 0}
 --- !u!1 &1056413131
 GameObject:
   m_ObjectHideFlags: 0
@@ -2065,10 +2033,6 @@ MonoBehaviour:
   rightOffset: {x: 0.64, y: 0}
   leftOffset: {x: -0.64, y: 0}
   UpOffset: {x: 0, y: 0.62}
-  bottomOffsetNext: {x: 0, y: 0}
-  rightOffsetNext: {x: 0, y: 0}
-  leftOffsetNext: {x: 0, y: 0}
-  UpOffsetNext: {x: 0, y: 0}
 --- !u!1 &1066569127
 GameObject:
   m_ObjectHideFlags: 0
@@ -2233,10 +2197,6 @@ MonoBehaviour:
   rightOffset: {x: 0.64, y: 0}
   leftOffset: {x: -0.64, y: 0}
   UpOffset: {x: 0, y: 0.62}
-  bottomOffsetNext: {x: 0, y: 0}
-  rightOffsetNext: {x: 0, y: 0}
-  leftOffsetNext: {x: 0, y: 0}
-  UpOffsetNext: {x: 0, y: 0}
 --- !u!1 &1068629053
 GameObject:
   m_ObjectHideFlags: 0
@@ -2401,10 +2361,6 @@ MonoBehaviour:
   rightOffset: {x: 0.64, y: 0}
   leftOffset: {x: -0.64, y: 0}
   UpOffset: {x: 0, y: 0.62}
-  bottomOffsetNext: {x: 0, y: 0}
-  rightOffsetNext: {x: 0, y: 0}
-  leftOffsetNext: {x: 0, y: 0}
-  UpOffsetNext: {x: 0, y: 0}
 --- !u!1 &1104499987
 GameObject:
   m_ObjectHideFlags: 0
@@ -2569,10 +2525,6 @@ MonoBehaviour:
   rightOffset: {x: 0.64, y: 0}
   leftOffset: {x: -0.64, y: 0}
   UpOffset: {x: 0, y: 0.62}
-  bottomOffsetNext: {x: 0, y: 0}
-  rightOffsetNext: {x: 0, y: 0}
-  leftOffsetNext: {x: 0, y: 0}
-  UpOffsetNext: {x: 0, y: 0}
 --- !u!1 &1211598094
 GameObject:
   m_ObjectHideFlags: 0
@@ -2737,10 +2689,6 @@ MonoBehaviour:
   rightOffset: {x: 0.64, y: 0}
   leftOffset: {x: -0.64, y: 0}
   UpOffset: {x: 0, y: 0.62}
-  bottomOffsetNext: {x: 0, y: 0}
-  rightOffsetNext: {x: 0, y: 0}
-  leftOffsetNext: {x: 0, y: 0}
-  UpOffsetNext: {x: 0, y: 0}
 --- !u!1 &1215828355
 GameObject:
   m_ObjectHideFlags: 0
@@ -2905,10 +2853,6 @@ MonoBehaviour:
   rightOffset: {x: 0.64, y: 0}
   leftOffset: {x: -0.64, y: 0}
   UpOffset: {x: 0, y: 0.62}
-  bottomOffsetNext: {x: 0, y: 0}
-  rightOffsetNext: {x: 0, y: 0}
-  leftOffsetNext: {x: 0, y: 0}
-  UpOffsetNext: {x: 0, y: 0}
 --- !u!1 &1412027316
 GameObject:
   m_ObjectHideFlags: 0
@@ -3028,10 +2972,7 @@ MonoBehaviour:
   - {x: 0, y: -0.72}
   - {x: 1.22, y: 0}
   - {x: -1.17, y: 0}
-  LayerSide:
-    serializedVersion: 2
-    m_Bits: 8
-  layerUpDown:
+  Layer:
     serializedVersion: 2
     m_Bits: 8
   LayerNextCheck:
@@ -3259,10 +3200,6 @@ MonoBehaviour:
   rightOffset: {x: 0.64, y: 0}
   leftOffset: {x: -0.64, y: 0}
   UpOffset: {x: 0, y: 0.62}
-  bottomOffsetNext: {x: 0, y: 0}
-  rightOffsetNext: {x: 0, y: 0}
-  leftOffsetNext: {x: 0, y: 0}
-  UpOffsetNext: {x: 0, y: 0}
 --- !u!1 &1859701186
 GameObject:
   m_ObjectHideFlags: 0
@@ -3567,10 +3504,6 @@ MonoBehaviour:
   rightOffset: {x: 0.64, y: 0}
   leftOffset: {x: -0.64, y: 0}
   UpOffset: {x: 0, y: 0.62}
-  bottomOffsetNext: {x: 0, y: 0}
-  rightOffsetNext: {x: 0, y: 0}
-  leftOffsetNext: {x: 0, y: 0}
-  UpOffsetNext: {x: 0, y: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
