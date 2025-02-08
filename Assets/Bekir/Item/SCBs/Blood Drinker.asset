@@ -10,10 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bc1cf9c466ad942db80df514fd5ef238, type: 3}
-  m_Name: Bloody Sovereign
+  m_Name: Blood Drinker
   m_EditorClassIdentifier: 
-  itemName: Bloody Sovereign
-  description: "bu k\u0131l\u0131\xE7 \xE7ok g\xFC\xE7l\xFC\xFC\xFC"
-  attackPower: 112891031
-  defensePower: 0
-  icon: {fileID: -6269945694451977836, guid: cf7653eaf26d86644a2ffcea58fa3e40, type: 3}
+  itemName: Blood Drinker
+  description: blood drinker olan item
+  icon: {fileID: -6849179773407893626, guid: 3c8a336d4d3b646c9a57d5e40c02f2bd, type: 3}
+  cellSize: {x: 0, y: 0}
+  RootMergeItem: {fileID: 0}
+  MergedItems: []

@@ -7,15 +7,23 @@ using UnityEngine;
 public class MeleeWeopen : MonoBehaviour, IItem
 {
     public BaseItem BaseItem { get; set; }
-    public List<ItemEffect> ItemEffects_OnEveryTour = new();
-    public List<ItemEffect> ItemEffects_OnPlaced = new();
+    private List<ItemEffect> ItemEffects_OnEveryTour = new();
+    private List<ItemEffect> ItemEffects_OnPlaced = new();
 
     public void OnAttack()
     {
+        ItemEffects_OnPlaced?.ForEach((item) =>
+        {
+            item.ExecuteEffect();
+        });
     }
 
     public void OnTour()
     {
+        ItemEffects_OnEveryTour?.ForEach((item) =>
+        {
+            item.ExecuteEffect();
+        });
     }
 
     public void Init()

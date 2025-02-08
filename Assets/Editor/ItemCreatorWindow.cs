@@ -188,7 +188,7 @@ public class ItemCreatorWindow : EditorWindow
         newItem.icon = newIcon;
 
         newItem.RootMergeItem = rootMergeItem; // Root item ekleniyor
-        newItem.MergedItems.AddRange(mergeItemList); // Liste ekleniyor
+        newItem.MergedItems = mergeItemList; // Liste ekleniyor
 
         string path = EditorUtility.SaveFilePanelInProject(
             "Save Merged Item",
