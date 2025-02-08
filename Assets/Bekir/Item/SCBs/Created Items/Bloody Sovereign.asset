@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc1cf9c466ad942db80df514fd5ef238, type: 3}
+  m_Name: Bloody Sovereign
+  m_EditorClassIdentifier: 
+  itemName: Bloody Sovereign
+  description: "bu k\u0131l\u0131\xE7 \xE7ok g\xFC\xE7l\xFC\xFC\xFC"
+  attackPower: 112891031
+  defensePower: 0
+  icon: {fileID: -6269945694451977836, guid: cf7653eaf26d86644a2ffcea58fa3e40, type: 3}
