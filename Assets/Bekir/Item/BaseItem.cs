@@ -22,4 +22,6 @@ public class BaseItem : ScriptableObject
     public Vector2Int cellSize;
     public BaseItem RootMergeItem;
     public List<BaseItem> MergedItems;
+    public List<ItemEffect> ItemEffects_OnEveryTour = new();
+    public List<ItemEffect> ItemEffects_OnPlaced = new();
 }
