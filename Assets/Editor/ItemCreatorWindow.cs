@@ -15,10 +15,7 @@ public class ItemCreatorWindow : EditorWindow
     private Sprite newIcon; // Yeni item ikonu
     private string savePath = "Assets/"; // Kayit yolu
 
-    private int selectedTab = 0; // Secili sekme indeksi
-
-    // Sidebar icin scroll view pozisyonu
-    private Vector2 sidebarScrollPos;
+    private int selectedTab = 0; // Sekme icin secili indeks
 
     /// <summary>
     /// Advanced Item Creator penceresini acar.
@@ -30,69 +27,40 @@ public class ItemCreatorWindow : EditorWindow
     }
 
     /// <summary>
-    /// Pencerenin ana cizim fonksiyonudur. Sol ve sag alanlar cizilir.
+    /// Pencerenin ana cizim fonksiyonudur. Ustte toolbar ve secili sekmeye gore icerik cizer.
     /// </summary>
     void OnGUI()
     {
-        // Ana layout: sol kisimda sayfa icerigi, sag kisimda sidebar (olusturulan asset'ler)
-        EditorGUILayout.BeginHorizontal();
+        // Ust Panel icin cubuk
+        EditorGUILayout.BeginHorizontal(EditorStyles.toolbar);
+
+        if (GUILayout.Toggle(selectedTab == 0, "Main Page", EditorStyles.toolbarButton))
         {
-            // SOL KISIM: Sayfa icerigi
-            EditorGUILayout.BeginVertical();
-            {
-                // Ustte toolbar (sekme secimi)
-                EditorGUILayout.BeginHorizontal(EditorStyles.toolbar);
-                if (GUILayout.Toggle(selectedTab == 0, "Main Page", EditorStyles.toolbarButton))
-                {
-                    selectedTab = 0;
-                }
-                if (GUILayout.Toggle(selectedTab == 1, "Create Item Page", EditorStyles.toolbarButton))
-                {
-                    selectedTab = 1;
-                }
-                EditorGUILayout.EndHorizontal();
-
-                EditorGUILayout.Space(10);
-
-                // Secili sekmeye gore icerik cizimi
-                if (selectedTab == 0)
-                {
-                    DrawMainPage();
-                }
-                else if (selectedTab == 1)
-                {
-                    DrawCreateItemPage();
-                }
-            }
-            EditorGUILayout.EndVertical();
-
-            // SAG KISIM: Sidebar - Olusturulan ScriptableObject'lerin listelendigii alan
-            // Sidebar genisligini 300px sabitliyoruz.
-            EditorGUILayout.BeginVertical(GUILayout.Width(300));
-            {
-                EditorGUILayout.LabelField("Created Scriptable Objects", EditorStyles.boldLabel);
-                // Pencere yuksekliginden 50 piksel cikarilarak sidebar yuksekligi hesaplanir.
-                float sidebarHeight = position.height - 50;
-                // ScrollView; yatay scrollbar olmasin diye alwaysShowHorizontal false, dikey her zaman gosterilsin.
-                sidebarScrollPos = EditorGUILayout.BeginScrollView(
-                    sidebarScrollPos,
-                    /*alwaysShowHorizontal:*/ false,
-                    /*alwaysShowVertical:*/ true,
-                    GUILayout.Width(300),
-                    GUILayout.Height(sidebarHeight)
-                );
-                {
-                    EditorGUILayout.BeginVertical();
-                    {
-                        DrawCreatedItemsListContent();
-                    }
-                    EditorGUILayout.EndVertical();
-                }
-                EditorGUILayout.EndScrollView();
-            }
-            EditorGUILayout.EndVertical();
+            selectedTab = 0;
         }
+
+        if (GUILayout.Toggle(selectedTab == 1, "Create Item Page", EditorStyles.toolbarButton))
+        {
+            selectedTab = 1;
+        }
+
         EditorGUILayout.EndHorizontal();
+
+        // Secili sekmeye gore ilgili UI'i cizer
+        EditorGUILayout.Space(10);
+
+        if (selectedTab == 0)
+        {
+            DrawMainPage();
+        }
+        else if (selectedTab == 1)
+        {
+            DrawCreateItemPage();
+        }
+
+        // Her sayfanin en altinda olusturulan ScriptableObject'leri listeler
+        EditorGUILayout.Space(20);
+        DrawCreatedItemsList();
     }
 
     /// <summary>
@@ -100,20 +68,24 @@ public class ItemCreatorWindow : EditorWindow
     /// </summary>
     void DrawMainPage()
     {
+        // Ana Sayfa
         EditorGUILayout.LabelField("Item Management", EditorStyles.boldLabel);
         EditorGUILayout.Space(10);
 
-        // Root Merge Item alani
+        // Tekli Item alani (ustteki)
         EditorGUILayout.LabelField("Root Merge Item", EditorStyles.boldLabel);
         rootMergeItem = (BaseItem)EditorGUILayout.ObjectField("Root Item", rootMergeItem, typeof(BaseItem), false);
+
         EditorGUILayout.Space(10);
 
-        // Merge Item List alani
+        // Liste alani (birden fazla item)
         EditorGUILayout.LabelField("Merge Item List", EditorStyles.boldLabel);
         for (int i = 0; i < mergeItemList.Count; i++)
         {
             EditorGUILayout.BeginHorizontal();
             mergeItemList[i] = (BaseItem)EditorGUILayout.ObjectField($"Item {i + 1}", mergeItemList[i], typeof(BaseItem), false);
+
+            // Liste elemanini silmek icin buton
             if (GUILayout.Button("Remove", GUILayout.Width(70)))
             {
                 mergeItemList.RemoveAt(i);
@@ -121,6 +93,8 @@ public class ItemCreatorWindow : EditorWindow
             }
             EditorGUILayout.EndHorizontal();
         }
+
+        // Listeye yeni item ekle butonu
         if (GUILayout.Button("Add New Item to List", GUILayout.Height(30)))
         {
             mergeItemList.Add(null);
@@ -136,6 +110,7 @@ public class ItemCreatorWindow : EditorWindow
 
         EditorGUILayout.Space(10);
 
+        // Merge butonu
         if (GUILayout.Button("Merge Items", GUILayout.Height(40)))
         {
             MergeItems();
@@ -147,6 +122,7 @@ public class ItemCreatorWindow : EditorWindow
     /// </summary>
     void DrawCreateItemPage()
     {
+        // Yeni Item Olusturma
         EditorGUILayout.LabelField("New Item Properties", EditorStyles.boldLabel);
         newItemName = EditorGUILayout.TextField("Name", newItemName);
         newItemDescription = EditorGUILayout.TextArea(newItemDescription, GUILayout.Height(60));
@@ -154,6 +130,7 @@ public class ItemCreatorWindow : EditorWindow
 
         EditorGUILayout.Space(10);
 
+        // Kayit yolu secimi
         EditorGUILayout.LabelField("Save Path for New Item", EditorStyles.boldLabel);
         savePath = EditorGUILayout.TextField("Path", savePath);
 
@@ -170,6 +147,7 @@ public class ItemCreatorWindow : EditorWindow
     /// </summary>
     void CreateNewItem()
     {
+        // Yeni item olusturma islemi
         BaseItem newItem = CreateInstance<BaseItem>();
         newItem.itemName = newItemName;
         newItem.description = newItemDescription;
@@ -192,22 +170,25 @@ public class ItemCreatorWindow : EditorWindow
     }
 
     /// <summary>
-    /// Belirtilen item'leri birlestirir ve yeni bir BaseItem olarak kaydeder.
+    /// Belirtilen itemleri birlestirir ve yeni bir BaseItem olarak kaydeder.
     /// </summary>
     void MergeItems()
     {
+        // Merge islemi
         if (rootMergeItem == null)
         {
             Debug.LogWarning("Root Merge Item is not set.");
             return;
         }
 
+        // Yeni olusturulan item'a ekleme
         BaseItem newItem = CreateInstance<BaseItem>();
         newItem.itemName = newItemName;
         newItem.description = newItemDescription;
         newItem.icon = newIcon;
-        newItem.RootMergeItem = rootMergeItem;
-        newItem.MergedItems.AddRange(mergeItemList);
+
+        newItem.RootMergeItem = rootMergeItem; // Root item ekleniyor
+        newItem.MergedItems.AddRange(mergeItemList); // Liste ekleniyor
 
         string path = EditorUtility.SaveFilePanelInProject(
             "Save Merged Item",
@@ -228,10 +209,13 @@ public class ItemCreatorWindow : EditorWindow
     }
 
     /// <summary>
-    /// Sidebar icerisinde goruntulenecek olan, Assets icindeki tum BaseItem assetlerini cizer.
+    /// Projede bulunan tum BaseItem turundeki ScriptableObject'leri listeler.
     /// </summary>
-    void DrawCreatedItemsListContent()
+    void DrawCreatedItemsList()
     {
+        EditorGUILayout.LabelField("Created Scriptable Objects", EditorStyles.boldLabel);
+
+        // Proje genelinde Assets klasorunde BaseItem tipinde assetleri bulur.
         string[] guids = AssetDatabase.FindAssets("t:BaseItem", new string[] { "Assets" });
         foreach (string guid in guids)
         {
