@@ -8,15 +8,15 @@ public class BaseItem : ScriptableObject
     /// <summary>
     /// for UI
     /// </summary>
-    public string itemName;
+    public string ItemName;
     /// <summary>
     /// for giving tip to player and for uI
     /// </summary>
-    [TextArea] public string description;
+    [TextArea] public string Description;
     /// <summary>
     /// Items Sprite
     /// </summary>
-    public Sprite icon;
+    public Sprite ItemSprite;
     /// <summary>
     /// how many cell taking
     /// </summary>
