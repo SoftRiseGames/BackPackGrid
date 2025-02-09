@@ -21,3 +21,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: ed4c1189096b847e2867523dc459fa3b, type: 2}
   - {fileID: 11400000, guid: ed4c1189096b847e2867523dc459fa3b, type: 2}
   - {fileID: 11400000, guid: ed4c1189096b847e2867523dc459fa3b, type: 2}
+  ItemEffects_OnEveryTour: []
+  ItemEffects_OnPlaced: []
+  references:
+    version: 2
+    RefIds: []

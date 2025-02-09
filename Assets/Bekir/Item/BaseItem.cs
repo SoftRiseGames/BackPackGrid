@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Sirenix.OdinInspector;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "New Item", menuName = "Inventory/Item")]
@@ -22,7 +23,11 @@ public class BaseItem : ScriptableObject
     public Vector2Int cellSize;
     public BaseItem RootMergeItem;
     public List<BaseItem> MergedItems;
-    public List<ItemEffect> ItemEffects_OnEveryTour = new();
-    public List<ItemEffect> ItemEffects_OnPlaced = new();
+    [ListDrawerSettings]
+    [SerializeReference, PolymorphicDrawerSettings]
+    public List<IItemEffect> ItemEffects_OnEveryTour = new();
+    [ListDrawerSettings]
+    [SerializeReference, PolymorphicDrawerSettings]
+    public List<IItemEffect> ItemEffects_OnPlaced = new();
 }
 

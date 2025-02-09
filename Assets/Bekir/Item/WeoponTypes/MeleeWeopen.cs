@@ -7,8 +7,8 @@ using UnityEngine;
 public class MeleeWeopen : MonoBehaviour, IItem
 {
     public BaseItem BaseItem { get; set; }
-    private List<ItemEffect> ItemEffects_OnEveryTour = new();
-    private List<ItemEffect> ItemEffects_OnPlaced = new();
+    private List<IItemEffect> ItemEffects_OnEveryTour = new();
+    private List<IItemEffect> ItemEffects_OnPlaced = new();
 
     public void OnAttack()
     {
