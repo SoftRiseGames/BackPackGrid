@@ -25,3 +25,4 @@ public class BaseItem : ScriptableObject
     public List<ItemEffect> ItemEffects_OnEveryTour = new();
     public List<ItemEffect> ItemEffects_OnPlaced = new();
 }
+
