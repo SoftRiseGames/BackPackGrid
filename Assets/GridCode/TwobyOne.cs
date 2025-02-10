@@ -55,6 +55,7 @@ public class TwobyOne : MonoBehaviour, IInventoryObject, IRotatable, IHelper
         isDragging = true;
 
         gameObject.layer = LayerMask.NameToLayer("HandleObjectPlacement");
+        gameObject.GetComponent<SpriteRenderer>().sortingOrder = 3;
     }
 
     private void OnMouseDrag()
@@ -75,6 +76,9 @@ public class TwobyOne : MonoBehaviour, IInventoryObject, IRotatable, IHelper
         isDragging = false;
         gridBasement.GetComponent<GridSystem>().Inv = null;
         gameObject.layer = LayerMask.NameToLayer("HandleObjectLocked");
+
+        if(gridEnter)
+            gameObject.GetComponent<SpriteRenderer>().sortingOrder = 2;
     }
 
     public void Consume()
@@ -128,9 +132,12 @@ public class TwobyOne : MonoBehaviour, IInventoryObject, IRotatable, IHelper
 
             // Y ekseni hizalama
             if (inventoryObject.OnDownNext && !inventoryObject.OnUpNext && cellPosition.y < objectPosition.y)
-                objectPosition.y = cellCenterPosition.y - pivotOffsetY;
+                objectPosition.y = cellCenterPosition.y + pivotOffsetY;
 
             else if (inventoryObject.OnUpNext && !inventoryObject.OnDownNext && cellPosition.y >= objectPosition.y)
+                objectPosition.y = cellCenterPosition.y + pivotOffsetY;
+
+            else if (!inventoryObject.OnUpNext && !inventoryObject.OnDownNext && cellPosition.y >= objectPosition.y)
                 objectPosition.y = cellCenterPosition.y + pivotOffsetY;
 
             else if (inventoryObject.OnUpNext && inventoryObject.OnDownNext)
