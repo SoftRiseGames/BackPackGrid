@@ -38,11 +38,14 @@ public class TwobyOne : MonoBehaviour, IInventoryObject, IRotatable, IHelper
 
     bool gridEnter;
 
+    public Vector2 StartPosition;
+
 
     private void Start()
     {
         GridIntegration();
         ScaleObject();
+        StartPosition = transform.position;
     }
     private void Update()
     {
@@ -79,6 +82,9 @@ public class TwobyOne : MonoBehaviour, IInventoryObject, IRotatable, IHelper
 
         if(gridEnter)
             gameObject.GetComponent<SpriteRenderer>().sortingOrder = 2;
+
+        if (!gridEnter)
+            transform.position = StartPosition;
     }
 
     public void Consume()
