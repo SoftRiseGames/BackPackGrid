@@ -149,9 +149,9 @@ public class ItemCreatorWindow : EditorWindow
     {
         // Yeni item olusturma islemi
         BaseItem newItem = CreateInstance<BaseItem>();
-        newItem.itemName = newItemName;
-        newItem.description = newItemDescription;
-        newItem.icon = newIcon;
+        newItem.ItemName = newItemName;
+        newItem.Description = newItemDescription;
+        newItem.ItemSprite = newIcon;
 
         string path = EditorUtility.SaveFilePanelInProject(
             "Save Item",
@@ -183,9 +183,9 @@ public class ItemCreatorWindow : EditorWindow
 
         // Yeni olusturulan item'a ekleme
         BaseItem newItem = CreateInstance<BaseItem>();
-        newItem.itemName = newItemName;
-        newItem.description = newItemDescription;
-        newItem.icon = newIcon;
+        newItem.ItemName = newItemName;
+        newItem.Description = newItemDescription;
+        newItem.ItemSprite = newIcon;
 
         newItem.RootMergeItem = rootMergeItem; // Root item ekleniyor
         newItem.MergedItems = mergeItemList; // Liste ekleniyor

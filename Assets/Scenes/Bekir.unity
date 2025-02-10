@@ -131,7 +131,7 @@ GameObject:
   - component: {fileID: 429895386}
   - component: {fileID: 429895385}
   m_Layer: 0
-  m_Name: Image
+  m_Name: Item Image
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -944,7 +944,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1159729269}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: Middle Section
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1054,7 +1054,7 @@ Transform:
   m_GameObject: {fileID: 1295840085}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -1, y: -1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1073,6 +1073,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 478ce92b9933849ad837f34431554f62, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _itemImageHolder: {fileID: 0}
+  _nameTMP: {fileID: 1077664489}
+  _descTMP: {fileID: 1328414489}
+  _statsTMP: {fileID: 1137183069}
 --- !u!1 &1328414487
 GameObject:
   m_ObjectHideFlags: 0
@@ -1227,7 +1231,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1498494975}
   m_Layer: 0
-  m_Name: CartHandler
+  m_Name: HandManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1335,7 +1339,7 @@ GameObject:
   - component: {fileID: 1804325268}
   - component: {fileID: 1804325267}
   m_Layer: 0
-  m_Name: Image
+  m_Name: Circle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
