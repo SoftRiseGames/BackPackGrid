@@ -145,11 +145,25 @@ public class TwobyOne : MonoBehaviour, IInventoryObject, IRotatable, IHelper
             }
 
             // X ekseni hizalama
-            objectPosition.x = cellCenterPosition.x - pivotOffsetX;
+            if (!inventoryObject.onRightNext && !inventoryObject.onLeftNext &&
+                !inventoryObject.OnDownNext && !inventoryObject.OnUpNext)
+            {
+                objectPosition.x = (cellPosition.x < Mathf.Round(objectPosition.x))
+                    ? cellCenterPosition.x - pivotOffsetX
+                    : cellCenterPosition.x + pivotOffsetX;
+            }
+            else if (inventoryObject.onRightNext && !inventoryObject.onLeftNext && cellPosition.x >= Mathf.Round(objectPosition.x))
+                objectPosition.x = cellCenterPosition.x - pivotOffsetX;
+
+            else if (inventoryObject.onLeftNext && !inventoryObject.onRightNext && cellPosition.x < Mathf.Round(objectPosition.x))
+                objectPosition.x = cellCenterPosition.x - pivotOffsetX;
+
+            else if (inventoryObject.onLeftNext && inventoryObject.onRightNext)
+                objectPosition.x = cellCenterPosition.x - pivotOffsetX;
 
 
 
-            float dragThreshold = 0.05f; 
+            float dragThreshold = 0.1f; 
             if (Input.GetAxis("Mouse X") > dragThreshold && !inventoryObject.onRightNext)
                 isDragging = true;
             else if (Input.GetAxis("Mouse X") < -dragThreshold && !inventoryObject.onLeftNext)

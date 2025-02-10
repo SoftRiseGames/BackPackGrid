@@ -2938,7 +2938,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -1.325, y: -0.93, z: 0.024113655}
-  m_LocalScale: {x: 2, y: 1, z: 1}
+  m_LocalScale: {x: 3, y: 2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -2955,23 +2955,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da131083fcc464f46bc6f4c03f51117d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SidePosXValue: 1
-  SidePosYValue: 0
+  SidePosXValue: 2
+  SidePosYValue: 1
   gridBasement: {fileID: 0}
   gridInput: {fileID: 1859701190}
   handledObject: {fileID: 0}
   grid: {fileID: 0}
   collisionRadius: 0.1
   Vectors:
-  - {x: 0, y: 0.44}
-  - {x: 0, y: -0.4}
-  - {x: 0.9, y: 0}
-  - {x: -0.91, y: 0}
+  - {x: 0, y: 1.01}
+  - {x: 0, y: -1.01}
+  - {x: 1.5, y: 0}
+  - {x: -1.46, y: 0}
   VectorUp:
-  - {x: 0, y: 0.78}
-  - {x: 0, y: -0.72}
-  - {x: 1.22, y: 0}
-  - {x: -1.17, y: 0}
+  - {x: 0, y: 1.4}
+  - {x: 0, y: -1.27}
+  - {x: 1.77, y: 0}
+  - {x: -1.85, y: 0}
   Layer:
     serializedVersion: 2
     m_Bits: 8
