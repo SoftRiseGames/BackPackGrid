@@ -8,13 +8,14 @@ public class TwobyOne : MonoBehaviour, IInventoryObject, IRotatable, IHelper
     public int SidePosXValue;
     public int SidePosYValue;
 
-
     public Grid gridBasement;
     public GridRaycast gridInput;
-    public GameObject handledObject;
 
+    public GameObject handledObject;
     public GameObject grid;
+
     bool isDragging = false;
+
     public bool OnDown { get; private set; }
     public bool OnUp { get; private set; }
     public bool onLeft { get; private set; }
@@ -37,6 +38,7 @@ public class TwobyOne : MonoBehaviour, IInventoryObject, IRotatable, IHelper
 
     bool gridEnter;
 
+
     private void Start()
     {
         GridIntegration();
@@ -49,12 +51,10 @@ public class TwobyOne : MonoBehaviour, IInventoryObject, IRotatable, IHelper
     }
     private void OnMouseDown()
     {
-        Debug.Log(gridBasement.GetComponent<GridSystem>().Inv);
         gridBasement.GetComponent<GridSystem>().Inv = this;
-        Debug.Log("clicked");
-
         isDragging = true;
 
+        gameObject.layer = LayerMask.NameToLayer("HandleObjectPlacement");
     }
 
     private void OnMouseDrag()
@@ -62,16 +62,19 @@ public class TwobyOne : MonoBehaviour, IInventoryObject, IRotatable, IHelper
         if (isDragging)
         {
             Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            mousePosition.z = 0f;
+            mousePosition.z = 10f;
             transform.position = mousePosition;
         }
+
     }
 
 
     void OnMouseUp()
     {
+        
         isDragging = false;
         gridBasement.GetComponent<GridSystem>().Inv = null;
+        gameObject.layer = LayerMask.NameToLayer("HandleObjectLocked");
     }
 
     public void Consume()
@@ -112,8 +115,6 @@ public class TwobyOne : MonoBehaviour, IInventoryObject, IRotatable, IHelper
 
         if (gridEnter)
         {
-            
-
             IInventoryObject inventoryObject = handledObject.GetComponent<IInventoryObject>();
             Vector2 objectPosition = handledObject.transform.position;
             Vector2 cellCenterPosition = gridBasement.GetCellCenterWorld(cellPosition);
@@ -124,10 +125,6 @@ public class TwobyOne : MonoBehaviour, IInventoryObject, IRotatable, IHelper
                 objectPosition.x = cellCenterPosition.x + pivotOffsetX;
             }
             isDragging = false;
-
-            Debug.Log(pivotOffsetX);
-            Debug.Log(inventoryObject.OnDownNext);
-            Debug.Log(inventoryObject.OnUpNext);
 
             // Y ekseni hizalama
             if (inventoryObject.OnDownNext && !inventoryObject.OnUpNext && cellPosition.y < objectPosition.y)
