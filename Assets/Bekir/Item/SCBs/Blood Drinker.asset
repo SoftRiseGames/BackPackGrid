@@ -18,3 +18,12 @@ MonoBehaviour:
   cellSize: {x: 0, y: 0}
   RootMergeItem: {fileID: 0}
   MergedItems: []
+  ItemEffects_OnEveryTour:
+  - rid: 1706635773191913542
+  ItemEffects_OnPlaced: []
+  references:
+    version: 2
+    RefIds:
+    - rid: 1706635773191913542
+      type: {class: ActiveItemExampleClass, ns: , asm: Assembly-CSharp}
+      data: 
