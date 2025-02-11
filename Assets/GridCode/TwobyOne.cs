@@ -64,17 +64,14 @@ public class TwobyOne : MonoBehaviour, IInventoryObject, IRotatable, IHelper
 
         if(gameObject.name == "ObjectReference")
         {
-            Debug.Log("onUP "+OnUpNext);
-            Debug.Log("OnDown "+OnDownNext);
-            Debug.Log("OnRight "+onRightNext);
-            Debug.Log("OnLeft "+onLeftNext);
+            Debug.Log("onUP "+OnUpObjectDedect);
+            Debug.Log("OnDown "+OnDownObjectDedect);
+            Debug.Log("OnRight "+onRightObjectDedect);
+            Debug.Log("OnLeft "+onLeftObjectDedect);
         }
     }
 
-    private void OnMouseDown()
-    {
-      
-    }
+    
 
     private void OnMouseDrag()
     {
@@ -150,17 +147,17 @@ public class TwobyOne : MonoBehaviour, IInventoryObject, IRotatable, IHelper
             isDragging = false;
 
             // Y ekseni hizalama
-            if (inventoryObject.OnDownNext && !inventoryObject.OnUpNext && cellPosition.y < objectPosition.y && !OnDownObjectDedect)
+            if (inventoryObject.OnDownNext && !inventoryObject.OnUpNext && cellPosition.y < objectPosition.y  && !OnDownObjectDedect)
                 objectPosition.y = cellCenterPosition.y - pivotOffsetY;
 
-            else if (inventoryObject.OnUpNext && !inventoryObject.OnDownNext && cellPosition.y >= objectPosition.y && !OnUpObjectDedect)
+            else if (inventoryObject.OnUpNext && !inventoryObject.OnDownNext && cellPosition.y >= objectPosition.y && !OnUpObjectDedect )
                 objectPosition.y = cellCenterPosition.y + pivotOffsetY;
 
-            else if (inventoryObject.OnUpNext && inventoryObject.OnDownNext && (!OnDownObjectDedect || !OnUpObjectDedect))
+            else if (inventoryObject.OnUpNext && inventoryObject.OnDownNext)
             {
-                if (cellPosition.y >= objectPosition.y + (pivotOffsetY * 2))
+                if (cellPosition.y >= objectPosition.y + (pivotOffsetY * 2) && !OnUpObjectDedect)
                     objectPosition.y = cellCenterPosition.y - pivotOffsetY;
-                else if (cellPosition.y < objectPosition.y - (pivotOffsetY * 2))
+                else if (cellPosition.y < objectPosition.y - (pivotOffsetY * 2) && !OnDownObjectDedect)
                     objectPosition.y = cellCenterPosition.y + pivotOffsetY;
             }
 
@@ -178,7 +175,7 @@ public class TwobyOne : MonoBehaviour, IInventoryObject, IRotatable, IHelper
             else if (inventoryObject.onLeftNext && !inventoryObject.onRightNext && cellPosition.x < Mathf.Round(objectPosition.x) && !onLeftObjectDedect)
                 objectPosition.x = cellCenterPosition.x - pivotOffsetX;
 
-            else if (inventoryObject.onLeftNext && inventoryObject.onRightNext && !(onLeftObjectDedect || onRightObjectDedect))
+            else if (inventoryObject.onLeftNext && inventoryObject.onRightNext && !onRightObjectDedect )
                 objectPosition.x = cellCenterPosition.x - pivotOffsetX;
 
             float dragThreshold = 0.1f;
