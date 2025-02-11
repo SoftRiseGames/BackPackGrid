@@ -26,7 +26,11 @@ public class TwobyOne : MonoBehaviour, IInventoryObject, IRotatable, IHelper
     public bool onLeftNext { get; private set; }
     public bool onRightNext { get; private set; }
 
+
+
     public float collisionRadius = 0.25f;
+    public Vector2 UpandBottomboxSize;
+    public Vector2 SideBoxSize;
     public List<Vector2> Vectors;
     public List<Vector2> VectorUp;
     private Color debugCollisionColor = Color.red;
@@ -249,11 +253,12 @@ public class TwobyOne : MonoBehaviour, IInventoryObject, IRotatable, IHelper
         onLeft = Physics2D.OverlapCircle((Vector2)transform.position + Vectors[3], collisionRadius, Layer);
 
 
-        OnUpNext = Physics2D.OverlapCircle((Vector2)transform.position + VectorUp[0], collisionRadius, LayerNextCheck);
-        OnDownNext = Physics2D.OverlapCircle((Vector2)transform.position + VectorUp[1], collisionRadius, LayerNextCheck);
-        onRightNext = Physics2D.OverlapCircle((Vector2)transform.position + VectorUp[2], collisionRadius, LayerNextCheck);
-        onLeftNext = Physics2D.OverlapCircle((Vector2)transform.position + VectorUp[3], collisionRadius, LayerNextCheck);
+       
 
+        OnUpNext = Physics2D.OverlapBox((Vector2)transform.position + VectorUp[0], UpandBottomboxSize, 0, LayerNextCheck);
+        OnDownNext = Physics2D.OverlapBox((Vector2)transform.position + VectorUp[1], UpandBottomboxSize, 0, LayerNextCheck);
+        onRightNext = Physics2D.OverlapBox((Vector2)transform.position + VectorUp[2], SideBoxSize, 0, LayerNextCheck);
+        onLeftNext = Physics2D.OverlapBox((Vector2)transform.position + VectorUp[3], SideBoxSize, 0, LayerNextCheck);
 
     }
 
@@ -267,10 +272,10 @@ public class TwobyOne : MonoBehaviour, IInventoryObject, IRotatable, IHelper
         Gizmos.DrawWireSphere((Vector2)transform.position + Vectors[3], collisionRadius);
 
         Gizmos.color = Color.blue;
-        Gizmos.DrawWireSphere((Vector2)transform.position + VectorUp[1], collisionRadius);
-        Gizmos.DrawWireSphere((Vector2)transform.position + VectorUp[0], collisionRadius);
-        Gizmos.DrawWireSphere((Vector2)transform.position + VectorUp[2], collisionRadius);
-        Gizmos.DrawWireSphere((Vector2)transform.position + VectorUp[3], collisionRadius);
+        Gizmos.DrawWireCube((Vector2)transform.position + VectorUp[1], UpandBottomboxSize);
+        Gizmos.DrawWireCube((Vector2)transform.position + VectorUp[0], UpandBottomboxSize);
+        Gizmos.DrawWireCube((Vector2)transform.position + VectorUp[2], SideBoxSize);
+        Gizmos.DrawWireCube((Vector2)transform.position + VectorUp[3], SideBoxSize);
     }
 
     public void ClickObject()

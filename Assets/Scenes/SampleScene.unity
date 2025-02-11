@@ -2513,6 +2513,8 @@ MonoBehaviour:
   handledObject: {fileID: 0}
   grid: {fileID: 0}
   collisionRadius: 0.1
+  UpandBottomboxSize: {x: 1.23, y: -0.17}
+  SideBoxSize: {x: 0.15, y: 0.99}
   Vectors:
   - {x: 0, y: 0.34}
   - {x: 0, y: -0.28}
@@ -2529,6 +2531,7 @@ MonoBehaviour:
   LayerNextCheck:
     serializedVersion: 2
     m_Bits: 8
+  StartPosition: {x: 0, y: 0}
 --- !u!212 &1070143915
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2593,7 +2596,7 @@ Transform:
   m_GameObject: {fileID: 1070143911}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 2, y: -1, z: 10}
+  m_LocalPosition: {x: 1.9902422, y: -0.99024224, z: 10}
   m_LocalScale: {x: 2, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3215,6 +3218,8 @@ MonoBehaviour:
   handledObject: {fileID: 0}
   grid: {fileID: 0}
   collisionRadius: 0.1
+  UpandBottomboxSize: {x: 2.39, y: 0.29}
+  SideBoxSize: {x: 0.17, y: 2.08}
   Vectors:
   - {x: 0, y: 0.87}
   - {x: 0, y: -0.75}
@@ -3231,6 +3236,7 @@ MonoBehaviour:
   LayerNextCheck:
     serializedVersion: 2
     m_Bits: 8
+  StartPosition: {x: 0, y: 0}
 --- !u!61 &1412027320
 BoxCollider2D:
   m_ObjectHideFlags: 0
