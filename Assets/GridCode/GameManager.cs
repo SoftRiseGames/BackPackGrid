@@ -2,15 +2,25 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    public LayerMask ignoreLayers; 
+    public LayerMask ignoreLayers;
 
     void Update()
     {
-        if (Input.GetMouseButtonDown(0)) 
+        if (Input.GetMouseButtonDown(0)) // Sol fare tuþuna basýldýðýnda
         {
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            if (Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity, ~ignoreLayers)) 
+            // Fare pozisyonunu ekrana göre dünya koordinatlarýna çevir
+            Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+
+            // Fare pozisyonunda 2D Raycast at
+            RaycastHit2D hit = Physics2D.Raycast(mousePosition, Vector2.zero, Mathf.Infinity, ~ignoreLayers);
+
+            if (hit.collider != null) // Eðer bir nesneye çarptýysa
             {
+                if (hit.collider.tag == "InvObject")
+                    hit.collider.GetComponent<IInventoryObject>().MoveObject();
+                else
+                    Debug.Log("not");
+
                 Debug.Log("Týklanan nesne: " + hit.collider.name);
             }
         }

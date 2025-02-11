@@ -2498,7 +2498,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0.00639832, y: 0.0015500337}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -2508,7 +2508,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.96160245, y: 0.9042263}
   m_EdgeRadius: 0
 --- !u!114 &1070143914
 MonoBehaviour:
@@ -2529,8 +2529,8 @@ MonoBehaviour:
   handledObject: {fileID: 0}
   grid: {fileID: 0}
   collisionRadius: 0.1
-  UpandBottomboxSize: {x: 1.81, y: -0.17}
-  SideBoxSize: {x: 0.15, y: 0.79}
+  UpandBottomboxSize: {x: 1.86, y: 0.24}
+  SideBoxSize: {x: 0.11, y: 0.79}
   Vectors:
   - {x: 0, y: 0.34}
   - {x: 0, y: -0.28}
@@ -2546,7 +2546,10 @@ MonoBehaviour:
     m_Bits: 8
   LayerNextCheck:
     serializedVersion: 2
-    m_Bits: 1032
+    m_Bits: 8
+  LayerObjectDedect:
+    serializedVersion: 2
+    m_Bits: 1280
   StartPosition: {x: 0, y: 0}
 --- !u!212 &1070143915
 SpriteRenderer:
@@ -3234,13 +3237,13 @@ MonoBehaviour:
   handledObject: {fileID: 0}
   grid: {fileID: 0}
   collisionRadius: 0.1
-  UpandBottomboxSize: {x: 2.39, y: 0.22}
-  SideBoxSize: {x: 0.17, y: 1.46}
+  UpandBottomboxSize: {x: 2.86, y: 0.25}
+  SideBoxSize: {x: 0.26, y: 1.64}
   Vectors:
   - {x: 0, y: 0.87}
   - {x: 0, y: -0.75}
-  - {x: 1.29, y: 0}
-  - {x: -1.31, y: 0}
+  - {x: 1.3, y: 0}
+  - {x: -1.33, y: 0}
   VectorUp:
   - {x: 0, y: 1.4}
   - {x: 0, y: -1.27}
@@ -3252,6 +3255,9 @@ MonoBehaviour:
   LayerNextCheck:
     serializedVersion: 2
     m_Bits: 8
+  LayerObjectDedect:
+    serializedVersion: 2
+    m_Bits: 1280
   StartPosition: {x: 0, y: 0}
 --- !u!61 &1412027320
 BoxCollider2D:
@@ -3287,7 +3293,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: -0.0019688904, y: -0.0005170703}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -3297,7 +3303,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.96455795, y: 0.95377576}
   m_EdgeRadius: 0
 --- !u!114 &1412027321
 MonoBehaviour:
@@ -3557,7 +3563,7 @@ MonoBehaviour:
   sceneCamera: {fileID: 519420031}
   groundLayerMask:
     serializedVersion: 2
-    m_Bits: 72
+    m_Bits: 8
   instance: {fileID: 0}
   Object: {fileID: 0}
 --- !u!1 &1891007885
@@ -3617,7 +3623,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -1.2790123, y: -1.0490456}
+  m_AnchoredPosition: {x: -1.2790123, y: -0.90342236}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &2054208210
@@ -3795,10 +3801,10 @@ SceneRoots:
   m_Roots:
   - {fileID: 519420032}
   - {fileID: 619394802}
+  - {fileID: 1412027318}
+  - {fileID: 1070143916}
   - {fileID: 486305883}
   - {fileID: 339059200}
   - {fileID: 1859701188}
   - {fileID: 1891007887}
-  - {fileID: 1412027318}
-  - {fileID: 1070143916}
   - {fileID: 111682334}

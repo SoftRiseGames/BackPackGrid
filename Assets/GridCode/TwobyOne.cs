@@ -26,6 +26,13 @@ public class TwobyOne : MonoBehaviour, IInventoryObject, IRotatable, IHelper
     public bool onLeftNext { get; private set; }
     public bool onRightNext { get; private set; }
 
+
+    public bool OnDownObjectDedect { get; private set; }
+    public bool OnUpObjectDedect { get; private set; }
+    public bool onLeftObjectDedect { get; private set; }
+    public bool onRightObjectDedect { get; private set; }
+
+
     public float collisionRadius = 0.25f;
     public Vector2 UpandBottomboxSize;
     public Vector2 SideBoxSize;
@@ -34,6 +41,7 @@ public class TwobyOne : MonoBehaviour, IInventoryObject, IRotatable, IHelper
     private Color debugCollisionColor = Color.red;
     public LayerMask Layer;
     public LayerMask LayerNextCheck;
+    public LayerMask LayerObjectDedect;
 
     float pivotOffsetX = 0;
     float pivotOffsetY = 0;
@@ -53,17 +61,19 @@ public class TwobyOne : MonoBehaviour, IInventoryObject, IRotatable, IHelper
     {
         Ray();
         GridEnterBoolCheck();
+
+        if(gameObject.name == "ObjectReference")
+        {
+            Debug.Log("onUP "+OnUpNext);
+            Debug.Log("OnDown "+OnDownNext);
+            Debug.Log("OnRight "+onRightNext);
+            Debug.Log("OnLeft "+onLeftNext);
+        }
     }
 
     private void OnMouseDown()
     {
-        gridBasement.GetComponent<GridSystem>().Inv = this;
-        isDragging = true;
-
-        gameObject.layer = LayerMask.NameToLayer("HandleObjectPlacement");
-        gameObject.GetComponent<SpriteRenderer>().sortingOrder = 3;
-
-        Debug.Log("click");
+      
     }
 
     private void OnMouseDrag()
@@ -140,13 +150,13 @@ public class TwobyOne : MonoBehaviour, IInventoryObject, IRotatable, IHelper
             isDragging = false;
 
             // Y ekseni hizalama
-            if (inventoryObject.OnDownNext && !inventoryObject.OnUpNext && cellPosition.y < objectPosition.y)
+            if (inventoryObject.OnDownNext && !inventoryObject.OnUpNext && cellPosition.y < objectPosition.y && !OnDownObjectDedect)
+                objectPosition.y = cellCenterPosition.y - pivotOffsetY;
+
+            else if (inventoryObject.OnUpNext && !inventoryObject.OnDownNext && cellPosition.y >= objectPosition.y && !OnUpObjectDedect)
                 objectPosition.y = cellCenterPosition.y + pivotOffsetY;
 
-            else if (inventoryObject.OnUpNext && !inventoryObject.OnDownNext && cellPosition.y >= objectPosition.y)
-                objectPosition.y = cellCenterPosition.y + pivotOffsetY;
-
-            else if (inventoryObject.OnUpNext && inventoryObject.OnDownNext)
+            else if (inventoryObject.OnUpNext && inventoryObject.OnDownNext && (!OnDownObjectDedect || !OnUpObjectDedect))
             {
                 if (cellPosition.y >= objectPosition.y + (pivotOffsetY * 2))
                     objectPosition.y = cellCenterPosition.y - pivotOffsetY;
@@ -162,13 +172,13 @@ public class TwobyOne : MonoBehaviour, IInventoryObject, IRotatable, IHelper
                     ? cellCenterPosition.x - pivotOffsetX
                     : cellCenterPosition.x + pivotOffsetX;
             }
-            else if (inventoryObject.onRightNext && !inventoryObject.onLeftNext && cellPosition.x >= Mathf.Round(objectPosition.x))
+            else if (inventoryObject.onRightNext && !inventoryObject.onLeftNext && cellPosition.x >= Mathf.Round(objectPosition.x) && !onRightObjectDedect)
                 objectPosition.x = cellCenterPosition.x - pivotOffsetX;
 
-            else if (inventoryObject.onLeftNext && !inventoryObject.onRightNext && cellPosition.x < Mathf.Round(objectPosition.x))
+            else if (inventoryObject.onLeftNext && !inventoryObject.onRightNext && cellPosition.x < Mathf.Round(objectPosition.x) && !onLeftObjectDedect)
                 objectPosition.x = cellCenterPosition.x - pivotOffsetX;
 
-            else if (inventoryObject.onLeftNext && inventoryObject.onRightNext)
+            else if (inventoryObject.onLeftNext && inventoryObject.onRightNext && !(onLeftObjectDedect || onRightObjectDedect))
                 objectPosition.x = cellCenterPosition.x - pivotOffsetX;
 
             float dragThreshold = 0.1f;
@@ -266,7 +276,7 @@ public class TwobyOne : MonoBehaviour, IInventoryObject, IRotatable, IHelper
 
     void Ray()
     {
-        OnUp = Physics2D.OverlapCircle((Vector2)transform.position + Vectors[0], collisionRadius, Layer);
+        OnUp = Physics2D.OverlapCircle((Vector2)transform.position + Vectors[0], collisionRadius,Layer);
         OnDown = Physics2D.OverlapCircle((Vector2)transform.position + Vectors[1], collisionRadius, Layer);
         onRight = Physics2D.OverlapCircle((Vector2)transform.position + Vectors[2], collisionRadius, Layer);
         onLeft = Physics2D.OverlapCircle((Vector2)transform.position + Vectors[3], collisionRadius, Layer);
@@ -275,6 +285,13 @@ public class TwobyOne : MonoBehaviour, IInventoryObject, IRotatable, IHelper
         OnDownNext = Physics2D.OverlapBox((Vector2)transform.position + VectorUp[1], UpandBottomboxSize, 0, LayerNextCheck);
         onRightNext = Physics2D.OverlapBox((Vector2)transform.position + VectorUp[2], SideBoxSize, 0, LayerNextCheck);
         onLeftNext = Physics2D.OverlapBox((Vector2)transform.position + VectorUp[3], SideBoxSize, 0, LayerNextCheck);
+
+        OnUpObjectDedect = Physics2D.OverlapBox((Vector2)transform.position + VectorUp[0], UpandBottomboxSize, 0, LayerObjectDedect);
+        OnDownObjectDedect = Physics2D.OverlapBox((Vector2)transform.position + VectorUp[1], UpandBottomboxSize, 0, LayerObjectDedect);
+        onRightObjectDedect = Physics2D.OverlapBox((Vector2)transform.position + VectorUp[2], SideBoxSize, 0, LayerObjectDedect);
+        onLeftObjectDedect = Physics2D.OverlapBox((Vector2)transform.position + VectorUp[3], SideBoxSize, 0, LayerObjectDedect);
+
+        
     }
 
     void OnDrawGizmos()
@@ -304,7 +321,20 @@ public class TwobyOne : MonoBehaviour, IInventoryObject, IRotatable, IHelper
         Vector2 temp = SideBoxSize;
         SideBoxSize.x = UpandBottomboxSize.y;
         SideBoxSize.y = UpandBottomboxSize.x;
+
         UpandBottomboxSize.x = temp.y;
         UpandBottomboxSize.y = temp.x;
+
+    }
+
+    public void MoveObject()
+    {
+        gridBasement.GetComponent<GridSystem>().Inv = this;
+        isDragging = true;
+
+        gameObject.layer = LayerMask.NameToLayer("HandleObjectPlacement");
+        gameObject.GetComponent<SpriteRenderer>().sortingOrder = 3;
+
+        Debug.Log("click");
     }
 }

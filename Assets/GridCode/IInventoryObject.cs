@@ -6,6 +6,7 @@ public interface IInventoryObject
     void RegisterYourself();
     void Consume();
 
+    void MoveObject();
     public bool OnUp { get; }
     public bool OnDown { get; }
     public bool onRight { get; }
@@ -15,5 +16,12 @@ public interface IInventoryObject
     public bool OnUpNext { get; }
     public bool onLeftNext { get; }
     public bool onRightNext { get; }
+
+    public bool OnDownObjectDedect { get; }
+    public bool OnUpObjectDedect { get; }
+    public bool onLeftObjectDedect { get; }
+    public bool onRightObjectDedect { get; }
+
+
 
 }
