@@ -26,8 +26,6 @@ public class TwobyOne : MonoBehaviour, IInventoryObject, IRotatable, IHelper
     public bool onLeftNext { get; private set; }
     public bool onRightNext { get; private set; }
 
-
-
     public float collisionRadius = 0.25f;
     public Vector2 UpandBottomboxSize;
     public Vector2 SideBoxSize;
@@ -44,18 +42,19 @@ public class TwobyOne : MonoBehaviour, IInventoryObject, IRotatable, IHelper
 
     public Vector2 StartPosition;
 
-
     private void Start()
     {
         GridIntegration();
         ScaleObject();
         StartPosition = transform.position;
     }
+
     private void Update()
     {
         Ray();
         GridEnterBoolCheck();
     }
+
     private void OnMouseDown()
     {
         gridBasement.GetComponent<GridSystem>().Inv = this;
@@ -63,6 +62,8 @@ public class TwobyOne : MonoBehaviour, IInventoryObject, IRotatable, IHelper
 
         gameObject.layer = LayerMask.NameToLayer("HandleObjectPlacement");
         gameObject.GetComponent<SpriteRenderer>().sortingOrder = 3;
+
+        Debug.Log("click");
     }
 
     private void OnMouseDrag()
@@ -70,21 +71,18 @@ public class TwobyOne : MonoBehaviour, IInventoryObject, IRotatable, IHelper
         if (isDragging)
         {
             Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            mousePosition.z = 10f;
+            mousePosition.z = 0f;
             transform.position = mousePosition;
         }
-
     }
-
 
     void OnMouseUp()
     {
-        
         isDragging = false;
         gridBasement.GetComponent<GridSystem>().Inv = null;
         gameObject.layer = LayerMask.NameToLayer("HandleObjectLocked");
 
-        if(gridEnter)
+        if (gridEnter)
             gameObject.GetComponent<SpriteRenderer>().sortingOrder = 2;
 
         if (!gridEnter)
@@ -95,19 +93,21 @@ public class TwobyOne : MonoBehaviour, IInventoryObject, IRotatable, IHelper
     {
         throw new System.NotImplementedException();
     }
+
     public void GridIntegration()
     {
         gridBasement = GameObject.Find("Grid").GetComponent<Grid>();
         gridInput = GameObject.Find("Grid").GetComponent<GridRaycast>();
         handledObject = gameObject;
-
     }
+
     void ScaleObjectRechange()
     {
         float offsetDataCollector = pivotOffsetX;
         pivotOffsetX = pivotOffsetY;
         pivotOffsetY = offsetDataCollector;
     }
+
     void ScaleObject()
     {
         if (handledObject.transform.localScale.x / 2 == 1)
@@ -120,7 +120,6 @@ public class TwobyOne : MonoBehaviour, IInventoryObject, IRotatable, IHelper
             pivotOffsetY = .5f * handledObject.GetComponent<TwobyOne>().SidePosYValue;
         }
     }
-
 
     public void RegisterYourself()
     {
@@ -145,9 +144,6 @@ public class TwobyOne : MonoBehaviour, IInventoryObject, IRotatable, IHelper
                 objectPosition.y = cellCenterPosition.y + pivotOffsetY;
 
             else if (inventoryObject.OnUpNext && !inventoryObject.OnDownNext && cellPosition.y >= objectPosition.y)
-                objectPosition.y = cellCenterPosition.y + pivotOffsetY;
-
-            else if (!inventoryObject.OnUpNext && !inventoryObject.OnDownNext && cellPosition.y >= objectPosition.y)
                 objectPosition.y = cellCenterPosition.y + pivotOffsetY;
 
             else if (inventoryObject.OnUpNext && inventoryObject.OnDownNext)
@@ -175,9 +171,10 @@ public class TwobyOne : MonoBehaviour, IInventoryObject, IRotatable, IHelper
             else if (inventoryObject.onLeftNext && inventoryObject.onRightNext)
                 objectPosition.x = cellCenterPosition.x - pivotOffsetX;
 
+            float dragThreshold = 0.1f;
+            bool canMoveHorizontally = !inventoryObject.onRightNext || !inventoryObject.onLeftNext;
+            bool canMoveVertically = !inventoryObject.OnUpNext || !inventoryObject.OnDownNext;
 
-
-            float dragThreshold = 0.1f; 
             if (Input.GetAxis("Mouse X") > dragThreshold && !inventoryObject.onRightNext)
                 isDragging = true;
             else if (Input.GetAxis("Mouse X") < -dragThreshold && !inventoryObject.onLeftNext)
@@ -186,6 +183,23 @@ public class TwobyOne : MonoBehaviour, IInventoryObject, IRotatable, IHelper
                 isDragging = true;
             else if (Input.GetAxis("Mouse Y") < -dragThreshold && !inventoryObject.OnDownNext)
                 isDragging = true;
+
+            // Eğer obje yukarı ve aşağı hareket edemiyorsa, sağa veya sola hareket etmesini sağla
+            if (!canMoveVertically && canMoveHorizontally)
+            {
+                if (Input.GetAxis("Mouse X") > dragThreshold)
+                    isDragging = true;
+                else if (Input.GetAxis("Mouse X") < -dragThreshold)
+                    isDragging = true;
+            }
+            // Eğer obje sağa ve sola hareket edemiyorsa, yukarı veya aşağı hareket etmesini sağla
+            else if (!canMoveHorizontally && canMoveVertically)
+            {
+                if (Input.GetAxis("Mouse Y") > dragThreshold)
+                    isDragging = true;
+                else if (Input.GetAxis("Mouse Y") < -dragThreshold)
+                    isDragging = true;
+            }
 
             handledObject.transform.position = objectPosition;
         }
@@ -199,19 +213,24 @@ public class TwobyOne : MonoBehaviour, IInventoryObject, IRotatable, IHelper
             gridEnter = false;
     }
 
-
     public void RotateLeft(Action<int> callback)
     {
         // Rotate Object
         gameObject.transform.Rotate(new Vector3(transform.rotation.x, transform.rotation.y, 90));
 
+        // Swap vectors (change orientation)
         SwapElements(Vectors, 0, 2);
         SwapElements(Vectors, 1, 3);
 
         SwapElements(VectorUp, 0, 2);
         SwapElements(VectorUp, 1, 3);
 
+        // Swap the sizes of the boxes based on rotation
+        SwapBoxSizes();
+
+        // Recalculate scale and pivot offset
         ScaleObjectRechange();
+
         // Call Callback
         callback?.Invoke(3);
     }
@@ -230,6 +249,7 @@ public class TwobyOne : MonoBehaviour, IInventoryObject, IRotatable, IHelper
     {
         return SidePosYValue;
     }
+
     public void SwapElements(List<Vector2> VectorList, int VectorIndex1, int VectorIndex2)
     {
         if (VectorIndex1 >= 0 && VectorIndex1 < VectorList.Count && VectorIndex2 >= 0 && VectorIndex2 < VectorList.Count)
@@ -244,7 +264,6 @@ public class TwobyOne : MonoBehaviour, IInventoryObject, IRotatable, IHelper
         }
     }
 
-
     void Ray()
     {
         OnUp = Physics2D.OverlapCircle((Vector2)transform.position + Vectors[0], collisionRadius, Layer);
@@ -252,14 +271,10 @@ public class TwobyOne : MonoBehaviour, IInventoryObject, IRotatable, IHelper
         onRight = Physics2D.OverlapCircle((Vector2)transform.position + Vectors[2], collisionRadius, Layer);
         onLeft = Physics2D.OverlapCircle((Vector2)transform.position + Vectors[3], collisionRadius, Layer);
 
-
-       
-
         OnUpNext = Physics2D.OverlapBox((Vector2)transform.position + VectorUp[0], UpandBottomboxSize, 0, LayerNextCheck);
         OnDownNext = Physics2D.OverlapBox((Vector2)transform.position + VectorUp[1], UpandBottomboxSize, 0, LayerNextCheck);
         onRightNext = Physics2D.OverlapBox((Vector2)transform.position + VectorUp[2], SideBoxSize, 0, LayerNextCheck);
         onLeftNext = Physics2D.OverlapBox((Vector2)transform.position + VectorUp[3], SideBoxSize, 0, LayerNextCheck);
-
     }
 
     void OnDrawGizmos()
@@ -283,5 +298,13 @@ public class TwobyOne : MonoBehaviour, IInventoryObject, IRotatable, IHelper
         throw new NotImplementedException();
     }
 
-
+    void SwapBoxSizes()
+    {
+        // Swap SideBoxSize and UpandBottomboxSize based on rotation
+        Vector2 temp = SideBoxSize;
+        SideBoxSize.x = UpandBottomboxSize.y;
+        SideBoxSize.y = UpandBottomboxSize.x;
+        UpandBottomboxSize.x = temp.y;
+        UpandBottomboxSize.y = temp.x;
+    }
 }

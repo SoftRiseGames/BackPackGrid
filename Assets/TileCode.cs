@@ -40,7 +40,6 @@ public class TileCode : MonoBehaviour
             gameObject.layer = LayerMask.NameToLayer("GridBasement");
 
         }
-        Debug.Log("tile");
     }
 
     // Update is called once per frame
