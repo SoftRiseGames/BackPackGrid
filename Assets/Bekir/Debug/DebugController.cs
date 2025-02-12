@@ -6,7 +6,8 @@ using Random = UnityEngine.Random;
 public class DebugController : MonoBehaviour
 {
     private List<string> _errorMessages = new List<string>(){
-        "o ne ya degis o komutu",
+        "o ne öyle",
+        "o komutu degis",
         "ben anlamadim o komutu",
         "oyle bir komut mu varmis",
         "bende oyle bir bilgi yok",
@@ -27,7 +28,7 @@ public class DebugController : MonoBehaviour
     [SerializeField] private CartHandler _cartHandler;
     private string _errorMessage;
 
-    
+
     private void Awake()
     {
         HELP = new DebugCommand("help", "Learn Cheats", "help", (() =>
@@ -35,7 +36,7 @@ public class DebugController : MonoBehaviour
             _showHelp = true;
         }));
         
-        SPAWN_CARD = new DebugCommand<string>("add", "Kart Spawnlar", "add <isim>", (string cardName) =>
+        SPAWN_CARD = new DebugCommand<string>("add ", "Kart Spawnlar", "add <isim>", (string cardName) =>
         {
             _cartHandler.SpawnCart(cardName);
         });
