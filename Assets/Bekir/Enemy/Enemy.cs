@@ -1,17 +1,9 @@
 using UnityEngine;
 
-public class PlayerHandler : MonoBehaviour, IDamage
+public class Enemy : MonoBehaviour, IDamage
 {
     [SerializeField] private float _health;
     private float _healtCounter;
-
-
-    void Start()
-    {
-        _healtCounter = _health;
-    }
-
-
     public void TakeDamage(float value)
     {
         if (_health < value){

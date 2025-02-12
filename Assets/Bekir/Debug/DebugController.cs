@@ -25,7 +25,7 @@ public class DebugController : MonoBehaviour
             showHelp = true;
         }));
         
-        SPAWN_CARD = new DebugCommand<string>("add_card", "Add card to the hand", "add_card", (string cardName) =>
+        SPAWN_CARD = new DebugCommand<string>("add", "Add card to the hand", "add", (string cardName) =>
         {
             Debug.Log("CardSpawned");
             _cartHandler.SpawnCart(cardName);
@@ -67,7 +67,6 @@ public class DebugController : MonoBehaviour
                 }
             }
         }
-        input = "";
     }
 
     private Vector2 _scroll;
@@ -105,7 +104,7 @@ public class DebugController : MonoBehaviour
         GUI.Box(new Rect(0, y ,Screen.width,30),"");
 
         
-        if (GUI.Button(new Rect(Screen.width - 50f, y, 50, 30), "Spawn"))
+        if (GUI.Button(new Rect(Screen.width - 50f, y + 30, 50, 30), "Spawn"))
         {
             Debug.Log("Spawned");
             HandleInput();
