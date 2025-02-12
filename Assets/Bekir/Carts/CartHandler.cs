@@ -11,7 +11,6 @@ public class CartHandler : MonoBehaviour
     [SerializeField] private Transform _pivot;
     public SerializedDictionary<string, BaseItem> _items = new();
 
-    [Button("Spawn Cart")]
     public void SpawnCart(string baseItemName)
     {
         if(!_items.ContainsKey(baseItemName)) return;
