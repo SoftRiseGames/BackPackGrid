@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.Rendering;
 
@@ -11,6 +10,7 @@ public class CartHandler : MonoBehaviour
     [SerializeField] private Transform _pivot;
     public SerializedDictionary<string, BaseItem> _items = new();
 
+ 
     public void SpawnCart(string baseItemName)
     {
         if(!_items.ContainsKey(baseItemName)) return;
@@ -24,7 +24,7 @@ public class CartHandler : MonoBehaviour
         RePos();
     }
     /// <summary>
-    /// Cartlar spawn olunca hesinin pozisyonunu tekrar ayarlıyor
+    /// Kartlar spawn olunca hesinin pozisyonunu tekrar ayarlıyor
     /// </summary>
     private void RePos()
     {

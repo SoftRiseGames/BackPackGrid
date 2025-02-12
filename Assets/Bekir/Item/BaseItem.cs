@@ -28,6 +28,8 @@ public class BaseItem : ScriptableObject
     public List<IItemEffect> ItemEffects_OnEveryTour = new();
     [ListDrawerSettings]
     [SerializeReference, PolymorphicDrawerSettings]
+    public List<IItemEffect> ItemEffects_OnEnemy = new();
+    [SerializeReference, PolymorphicDrawerSettings]
     public List<IItemEffect> ItemEffects_OnPlaced = new();
 }
 
