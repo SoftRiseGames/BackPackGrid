@@ -17,7 +17,7 @@ public class GameManager : MonoBehaviour
             if (hit.collider != null) // Eðer bir nesneye çarptýysa
             {
                 if (hit.collider.tag == "InvObject")
-                    hit.collider.GetComponent<IInventoryObject>().MoveObjectStarting();
+                    hit.collider.GetComponent<IInventoryObject>().MoveObject();
                 else
                     Debug.Log("not");
 

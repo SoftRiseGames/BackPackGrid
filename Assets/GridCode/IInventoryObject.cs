@@ -6,7 +6,7 @@ public interface IInventoryObject
     void RegisterYourself();
     void Consume();
 
-    void MoveObjectStarting();
+    void MoveObject();
     public bool OnUp { get; }
     public bool OnDown { get; }
     public bool onRight { get; }
