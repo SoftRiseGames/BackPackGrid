@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc1cf9c466ad942db80df514fd5ef238, type: 3}
+  m_Name: Bloody sword_Merged
+  m_EditorClassIdentifier: 
+  ItemName: Bloody sword
+  Description: smdalksdmlkasmdl
+  ItemSprite: {fileID: -6849179773407893626, guid: 3c8a336d4d3b646c9a57d5e40c02f2bd, type: 3}
+  cellSize: {x: 0, y: 0}
+  RootMergeItem: {fileID: 11400000, guid: 1f906d82a02cd4da9aca2e49c1d8ea7f, type: 2}
+  MergedItems:
+  - {fileID: 11400000, guid: ed4c1189096b847e2867523dc459fa3b, type: 2}
+  ItemEffects_OnEveryTour:
+  - rid: 1414605516635373569
+  ItemEffects_OnPlaced: []
+  references:
+    version: 2
+    RefIds:
+    - rid: 1414605516635373569
+      type: {class: ActiveItemExampleClass, ns: , asm: Assembly-CSharp}
+      data: 

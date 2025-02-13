@@ -6,22 +6,26 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetMouseButtonDown(0)) // Sol fare tuþuna basýldýðýnda
+        if (Input.GetMouseButtonDown(0)) // Sol fare tuÃ¾una basÃ½ldÃ½Ã°Ã½nda
         {
-            // Fare pozisyonunu ekrana göre dünya koordinatlarýna çevir
+            // Fare pozisyonunu ekrana gÃ¶re dÃ¼nya koordinatlarÃ½na Ã§evir
             Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
             // Fare pozisyonunda 2D Raycast at
             RaycastHit2D hit = Physics2D.Raycast(mousePosition, Vector2.zero, Mathf.Infinity, ~ignoreLayers);
 
-            if (hit.collider != null) // Eðer bir nesneye çarptýysa
+            if (hit.collider != null) // EÃ°er bir nesneye Ã§arptÃ½ysa
             {
                 if (hit.collider.tag == "InvObject")
+
                     hit.collider.GetComponent<IInventoryObject>().MoveObject();
+
+                    hit.collider.GetComponent<IInventoryObject>().MoveObjectStarting();
+
                 else
                     Debug.Log("not");
 
-                Debug.Log("Týklanan nesne: " + hit.collider.name);
+                Debug.Log("TÃ½klanan nesne: " + hit.collider.name);
             }
         }
     }
