@@ -3,11 +3,12 @@ using UnityEngine;
 
 public interface IItem
 {
+    BaseItem BaseItem { get; set; }
 
     /// <summary>
     /// function called once when cart spawned
     /// </summary>
-    void Init(BaseItem baseItem);
+    void Init();
     /// <summary>
     /// function of every tour. maybe some passive things might be happend.
     /// </summary>

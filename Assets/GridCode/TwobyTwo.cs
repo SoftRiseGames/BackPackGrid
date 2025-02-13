@@ -18,12 +18,25 @@ public class TwobyTwo : IInventoryObject
 
     public bool onRightNext => throw new System.NotImplementedException();
 
+    public bool OnDownObjectDedect => throw new System.NotImplementedException();
+
+    public bool OnUpObjectDedect => throw new System.NotImplementedException();
+
+    public bool onLeftObjectDedect => throw new System.NotImplementedException();
+
+    public bool onRightObjectDedect => throw new System.NotImplementedException();
+
     public void Consume()
     {
         throw new System.NotImplementedException();
     }
 
     public void GridIntegration()
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public void MoveObjectStarting()
     {
         throw new System.NotImplementedException();
     }
