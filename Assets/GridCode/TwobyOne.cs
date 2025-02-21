@@ -31,7 +31,7 @@ public class TwobyOne : MonoBehaviour, IInventoryObject, IRotatable, IHelper
     public bool OnUpObjectDedect { get; private set; }
     public bool onLeftObjectDedect { get; private set; }
     public bool onRightObjectDedect { get; private set; }
-
+    public bool gridEnter { get; set; }
 
     public float collisionRadius = 0.25f;
     public Vector2 UpandBottomboxSize;
@@ -46,10 +46,11 @@ public class TwobyOne : MonoBehaviour, IInventoryObject, IRotatable, IHelper
     float pivotOffsetX = 0;
     float pivotOffsetY = 0;
 
-    bool gridEnter;
 
     public Vector2 StartPosition;
 
+
+    bool CanEnterPosition = true;
     private void Start()
     {
         GridIntegration();
@@ -69,13 +70,15 @@ public class TwobyOne : MonoBehaviour, IInventoryObject, IRotatable, IHelper
             Debug.Log("OnRight "+onRightObjectDedect);
             Debug.Log("OnLeft "+onLeftObjectDedect);
         }
+
+
     }
 
     
 
     private void OnMouseDrag()
     {
-        if (isDragging)
+        if (isDragging && !gridEnter)
         {
             Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             mousePosition.z = 0f;
@@ -127,32 +130,31 @@ public class TwobyOne : MonoBehaviour, IInventoryObject, IRotatable, IHelper
             pivotOffsetY = .5f * handledObject.GetComponent<TwobyOne>().SidePosYValue;
         }
     }
-
+    
     public void RegisterYourself()
     {
+        isDragging = false;
+        Debug.Log("registering");
         Vector3 selectedPosition = gridInput.GetSelectedMapPosition();
         Vector3Int cellPosition = gridBasement.WorldToCell(selectedPosition);
-
+        
         if (gridEnter)
         {
             IInventoryObject inventoryObject = handledObject.GetComponent<IInventoryObject>();
             Vector2 objectPosition = handledObject.transform.position;
             Vector2 cellCenterPosition = gridBasement.GetCellCenterWorld(cellPosition);
 
-            if (isDragging)
+            if (CanEnterPosition)
             {
                 objectPosition.y = cellCenterPosition.y - pivotOffsetY;
-                objectPosition.x = cellCenterPosition.x + pivotOffsetX;
+                objectPosition.x = cellCenterPosition.x - pivotOffsetX;
             }
-            isDragging = false;
+            CanEnterPosition = false;
+           
 
             // Y ekseni hizalama
             if (inventoryObject.OnDownNext && !inventoryObject.OnUpNext && cellPosition.y < objectPosition.y  && !OnDownObjectDedect)
-
-                objectPosition.y = cellCenterPosition.y - pivotOffsetY;
-
                 objectPosition.y = cellCenterPosition.y + pivotOffsetY;
-
 
             else if (inventoryObject.OnUpNext && !inventoryObject.OnDownNext && cellPosition.y >= objectPosition.y && !OnUpObjectDedect )
                 objectPosition.y = cellCenterPosition.y + pivotOffsetY;
@@ -187,30 +189,31 @@ public class TwobyOne : MonoBehaviour, IInventoryObject, IRotatable, IHelper
             bool canMoveVertically = !inventoryObject.OnUpNext || !inventoryObject.OnDownNext;
 
             if (Input.GetAxis("Mouse X") > dragThreshold && !inventoryObject.onRightNext)
+            {
                 isDragging = true;
+                gridEnter = false;
+                CanEnterPosition = true;
+            }
+                
             else if (Input.GetAxis("Mouse X") < -dragThreshold && !inventoryObject.onLeftNext)
+            {
                 isDragging = true;
+                gridEnter = false;
+                CanEnterPosition = true;
+            }
             else if (Input.GetAxis("Mouse Y") > dragThreshold && !inventoryObject.OnUpNext)
+            {
                 isDragging = true;
+                gridEnter = false;
+                CanEnterPosition = true;
+            }
             else if (Input.GetAxis("Mouse Y") < -dragThreshold && !inventoryObject.OnDownNext)
+            {
                 isDragging = true;
+                gridEnter = false;
+               
+            }
 
-            // Eğer obje yukarı ve aşağı hareket edemiyorsa, sağa veya sola hareket etmesini sağla
-            if (!canMoveVertically && canMoveHorizontally)
-            {
-                if (Input.GetAxis("Mouse X") > dragThreshold)
-                    isDragging = true;
-                else if (Input.GetAxis("Mouse X") < -dragThreshold)
-                    isDragging = true;
-            }
-            // Eğer obje sağa ve sola hareket edemiyorsa, yukarı veya aşağı hareket etmesini sağla
-            else if (!canMoveHorizontally && canMoveVertically)
-            {
-                if (Input.GetAxis("Mouse Y") > dragThreshold)
-                    isDragging = true;
-                else if (Input.GetAxis("Mouse Y") < -dragThreshold)
-                    isDragging = true;
-            }
 
             handledObject.transform.position = objectPosition;
         }
@@ -224,7 +227,7 @@ public class TwobyOne : MonoBehaviour, IInventoryObject, IRotatable, IHelper
             gridEnter = false;
     }
 
-    public void RotateLeft(Action<int> callback)
+    public void RotateLeft()
     {
         // Rotate Object
         gameObject.transform.Rotate(new Vector3(transform.rotation.x, transform.rotation.y, 90));
@@ -243,7 +246,7 @@ public class TwobyOne : MonoBehaviour, IInventoryObject, IRotatable, IHelper
         ScaleObjectRechange();
 
         // Call Callback
-        callback?.Invoke(3);
+       
     }
 
     public void RotateRight()
@@ -327,18 +330,7 @@ public class TwobyOne : MonoBehaviour, IInventoryObject, IRotatable, IHelper
         UpandBottomboxSize.y = temp.x;
 
     }
-
-
-    public void MoveObject()
-    {
-        gridBasement.GetComponent<GridSystem>().Inv = this;
-        isDragging = true;
-
-        gameObject.layer = LayerMask.NameToLayer("HandleObjectPlacement");
-        gameObject.GetComponent<SpriteRenderer>().sortingOrder = 3;
-
-
-
+     
     public void MoveObjectStarting()
     {
         gridBasement.GetComponent<GridSystem>().Inv = this;
@@ -348,5 +340,7 @@ public class TwobyOne : MonoBehaviour, IInventoryObject, IRotatable, IHelper
         gameObject.GetComponent<SpriteRenderer>().sortingOrder = 3;
 
         Debug.Log("click");
+        
+       
     }
 }

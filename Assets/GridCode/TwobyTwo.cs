@@ -26,6 +26,8 @@ public class TwobyTwo : IInventoryObject
 
     public bool onRightObjectDedect => throw new System.NotImplementedException();
 
+    public bool gridEnter { get => throw new System.NotImplementedException(); set => throw new System.NotImplementedException(); }
+
     public void Consume()
     {
         throw new System.NotImplementedException();
@@ -36,11 +38,7 @@ public class TwobyTwo : IInventoryObject
         throw new System.NotImplementedException();
     }
 
-
-    public void MoveObject()
-
     public void MoveObjectStarting()
-
     {
         throw new System.NotImplementedException();
     }
