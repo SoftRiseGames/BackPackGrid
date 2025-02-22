@@ -93,7 +93,11 @@ public class TwobyOne : MonoBehaviour, IInventoryObject, IRotatable, IHelper
         gameObject.layer = LayerMask.NameToLayer("HandleObjectLocked");
 
         if (gridEnter)
+        {
             gameObject.GetComponent<SpriteRenderer>().sortingOrder = 2;
+            transform.position = gameObject.transform.position;
+        }
+           
 
         if (!gridEnter)
             transform.position = StartPosition;
