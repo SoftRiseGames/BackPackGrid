@@ -37,7 +37,11 @@ public class TwobyTwo : IInventoryObject
     }
 
 
+<<<<<<< Updated upstream:Assets/GridCode/TwobyTwo.cs
     public void MoveObject()
+=======
+    public void MoveObject(){}
+>>>>>>> Stashed changes:Assets/Akin/GridCode/TwobyTwo.cs
 
     public void MoveObjectStarting()
 

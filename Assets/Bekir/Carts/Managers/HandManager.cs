@@ -1,16 +1,11 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class HandManager : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    public List<IItem> Items = new();
+    [SerializeField] private Transform _pivot;
+    public void Init()
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }

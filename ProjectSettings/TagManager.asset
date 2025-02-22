@@ -6,18 +6,19 @@ TagManager:
   tags:
   - tile
   - InvObject
+  - Enemy
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - GridBasement
+  - gridBasement
   - Water
   - UI
   - GridSideBasementEnded
   - GridBottomUpBasementEnded
-  - HandleObjectPlacement
-  - GridLocked
-  - HandleObjectLocked
+  - 
+  - 
+  - 
   - 
   - 
   - 
