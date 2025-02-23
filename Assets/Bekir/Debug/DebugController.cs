@@ -35,12 +35,13 @@ public class DebugController : MonoBehaviour
         {
             _showHelp = true;
         }));
-        
+
         SPAWN_CARD = new DebugCommand<string>("add ", "Kart Spawnlar", "add <isim>", (string cardName) =>
         {
             _cartHandler.SpawnCart(cardName);
         });
-        SPAWN_CARD_X = new DebugCommand<string, int>("add ", "girilen sayi kadar kart spawnlar", "add <isim> <sayi>", (string cardName, int count)=>{
+        SPAWN_CARD_X = new DebugCommand<string, int>("add ", "girilen sayi kadar kart spawnlar", "add <isim> <sayi>", (string cardName, int count) =>
+        {
             for (int i = 0; i < count; i++)
             {
                 _cartHandler.SpawnCart(cardName);
@@ -77,7 +78,7 @@ public class DebugController : MonoBehaviour
             DebugCommandBase commandBase = CommandList[i] as DebugCommandBase;
 
             // Komut ID'si input'un BAŞLANGICINDA mı?
-            if (_input.StartsWith(commandBase.commandId)) 
+            if (_input.StartsWith(commandBase.commandId))
             {
                 _wrongCommand = false;
                 // Komut ID'sinin uzunluğunu çıkararak parametreleri al
@@ -115,12 +116,11 @@ public class DebugController : MonoBehaviour
         }
     }
     private Vector2 _scroll;
-    
+
     private void OnGUI()
     {
         if (!_showConsole)
         {
-            GUI.FocusControl(null);
             return;
         }
         GUI.color = Color.white;
@@ -128,7 +128,7 @@ public class DebugController : MonoBehaviour
 
         if (_showHelp)
         {
-            GUI.Box(new Rect(0, y,Screen.width,100),"");
+            GUI.Box(new Rect(0, y, Screen.width, 100), "");
 
             Rect viewport = new Rect(0, 0, Screen.width - 30, 20 * CommandList.Count);
 
@@ -140,23 +140,23 @@ public class DebugController : MonoBehaviour
 
                 string label = $"{commandBase.commandFormat} - {commandBase.commandDescription}";
 
-                Rect labelRect = new Rect(5, 20 * i,viewport.width - 100,20);
-                
+                Rect labelRect = new Rect(5, 20 * i, viewport.width - 100, 20);
+
                 GUI.Label(labelRect, label);
             }
-            
+
             GUI.EndScrollView();
-            
-            y =+ 100;
+
+            y = +100;
         }
         if (_wrongCommand)
         {
             GUI.color = Color.red;
             string label = $"{_errorMessage}";
-            Rect labelRect = new Rect(5, Screen.height -20 , Screen.width - 100, 20);
-            GUI.Label(labelRect,label);
+            Rect labelRect = new Rect(5, Screen.height - 20, Screen.width - 100, 20);
+            GUI.Label(labelRect, label);
         }
-        GUI.Box(new Rect(0, y ,Screen.width,30),"");
+        GUI.Box(new Rect(0, y, Screen.width, 30), "");
         if (GUI.Button(new Rect(Screen.width - 50f, y + 30, 50, 30), "Spawn"))
         {
             Debug.Log("Spawned");
@@ -164,10 +164,6 @@ public class DebugController : MonoBehaviour
         }
         GUI.SetNextControlName("TextField");
         _input = GUI.TextField(new Rect(10f, y + 5f, Screen.width - 20f, 20f), _input);
-        if (GUI.GetNameOfFocusedControl() != "InputField")
-        {
-            GUI.FocusControl("TextField");
-        }
         GUI.backgroundColor = new Color(0, 0, 0, 0);
     }
 }

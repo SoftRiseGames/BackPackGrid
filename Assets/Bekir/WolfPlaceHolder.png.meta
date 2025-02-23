@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: dc3b713cae5d09941ab93cd9bc9c1f0e
+guid: cde0bf749ab7348af948537efd505bcc
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -1749893926706418753
-    second: Clipped_image_20231209_033700_0
+      213: -255507346965547125
+    second: Gray-wolf-removebg-preview_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -51,7 +51,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 250
+  spritePixelsToUnits: 100
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -101,7 +101,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 0
+    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -113,111 +113,23 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Clipped_image_20231209_033700_0
+      name: Gray-wolf-removebg-preview_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 494
-        width: 772
-        height: 394
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: fbbec08beb027b7e0800000000000000
-      internalID: -1749893926706418753
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: bacak
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 35
-        width: 261
-        height: 459
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 0ec877846417c44aca67c4b2db91eebf
-      internalID: 1306154471
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: kuyruk
-      rect:
-        serializedVersion: 2
-        x: 407
-        y: 701
-        width: 365
-        height: 130
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 903f024b248cb457daac5e08e9987b29
-      internalID: 185507504
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Kafa
-      rect:
-        serializedVersion: 2
-        x: 266
-        y: 884
-        width: 189
-        height: 249
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: dc1dfa1eedcda4f7f87f15b8c2ef44e2
-      internalID: -613675560
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: full body
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 0
-        width: 772
-        height: 1136
+        x: 75
+        y: 32
+        width: 428
+        height: 286
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: 0591f122a75af4b29a6e9a8b897eede0
-      internalID: -1286248617
+      spriteID: b87bd92fb61447cf0800000000000000
+      internalID: -255507346965547125
       vertices: []
       indices: 
       edges: []
@@ -226,7 +138,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 6978feede9b7c4d8fac05c462f1f0d58
+    spriteID: 
     internalID: 0
     vertices: []
     indices: 
@@ -236,11 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Clipped_image_20231209_033700_0: -1749893926706418753
-      Kafa: -613675560
-      bacak: 1306154471
-      full body: -1286248617
-      kuyruk: 185507504
+      Gray-wolf-removebg-preview_0: -255507346965547125
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
