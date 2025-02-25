@@ -15,12 +15,15 @@ TagManager:
   - UI
   - GridSideBasementEnded
   - GridBottomUpBasementEnded
+<<<<<<< Updated upstream
   - HandleObjectPlacement
   - GridLocked
   - HandleObjectLocked
+=======
   - HandledObjectPlacement
   - HandledObjectLocked
   - GridLocked
+>>>>>>> Stashed changes
   - 
   - 
   - 

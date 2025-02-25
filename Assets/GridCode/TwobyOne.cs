@@ -342,7 +342,9 @@ public class TwobyOne : MonoBehaviour, IInventoryObject, IRotatable, IHelper
         UpandBottomboxSize.y = temp.x;
 
     }
+<<<<<<< Updated upstream:Assets/GridCode/TwobyOne.cs
      
+=======
 
 
     public void MoveObject()
@@ -355,6 +357,7 @@ public class TwobyOne : MonoBehaviour, IInventoryObject, IRotatable, IHelper
     }
 
 
+>>>>>>> Stashed changes:Assets/Akin/GridCode/TwobyOne.cs
     public void MoveObjectStarting()
     {
         gridBasement.GetComponent<GridSystem>().Inv = this;

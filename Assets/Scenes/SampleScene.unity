@@ -276,8 +276,11 @@ MonoBehaviour:
     m_Bits: 200
   HandleCheckLayer:
     serializedVersion: 2
+<<<<<<< Updated upstream:Assets/Scenes/SampleScene.unity
     m_Bits: 1024
+=======
     m_Bits: 512
+>>>>>>> Stashed changes:Assets/Scenes/Akin.unity
   OnUp: 0
   OnDown: 0
   onLeft: 0
@@ -446,8 +449,11 @@ MonoBehaviour:
     m_Bits: 200
   HandleCheckLayer:
     serializedVersion: 2
+<<<<<<< Updated upstream:Assets/Scenes/SampleScene.unity
     m_Bits: 1024
+=======
     m_Bits: 512
+>>>>>>> Stashed changes:Assets/Scenes/Akin.unity
   OnUp: 0
   OnDown: 0
   onLeft: 0
@@ -773,8 +779,11 @@ MonoBehaviour:
     m_Bits: 200
   HandleCheckLayer:
     serializedVersion: 2
+<<<<<<< Updated upstream:Assets/Scenes/SampleScene.unity
     m_Bits: 1024
+=======
     m_Bits: 512
+>>>>>>> Stashed changes:Assets/Scenes/Akin.unity
   OnUp: 0
   OnDown: 0
   onLeft: 0
@@ -943,8 +952,11 @@ MonoBehaviour:
     m_Bits: 200
   HandleCheckLayer:
     serializedVersion: 2
+<<<<<<< Updated upstream:Assets/Scenes/SampleScene.unity
     m_Bits: 1024
+=======
     m_Bits: 512
+>>>>>>> Stashed changes:Assets/Scenes/Akin.unity
   OnUp: 0
   OnDown: 0
   onLeft: 0
@@ -1334,8 +1346,11 @@ MonoBehaviour:
     m_Bits: 200
   HandleCheckLayer:
     serializedVersion: 2
+<<<<<<< Updated upstream:Assets/Scenes/SampleScene.unity
     m_Bits: 1024
+=======
     m_Bits: 512
+>>>>>>> Stashed changes:Assets/Scenes/Akin.unity
   OnUp: 0
   OnDown: 0
   onLeft: 0
@@ -1504,8 +1519,11 @@ MonoBehaviour:
     m_Bits: 200
   HandleCheckLayer:
     serializedVersion: 2
+<<<<<<< Updated upstream:Assets/Scenes/SampleScene.unity
     m_Bits: 1024
+=======
     m_Bits: 512
+>>>>>>> Stashed changes:Assets/Scenes/Akin.unity
   OnUp: 0
   OnDown: 0
   onLeft: 0
@@ -1750,8 +1768,11 @@ MonoBehaviour:
     m_Bits: 200
   HandleCheckLayer:
     serializedVersion: 2
+<<<<<<< Updated upstream:Assets/Scenes/SampleScene.unity
     m_Bits: 1024
+=======
     m_Bits: 512
+>>>>>>> Stashed changes:Assets/Scenes/Akin.unity
   OnUp: 0
   OnDown: 0
   onLeft: 0
@@ -1920,8 +1941,11 @@ MonoBehaviour:
     m_Bits: 200
   HandleCheckLayer:
     serializedVersion: 2
+<<<<<<< Updated upstream:Assets/Scenes/SampleScene.unity
     m_Bits: 1024
+=======
     m_Bits: 512
+>>>>>>> Stashed changes:Assets/Scenes/Akin.unity
   OnUp: 0
   OnDown: 0
   onLeft: 0
@@ -2090,8 +2114,11 @@ MonoBehaviour:
     m_Bits: 200
   HandleCheckLayer:
     serializedVersion: 2
+<<<<<<< Updated upstream:Assets/Scenes/SampleScene.unity
     m_Bits: 1024
+=======
     m_Bits: 512
+>>>>>>> Stashed changes:Assets/Scenes/Akin.unity
   OnUp: 0
   OnDown: 0
   onLeft: 0
@@ -2260,8 +2287,11 @@ MonoBehaviour:
     m_Bits: 200
   HandleCheckLayer:
     serializedVersion: 2
+<<<<<<< Updated upstream:Assets/Scenes/SampleScene.unity
     m_Bits: 1024
+=======
     m_Bits: 512
+>>>>>>> Stashed changes:Assets/Scenes/Akin.unity
   OnUp: 0
   OnDown: 0
   onLeft: 0
@@ -2430,8 +2460,11 @@ MonoBehaviour:
     m_Bits: 200
   HandleCheckLayer:
     serializedVersion: 2
+<<<<<<< Updated upstream:Assets/Scenes/SampleScene.unity
     m_Bits: 1024
+=======
     m_Bits: 512
+>>>>>>> Stashed changes:Assets/Scenes/Akin.unity
   OnUp: 0
   OnDown: 0
   onLeft: 0
@@ -2521,6 +2554,7 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 0.96160245, y: 0.9042263}
   m_EdgeRadius: 0
+<<<<<<< Updated upstream:Assets/Scenes/SampleScene.unity
 --- !u!114 &1070143914
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2562,6 +2596,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1280
   StartPosition: {x: 0, y: 0}
+=======
+>>>>>>> Stashed changes:Assets/Scenes/Akin.unity
 --- !u!212 &1070143915
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2789,8 +2825,11 @@ MonoBehaviour:
     m_Bits: 200
   HandleCheckLayer:
     serializedVersion: 2
+<<<<<<< Updated upstream:Assets/Scenes/SampleScene.unity
     m_Bits: 1024
+=======
     m_Bits: 512
+>>>>>>> Stashed changes:Assets/Scenes/Akin.unity
   OnUp: 0
   OnDown: 0
   onLeft: 0
@@ -2959,8 +2998,11 @@ MonoBehaviour:
     m_Bits: 200
   HandleCheckLayer:
     serializedVersion: 2
+<<<<<<< Updated upstream:Assets/Scenes/SampleScene.unity
     m_Bits: 1024
+=======
     m_Bits: 512
+>>>>>>> Stashed changes:Assets/Scenes/Akin.unity
   OnUp: 0
   OnDown: 0
   onLeft: 0
@@ -3129,8 +3171,11 @@ MonoBehaviour:
     m_Bits: 200
   HandleCheckLayer:
     serializedVersion: 2
+<<<<<<< Updated upstream:Assets/Scenes/SampleScene.unity
     m_Bits: 1024
+=======
     m_Bits: 512
+>>>>>>> Stashed changes:Assets/Scenes/Akin.unity
   OnUp: 0
   OnDown: 0
   onLeft: 0
@@ -3155,7 +3200,10 @@ GameObject:
   - component: {fileID: 1412027319}
   - component: {fileID: 1412027320}
   - component: {fileID: 1412027321}
+<<<<<<< Updated upstream:Assets/Scenes/SampleScene.unity
+=======
   - component: {fileID: 1412027322}
+>>>>>>> Stashed changes:Assets/Scenes/Akin.unity
   m_Layer: 8
   m_Name: ObjectReference
   m_TagString: InvObject
@@ -3233,6 +3281,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+<<<<<<< Updated upstream:Assets/Scenes/SampleScene.unity
 --- !u!114 &1412027319
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3274,6 +3323,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1280
   StartPosition: {x: 0, y: 0}
+=======
+>>>>>>> Stashed changes:Assets/Scenes/Akin.unity
 --- !u!61 &1412027320
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -3329,7 +3380,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 1412027316}
   m_Enabled: 1
   m_EditorHideFlags: 0
+<<<<<<< Updated upstream:Assets/Scenes/SampleScene.unity
   m_Script: {fileID: 11500000, guid: cc354bda1dad5e34fb258f8a00ad927d, type: 3}
+=======
   m_Script: {fileID: 11500000, guid: 86e13b1fd0073cc40adf7e011ce2a980, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
@@ -3372,6 +3425,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 88abf6dd9cfd23f47b9a775e337ff1d5, type: 3}
+>>>>>>> Stashed changes:Assets/Scenes/Akin.unity
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1630761054
@@ -3531,8 +3585,11 @@ MonoBehaviour:
     m_Bits: 200
   HandleCheckLayer:
     serializedVersion: 2
+<<<<<<< Updated upstream:Assets/Scenes/SampleScene.unity
     m_Bits: 1024
+=======
     m_Bits: 512
+>>>>>>> Stashed changes:Assets/Scenes/Akin.unity
   OnUp: 0
   OnDown: 0
   onLeft: 0
@@ -3600,12 +3657,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 1859701186}
   m_Enabled: 1
   m_EditorHideFlags: 0
+<<<<<<< Updated upstream:Assets/Scenes/SampleScene.unity
   m_Script: {fileID: 11500000, guid: 40a127ab87eb0e0498a87b01bc662a0a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   handledObject: {fileID: 0}
   grid: {fileID: 1859701187}
   gridInput: {fileID: 1859701190}
+=======
   m_Script: {fileID: 11500000, guid: c86ddc5f42ee9d74d92c7269ede7e679, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
@@ -3615,6 +3674,7 @@ MonoBehaviour:
     m_Bits: 8
   instance: {fileID: 0}
   Object: {fileID: 0}
+>>>>>>> Stashed changes:Assets/Scenes/Akin.unity
 --- !u!114 &1859701190
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3624,6 +3684,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1859701186}
   m_Enabled: 1
   m_EditorHideFlags: 0
+<<<<<<< Updated upstream:Assets/Scenes/SampleScene.unity
   m_Script: {fileID: 11500000, guid: 21654c255bac11146b725e5c607fdc69, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
@@ -3633,12 +3694,14 @@ MonoBehaviour:
     m_Bits: 8
   instance: {fileID: 0}
   Object: {fileID: 0}
+=======
   m_Script: {fileID: 11500000, guid: 60e21371caa89ec40b88bfdf4eb8b92d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   handledObject: {fileID: 0}
   grid: {fileID: 1859701187}
   gridInput: {fileID: 1859701189}
+>>>>>>> Stashed changes:Assets/Scenes/Akin.unity
 --- !u!1 &1891007885
 GameObject:
   m_ObjectHideFlags: 0
@@ -3856,8 +3919,11 @@ MonoBehaviour:
     m_Bits: 200
   HandleCheckLayer:
     serializedVersion: 2
+<<<<<<< Updated upstream:Assets/Scenes/SampleScene.unity
     m_Bits: 1024
+=======
     m_Bits: 512
+>>>>>>> Stashed changes:Assets/Scenes/Akin.unity
   OnUp: 0
   OnDown: 0
   onLeft: 0

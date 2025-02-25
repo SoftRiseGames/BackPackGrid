@@ -38,9 +38,12 @@ public class TwobyTwo : IInventoryObject
         throw new System.NotImplementedException();
     }
 
+<<<<<<< Updated upstream:Assets/GridCode/TwobyTwo.cs
+=======
 
     public void MoveObject(){}
 
+>>>>>>> Stashed changes:Assets/Akin/GridCode/TwobyTwo.cs
     public void MoveObjectStarting()
     {
         throw new System.NotImplementedException();
