@@ -18,6 +18,9 @@ TagManager:
   - HandleObjectPlacement
   - GridLocked
   - HandleObjectLocked
+  - HandledObjectPlacement
+  - HandledObjectLocked
+  - GridLocked
   - 
   - 
   - 

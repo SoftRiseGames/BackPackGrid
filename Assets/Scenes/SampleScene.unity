@@ -267,7 +267,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 71204246}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cbd16e15bc274704cbf6b0f032810069, type: 3}
+  m_Script: {fileID: 11500000, guid: 4224f4d108558b948a7d259376301893, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   isRaycast: 0
@@ -278,7 +278,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1024
   OnUp: 0
-  OnDown: 1
+  OnDown: 0
   onLeft: 0
   onRight: 0
   OnMiddle: 0
@@ -436,7 +436,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 107346199}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cbd16e15bc274704cbf6b0f032810069, type: 3}
+  m_Script: {fileID: 11500000, guid: 4224f4d108558b948a7d259376301893, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   isRaycast: 0
@@ -446,8 +446,9 @@ MonoBehaviour:
   HandleCheckLayer:
     serializedVersion: 2
     m_Bits: 1024
+    m_Bits: 512
   OnUp: 0
-  OnDown: 1
+  OnDown: 0
   onLeft: 0
   onRight: 0
   OnMiddle: 0
@@ -762,7 +763,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 503063219}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cbd16e15bc274704cbf6b0f032810069, type: 3}
+  m_Script: {fileID: 11500000, guid: 4224f4d108558b948a7d259376301893, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   isRaycast: 0
@@ -772,8 +773,9 @@ MonoBehaviour:
   HandleCheckLayer:
     serializedVersion: 2
     m_Bits: 1024
+    m_Bits: 512
   OnUp: 0
-  OnDown: 1
+  OnDown: 0
   onLeft: 0
   onRight: 0
   OnMiddle: 0
@@ -931,7 +933,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 510324864}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cbd16e15bc274704cbf6b0f032810069, type: 3}
+  m_Script: {fileID: 11500000, guid: 4224f4d108558b948a7d259376301893, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   isRaycast: 0
@@ -941,8 +943,9 @@ MonoBehaviour:
   HandleCheckLayer:
     serializedVersion: 2
     m_Bits: 1024
+    m_Bits: 512
   OnUp: 0
-  OnDown: 1
+  OnDown: 0
   onLeft: 0
   onRight: 0
   OnMiddle: 0
@@ -1321,7 +1324,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 886980388}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cbd16e15bc274704cbf6b0f032810069, type: 3}
+  m_Script: {fileID: 11500000, guid: 4224f4d108558b948a7d259376301893, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   isRaycast: 0
@@ -1331,8 +1334,9 @@ MonoBehaviour:
   HandleCheckLayer:
     serializedVersion: 2
     m_Bits: 1024
+    m_Bits: 512
   OnUp: 0
-  OnDown: 1
+  OnDown: 0
   onLeft: 0
   onRight: 0
   OnMiddle: 0
@@ -1490,7 +1494,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 901687647}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cbd16e15bc274704cbf6b0f032810069, type: 3}
+  m_Script: {fileID: 11500000, guid: 4224f4d108558b948a7d259376301893, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   isRaycast: 0
@@ -1500,8 +1504,9 @@ MonoBehaviour:
   HandleCheckLayer:
     serializedVersion: 2
     m_Bits: 1024
+    m_Bits: 512
   OnUp: 0
-  OnDown: 1
+  OnDown: 0
   onLeft: 0
   onRight: 0
   OnMiddle: 0
@@ -1735,7 +1740,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1000242423}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cbd16e15bc274704cbf6b0f032810069, type: 3}
+  m_Script: {fileID: 11500000, guid: 4224f4d108558b948a7d259376301893, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   isRaycast: 0
@@ -1745,8 +1750,9 @@ MonoBehaviour:
   HandleCheckLayer:
     serializedVersion: 2
     m_Bits: 1024
+    m_Bits: 512
   OnUp: 0
-  OnDown: 1
+  OnDown: 0
   onLeft: 0
   onRight: 0
   OnMiddle: 0
@@ -1904,7 +1910,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1055063357}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cbd16e15bc274704cbf6b0f032810069, type: 3}
+  m_Script: {fileID: 11500000, guid: 4224f4d108558b948a7d259376301893, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   isRaycast: 0
@@ -1914,8 +1920,9 @@ MonoBehaviour:
   HandleCheckLayer:
     serializedVersion: 2
     m_Bits: 1024
+    m_Bits: 512
   OnUp: 0
-  OnDown: 1
+  OnDown: 0
   onLeft: 0
   onRight: 0
   OnMiddle: 0
@@ -2073,7 +2080,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1056413131}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cbd16e15bc274704cbf6b0f032810069, type: 3}
+  m_Script: {fileID: 11500000, guid: 4224f4d108558b948a7d259376301893, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   isRaycast: 0
@@ -2083,8 +2090,9 @@ MonoBehaviour:
   HandleCheckLayer:
     serializedVersion: 2
     m_Bits: 1024
+    m_Bits: 512
   OnUp: 0
-  OnDown: 1
+  OnDown: 0
   onLeft: 0
   onRight: 0
   OnMiddle: 0
@@ -2242,7 +2250,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1066569127}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cbd16e15bc274704cbf6b0f032810069, type: 3}
+  m_Script: {fileID: 11500000, guid: 4224f4d108558b948a7d259376301893, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   isRaycast: 0
@@ -2252,8 +2260,9 @@ MonoBehaviour:
   HandleCheckLayer:
     serializedVersion: 2
     m_Bits: 1024
+    m_Bits: 512
   OnUp: 0
-  OnDown: 1
+  OnDown: 0
   onLeft: 0
   onRight: 0
   OnMiddle: 0
@@ -2411,7 +2420,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1068629053}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cbd16e15bc274704cbf6b0f032810069, type: 3}
+  m_Script: {fileID: 11500000, guid: 4224f4d108558b948a7d259376301893, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   isRaycast: 0
@@ -2421,8 +2430,9 @@ MonoBehaviour:
   HandleCheckLayer:
     serializedVersion: 2
     m_Bits: 1024
+    m_Bits: 512
   OnUp: 0
-  OnDown: 1
+  OnDown: 0
   onLeft: 0
   onRight: 0
   OnMiddle: 0
@@ -2769,7 +2779,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1104499987}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cbd16e15bc274704cbf6b0f032810069, type: 3}
+  m_Script: {fileID: 11500000, guid: 4224f4d108558b948a7d259376301893, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   isRaycast: 0
@@ -2779,8 +2789,9 @@ MonoBehaviour:
   HandleCheckLayer:
     serializedVersion: 2
     m_Bits: 1024
+    m_Bits: 512
   OnUp: 0
-  OnDown: 1
+  OnDown: 0
   onLeft: 0
   onRight: 0
   OnMiddle: 0
@@ -2938,7 +2949,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1211598094}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cbd16e15bc274704cbf6b0f032810069, type: 3}
+  m_Script: {fileID: 11500000, guid: 4224f4d108558b948a7d259376301893, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   isRaycast: 0
@@ -2948,8 +2959,9 @@ MonoBehaviour:
   HandleCheckLayer:
     serializedVersion: 2
     m_Bits: 1024
+    m_Bits: 512
   OnUp: 0
-  OnDown: 1
+  OnDown: 0
   onLeft: 0
   onRight: 0
   OnMiddle: 0
@@ -3107,7 +3119,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1215828355}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cbd16e15bc274704cbf6b0f032810069, type: 3}
+  m_Script: {fileID: 11500000, guid: 4224f4d108558b948a7d259376301893, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   isRaycast: 0
@@ -3117,6 +3129,7 @@ MonoBehaviour:
   HandleCheckLayer:
     serializedVersion: 2
     m_Bits: 1024
+    m_Bits: 512
   OnUp: 0
   OnDown: 0
   onLeft: 0
@@ -3141,6 +3154,7 @@ GameObject:
   - component: {fileID: 1412027319}
   - component: {fileID: 1412027320}
   - component: {fileID: 1412027321}
+  - component: {fileID: 1412027322}
   m_Layer: 8
   m_Name: ObjectReference
   m_TagString: InvObject
@@ -3315,6 +3329,48 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cc354bda1dad5e34fb258f8a00ad927d, type: 3}
+  m_Script: {fileID: 11500000, guid: 86e13b1fd0073cc40adf7e011ce2a980, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SidePosXValue: 2
+  SidePosYValue: 1
+  gridBasement: {fileID: 0}
+  gridInput: {fileID: 0}
+  handledObject: {fileID: 0}
+  grid: {fileID: 0}
+  collisionRadius: 0.19
+  UpandBottomboxSize: {x: 2.66, y: 0.51}
+  SideBoxSize: {x: -0.53, y: 1.68}
+  Vectors:
+  - {x: 0, y: 0.9}
+  - {x: 0, y: -0.92}
+  - {x: 1.39, y: 0}
+  - {x: -1.42, y: 0}
+  VectorUp:
+  - {x: 0, y: 1.61}
+  - {x: 0, y: -1.71}
+  - {x: 2.11, y: 0}
+  - {x: -2.13, y: 0}
+  Layer:
+    serializedVersion: 2
+    m_Bits: 8
+  LayerNextCheck:
+    serializedVersion: 2
+    m_Bits: 8
+  LayerObjectDedect:
+    serializedVersion: 2
+    m_Bits: 0
+  StartPosition: {x: 0, y: 0}
+--- !u!114 &1412027322
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1412027316}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 88abf6dd9cfd23f47b9a775e337ff1d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1630761054
@@ -3465,7 +3521,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1630761054}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cbd16e15bc274704cbf6b0f032810069, type: 3}
+  m_Script: {fileID: 11500000, guid: 4224f4d108558b948a7d259376301893, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   isRaycast: 0
@@ -3475,8 +3531,9 @@ MonoBehaviour:
   HandleCheckLayer:
     serializedVersion: 2
     m_Bits: 1024
+    m_Bits: 512
   OnUp: 0
-  OnDown: 1
+  OnDown: 0
   onLeft: 0
   onRight: 0
   OnMiddle: 0
@@ -3548,6 +3605,15 @@ MonoBehaviour:
   handledObject: {fileID: 0}
   grid: {fileID: 1859701187}
   gridInput: {fileID: 1859701190}
+  m_Script: {fileID: 11500000, guid: c86ddc5f42ee9d74d92c7269ede7e679, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sceneCamera: {fileID: 519420031}
+  groundLayerMask:
+    serializedVersion: 2
+    m_Bits: 8
+  instance: {fileID: 0}
+  Object: {fileID: 0}
 --- !u!114 &1859701190
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3566,6 +3632,12 @@ MonoBehaviour:
     m_Bits: 8
   instance: {fileID: 0}
   Object: {fileID: 0}
+  m_Script: {fileID: 11500000, guid: 60e21371caa89ec40b88bfdf4eb8b92d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  handledObject: {fileID: 0}
+  grid: {fileID: 1859701187}
+  gridInput: {fileID: 1859701189}
 --- !u!1 &1891007885
 GameObject:
   m_ObjectHideFlags: 0
@@ -3774,7 +3846,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2054208210}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cbd16e15bc274704cbf6b0f032810069, type: 3}
+  m_Script: {fileID: 11500000, guid: 4224f4d108558b948a7d259376301893, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   isRaycast: 0
@@ -3784,8 +3856,9 @@ MonoBehaviour:
   HandleCheckLayer:
     serializedVersion: 2
     m_Bits: 1024
+    m_Bits: 512
   OnUp: 0
-  OnDown: 1
+  OnDown: 0
   onLeft: 0
   onRight: 0
   OnMiddle: 0

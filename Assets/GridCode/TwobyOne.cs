@@ -158,7 +158,15 @@ public class TwobyOne : MonoBehaviour, IInventoryObject, IRotatable, IHelper
 
             // Y ekseni hizalama
             if (inventoryObject.OnDownNext && !inventoryObject.OnUpNext && cellPosition.y < objectPosition.y  && !OnDownObjectDedect)
+<<<<<<< Updated upstream:Assets/GridCode/TwobyOne.cs
                 objectPosition.y = cellCenterPosition.y + pivotOffsetY;
+=======
+            {
+                objectPosition.y = cellCenterPosition.y - pivotOffsetY;
+                objectPosition.y = cellCenterPosition.y + pivotOffsetY;
+            }
+
+>>>>>>> Stashed changes:Assets/Akin/GridCode/TwobyOne.cs
 
             else if (inventoryObject.OnUpNext && !inventoryObject.OnDownNext && cellPosition.y >= objectPosition.y && !OnUpObjectDedect )
                 objectPosition.y = cellCenterPosition.y + pivotOffsetY;
@@ -335,6 +343,18 @@ public class TwobyOne : MonoBehaviour, IInventoryObject, IRotatable, IHelper
 
     }
      
+
+
+    public void MoveObject()
+    {
+        gridBasement.GetComponent<GridSystem>().Inv = this;
+        isDragging = true;
+
+        gameObject.layer = LayerMask.NameToLayer("HandleObjectPlacement");
+        gameObject.GetComponent<SpriteRenderer>().sortingOrder = 3;
+    }
+
+
     public void MoveObjectStarting()
     {
         gridBasement.GetComponent<GridSystem>().Inv = this;

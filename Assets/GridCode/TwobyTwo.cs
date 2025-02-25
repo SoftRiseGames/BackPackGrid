@@ -38,6 +38,9 @@ public class TwobyTwo : IInventoryObject
         throw new System.NotImplementedException();
     }
 
+
+    public void MoveObject(){}
+
     public void MoveObjectStarting()
     {
         throw new System.NotImplementedException();
