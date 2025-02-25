@@ -12,8 +12,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc1cf9c466ad942db80df514fd5ef238, type: 3}
   m_Name: Blood
   m_EditorClassIdentifier: 
-  itemName: 
-  description: asdsad
-  attackPower: 0
-  defensePower: 0
-  icon: {fileID: 0}
+  ItemName: 
+  Description: 
+  ItemSprite: {fileID: 0}
+  cellSize: {x: 0, y: 0}
+  RootMergeItem: {fileID: 0}
+  MergedItems: []
+  ItemEffects_OnEveryTour:
+  - rid: 1414605516635373568
+  ItemEffects_OnPlaced: []
+  references:
+    version: 2
+    RefIds:
+    - rid: 1414605516635373568
+      type: {class: ActiveItemExampleClass, ns: , asm: Assembly-CSharp}
+      data: 
