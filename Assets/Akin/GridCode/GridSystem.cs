@@ -17,16 +17,10 @@ public class GridSystem : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.R))
                 Debug.Log("rotate");
-
-          
         }
         else
         {
             Debug.Log("This object is not rotatable");
-        }
-        if (Inv is IHelper)
-        {
-
         }
     }
 
@@ -36,19 +30,19 @@ public class GridSystem : MonoBehaviour
     }
     private void Update()
     {
-        if (Inv != null )
+        if (Inv != null && Inv.gridEnter)
         {
             Inv.RegisterYourself();
         }
-        else
-            return;
-
-        if (Inv is IRotatable)
+        if (Inv != null && Inv is IRotatable)
         {
             if (Input.GetKeyDown(KeyCode.R))
             {
-                ((IRotatable)Inv).RotateLeft(RegisterYourself);
-                Inv.RegisterYourself();
+                ((IRotatable)Inv).RotateLeft();
+                if (Inv.gridEnter)
+                {
+                    Inv.RegisterYourself();
+                }
             }
                 
         }

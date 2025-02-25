@@ -2,6 +2,6 @@
 
 public interface IRotatable
 {
-    void RotateLeft(Action<int> callback);
+    void RotateLeft();
     void RotateRight();
 }

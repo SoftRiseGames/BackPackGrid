@@ -11,14 +11,14 @@ TagManager:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - gridBasement
+  - GridBasement
   - Water
   - UI
   - GridSideBasementEnded
   - GridBottomUpBasementEnded
-  - 
-  - 
-  - 
+  - HandleObjectPlacement
+  - HandleObjectLocked
+  - GridLocked
   - 
   - 
   - 
