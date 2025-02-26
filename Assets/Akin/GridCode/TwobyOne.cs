@@ -49,7 +49,7 @@ public class TwobyOne : MonoBehaviour, IInventoryObject, IRotatable, IHelper
 
     public Vector2 StartPosition;
 
-
+    bool isHandle;
     bool CanEnterPosition = true;
     private void Start()
     {
@@ -71,6 +71,24 @@ public class TwobyOne : MonoBehaviour, IInventoryObject, IRotatable, IHelper
             Debug.Log("OnLeft "+onLeftObjectDedect);
         }
 
+        if (isHandle)
+        {
+            if (Input.GetMouseButtonUp(0))
+            {
+                isDragging = false;
+                gridBasement.GetComponent<GridSystem>().Inv = null;
+                gameObject.layer = LayerMask.NameToLayer("HandleObjectLocked");
+
+                if (gridEnter)
+                    gameObject.GetComponent<SpriteRenderer>().sortingOrder = 2;
+
+                if (!gridEnter)
+                    transform.position = StartPosition;
+
+                isHandle = false;
+            }
+        }
+
 
     }
 
@@ -88,15 +106,7 @@ public class TwobyOne : MonoBehaviour, IInventoryObject, IRotatable, IHelper
 
     void OnMouseUp()
     {
-        isDragging = false;
-        gridBasement.GetComponent<GridSystem>().Inv = null;
-        gameObject.layer = LayerMask.NameToLayer("HandleObjectLocked");
-
-        if (gridEnter)
-            gameObject.GetComponent<SpriteRenderer>().sortingOrder = 2;
-
-        if (!gridEnter)
-            transform.position = StartPosition;
+       
     }
 
     public void Consume()
@@ -122,11 +132,13 @@ public class TwobyOne : MonoBehaviour, IInventoryObject, IRotatable, IHelper
     {
         if (handledObject.transform.localScale.x / 2 == 1)
         {
-            Debug.Log("pivot");
+            Debug.Log("pivotX");
             pivotOffsetX = .5f * handledObject.GetComponent<TwobyOne>().SidePosXValue;
         }
         if (handledObject.transform.localScale.y / 2 == 1)
         {
+            Debug.Log("pivotX");
+
             pivotOffsetY = .5f * handledObject.GetComponent<TwobyOne>().SidePosYValue;
         }
     }
@@ -147,7 +159,7 @@ public class TwobyOne : MonoBehaviour, IInventoryObject, IRotatable, IHelper
             if (CanEnterPosition)
             {
                 objectPosition.y = cellCenterPosition.y - pivotOffsetY;
-                objectPosition.x = cellCenterPosition.x - pivotOffsetX;
+                objectPosition.x = cellCenterPosition.x + pivotOffsetX;
             }
             CanEnterPosition = false;
            
@@ -329,13 +341,16 @@ public class TwobyOne : MonoBehaviour, IInventoryObject, IRotatable, IHelper
     public void MoveObjectStarting()
     {
         gridBasement.GetComponent<GridSystem>().Inv = this;
-        isDragging = true;
 
+        if(!gridEnter)
+            isDragging = true;
 
         if (gridEnter)
+        {
             gridBasement.GetComponent<GridSystem>().Inv.RegisterYourself();
+        }
 
-
+        isHandle = true;
         gameObject.layer = LayerMask.NameToLayer("HandleObjectPlacement");
         gameObject.GetComponent<SpriteRenderer>().sortingOrder = 3;
 
