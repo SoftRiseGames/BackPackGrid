@@ -27,6 +27,7 @@ public class Onion : MonoBehaviour,IPowerItem ,IInventoryObject
     public bool onRightObjectDedect => throw new System.NotImplementedException();
 
     public bool gridEnter { get => throw new System.NotImplementedException(); set => throw new System.NotImplementedException(); }
+    public bool OffTheGrid { get => throw new System.NotImplementedException(); set => throw new System.NotImplementedException(); }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()

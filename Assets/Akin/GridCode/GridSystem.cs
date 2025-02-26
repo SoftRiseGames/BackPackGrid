@@ -13,15 +13,7 @@ public class GridSystem : MonoBehaviour
 
     private void Start()
     {
-        if (Inv is IRotatable)
-        {
-            if (Input.GetKeyDown(KeyCode.R))
-                Debug.Log("rotate");
-        }
-        else
-        {
-            Debug.Log("This object is not rotatable");
-        }
+       
     }
 
     private void OnMouseDrag()

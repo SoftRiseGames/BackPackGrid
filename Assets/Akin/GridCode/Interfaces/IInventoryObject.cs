@@ -24,5 +24,6 @@ public interface IInventoryObject
 
     public bool gridEnter { get; set; }
 
+    
 
 }
