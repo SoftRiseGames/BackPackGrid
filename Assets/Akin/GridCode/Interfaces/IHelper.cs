@@ -1,8 +1,5 @@
-using UnityEngine;
-
-public interface IHelper 
+public interface IPowerUp 
 {
-    public int SidePosX();
-    public int SidePosY();
-   
+
+    public void Powering();
 }

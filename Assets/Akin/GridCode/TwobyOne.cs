@@ -3,8 +3,13 @@ using UnityEngine.Events;
 using System;
 using System.Collections.Generic;
 
-public class TwobyOne : MonoBehaviour, IInventoryObject, IRotatable, IHelper
+public class TwobyOne : MonoBehaviour, IInventoryObject, IRotatable, IPowerUp
 {
+
+    IInventoryObject inventoryObject;
+    Vector2 objectPosition;
+    Vector2 cellCenterPosition;
+
     public int SidePosXValue;
     public int SidePosYValue;
 
@@ -33,12 +38,13 @@ public class TwobyOne : MonoBehaviour, IInventoryObject, IRotatable, IHelper
     public bool onRightObjectDedect { get; private set; }
     public bool gridEnter { get; set; }
 
+
     public float collisionRadius = 0.25f;
     public Vector2 UpandBottomboxSize;
     public Vector2 SideBoxSize;
     public List<Vector2> Vectors;
     public List<Vector2> VectorUp;
-    private Color debugCollisionColor = Color.red;
+   
     public LayerMask Layer;
     public LayerMask LayerNextCheck;
     public LayerMask LayerObjectDedect;
@@ -51,6 +57,8 @@ public class TwobyOne : MonoBehaviour, IInventoryObject, IRotatable, IHelper
 
     bool isHandle;
     bool CanEnterPosition = true;
+    float dragThreshold = 0.1f;
+
     private void Start()
     {
         GridIntegration();
@@ -62,7 +70,7 @@ public class TwobyOne : MonoBehaviour, IInventoryObject, IRotatable, IHelper
     {
         Ray();
         GridEnterBoolCheck();
-
+        OutOfGrid();
         if(gameObject.name == "ObjectReference")
         {
             Debug.Log("onUP "+OnUpObjectDedect);
@@ -152,21 +160,30 @@ public class TwobyOne : MonoBehaviour, IInventoryObject, IRotatable, IHelper
         
         if (gridEnter)
         {
-            IInventoryObject inventoryObject = handledObject.GetComponent<IInventoryObject>();
-            Vector2 objectPosition = handledObject.transform.position;
-            Vector2 cellCenterPosition = gridBasement.GetCellCenterWorld(cellPosition);
+            inventoryObject = handledObject.GetComponent<IInventoryObject>();
+            objectPosition = handledObject.transform.position;
+            cellCenterPosition = gridBasement.GetCellCenterWorld(cellPosition);
 
             if (CanEnterPosition)
             {
-                objectPosition.y = cellCenterPosition.y - pivotOffsetY;
-                objectPosition.x = cellCenterPosition.x + pivotOffsetX;
+                if (cellPosition.y < objectPosition.y + (pivotOffsetY * 2) && !OnDownObjectDedect)
+                    objectPosition.y = cellCenterPosition.y - pivotOffsetY;
+                else if (cellPosition.y >= objectPosition.y - (pivotOffsetY * 2) && !OnUpObjectDedect)
+                    objectPosition.y = cellCenterPosition.y + pivotOffsetY;
+
+
+                if (cellPosition.x>= objectPosition.x + (pivotOffsetX * 2) && !onRightObjectDedect)
+                    objectPosition.x= cellCenterPosition.x - pivotOffsetX;
+                else if (cellPosition.x < objectPosition.x - (pivotOffsetY * 2) && !onLeftObjectDedect)
+                    objectPosition.x = cellCenterPosition.x + pivotOffsetX;
+
             }
             CanEnterPosition = false;
            
 
             // Y ekseni hizalama
             if (inventoryObject.OnDownNext && !inventoryObject.OnUpNext && cellPosition.y < objectPosition.y  && !OnDownObjectDedect)
-                objectPosition.y = cellCenterPosition.y + pivotOffsetY;
+                objectPosition.y = cellCenterPosition.y - pivotOffsetY;
 
             else if (inventoryObject.OnUpNext && !inventoryObject.OnDownNext && cellPosition.y >= objectPosition.y && !OnUpObjectDedect )
                 objectPosition.y = cellCenterPosition.y + pivotOffsetY;
@@ -188,26 +205,32 @@ public class TwobyOne : MonoBehaviour, IInventoryObject, IRotatable, IHelper
                     : cellCenterPosition.x + pivotOffsetX;
             }
             else if (inventoryObject.onRightNext && !inventoryObject.onLeftNext && cellPosition.x >= Mathf.Round(objectPosition.x) && !onRightObjectDedect)
+                objectPosition.x = cellCenterPosition.x + pivotOffsetX;
+
+           else if (inventoryObject.onLeftNext && !inventoryObject.onRightNext && cellPosition.x < Mathf.Round(objectPosition.x) && !onLeftObjectDedect)
                 objectPosition.x = cellCenterPosition.x - pivotOffsetX;
 
-            else if (inventoryObject.onLeftNext && !inventoryObject.onRightNext && cellPosition.x < Mathf.Round(objectPosition.x) && !onLeftObjectDedect)
+           else if (inventoryObject.onLeftNext && inventoryObject.onRightNext && !onRightObjectDedect )
                 objectPosition.x = cellCenterPosition.x - pivotOffsetX;
 
-            else if (inventoryObject.onLeftNext && inventoryObject.onRightNext && !onRightObjectDedect )
-                objectPosition.x = cellCenterPosition.x - pivotOffsetX;
-
-            float dragThreshold = 0.1f;
+          
             bool canMoveHorizontally = !inventoryObject.onRightNext || !inventoryObject.onLeftNext;
             bool canMoveVertically = !inventoryObject.OnUpNext || !inventoryObject.OnDownNext;
-
+            handledObject.transform.position = objectPosition;
+        }
+    }
+    void OutOfGrid()
+    {
+        if(inventoryObject != null)
+        {
             if (Input.GetAxis("Mouse X") > dragThreshold && !inventoryObject.onRightNext)
             {
                 isDragging = true;
                 gridEnter = false;
                 CanEnterPosition = true;
             }
-                
-            else if (Input.GetAxis("Mouse X") < -dragThreshold && !inventoryObject.onLeftNext)
+
+            else if (Input.GetAxis("Mouse X") > dragThreshold && !inventoryObject.onLeftNext)
             {
                 isDragging = true;
                 gridEnter = false;
@@ -223,14 +246,12 @@ public class TwobyOne : MonoBehaviour, IInventoryObject, IRotatable, IHelper
             {
                 isDragging = true;
                 gridEnter = false;
-               
+                CanEnterPosition = true;
             }
 
-
-            handledObject.transform.position = objectPosition;
         }
-    }
 
+    }
     void GridEnterBoolCheck()
     {
         if (OnUp && OnDown && onRight && onLeft)
@@ -345,17 +366,18 @@ public class TwobyOne : MonoBehaviour, IInventoryObject, IRotatable, IHelper
         if(!gridEnter)
             isDragging = true;
 
-        if (gridEnter)
-        {
-            gridBasement.GetComponent<GridSystem>().Inv.RegisterYourself();
-        }
-
         isHandle = true;
+        
         gameObject.layer = LayerMask.NameToLayer("HandleObjectPlacement");
         gameObject.GetComponent<SpriteRenderer>().sortingOrder = 3;
 
         Debug.Log("click");
         
+       
+    }
+
+    public void Powering()
+    {
        
     }
 }
