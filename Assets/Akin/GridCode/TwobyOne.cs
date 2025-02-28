@@ -175,13 +175,13 @@ public class TwobyOne : MonoBehaviour, IInventoryObject, IRotatable, IPowerUp
             if (inventoryObject.OnDownNext && !inventoryObject.OnUpNext && cellPosition.y < Mathf.Round(objectPosition.y) && !OnDownObjectDedect)
                 objectPosition.y = cellCenterPosition.y - pivotOffsetY;
             else if (inventoryObject.OnUpNext && !inventoryObject.OnDownNext && cellPosition.y >= Mathf.Round(objectPosition.y) && !OnUpObjectDedect)
-                objectPosition.y = cellCenterPosition.y + pivotOffsetY;
+                objectPosition.y = cellCenterPosition.y - pivotOffsetY;
             else if (inventoryObject.OnUpNext && inventoryObject.OnDownNext)
             {
                 if (cellPosition.y >= Mathf.Round(objectPosition.y) && !OnUpObjectDedect)
                     objectPosition.y = cellCenterPosition.y - pivotOffsetY;
                 else if (cellPosition.y < Mathf.Round(objectPosition.y) && !OnDownObjectDedect)
-                    objectPosition.y = cellCenterPosition.y + pivotOffsetY;
+                    objectPosition.y = cellCenterPosition.y - pivotOffsetY;
             }
 
             bool twoSided = inventoryObject.onLeftNext && inventoryObject.onRightNext;
