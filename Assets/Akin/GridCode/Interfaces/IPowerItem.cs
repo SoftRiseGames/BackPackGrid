@@ -1,6 +1,9 @@
 using UnityEngine;
-public interface IPowerItem
+
+public interface IPowerItem 
 {
-    public BaseItem BaseItemObject { get; set; }
+    BaseItem BaseItemObject { get; set; }
+
     void PowerUpBuffs();
+
 }

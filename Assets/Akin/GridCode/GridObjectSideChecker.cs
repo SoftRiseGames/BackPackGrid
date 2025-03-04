@@ -18,13 +18,14 @@ public class GridObjectSideChecker : MonoBehaviour
     {
         if (collision.gameObject.tag == "InvObject")
         {
+            Debug.Log("a");
             foreach (BaseItem i in UpgradeObjects)
             {
                 if (collision.GetComponent<IInventoryObject>() is IPowerItem)
                 {
                     if (collision.GetComponent<IPowerItem>().BaseItemObject == i)
                     {
-                        ((IPowerItem)collision).PowerUpBuffs();
+                        collision.GetComponent<IPowerItem>().PowerUpBuffs();
                     }
                     
                 }

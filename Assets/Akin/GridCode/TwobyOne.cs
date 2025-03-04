@@ -3,7 +3,7 @@ using UnityEngine.Events;
 using System;
 using System.Collections.Generic;
 
-public class TwobyOne : MonoBehaviour, IInventoryObject, IRotatable, IPowerUp
+public class TwobyOne : MonoBehaviour, IInventoryObject, IRotatable,IPowerItem
 {
     public bool OnDownMiddle { get; private set; }
     public bool OnUpMiddle { get; private set; }
@@ -31,8 +31,9 @@ public class TwobyOne : MonoBehaviour, IInventoryObject, IRotatable, IPowerUp
     public bool onLeftObjectDedect { get; private set; }
     public bool onRightObjectDedect { get; private set; }
     public bool gridEnter { get; set; }
+    public BaseItem BaseItemObject { get;set; }
+    public BaseItem ScriptableObject;
 
-    
     IInventoryObject inventoryObject;
     Vector2 objectPosition;
     Vector2 cellCenterPosition;
@@ -69,7 +70,7 @@ public class TwobyOne : MonoBehaviour, IInventoryObject, IRotatable, IPowerUp
         GridIntegration();
         ScaleObject();
         StartPosition = transform.position;
-
+        BaseItemObject = ScriptableObject;
         
     }
 
@@ -408,8 +409,8 @@ public class TwobyOne : MonoBehaviour, IInventoryObject, IRotatable, IPowerUp
 
     }
 
-    public void Powering()
+    public void PowerUpBuffs()
     {
-
+        Debug.Log("ObjectPowering");
     }
 }
