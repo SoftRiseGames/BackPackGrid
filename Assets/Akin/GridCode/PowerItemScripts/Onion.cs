@@ -37,10 +37,14 @@ public class Onion : MonoBehaviour,IPowerItem ,IInventoryObject
 
     public bool OnDownLeft => throw new System.NotImplementedException();
 
+    public BaseItem BaseItemObject { get; set; }
+
+    public BaseItem baseItem;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+        BaseItemObject = baseItem;
     }
 
     // Update is called once per frame

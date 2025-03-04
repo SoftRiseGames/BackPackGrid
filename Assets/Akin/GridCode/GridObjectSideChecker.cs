@@ -2,7 +2,7 @@ using UnityEngine;
 using System.Collections.Generic;
 public class GridObjectSideChecker : MonoBehaviour
 {
-    public List<GameObject> UpgradeObjects;
+    public List<BaseItem> UpgradeObjects;
     void Start()
     {
         
@@ -18,15 +18,17 @@ public class GridObjectSideChecker : MonoBehaviour
     {
         if (collision.gameObject.tag == "InvObject")
         {
-            foreach (GameObject i in UpgradeObjects)
+            foreach (BaseItem i in UpgradeObjects)
             {
-                if (collision.gameObject == i)
+                if (collision.GetComponent<IInventoryObject>() is IPowerItem)
                 {
-                    if(i.GetComponent<IInventoryObject>() is IPowerItem)
+                    if (collision.GetComponent<IPowerItem>().BaseItemObject == i)
                     {
-                        ((IPowerItem)i.GetComponent<IInventoryObject>()).PowerUpBuffs();
+                        ((IPowerItem)collision).PowerUpBuffs();
                     }
+                    
                 }
+                
             }
         }
         else
