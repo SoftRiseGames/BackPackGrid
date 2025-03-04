@@ -2,13 +2,13 @@ using UnityEngine;
 
 public class TwobyTwo : IInventoryObject
 {
-    public bool OnUp => throw new System.NotImplementedException();
+    public bool OnUpMiddle => throw new System.NotImplementedException();
 
-    public bool OnDown => throw new System.NotImplementedException();
+    public bool OnDownMiddle => throw new System.NotImplementedException();
 
-    public bool onRight => throw new System.NotImplementedException();
+    public bool onRightMiddle => throw new System.NotImplementedException();
 
-    public bool onLeft => throw new System.NotImplementedException();
+    public bool onLeftMiddle => throw new System.NotImplementedException();
 
     public bool OnDownNext => throw new System.NotImplementedException();
 
@@ -28,6 +28,14 @@ public class TwobyTwo : IInventoryObject
 
     public bool gridEnter { get; set; }
     public bool OffTheGrid { get => throw new System.NotImplementedException(); set => throw new System.NotImplementedException(); }
+
+    public bool OnUpRight => throw new System.NotImplementedException();
+
+    public bool OnDownRight => throw new System.NotImplementedException();
+
+    public bool OnUpLeft => throw new System.NotImplementedException();
+
+    public bool OnDownLeft => throw new System.NotImplementedException();
 
     public void Consume()
     {

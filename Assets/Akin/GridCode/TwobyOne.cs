@@ -5,26 +5,20 @@ using System.Collections.Generic;
 
 public class TwobyOne : MonoBehaviour, IInventoryObject, IRotatable, IPowerUp
 {
+    public bool OnDownMiddle { get; private set; }
+    public bool OnUpMiddle { get; private set; }
+    public bool onLeftMiddle { get; private set; }
+    public bool onRightMiddle { get; private set; }
 
-    IInventoryObject inventoryObject;
-    Vector2 objectPosition;
-    Vector2 cellCenterPosition;
+    public bool OnUpRight { get; private set; }
 
-    public int SidePosXValue;
-    public int SidePosYValue;
+    public bool OnDownRight { get; private set; }
 
-    public Grid gridBasement;
-    public GridRaycast gridInput;
+    public bool OnUpLeft { get; private set; }
 
-    public GameObject handledObject;
-    public GameObject grid;
+    public bool OnDownLeft { get; private set; }
 
-    bool isDragging = false;
 
-    public bool OnDown { get; private set; }
-    public bool OnUp { get; private set; }
-    public bool onLeft { get; private set; }
-    public bool onRight { get; private set; }
 
     public bool OnDownNext { get; private set; }
     public bool OnUpNext { get; private set; }
@@ -38,25 +32,36 @@ public class TwobyOne : MonoBehaviour, IInventoryObject, IRotatable, IPowerUp
     public bool onRightObjectDedect { get; private set; }
     public bool gridEnter { get; set; }
 
+    
+    IInventoryObject inventoryObject;
+    Vector2 objectPosition;
+    Vector2 cellCenterPosition;
+    public int SidePosXValue;
+    public int SidePosYValue;
+    public Grid gridBasement;
+    public GridRaycast gridInput;
+    public GameObject handledObject;
+    public GameObject grid;
+    bool isDragging = false;
     public float collisionRadius = 0.25f;
     public Vector2 UpandBottomboxSize;
     public Vector2 SideBoxSize;
-    public List<Vector2> Vectors;
-    public List<Vector2> VectorUp;
-
+    public List<Vector2> VectorsMiddle;
+    public List<Vector2> VectorsOutside;
+    public List<Vector2> VectorsRight;
+    public List<Vector2> VectorsLeft;
     public LayerMask Layer;
     public LayerMask LayerNextCheck;
     public LayerMask LayerObjectDedect;
-
     float pivotOffsetX = 0;
     float pivotOffsetY = 0;
-
-
     public Vector2 StartPosition;
-
     bool isHandle;
     bool CanEnterPosition = true;
+
+    
     float dragThreshold = 0.1f;
+
 
 
     private void Start()
@@ -64,6 +69,8 @@ public class TwobyOne : MonoBehaviour, IInventoryObject, IRotatable, IPowerUp
         GridIntegration();
         ScaleObject();
         StartPosition = transform.position;
+
+        
     }
 
     private void Update()
@@ -268,7 +275,7 @@ public class TwobyOne : MonoBehaviour, IInventoryObject, IRotatable, IPowerUp
     }
     void GridEnterBoolCheck()
     {
-        if (OnUp && OnDown && onRight && onLeft)
+        if (OnUpMiddle && OnDownMiddle && onRightMiddle && onLeftMiddle && OnUpRight && OnUpLeft && OnDownRight &&OnDownLeft)
         {
             gridEnter = true;
         }
@@ -281,11 +288,14 @@ public class TwobyOne : MonoBehaviour, IInventoryObject, IRotatable, IPowerUp
         // Rotate Object
         gameObject.transform.Rotate(new Vector3(transform.rotation.x, transform.rotation.y, 90));
 
-        SwapElements(Vectors, 0, 2);
-        SwapElements(Vectors, 1, 3);
+        SwapElements(VectorsMiddle, 0, 2);
+        SwapElements(VectorsMiddle, 1, 3);
 
-        SwapElements(VectorUp, 0, 2);
-        SwapElements(VectorUp, 1, 3);
+        SwapElements(VectorsOutside, 0, 2);
+        SwapElements(VectorsOutside, 1, 3);
+
+        SwapElements(VectorsRight, 0, 1);
+        SwapElements(VectorsLeft, 0, 1);
 
         SwapBoxSizes();
 
@@ -325,38 +335,50 @@ public class TwobyOne : MonoBehaviour, IInventoryObject, IRotatable, IPowerUp
 
     void Ray()
     {
-        OnUp = Physics2D.OverlapCircle((Vector2)transform.position + Vectors[0], collisionRadius, Layer);
-        OnDown = Physics2D.OverlapCircle((Vector2)transform.position + Vectors[1], collisionRadius, Layer);
-        onRight = Physics2D.OverlapCircle((Vector2)transform.position + Vectors[2], collisionRadius, Layer);
-        onLeft = Physics2D.OverlapCircle((Vector2)transform.position + Vectors[3], collisionRadius, Layer);
+        OnUpMiddle = Physics2D.OverlapCircle((Vector2)transform.position + VectorsMiddle[0], collisionRadius, Layer);
+        OnDownMiddle = Physics2D.OverlapCircle((Vector2)transform.position + VectorsMiddle[1], collisionRadius, Layer);
+        onRightMiddle = Physics2D.OverlapCircle((Vector2)transform.position + VectorsMiddle[2], collisionRadius, Layer);
+        onLeftMiddle = Physics2D.OverlapCircle((Vector2)transform.position + VectorsMiddle[3], collisionRadius, Layer);
 
-        OnUpNext = Physics2D.OverlapBox((Vector2)transform.position + VectorUp[0], UpandBottomboxSize, 0, LayerNextCheck);
-        OnDownNext = Physics2D.OverlapBox((Vector2)transform.position + VectorUp[1], UpandBottomboxSize, 0, LayerNextCheck);
-        onRightNext = Physics2D.OverlapBox((Vector2)transform.position + VectorUp[2], SideBoxSize, 0, LayerNextCheck);
-        onLeftNext = Physics2D.OverlapBox((Vector2)transform.position + VectorUp[3], SideBoxSize, 0, LayerNextCheck);
+        OnUpRight = Physics2D.OverlapCircle((Vector2)transform.position + VectorsRight[0], collisionRadius, Layer);
+        OnDownRight = Physics2D.OverlapCircle((Vector2)transform.position + VectorsRight[1], collisionRadius, Layer);
 
-        OnUpObjectDedect = Physics2D.OverlapBox((Vector2)transform.position + VectorUp[0], UpandBottomboxSize, 0, LayerObjectDedect);
-        OnDownObjectDedect = Physics2D.OverlapBox((Vector2)transform.position + VectorUp[1], UpandBottomboxSize, 0, LayerObjectDedect);
-        onRightObjectDedect = Physics2D.OverlapBox((Vector2)transform.position + VectorUp[2], SideBoxSize, 0, LayerObjectDedect);
-        onLeftObjectDedect = Physics2D.OverlapBox((Vector2)transform.position + VectorUp[3], SideBoxSize, 0, LayerObjectDedect);
+        OnUpLeft = Physics2D.OverlapCircle((Vector2)transform.position + VectorsLeft[0], collisionRadius, Layer);
+        OnDownLeft = Physics2D.OverlapCircle((Vector2)transform.position + VectorsLeft[1], collisionRadius, Layer);
 
+        OnUpNext = Physics2D.OverlapBox((Vector2)transform.position + VectorsOutside[0], UpandBottomboxSize, 0, LayerNextCheck);
+        OnDownNext = Physics2D.OverlapBox((Vector2)transform.position + VectorsOutside[1], UpandBottomboxSize, 0, LayerNextCheck);
+        onRightNext = Physics2D.OverlapBox((Vector2)transform.position + VectorsOutside[2], SideBoxSize, 0, LayerNextCheck);
+        onLeftNext = Physics2D.OverlapBox((Vector2)transform.position + VectorsOutside[3], SideBoxSize, 0, LayerNextCheck);
 
+        OnUpObjectDedect = Physics2D.OverlapBox((Vector2)transform.position + VectorsOutside[0], UpandBottomboxSize, 0, LayerObjectDedect);
+        OnDownObjectDedect = Physics2D.OverlapBox((Vector2)transform.position + VectorsOutside[1], UpandBottomboxSize, 0, LayerObjectDedect);
+        onRightObjectDedect = Physics2D.OverlapBox((Vector2)transform.position + VectorsOutside[2], SideBoxSize, 0, LayerObjectDedect);
+        onLeftObjectDedect = Physics2D.OverlapBox((Vector2)transform.position + VectorsOutside[3], SideBoxSize, 0, LayerObjectDedect);
+
+        
     }
 
     void OnDrawGizmos()
     {
         Gizmos.color = Color.green;
 
-        Gizmos.DrawWireSphere((Vector2)transform.position + Vectors[1], collisionRadius);
-        Gizmos.DrawWireSphere((Vector2)transform.position + Vectors[0], collisionRadius);
-        Gizmos.DrawWireSphere((Vector2)transform.position + Vectors[2], collisionRadius);
-        Gizmos.DrawWireSphere((Vector2)transform.position + Vectors[3], collisionRadius);
+        Gizmos.DrawWireSphere((Vector2)transform.position + VectorsMiddle[1], collisionRadius);
+        Gizmos.DrawWireSphere((Vector2)transform.position + VectorsMiddle[0], collisionRadius);
+        Gizmos.DrawWireSphere((Vector2)transform.position + VectorsMiddle[2], collisionRadius);
+        Gizmos.DrawWireSphere((Vector2)transform.position + VectorsMiddle[3], collisionRadius);
+
+        Gizmos.DrawWireSphere((Vector2)transform.position + VectorsRight[0], collisionRadius);
+        Gizmos.DrawWireSphere((Vector2)transform.position + VectorsRight[1], collisionRadius);
+
+        Gizmos.DrawWireSphere((Vector2)transform.position + VectorsLeft[0], collisionRadius);
+        Gizmos.DrawWireSphere((Vector2)transform.position + VectorsLeft[1], collisionRadius);
 
         Gizmos.color = Color.blue;
-        Gizmos.DrawWireCube((Vector2)transform.position + VectorUp[1], UpandBottomboxSize);
-        Gizmos.DrawWireCube((Vector2)transform.position + VectorUp[0], UpandBottomboxSize);
-        Gizmos.DrawWireCube((Vector2)transform.position + VectorUp[2], SideBoxSize);
-        Gizmos.DrawWireCube((Vector2)transform.position + VectorUp[3], SideBoxSize);
+        Gizmos.DrawWireCube((Vector2)transform.position + VectorsOutside[1], UpandBottomboxSize);
+        Gizmos.DrawWireCube((Vector2)transform.position + VectorsOutside[0], UpandBottomboxSize);
+        Gizmos.DrawWireCube((Vector2)transform.position + VectorsOutside[2], SideBoxSize);
+        Gizmos.DrawWireCube((Vector2)transform.position + VectorsOutside[3], SideBoxSize);
     }
 
     public void ClickObject()

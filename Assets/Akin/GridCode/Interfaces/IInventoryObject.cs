@@ -7,10 +7,16 @@ public interface IInventoryObject
     void Consume();
 
     void MoveObjectStarting();
-    public bool OnUp { get; }
-    public bool OnDown { get; }
-    public bool onRight { get; }
-    public bool onLeft { get; }
+    public bool OnUpMiddle { get; }
+    public bool OnDownMiddle { get; }
+    public bool onRightMiddle { get; }
+    public bool onLeftMiddle { get; }
+
+    public bool OnUpRight { get; }
+    public bool OnDownRight { get; }
+    
+    public bool OnUpLeft { get; }
+    public bool OnDownLeft { get; }
 
     public bool OnDownNext { get; }
     public bool OnUpNext { get; }

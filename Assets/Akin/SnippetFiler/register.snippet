@@ -1,0 +1,82 @@
+<CodeSnippets xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+	<CodeSnippet Format="1.0.0">
+		<Header>
+			<Title>Grid Alignment</Title>
+			<Shortcut>gridalign</Shortcut>
+			<Description>Izgara sistemine nesne hizalama kodu</Description>
+			<Author>Akın Aydın</Author>
+			<SnippetTypes>
+				<SnippetType>Expansion</SnippetType>
+			</SnippetTypes>
+		</Header>
+		<Snippet>
+			<Code Language="CSharp">
+				<![CDATA[
+                isDragging = false;
+                Vector3 selectedPosition = gridInput.GetSelectedMapPosition();
+                Vector3Int cellPosition = gridBasement.WorldToCell(selectedPosition);
+                Debug.Log("Register");
+
+                if (gridEnter)
+                {
+                    inventoryObject = handledObject.GetComponent<IInventoryObject>();
+                    objectPosition = handledObject.transform.position;
+                    cellCenterPosition = gridBasement.GetCellCenterWorld(cellPosition);
+
+                    if (CanEnterPosition)
+                    {
+                        if (cellPosition.y < (objectPosition.y))
+                            objectPosition.y = cellCenterPosition.y + pivotOffsetY;
+                        else if (cellPosition.y >= (objectPosition.y))
+                            objectPosition.y = cellCenterPosition.y - pivotOffsetY;
+
+                        if (cellPosition.x >= Mathf.Round(objectPosition.x))
+                            objectPosition.x = cellCenterPosition.x - pivotOffsetX;
+                        else if (cellPosition.x < Mathf.Round(objectPosition.x))
+                            objectPosition.x = cellCenterPosition.x + pivotOffsetX;
+                    }
+                    CanEnterPosition = false;
+
+                    if (!CanEnterPosition)
+                    {
+                        if (inventoryObject.OnDownNext && !inventoryObject.OnUpNext && cellPosition.y < (objectPosition.y) && !OnDownObjectDedect)
+                            objectPosition.y = cellCenterPosition.y - pivotOffsetY;
+                        else if (inventoryObject.OnUpNext && !inventoryObject.OnDownNext && cellPosition.y >= (objectPosition.y) && !OnUpObjectDedect)
+                            objectPosition.y = cellCenterPosition.y - pivotOffsetY;
+                        else if (inventoryObject.OnUpNext && inventoryObject.OnDownNext)
+                        {
+                            if (cellPosition.y >= (objectPosition.y) && !OnUpObjectDedect)
+                                objectPosition.y = cellCenterPosition.y - pivotOffsetY;
+                            else if (cellPosition.y < (objectPosition.y) && !OnDownObjectDedect)
+                                objectPosition.y = cellCenterPosition.y - pivotOffsetY;
+                        }
+
+                        bool twoSided = inventoryObject.onLeftNext && inventoryObject.onRightNext;
+
+                        if (twoSided && !onRightObjectDedect && cellPosition.x >= Mathf.Round(objectPosition.x))
+                        {
+                            objectPosition.x = cellCenterPosition.x - pivotOffsetX;
+                        }
+                        else if (twoSided && !onLeftObjectDedect && cellPosition.x < Mathf.Round(objectPosition.x))
+                        {
+                            objectPosition.x = cellCenterPosition.x - pivotOffsetX;
+                        }
+                        else if (!inventoryObject.onLeftNext && inventoryObject.onRightNext && !onRightObjectDedect && cellPosition.x >= Mathf.Round(objectPosition.x) && !twoSided)
+                        {
+                            objectPosition.x = cellCenterPosition.x - pivotOffsetX;
+                        }
+                        else if (inventoryObject.onLeftNext && !inventoryObject.onRightNext && !onLeftObjectDedect && cellPosition.x < Mathf.Round(objectPosition.x) && !twoSided)
+                        {
+                            objectPosition.x = cellCenterPosition.x - pivotOffsetX;
+                        }
+                    }
+
+                    handledObject.transform.position = objectPosition;
+                }
+                else
+                    return;
+                ]]>
+			</Code>
+		</Snippet>
+	</CodeSnippet>
+</CodeSnippets>
