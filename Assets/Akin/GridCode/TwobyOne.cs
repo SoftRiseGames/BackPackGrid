@@ -68,16 +68,18 @@ public class TwobyOne : MonoBehaviour, IInventoryObject, IRotatable, IPowerUp
 
     private void Update()
     {
-        Ray();
         GridEnterBoolCheck();
-        OutOfGrid();
         MouseDragControl();
+        Ray();
+        OutOfGrid();
+       
 
         if (isHandle)
         {
             if (Input.GetMouseButtonUp(0))
             {
                 isDragging = false;
+
                 gridBasement.GetComponent<GridSystem>().Inv = null;
                 gameObject.layer = LayerMask.NameToLayer("HandleObjectLocked");
 
@@ -123,12 +125,23 @@ public class TwobyOne : MonoBehaviour, IInventoryObject, IRotatable, IPowerUp
 
     void MouseDragControl()
     {
-        if (isDragging && isHandle)
+        if (isHandle)
         {
-            Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            mousePosition.z = 0f;
-            transform.position = mousePosition;
+            Vector3 mouseDelta = new Vector3(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"), 0);
+            if (mouseDelta.magnitude > dragThreshold && !gridEnter)
+            {
+                isDragging = true;
+            }
+
+            if (isDragging)
+            {
+                Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                mousePosition.z = 0f;
+                transform.position = mousePosition;
+            }
         }
+
+        Debug.Log(isDragging);
     }
     void ScaleObject()
     {
@@ -149,6 +162,8 @@ public class TwobyOne : MonoBehaviour, IInventoryObject, IRotatable, IPowerUp
         Vector3Int cellPosition = gridBasement.WorldToCell(selectedPosition);
         Debug.Log("Register");
 
+      
+
         if (gridEnter)
         {
             inventoryObject = handledObject.GetComponent<IInventoryObject>();
@@ -158,55 +173,59 @@ public class TwobyOne : MonoBehaviour, IInventoryObject, IRotatable, IPowerUp
             if (CanEnterPosition)
             {
                 // Y Ekseni Kontrolleri
-                if (cellPosition.y < Mathf.Round(objectPosition.y))
-                    objectPosition.y = cellCenterPosition.y - pivotOffsetY;
-                else if (cellPosition.y >= Mathf.Round(objectPosition.y))
+                if (cellPosition.y < (objectPosition.y))
                     objectPosition.y = cellCenterPosition.y + pivotOffsetY;
+                else if (cellPosition.y >= (objectPosition.y))
+                    objectPosition.y = cellCenterPosition.y - pivotOffsetY;
 
                 // X Ekseni Kontrolleri
                 if (cellPosition.x >= Mathf.Round(objectPosition.x))
                     objectPosition.x = cellCenterPosition.x - pivotOffsetX;
                 else if (cellPosition.x < Mathf.Round(objectPosition.x))
                     objectPosition.x = cellCenterPosition.x + pivotOffsetX;
+
+                
             }
             CanEnterPosition = false;
 
+            if (!CanEnterPosition)
+            {
+                if (inventoryObject.OnDownNext && !inventoryObject.OnUpNext && cellPosition.y < (objectPosition.y) && !OnDownObjectDedect)
+                    objectPosition.y = cellCenterPosition.y - pivotOffsetY;
+                else if (inventoryObject.OnUpNext && !inventoryObject.OnDownNext && cellPosition.y >= (objectPosition.y) && !OnUpObjectDedect)
+                    objectPosition.y = cellCenterPosition.y - pivotOffsetY;
+
+
+                else if (inventoryObject.OnUpNext && inventoryObject.OnDownNext)
+                {
+                    if (cellPosition.y >= (objectPosition.y) && !OnUpObjectDedect)
+                        objectPosition.y = cellCenterPosition.y - pivotOffsetY;
+                    else if (cellPosition.y < (objectPosition.y) && !OnDownObjectDedect)
+                        objectPosition.y = cellCenterPosition.y - pivotOffsetY;
+                }
+
+                bool twoSided = inventoryObject.onLeftNext && inventoryObject.onRightNext;
+
+                // X Ekseni Hizalama
+                if (twoSided && !onRightObjectDedect && cellPosition.x >= Mathf.Round(objectPosition.x))
+                {
+                    objectPosition.x = cellCenterPosition.x - pivotOffsetX;
+                }
+                else if (twoSided && !onLeftObjectDedect && cellPosition.x < Mathf.Round(objectPosition.x))
+                {
+                    objectPosition.x = cellCenterPosition.x - pivotOffsetX;
+                }
+                else if (!inventoryObject.onLeftNext && inventoryObject.onRightNext && !onRightObjectDedect && cellPosition.x >= Mathf.Round(objectPosition.x) && !twoSided)
+                {
+                    objectPosition.x = cellCenterPosition.x - pivotOffsetX;
+                }
+                else if (inventoryObject.onLeftNext && !inventoryObject.onRightNext && !onLeftObjectDedect && cellPosition.x < Mathf.Round(objectPosition.x) && !twoSided)
+                {
+                    objectPosition.x = cellCenterPosition.x - pivotOffsetX;
+                }
+            }
             // Y Ekseni Hizalama
-            if (inventoryObject.OnDownNext && !inventoryObject.OnUpNext && cellPosition.y < Mathf.Round(objectPosition.y) && !OnDownObjectDedect)
-                objectPosition.y = cellCenterPosition.y - pivotOffsetY;
-            else if (inventoryObject.OnUpNext && !inventoryObject.OnDownNext && cellPosition.y >= Mathf.Round(objectPosition.y) && !OnUpObjectDedect)
-                objectPosition.y = cellCenterPosition.y - pivotOffsetY;
-            else if (inventoryObject.OnUpNext && inventoryObject.OnDownNext)
-            {
-                if (cellPosition.y >= Mathf.Round(objectPosition.y) && !OnUpObjectDedect)
-                    objectPosition.y = cellCenterPosition.y - pivotOffsetY;
-                else if (cellPosition.y < Mathf.Round(objectPosition.y) && !OnDownObjectDedect)
-                    objectPosition.y = cellCenterPosition.y - pivotOffsetY;
-            }
-
-            bool twoSided = inventoryObject.onLeftNext && inventoryObject.onRightNext;
-
-            // X Ekseni Hizalama
-            if (twoSided && !onRightObjectDedect && cellPosition.x >= Mathf.Round(objectPosition.x))
-            {
-                objectPosition.x = cellCenterPosition.x - pivotOffsetX;
-                Debug.Log("Scenario 1");
-            }
-            else if (twoSided && !onLeftObjectDedect && cellPosition.x < Mathf.Round(objectPosition.x))
-            {
-                objectPosition.x = cellCenterPosition.x - pivotOffsetX;
-                Debug.Log("Scenario 2");
-            }
-            else if (!inventoryObject.onLeftNext && inventoryObject.onRightNext && !onRightObjectDedect && cellPosition.x >= Mathf.Round(objectPosition.x))
-            {
-                objectPosition.x = cellCenterPosition.x - pivotOffsetX;
-                Debug.Log("Scenario 3");
-            }
-            else if (inventoryObject.onLeftNext && !inventoryObject.onRightNext && !onLeftObjectDedect && cellPosition.x < Mathf.Round(objectPosition.x))
-            {
-                objectPosition.x = cellCenterPosition.x - pivotOffsetX;
-                Debug.Log("Scenario 4");
-            }
+           
 
             handledObject.transform.position = objectPosition;
         }
@@ -359,9 +378,6 @@ public class TwobyOne : MonoBehaviour, IInventoryObject, IRotatable, IPowerUp
     public void MoveObjectStarting()
     {
         gridBasement.GetComponent<GridSystem>().Inv = this;
-
-        if (!gridEnter)
-            isDragging = true;
 
         isHandle = true;
 

@@ -2693,8 +2693,9 @@ MonoBehaviour:
     m_Bits: 8
   LayerObjectDedect:
     serializedVersion: 2
-    m_Bits: 192
+    m_Bits: 768
   StartPosition: {x: 0, y: 0}
+  MouseMoveTreshold: 0
 --- !u!1 &1104499987
 GameObject:
   m_ObjectHideFlags: 0
@@ -3391,6 +3392,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 768
   StartPosition: {x: 0, y: 0}
+  MouseMoveTreshold: 0.5
 --- !u!1 &1630761054
 GameObject:
   m_ObjectHideFlags: 0
