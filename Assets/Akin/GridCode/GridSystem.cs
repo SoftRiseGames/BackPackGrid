@@ -9,7 +9,6 @@ public class GridSystem : MonoBehaviour
     float PivotDistancey;
     public IInventoryObject Inv;
 
-    private Vector3 lastMousePosition;
 
     private void Start()
     {
@@ -36,10 +35,15 @@ public class GridSystem : MonoBehaviour
                     Inv.RegisterYourself();
                 }
             }
-                
+
         }
     }
- 
+
+    private void LateUpdate()
+    {
+       
+    }
+
     public void RegisterYourself(int ypos)
     {
         // Matrixe kayýt-

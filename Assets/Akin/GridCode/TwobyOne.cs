@@ -63,7 +63,10 @@ public class TwobyOne : MonoBehaviour, IInventoryObject, IRotatable,IPowerItem
     
     float dragThreshold = 0.1f;
 
+    float lastlocationX = 0;
+    float lastlocationY = 0;
 
+    Vector3 mouseDelta = new Vector3();
 
     private void Start()
     {
@@ -80,8 +83,8 @@ public class TwobyOne : MonoBehaviour, IInventoryObject, IRotatable,IPowerItem
         MouseDragControl();
         Ray();
         OutOfGrid();
-       
 
+        mouseDelta = new Vector3(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"), 0);
         if (isHandle)
         {
             if (Input.GetMouseButtonUp(0))
@@ -92,12 +95,29 @@ public class TwobyOne : MonoBehaviour, IInventoryObject, IRotatable,IPowerItem
                 gameObject.layer = LayerMask.NameToLayer("HandleObjectLocked");
 
                 if (gridEnter)
+                {
                     gameObject.GetComponent<SpriteRenderer>().sortingOrder = 2;
+                    CanEnterPosition = false;
+                }
+                    
 
                 if (!gridEnter)
+                {
                     transform.position = StartPosition;
+                    CanEnterPosition = true;
+                }
 
                 isHandle = false;
+            }
+
+            if ((onRightNext || onLeftNext) && lastlocationX == 0)
+            {
+                lastlocationX = gameObject.transform.position.x;
+            }
+            if ((OnUpNext || OnDownNext) && lastlocationY == 0)
+            {
+                lastlocationY = gameObject.transform.position.y;
+                Debug.Log(lastlocationY);
             }
 
         }
@@ -107,11 +127,7 @@ public class TwobyOne : MonoBehaviour, IInventoryObject, IRotatable,IPowerItem
 
     }
 
-    void OnMouseUp()
-    {
-
-    }
-
+    
     public void Consume()
     {
         throw new System.NotImplementedException();
@@ -128,17 +144,23 @@ public class TwobyOne : MonoBehaviour, IInventoryObject, IRotatable,IPowerItem
     {
         float offsetDataCollector = pivotOffsetX;
         pivotOffsetX = pivotOffsetY;
-        pivotOffsetY = offsetDataCollector;
+        pivotOffsetY = offsetDataCollector; 
     }
 
+    
     void MouseDragControl()
     {
         if (isHandle)
         {
-            Vector3 mouseDelta = new Vector3(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"), 0);
+           
             if (mouseDelta.magnitude > dragThreshold && !gridEnter)
             {
                 isDragging = true;
+            }
+
+            if (mouseDelta.magnitude > dragThreshold && gridEnter)
+            {
+               CanEnterPosition = false;
             }
 
             if (isDragging)
@@ -149,7 +171,6 @@ public class TwobyOne : MonoBehaviour, IInventoryObject, IRotatable,IPowerItem
             }
         }
 
-        Debug.Log(isDragging);
     }
     void ScaleObject()
     {
@@ -168,8 +189,8 @@ public class TwobyOne : MonoBehaviour, IInventoryObject, IRotatable,IPowerItem
         isDragging = false;
         Vector3 selectedPosition = gridInput.GetSelectedMapPosition();
         Vector3Int cellPosition = gridBasement.WorldToCell(selectedPosition);
-        Debug.Log("Register");
 
+        Debug.Log(cellPosition);
       
 
         if (gridEnter)
@@ -177,63 +198,42 @@ public class TwobyOne : MonoBehaviour, IInventoryObject, IRotatable,IPowerItem
             inventoryObject = handledObject.GetComponent<IInventoryObject>();
             objectPosition = handledObject.transform.position;
             cellCenterPosition = gridBasement.GetCellCenterWorld(cellPosition);
-
+           
             if (CanEnterPosition)
             {
                 // Y Ekseni Kontrolleri
-                if (cellPosition.y < (objectPosition.y))
-                    objectPosition.y = cellCenterPosition.y + pivotOffsetY;
-                else if (cellPosition.y >= (objectPosition.y))
+                if (cellPosition.y < (lastlocationY))
                     objectPosition.y = cellCenterPosition.y - pivotOffsetY;
+                else if (cellPosition.y >= (lastlocationY))
+                    objectPosition.y = cellCenterPosition.y + pivotOffsetY;
 
                 // X Ekseni Kontrolleri
-                if (cellPosition.x >= Mathf.Round(objectPosition.x))
-                    objectPosition.x = cellCenterPosition.x - pivotOffsetX;
-                else if (cellPosition.x < Mathf.Round(objectPosition.x))
+                if (cellPosition.x >= (lastlocationX))
                     objectPosition.x = cellCenterPosition.x + pivotOffsetX;
+                else if (cellPosition.x < (lastlocationX))
+                    objectPosition.x = cellCenterPosition.x - pivotOffsetX;
 
-                
+               
             }
-            CanEnterPosition = false;
-
-            if (!CanEnterPosition)
-            {
-                if (inventoryObject.OnDownNext && !inventoryObject.OnUpNext && cellPosition.y < (objectPosition.y) && !OnDownObjectDedect)
-                    objectPosition.y = cellCenterPosition.y - pivotOffsetY;
-                else if (inventoryObject.OnUpNext && !inventoryObject.OnDownNext && cellPosition.y >= (objectPosition.y) && !OnUpObjectDedect)
-                    objectPosition.y = cellCenterPosition.y - pivotOffsetY;
-
-
-                else if (inventoryObject.OnUpNext && inventoryObject.OnDownNext)
-                {
-                    if (cellPosition.y >= (objectPosition.y) && !OnUpObjectDedect)
-                        objectPosition.y = cellCenterPosition.y - pivotOffsetY;
-                    else if (cellPosition.y < (objectPosition.y) && !OnDownObjectDedect)
-                        objectPosition.y = cellCenterPosition.y - pivotOffsetY;
-                }
-
-                bool twoSided = inventoryObject.onLeftNext && inventoryObject.onRightNext;
-
-                // X Ekseni Hizalama
-                if (twoSided && !onRightObjectDedect && cellPosition.x >= Mathf.Round(objectPosition.x))
-                {
-                    objectPosition.x = cellCenterPosition.x - pivotOffsetX;
-                }
-                else if (twoSided && !onLeftObjectDedect && cellPosition.x < Mathf.Round(objectPosition.x))
-                {
-                    objectPosition.x = cellCenterPosition.x - pivotOffsetX;
-                }
-                else if (!inventoryObject.onLeftNext && inventoryObject.onRightNext && !onRightObjectDedect && cellPosition.x >= Mathf.Round(objectPosition.x) && !twoSided)
-                {
-                    objectPosition.x = cellCenterPosition.x - pivotOffsetX;
-                }
-                else if (inventoryObject.onLeftNext && !inventoryObject.onRightNext && !onLeftObjectDedect && cellPosition.x < Mathf.Round(objectPosition.x) && !twoSided)
-                {
-                    objectPosition.x = cellCenterPosition.x - pivotOffsetX;
-                }
-            }
-            // Y Ekseni Hizalama
            
+            
+            else if (!CanEnterPosition)
+            {
+                    if (!OnUpObjectDedect && inventoryObject.OnUpNext)
+                        objectPosition.y = cellCenterPosition.y + pivotOffsetY;
+                    else if (!OnDownObjectDedect && inventoryObject.OnDownNext)
+                        objectPosition.y = cellCenterPosition.y + pivotOffsetY;
+                
+
+
+                if ((inventoryObject.onRightNext && !onRightObjectDedect) ||
+                (inventoryObject.onLeftNext && !onLeftObjectDedect))
+                {
+                    objectPosition.x = cellCenterPosition.x - pivotOffsetX;
+                }
+
+
+            }
 
             handledObject.transform.position = objectPosition;
         }
@@ -241,6 +241,8 @@ public class TwobyOne : MonoBehaviour, IInventoryObject, IRotatable,IPowerItem
             return;
 
     }
+
+    
     void OutOfGrid()
     {
         if (inventoryObject != null)
@@ -250,6 +252,9 @@ public class TwobyOne : MonoBehaviour, IInventoryObject, IRotatable,IPowerItem
                 isDragging = true;
                 gridEnter = false;
                 CanEnterPosition = true;
+                lastlocationX = 0;
+                lastlocationY = 0;
+
             }
 
             if (Input.GetAxis("Mouse X") < -dragThreshold && !inventoryObject.onLeftNext)
@@ -257,18 +262,29 @@ public class TwobyOne : MonoBehaviour, IInventoryObject, IRotatable,IPowerItem
                 isDragging = true;
                 gridEnter = false;
                 CanEnterPosition = true;
+                lastlocationX = 0;
+                lastlocationY = 0;
+
             }
             if (Input.GetAxis("Mouse Y") > dragThreshold && !inventoryObject.OnUpNext)
             {
                 isDragging = true;
                 gridEnter = false;
                 CanEnterPosition = true;
+                lastlocationX = 0;
+                lastlocationY = 0;
+
+
             }
             if (Input.GetAxis("Mouse Y") < -dragThreshold && !inventoryObject.OnDownNext)
             {
                 isDragging = true;
                 gridEnter = false;
                 CanEnterPosition = true;
+                lastlocationX = 0;
+                lastlocationY = 0;
+
+
             }
 
         }
@@ -281,7 +297,10 @@ public class TwobyOne : MonoBehaviour, IInventoryObject, IRotatable,IPowerItem
             gridEnter = true;
         }
         else
+        {
             gridEnter = false;
+        }
+         
     }
 
     public void RotateLeft()

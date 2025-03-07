@@ -22,7 +22,6 @@ public class GameManager : MonoBehaviour
                 else
                     Debug.Log("not");
 
-                Debug.Log("Týklanan nesne: " + hit.collider.name);
             }
 
         }
