@@ -21,10 +21,17 @@ public class GridSystem : MonoBehaviour
     }
     private void Update()
     {
+        
+    }
+
+    private void LateUpdate()
+    {
         if (Inv != null && Inv.gridEnter)
         {
             Inv.RegisterYourself();
         }
+
+
         if (Inv != null && Inv is IRotatable)
         {
             if (Input.GetKeyDown(KeyCode.R))
@@ -37,11 +44,6 @@ public class GridSystem : MonoBehaviour
             }
 
         }
-    }
-
-    private void LateUpdate()
-    {
-       
     }
 
     public void RegisterYourself(int ypos)
