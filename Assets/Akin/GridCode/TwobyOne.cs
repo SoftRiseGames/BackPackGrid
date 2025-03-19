@@ -260,7 +260,7 @@ public class TwobyOne : MonoBehaviour, IInventoryObject, IRotatable,IPowerItem
     {
         if (inventoryObject != null)
         {
-            if (Input.GetAxis("Mouse X") > dragThreshold && !inventoryObject.onRightNext)
+            if (Input.GetAxis("Mouse X") > dragThreshold && (!inventoryObject.onRightNext || inventoryObject.onRightObjectDedect))
             {
                 isDragging = true;
                 gridEnter = false;
@@ -270,7 +270,7 @@ public class TwobyOne : MonoBehaviour, IInventoryObject, IRotatable,IPowerItem
 
             }
 
-            if (Input.GetAxis("Mouse X") < -dragThreshold && !inventoryObject.onLeftNext)
+            if (Input.GetAxis("Mouse X") < -dragThreshold && (!inventoryObject.onLeftNext || inventoryObject.onLeftObjectDedect))
             {
                 isDragging = true;
                 gridEnter = false;
@@ -279,7 +279,7 @@ public class TwobyOne : MonoBehaviour, IInventoryObject, IRotatable,IPowerItem
                 lastlocationY = 0;
 
             }
-            if (Input.GetAxis("Mouse Y") > dragThreshold && !inventoryObject.OnUpNext)
+            if (Input.GetAxis("Mouse Y") > dragThreshold && (!inventoryObject.OnUpNext || inventoryObject.OnUpObjectDedect))
             {
                 isDragging = true;
                 gridEnter = false;
@@ -289,7 +289,7 @@ public class TwobyOne : MonoBehaviour, IInventoryObject, IRotatable,IPowerItem
 
 
             }
-            if (Input.GetAxis("Mouse Y") < -dragThreshold && !inventoryObject.OnDownNext)
+            if (Input.GetAxis("Mouse Y") < -dragThreshold && (!inventoryObject.OnDownNext || inventoryObject.OnDownObjectDedect))
             {
                 isDragging = true;
                 gridEnter = false;
