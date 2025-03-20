@@ -61,7 +61,7 @@ public class TwobyOne : MonoBehaviour, IInventoryObject, IRotatable,IPowerItem
     bool CanEnterPosition = true;
 
     
-    float dragThreshold = 0.1f;
+    float dragThreshold = 0.11f;
 
     float lastlocationX = 0;
     float lastlocationY = 0;
@@ -85,9 +85,7 @@ public class TwobyOne : MonoBehaviour, IInventoryObject, IRotatable,IPowerItem
         OutOfGrid();
         Ray();
 
-        if (onRightObjectDedect || onLeftObjectDedect || OnUpObjectDedect || OnDownObjectDedect)
-            Debug.Log("temas Obje");
-
+        Debug.Log(gridEnter);
         mouseDelta = new Vector3(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"), 0);
         if (isHandle)
         {
@@ -120,7 +118,6 @@ public class TwobyOne : MonoBehaviour, IInventoryObject, IRotatable,IPowerItem
             if ((OnUpNext || OnDownNext) && lastlocationY == 0)
             {
                 lastlocationY = gameObject.transform.position.y;
-                Debug.Log(lastlocationY);
             }
 
         }
@@ -159,7 +156,6 @@ public class TwobyOne : MonoBehaviour, IInventoryObject, IRotatable,IPowerItem
             if (mouseDelta.magnitude > dragThreshold && !gridEnter)
             {
                 isDragging = true;
-
             }
 
             if (mouseDelta.magnitude > dragThreshold && gridEnter)
@@ -178,6 +174,7 @@ public class TwobyOne : MonoBehaviour, IInventoryObject, IRotatable,IPowerItem
     }
     void ScaleObject()
     {
+        
         if (handledObject.transform.localScale.x / 2 == 1)
         {
             pivotOffsetX = .5f * handledObject.GetComponent<TwobyOne>().SidePosXValue;
@@ -194,9 +191,6 @@ public class TwobyOne : MonoBehaviour, IInventoryObject, IRotatable,IPowerItem
         Vector3 selectedPosition = gridInput.GetSelectedMapPosition();
         Vector3Int cellPosition = gridBasement.WorldToCell(selectedPosition);
 
-        Debug.Log(cellPosition);
-      
-
         if (gridEnter)
         {
             inventoryObject = handledObject.GetComponent<IInventoryObject>();
@@ -205,6 +199,8 @@ public class TwobyOne : MonoBehaviour, IInventoryObject, IRotatable,IPowerItem
            
             if (CanEnterPosition)
             {
+                CanEnterPosition = false;
+                Debug.Log("calisti");
                 // Y Ekseni Kontrolleri
                 if (cellPosition.y < (lastlocationY))
                     objectPosition.y = cellCenterPosition.y - pivotOffsetY;
@@ -217,15 +213,12 @@ public class TwobyOne : MonoBehaviour, IInventoryObject, IRotatable,IPowerItem
                 else if (cellPosition.x < (lastlocationX))
                     objectPosition.x = cellCenterPosition.x - pivotOffsetX;
 
-                Debug.Log("isEnter");
-
-                CanEnterPosition = false;
+                handledObject.transform.position = objectPosition;
             }
            
             
             else if (!CanEnterPosition && ((cellPosition.x != objectPosition.x) || (cellPosition.y != objectPosition.y)))
             {
-                Debug.Log("MouseRegister");
 
                 if ((inventoryObject.OnDownNext && !inventoryObject.OnUpNext && cellPosition.y < objectPosition.y && !OnDownObjectDedect) ||
                 (inventoryObject.OnUpNext && !inventoryObject.OnDownNext && cellPosition.y >= objectPosition.y && !OnUpObjectDedect) ||
@@ -233,6 +226,8 @@ public class TwobyOne : MonoBehaviour, IInventoryObject, IRotatable,IPowerItem
                 ((cellPosition.y >= objectPosition.y && !OnUpObjectDedect) || (cellPosition.y < objectPosition.y && !OnDownObjectDedect))))
                 {
                     objectPosition.y = cellCenterPosition.y - pivotOffsetY;
+                    handledObject.transform.position = objectPosition;
+
                 }
 
 
@@ -245,10 +240,12 @@ public class TwobyOne : MonoBehaviour, IInventoryObject, IRotatable,IPowerItem
                 (!twoSided && inventoryObject.onLeftNext && !inventoryObject.onRightNext && !onLeftObjectDedect && cellPosition.x < Mathf.Round(objectPosition.x)))
                 {
                     objectPosition.x = cellCenterPosition.x - pivotOffsetX;
+                    handledObject.transform.position = objectPosition;
+                    Debug.Log("X Axis Move");
                 }
 
             }
-            handledObject.transform.position = objectPosition;
+            //handledObject.transform.position = objectPosition;
         }
         else
             return;
@@ -258,6 +255,7 @@ public class TwobyOne : MonoBehaviour, IInventoryObject, IRotatable,IPowerItem
 
     void OutOfGrid()
     {
+        
         if (inventoryObject != null)
         {
             if (Input.GetAxis("Mouse X") > dragThreshold && (!inventoryObject.onRightNext || inventoryObject.onRightObjectDedect))
@@ -434,10 +432,12 @@ public class TwobyOne : MonoBehaviour, IInventoryObject, IRotatable,IPowerItem
     {
         gridBasement.GetComponent<GridSystem>().Inv = this;
 
-        isHandle = true;
-
         gameObject.layer = LayerMask.NameToLayer("HandleObjectPlacement");
         gameObject.GetComponent<SpriteRenderer>().sortingOrder = 3;
+
+
+        isHandle = true;
+
 
     }
 
