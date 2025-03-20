@@ -80,9 +80,9 @@ public class TwobyOne : MonoBehaviour, IInventoryObject, IRotatable,IPowerItem
 
     private void Update()
     {
-        GridEnterBoolCheck();
         MouseDragControl();
         OutOfGrid();
+        GridEnterBoolCheck();
         Ray();
 
         Debug.Log(gridEnter);
@@ -111,6 +111,7 @@ public class TwobyOne : MonoBehaviour, IInventoryObject, IRotatable,IPowerItem
                 isHandle = false;
             }
 
+           
             if ((onRightNext || onLeftNext) && lastlocationX == 0)
             {
                 lastlocationX = gameObject.transform.position.x;
@@ -191,7 +192,7 @@ public class TwobyOne : MonoBehaviour, IInventoryObject, IRotatable,IPowerItem
         Vector3 selectedPosition = gridInput.GetSelectedMapPosition();
         Vector3Int cellPosition = gridBasement.WorldToCell(selectedPosition);
 
-        if (gridEnter)
+        if (gridEnter && Mathf.Abs(mouseDelta.magnitude)>0)
         {
             inventoryObject = handledObject.GetComponent<IInventoryObject>();
             objectPosition = handledObject.transform.position;
