@@ -12,11 +12,25 @@ public class Cart : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IPoin
     [SerializeField] private float _upScale;
     [SerializeField] private float _speed;
     [SerializeField] private LayerMask _cartPlacementLayer;
+    [SerializeField] 
     private BaseItem _baseItem;
     private bool _mouseHolding;
     private Vector3 _startPosition;
+    [SerializeField] private Enemy enemy;
+    private void OnEnable()
+    {
+        EventManagerCode.OnTourEnd += OnTour;
+    }
+    private void Start()
+    {
+        enemy = GameObject.Find("Enemy").GetComponent<Enemy>();
+    }
 
-
+    private void OnDisable()
+    {
+        EventManagerCode.OnTourEnd -= OnTour;
+    }
+    
     public void Init(BaseItem baseItem) {
         _baseItem = baseItem;
         _itemImage.sprite = _baseItem.ItemSprite;
@@ -24,19 +38,26 @@ public class Cart : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IPoin
         _name.text = _baseItem.ItemName;
 
 
-        _baseItem.ItemEffects_OnPlaced?.ForEach(effect => effect?.ExecuteEffect());
+        _baseItem.ItemEffects_OnPlaced?.ForEach(effect => effect?.ExecuteEffect(enemy));
     }
     void Update()
     {
+        /*
+        Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        mousePos.z = 0;
+        */
+      
+
         HoldingCard();
         if(Input.GetMouseButtonUp(0)){
-            Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            mousePos.z = 0;
-            RaycastHit2D hit2D = Physics2D.Raycast(mousePos, Vector3.forward, 100, _cartPlacementLayer);
+            RaycastHit2D hit2D = Physics2D.Raycast(transform.position, Vector3.forward, 100, _cartPlacementLayer);
+
             if (hit2D.collider != null)
             {
-                OnAttack();
+               OnAttack();
             }
+            else
+                return;
         }
     }
     public void SetStartPosition(Vector3 startPosition){
@@ -76,12 +97,14 @@ public class Cart : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IPoin
 
     public void OnTour()
     {
-        _baseItem.ItemEffects_OnEveryTour?.ForEach(effect => effect?.ExecuteEffect());
+        _baseItem.ItemEffects_OnEveryTour?.ForEach(effect => effect?.TourEffect(enemy));
     }
 
     public void OnAttack()
     {
-        _baseItem.ItemEffects_OnEnemy?.ForEach(effect => effect?.ExecuteEffect());
+        _baseItem.ItemEffects_OnEnemy?.ForEach(effect => effect?.ExecuteEffect(enemy));
+        DOTween.Kill(transform);
+        Destroy(gameObject);
     }
 
 }

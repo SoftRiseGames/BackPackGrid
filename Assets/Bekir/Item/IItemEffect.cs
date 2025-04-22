@@ -2,5 +2,6 @@ using UnityEngine;
 
 public interface IItemEffect
 {
-    void ExecuteEffect();
+    void ExecuteEffect(Enemy enemy);
+    void TourEffect(Enemy enemy);
 }

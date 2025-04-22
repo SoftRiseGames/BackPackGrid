@@ -19,11 +19,16 @@ MonoBehaviour:
   RootMergeItem: {fileID: 0}
   MergedItems: []
   ItemEffects_OnEveryTour:
-  - rid: 1414605516635373568
+  - rid: 8400894963776487504
+  ItemEffects_OnEnemy:
+  - rid: 8400894963776487503
   ItemEffects_OnPlaced: []
   references:
     version: 2
     RefIds:
-    - rid: 1414605516635373568
-      type: {class: ActiveItemExampleClass, ns: , asm: Assembly-CSharp}
+    - rid: 8400894963776487503
+      type: {class: IItemExample, ns: , asm: Assembly-CSharp}
+      data: 
+    - rid: 8400894963776487504
+      type: {class: IItemExample, ns: , asm: Assembly-CSharp}
       data: 

@@ -442,6 +442,9 @@ MonoBehaviour:
   _name: {fileID: 619538564426309359}
   _upScale: 100
   _speed: 0.25
+  _cartPlacementLayer:
+    serializedVersion: 2
+    m_Bits: 2048
 --- !u!1 &8282081440549094331
 GameObject:
   m_ObjectHideFlags: 0
