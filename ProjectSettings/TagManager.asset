@@ -16,10 +16,17 @@ TagManager:
   - UI
   - GridSideBasementEnded
   - GridBottomUpBasementEnded
+<<<<<<< Updated upstream
   - 
   - 
   - 
   - 
+=======
+  - HandleObjectPlacement
+  - HandleObjectLocked
+  - GridLocked
+  - EnemyLayer
+>>>>>>> Stashed changes
   - 
   - 
   - 
