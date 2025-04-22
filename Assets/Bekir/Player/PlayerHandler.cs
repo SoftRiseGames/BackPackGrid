@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class PlayerHandler : MonoBehaviour, IDamage
 {
-    [SerializeField] private float _health;
+    public float _health;
     private float _healtCounter;
 
 

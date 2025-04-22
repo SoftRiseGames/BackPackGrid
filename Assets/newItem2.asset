@@ -10,25 +10,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bc1cf9c466ad942db80df514fd5ef238, type: 3}
-  m_Name: Blood
+  m_Name: newItem2
   m_EditorClassIdentifier: 
-  ItemName: 
+  ItemName: newItem2
   Description: 
   ItemSprite: {fileID: 0}
   cellSize: {x: 0, y: 0}
   RootMergeItem: {fileID: 0}
   MergedItems: []
-  ItemEffects_OnEveryTour:
-  - rid: 8400894963776487504
-  ItemEffects_OnEnemy:
-  - rid: 8400894963776487503
+  ItemEffects_OnEveryTour: []
+  ItemEffects_OnEnemy: []
   ItemEffects_OnPlaced: []
   references:
     version: 2
-    RefIds:
-    - rid: 8400894963776487503
-      type: {class: IItemExample, ns: , asm: Assembly-CSharp}
-      data: 
-    - rid: 8400894963776487504
-      type: {class: IItemExample, ns: , asm: Assembly-CSharp}
-      data: 
+    RefIds: []
