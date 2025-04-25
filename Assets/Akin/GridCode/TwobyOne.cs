@@ -2,7 +2,7 @@
 using UnityEngine.Events;
 using System;
 using System.Collections.Generic;
-
+using System.IO;
 public class TwobyOne : MonoBehaviour, IInventoryObject, IRotatable,IPowerItem
 {
     public bool OnDownMiddle { get; private set; }
@@ -67,7 +67,8 @@ public class TwobyOne : MonoBehaviour, IInventoryObject, IRotatable,IPowerItem
     float lastlocationY = 0;
 
     Vector3 mouseDelta = new Vector3();
-
+    bool isAdded = false;
+    public HandledCards CardHandleDataList;
     private void Start()
     {
         GridIntegration();
@@ -75,6 +76,7 @@ public class TwobyOne : MonoBehaviour, IInventoryObject, IRotatable,IPowerItem
         StartPosition = transform.position;
         BaseItemObject = ScriptableObject;
         isDragging = false;
+        CardHandleDataList = GameObject.Find("HandledCardManager").GetComponent<HandledCards>();
         
     }
 
@@ -84,7 +86,7 @@ public class TwobyOne : MonoBehaviour, IInventoryObject, IRotatable,IPowerItem
         OutOfGrid();
         GridEnterBoolCheck();
         Ray();
-
+        AddList();
         Debug.Log(gridEnter);
         mouseDelta = new Vector3(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"), 0);
         if (isHandle)
@@ -192,16 +194,15 @@ public class TwobyOne : MonoBehaviour, IInventoryObject, IRotatable,IPowerItem
         Vector3 selectedPosition = gridInput.GetSelectedMapPosition();
         Vector3Int cellPosition = gridBasement.WorldToCell(selectedPosition);
 
-        if (gridEnter && Mathf.Abs(mouseDelta.magnitude)>0)
+        if (gridEnter)
         {
             inventoryObject = handledObject.GetComponent<IInventoryObject>();
             objectPosition = handledObject.transform.position;
             cellCenterPosition = gridBasement.GetCellCenterWorld(cellPosition);
-           
+
             if (CanEnterPosition)
             {
                 CanEnterPosition = false;
-                Debug.Log("calisti");
                 // Y Ekseni Kontrolleri
                 if (cellPosition.y < (lastlocationY))
                     objectPosition.y = cellCenterPosition.y - pivotOffsetY;
@@ -216,8 +217,8 @@ public class TwobyOne : MonoBehaviour, IInventoryObject, IRotatable,IPowerItem
 
                 handledObject.transform.position = objectPosition;
             }
-           
-            
+
+
             else if (!CanEnterPosition && ((cellPosition.x != objectPosition.x) || (cellPosition.y != objectPosition.y)))
             {
 
@@ -251,9 +252,36 @@ public class TwobyOne : MonoBehaviour, IInventoryObject, IRotatable,IPowerItem
         else
             return;
 
+
     }
 
+    void AddList()
+    {
+        if (gridEnter)
+        {
+            foreach(GameObject i in CardHandleDataList.HandledObjects)
+            {
+                if(i.name == gameObject.name)
+                {
+                    isAdded = true;
+                }
+            }
 
+            if (isAdded)
+            {
+                return;
+            }
+            else
+            {
+                CardHandleDataList.HandledObjects.Add(gameObject);
+                 isAdded = false;
+            }
+               
+            
+        }
+            
+
+    }
     void OutOfGrid()
     {
         
@@ -447,3 +475,5 @@ public class TwobyOne : MonoBehaviour, IInventoryObject, IRotatable,IPowerItem
         Debug.Log("ObjectPowering");
     }
 }
+
+
