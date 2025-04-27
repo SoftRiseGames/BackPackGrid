@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class IItemExample :IItemEffect
+public class Blood :IItemEffect
 {
     public void ExecuteEffect(Enemy enemy)
     {
@@ -16,3 +16,18 @@ public class IItemExample :IItemEffect
 
   
 }
+
+public class Sword : IItemEffect
+{
+    public void ExecuteEffect(Enemy enemy)
+    {
+        Debug.Log("DDDDDD");
+    }
+
+    public void TourEffect(Enemy enemy)
+    {
+       // throw new System.NotImplementedException();
+    }
+}
+
+
