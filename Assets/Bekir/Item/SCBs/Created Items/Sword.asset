@@ -12,18 +12,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc1cf9c466ad942db80df514fd5ef238, type: 3}
   m_Name: Sword
   m_EditorClassIdentifier: 
-  ItemName: 
-  Description: 
-  ItemSprite: {fileID: 0}
+  ItemName: Sword
+  Description: Kesici Hasar Vurur
+  ItemSprite: {fileID: 21300000, guid: f12203c5def4857469356824ae742fc3, type: 3}
   cellSize: {x: 0, y: 0}
   RootMergeItem: {fileID: 0}
   MergedItems: []
-  ItemEffects_OnEveryTour:
-  - rid: -2
-  ItemEffects_OnEnemy: []
+  ItemEffects_OnEveryTour: []
+  ItemEffects_OnEnemy:
+  - rid: 4778697493287796738
   ItemEffects_OnPlaced: []
   references:
     version: 2
     RefIds:
-    - rid: -2
-      type: {class: , ns: , asm: }
+    - rid: 4778697493287796738
+      type: {class: Blood, ns: , asm: Assembly-CSharp}
+      data: 

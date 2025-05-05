@@ -21,6 +21,7 @@ public class GridSystem : MonoBehaviour
     }
     private void Update()
     {
+
         if (Inv != null && Inv.gridEnter)
         {
             Inv.RegisterYourself();
@@ -44,9 +45,7 @@ public class GridSystem : MonoBehaviour
 
     private void LateUpdate()
     {
-       
 
-        
     }
 
     public void RegisterYourself(int ypos)

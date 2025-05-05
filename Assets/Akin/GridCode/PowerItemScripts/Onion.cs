@@ -39,6 +39,8 @@ public class Onion : MonoBehaviour,IPowerItem ,IInventoryObject
 
     public BaseItem BaseItemObject { get; set; }
 
+    public bool OnMiddle => throw new System.NotImplementedException();
+
     public BaseItem baseItem;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created

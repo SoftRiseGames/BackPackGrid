@@ -37,6 +37,8 @@ public class TwobyTwo : IInventoryObject
 
     public bool OnDownLeft => throw new System.NotImplementedException();
 
+    public bool OnMiddle => throw new System.NotImplementedException();
+
     public void Consume()
     {
         throw new System.NotImplementedException();
