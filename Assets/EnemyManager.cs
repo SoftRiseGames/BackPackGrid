@@ -1,17 +1,29 @@
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
-
+using System;
 public class EnemyManager : MonoBehaviour
 {
     public List<Enemy> enemies;
     private bool isEventRunning = false;
+    public static Action onPlayerTurn;
 
-    void Update()
+   
+    private void OnEnable()
     {
-        if (Input.GetKeyDown(KeyCode.Z) && !isEventRunning)
+        EventManagerCode.OnEnemyTurn += StartCoroutineEvent;
+    }
+    private void OnDisable()
+    {
+        EventManagerCode.OnEnemyTurn -= StartCoroutineEvent;
+    }
+    
+    
+    void StartCoroutineEvent()
+    {
+        if (!isEventRunning)
         {
-            StartCoroutine(EventCoroutine());
+             StartCoroutine(EventCoroutine());
         }
     }
 
@@ -33,7 +45,7 @@ public class EnemyManager : MonoBehaviour
             yield return new WaitForSeconds(0.5f); // Her düþman arasýnda 0.5 saniye bekle
         }
         
-
         isEventRunning = false;
+        onPlayerTurn.Invoke();
     }
 }

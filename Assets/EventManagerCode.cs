@@ -4,7 +4,7 @@ using System;
 public class EventManagerCode : MonoBehaviour
 {
 
-    public static Action OnTourEnd;
+    public static Action OnEnemyTurn;
 
-    public void TourEndVoid() => OnTourEnd.Invoke();
+    public void OnEnemyTurnVoid() => OnEnemyTurn.Invoke();
 }

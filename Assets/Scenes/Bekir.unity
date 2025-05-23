@@ -2699,8 +2699,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 242770011}
-        m_TargetAssemblyTypeName: EventManagerrCode, Assembly-CSharp
-        m_MethodName: TourEndVoid
+        m_TargetAssemblyTypeName: EventManagerCode, Assembly-CSharp
+        m_MethodName: OnEnemyTurnVoid
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

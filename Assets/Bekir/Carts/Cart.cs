@@ -17,9 +17,11 @@ public class Cart : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IPoin
     private bool _mouseHolding;
     private Vector3 _startPosition;
     [SerializeField] private Enemy enemy;
+    [SerializeField] bool canMove;
     private void OnEnable()
     {
-        EventManagerCode.OnTourEnd += OnTour;
+        EventManagerCode.OnEnemyTurn += CanMoveFalse;
+        EnemyManager.onPlayerTurn += CanMoveTrue;
     }
     private void Start()
     {
@@ -28,9 +30,17 @@ public class Cart : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IPoin
 
     private void OnDisable()
     {
-        EventManagerCode.OnTourEnd -= OnTour;
+        EventManagerCode.OnEnemyTurn -= CanMoveFalse;
+        EnemyManager.onPlayerTurn -= CanMoveTrue;
     }
-    
+    void CanMoveFalse()
+    {
+        canMove = false;
+    }
+    void CanMoveTrue()
+    {
+        canMove = true;
+    }
     public void Init(BaseItem baseItem) {
         _baseItem = baseItem;
         _itemImage.sprite = _baseItem.ItemSprite;
@@ -66,21 +76,33 @@ public class Cart : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IPoin
     }
 
     private void HoldingCard(){
-        if (!_mouseHolding) return;
-        Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        mousePos.z = 0;
-        transform.position = mousePos;
+        if (canMove)
+        {
+            if (!_mouseHolding) return;
+            Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            mousePos.z = 0;
+            transform.position = mousePos;
+        }
+      
     }
     public void OnPointerDown(PointerEventData eventData)
     {
-        DOTween.Kill(transform);
-        _mouseHolding = true;
+        if (canMove)
+        {
+            DOTween.Kill(transform);
+            _mouseHolding = true;
+        }
+       
     }
     public void OnPointerUp(PointerEventData eventData)
     {
-        _mouseHolding = false;
-        DOTween.Kill(transform);
-        transform.DOLocalMoveY(_startPosition.y, _speed);
+        if (canMove)
+        {
+            _mouseHolding = false;
+            DOTween.Kill(transform);
+            transform.DOLocalMoveY(_startPosition.y, _speed);
+        }
+      
     }
 
     public void OnPointerExit(PointerEventData eventData)

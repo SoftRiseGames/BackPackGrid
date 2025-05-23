@@ -448,6 +448,7 @@ MonoBehaviour:
     m_Bits: 2048
   _baseItem: {fileID: 0}
   enemy: {fileID: 0}
+  canMove: 1
 --- !u!1 &7901135888211647421
 GameObject:
   m_ObjectHideFlags: 0

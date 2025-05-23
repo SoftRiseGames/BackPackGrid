@@ -12,7 +12,7 @@ public class CartHandler : MonoBehaviour
 
     public CardLoad LoadedCards;
 
-
+    
     private void Start()
     {
         foreach(string i in LoadedCards.LoadedObjectsList)
