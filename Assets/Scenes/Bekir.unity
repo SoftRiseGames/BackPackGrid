@@ -2036,6 +2036,9 @@ MonoBehaviour:
   _health: 10
   player: {fileID: 1100168319}
   EnemyDamageTaken: 0
+  EnemySettings: {fileID: 11400000, guid: e1edb7e87f775264b93813635089a438, type: 2}
+  PlayerObject: {fileID: 1100168319}
+  EnemyPatternCounter: 0
 --- !u!61 &1568212403
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2622,7 +2625,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemies:
-  - {fileID: 1568212399}
+  - {fileID: 1568212402}
 --- !u!4 &1843856402
 Transform:
   m_ObjectHideFlags: 0

@@ -2,7 +2,7 @@ using UnityEngine;
 using System.Collections.Generic;
 public class EnemyManager : MonoBehaviour
 {
-    public List<GameObject> enemies;
+    public List<Enemy> enemies;
     void Start()
     {
         
@@ -12,16 +12,20 @@ public class EnemyManager : MonoBehaviour
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Z))
-            Attack();
+            Event();
     }
 
-    void Attack()
+    void Event()
     {
         
         for(int i = 0; i<enemies.Count; i++)
         {
-            enemies[i].GetComponent<IEnemy>().AttackOnTour();
+            if(enemies[i].EnemySettings.EnemyPattern[enemies[i].EnemyPatternCounter] == "Attack")
+                enemies[i].GetComponent<Enemy>().AttackOnTour();
+            else if (enemies[i].EnemySettings.EnemyPattern[enemies[i].EnemyPatternCounter] == "Defence")
+                enemies[i].GetComponent<Enemy>().DefenceOnTour();
         }
         
     }
+   
 }

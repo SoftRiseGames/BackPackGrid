@@ -1,11 +1,15 @@
 using UnityEngine;
+using System.Collections.Generic;
 
-public class Enemy : MonoBehaviour, IDamage,IEnemy
+public class Enemy : MonoBehaviour, IDamage
 {
     public float _health;
     private float _healtCounter;
     public PlayerHandler player;
     public float EnemyDamageTaken;
+    public SOEnemy EnemySettings;
+    [SerializeField] private PlayerHandler PlayerObject;
+    public int EnemyPatternCounter;
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.A))
@@ -28,12 +32,22 @@ public class Enemy : MonoBehaviour, IDamage,IEnemy
 
     public void AttackOnTour()
     {
-        player._health = player._health - 1;
+        EnemySettings.EnemyEffects?.ForEach(effect => effect?.AttackOnTour(PlayerObject));
+        EnemyPatternCounterManager();
     }
 
     public void DefenceOnTour()
     {
-        return;
+        EnemySettings.EnemyEffects?.ForEach(effect => effect?.DefenceOnTour(PlayerObject));
+        EnemyPatternCounterManager();
+    }
+
+    void EnemyPatternCounterManager()
+    {
+        EnemyPatternCounter = EnemyPatternCounter + 1;
+
+        if (EnemyPatternCounter >= EnemySettings.EnemyPattern.Count)
+            EnemyPatternCounter = 0;
     }
 
     public void PassiveAttackOnTour()
