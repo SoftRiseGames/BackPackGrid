@@ -1,31 +1,39 @@
 using UnityEngine;
+using System.Collections;
 using System.Collections.Generic;
+
 public class EnemyManager : MonoBehaviour
 {
     public List<Enemy> enemies;
-    void Start()
-    {
-        
-    }
+    private bool isEventRunning = false;
 
-    // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Z))
-            Event();
+        if (Input.GetKeyDown(KeyCode.Z) && !isEventRunning)
+        {
+            StartCoroutine(EventCoroutine());
+        }
     }
 
-    void Event()
+    IEnumerator EventCoroutine()
     {
-        
-        for(int i = 0; i<enemies.Count; i++)
+        isEventRunning = true;
+
+        for (int i = 0; i < enemies.Count; i++)
         {
-            if(enemies[i].EnemySettings.EnemyPattern[enemies[i].EnemyPatternCounter] == "Attack")
-                enemies[i].GetComponent<Enemy>().AttackOnTour();
-            else if (enemies[i].EnemySettings.EnemyPattern[enemies[i].EnemyPatternCounter] == "Defence")
-                enemies[i].GetComponent<Enemy>().DefenceOnTour();
+            Enemy enemy = enemies[i];
+
+            string currentAction = enemy.EnemySettings.EnemyPattern[enemy.EnemyPatternCounter];
+
+            if (currentAction == "Attack")
+                enemy.AttackOnTour();
+            else if (currentAction == "Defence")
+                enemy.DefenceOnTour();
+
+            yield return new WaitForSeconds(0.5f); // Her düþman arasýnda 0.5 saniye bekle
         }
         
+
+        isEventRunning = false;
     }
-   
 }
