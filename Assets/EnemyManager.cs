@@ -46,6 +46,6 @@ public class EnemyManager : MonoBehaviour
         }
         
         isEventRunning = false;
-        onPlayerTurn.Invoke();
+        onPlayerTurn?.Invoke();
     }
 }

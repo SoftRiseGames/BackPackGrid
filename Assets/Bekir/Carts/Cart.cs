@@ -25,13 +25,27 @@ public class Cart : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IPoin
     }
     private void Start()
     {
-        enemy = GameObject.Find("Enemy").GetComponent<Enemy>();
+        //enemy = GameObject.Find("Enemy").GetComponent<Enemy>();
     }
 
     private void OnDisable()
     {
         EventManagerCode.OnEnemyTurn -= CanMoveFalse;
         EnemyManager.onPlayerTurn -= CanMoveTrue;
+    }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.gameObject.tag == "Enemy")
+        {
+            enemy = collision.gameObject.GetComponent<Enemy>();
+        }
+    }
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Enemy")
+        {
+            enemy = null;
+        }
     }
     void CanMoveFalse()
     {
@@ -59,6 +73,7 @@ public class Cart : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IPoin
       
 
         HoldingCard();
+
         if(Input.GetMouseButtonUp(0)){
             RaycastHit2D hit2D = Physics2D.Raycast(transform.position, Vector3.forward, 100, _cartPlacementLayer);
 

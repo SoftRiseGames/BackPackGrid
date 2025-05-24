@@ -6,7 +6,6 @@ public class Enemy : MonoBehaviour, IDamage
     public float _health;
     private float _healtCounter;
     public PlayerHandler player;
-    public float EnemyDamageTaken;
     public SOEnemy EnemySettings;
     [SerializeField] private PlayerHandler PlayerObject;
     public int EnemyPatternCounter;
