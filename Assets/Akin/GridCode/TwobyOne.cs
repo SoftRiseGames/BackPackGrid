@@ -82,12 +82,24 @@ public class TwobyOne : MonoBehaviour, IInventoryObject, IRotatable, IPowerItem
 
     private void Update()
     {
+        if (this.gameObject.name == "Blood")
+        {
+            Debug.Log("OnDownRight " + OnDownRight);
+            Debug.Log("OnDownLeft " + OnDownLeft);
+            Debug.Log("OnDownMiddle " + OnDownMiddle);
+            Debug.Log("OnUpRight" + OnUpRight);
+            Debug.Log("OnUpLeft " + OnUpLeft);
+            Debug.Log("OnUpMiddle" + OnUpMiddle);
+            Debug.Log("OnLeftMddle " + onLeftMiddle);
+            Debug.Log("OnRightMiddle " + onRightMiddle);
+        }
+            Debug.Log(gridEnter);
+
         MouseDragControl();
         OutOfGrid();
         GridEnterBoolCheck();
         Ray();
         AddList();
-        Debug.Log(gridEnter);
         mouseDelta = new Vector3(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"), 0);
         if (isHandle)
         {
@@ -206,11 +218,11 @@ public class TwobyOne : MonoBehaviour, IInventoryObject, IRotatable, IPowerItem
                 // Y Ekseni Kontrolleri
                 if (cellPosition.y < (lastlocationY))
                     objectPosition.y = cellCenterPosition.y - pivotOffsetY;
-                else if (cellPosition.y >= (lastlocationY))
+                else if (cellPosition.y > (lastlocationY))
                     objectPosition.y = cellCenterPosition.y + pivotOffsetY;
 
                 // X Ekseni Kontrolleri
-                if (cellPosition.x >= (lastlocationX))
+                if (cellPosition.x > (lastlocationX))
                     objectPosition.x = cellCenterPosition.x + pivotOffsetX;
                 else if (cellPosition.x < (lastlocationX))
                     objectPosition.x = cellCenterPosition.x - pivotOffsetX;
@@ -273,7 +285,7 @@ public class TwobyOne : MonoBehaviour, IInventoryObject, IRotatable, IPowerItem
         {
             foreach (GameObject i in CardHandleDataList.HandledObjects)
             {
-                if (i.name == gameObject.name)
+                if (i.gameObject == gameObject)// sabah burayı kontrol et
                 {
                     isAdded = true;
                 }
@@ -286,12 +298,36 @@ public class TwobyOne : MonoBehaviour, IInventoryObject, IRotatable, IPowerItem
             else
             {
                 CardHandleDataList.HandledObjects.Add(gameObject);
-                isAdded = false;
+                isAdded = true;
             }
 
 
         }
+        
+        if (!gridEnter && isAdded)
+        {
+            Debug.Log("OutOfGrid");
+            GameObject toRemove = null;
 
+            foreach (GameObject i in CardHandleDataList.HandledObjects)
+            {
+                if (i.name == gameObject.name)
+                {
+                    toRemove = i;
+                    break;
+                }
+            }
+
+            if (toRemove != null)
+            {
+                CardHandleDataList.HandledObjects.Remove(toRemove);
+            }
+            isAdded = false;
+
+        }
+        else
+            return;
+        
 
     }
     void OutOfGrid()
@@ -307,7 +343,7 @@ public class TwobyOne : MonoBehaviour, IInventoryObject, IRotatable, IPowerItem
         }
         else
         {
-            gridEnter = false;
+            //gridEnter = false;
         }
 
     }
