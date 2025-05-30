@@ -17,7 +17,8 @@ MonoBehaviour:
   ItemSprite: {fileID: -1250021020546060479, guid: 410f67d54c6e81b45862e48f2d1f5245, type: 3}
   cellSize: {x: 0, y: 0}
   RootMergeItem: {fileID: 0}
-  MergedItems: []
+  MergedItems:
+  - {fileID: 11400000, guid: ceaa4770064244877966e1c2d3e0f8a6, type: 2}
   ItemEffects_OnEveryTour:
   - rid: 4778697489712676935
   ItemEffects_OnEnemy:

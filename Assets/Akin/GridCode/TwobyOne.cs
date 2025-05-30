@@ -31,9 +31,12 @@ public class TwobyOne : MonoBehaviour, IInventoryObject, IRotatable, IPowerItem
     public bool onLeftObjectDedect { get; private set; }
     public bool onRightObjectDedect { get; private set; }
     public bool gridEnter { get; set; }
-    public BaseItem BaseItemObject { get; set; }
-    public BaseItem ScriptableObject;
+    public BaseItem BaseItemObj { get; set; }
+    
+    public List<GameObject> AddedMaterialsChecker { get;} = new List<GameObject>();
 
+    [SerializeField] BaseItem BaseItem;
+        
     IInventoryObject inventoryObject;
     Vector2 objectPosition;
     Vector2 cellCenterPosition;
@@ -59,7 +62,7 @@ public class TwobyOne : MonoBehaviour, IInventoryObject, IRotatable, IPowerItem
     public Vector2 StartPosition;
     bool isHandle;
     bool CanEnterPosition = true;
-
+    int successfulMerges = 0;
 
     float dragThreshold = 0.11f;
 
@@ -69,19 +72,23 @@ public class TwobyOne : MonoBehaviour, IInventoryObject, IRotatable, IPowerItem
     Vector3 mouseDelta = new Vector3();
     bool isAdded = false;
     public HandledCards CardHandleDataList;
+    [SerializeField] List<BoxCollider2D> CollideDedectors;
+    private HashSet<BaseItem> objectsThatAdded = new HashSet<BaseItem>();
     private void Start()
     {
         GridIntegration();
         ScaleObject();
         StartPosition = transform.position;
-        BaseItemObject = ScriptableObject;
         isDragging = false;
         CardHandleDataList = GameObject.Find("HandledCardManager").GetComponent<HandledCards>();
-
+        BaseItemObj = BaseItem;
+        
     }
 
     private void Update()
     {
+        Debug.Log(AddedMaterialsChecker.Count);
+        /*
         if (this.gameObject.name == "Blood")
         {
             Debug.Log("OnDownRight " + OnDownRight);
@@ -94,12 +101,19 @@ public class TwobyOne : MonoBehaviour, IInventoryObject, IRotatable, IPowerItem
             Debug.Log("OnRightMiddle " + onRightMiddle);
         }
             Debug.Log(gridEnter);
-
+        */
+        Debug.Log(successfulMerges);
         MouseDragControl();
         OutOfGrid();
         GridEnterBoolCheck();
         Ray();
-        AddList();
+        if(successfulMerges<BaseItemObj.MergedItems.Count)
+            AddList();
+        if (successfulMerges >= BaseItemObj.MergedItems.Count)
+            ListDeleter();
+        CombineObject();
+        TryAddUpgradedItem();
+        Debug.Log(AddedMaterialsChecker);
         mouseDelta = new Vector3(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"), 0);
         if (isHandle)
         {
@@ -137,12 +151,12 @@ public class TwobyOne : MonoBehaviour, IInventoryObject, IRotatable, IPowerItem
 
         }
     }
-    private void OnMouseDrag()
+  
+    public void ButtonSkipEvent()
     {
-
+        AddList();
+        CombineObject();
     }
-
-
     public void Consume()
     {
         throw new System.NotImplementedException();
@@ -283,9 +297,9 @@ public class TwobyOne : MonoBehaviour, IInventoryObject, IRotatable, IPowerItem
     {
         if (gridEnter)
         {
-            foreach (GameObject i in CardHandleDataList.HandledObjects)
+            foreach (BaseItem i in CardHandleDataList.HandledObjects)
             {
-                if (i.gameObject == gameObject)// sabah burayı kontrol et
+                if (i == gameObject.GetComponent<IInventoryObject>().BaseItemObj)// sabah burayı kontrol et
                 {
                     isAdded = true;
                 }
@@ -297,19 +311,29 @@ public class TwobyOne : MonoBehaviour, IInventoryObject, IRotatable, IPowerItem
             }
             else
             {
-                CardHandleDataList.HandledObjects.Add(gameObject);
+                CardHandleDataList.HandledObjects.Add(BaseItemObj);
                 isAdded = true;
             }
 
+            if (CardHandleDataList.HandledObjects.Contains(BaseItem.UpgradedItem))
+            {
+                CardHandleDataList.HandledObjects.Remove(BaseItem.UpgradedItem);
+            }
 
+            if (objectsThatAdded.Contains(BaseItem))
+            {
+                Debug.Log("Gerçekleşti");
+                objectsThatAdded.Remove(BaseItem);
+            }
         }
+
         
         if (!gridEnter && isAdded)
         {
             Debug.Log("OutOfGrid");
-            GameObject toRemove = null;
+            BaseItem toRemove = null;
 
-            foreach (GameObject i in CardHandleDataList.HandledObjects)
+            foreach (BaseItem i in CardHandleDataList.HandledObjects)
             {
                 if (i.name == gameObject.name)
                 {
@@ -330,6 +354,46 @@ public class TwobyOne : MonoBehaviour, IInventoryObject, IRotatable, IPowerItem
         
 
     }
+    void ListDeleter()
+    {
+        isAdded = false;
+        Debug.Log(BaseItem.MergedItems.Count);
+        CardHandleDataList.HandledObjects.Remove(BaseItemObj);
+    }
+    void CombineObject()
+    {
+        successfulMerges = 0; // Her çağrıldığında sayaç sıfırlanır
+
+        if (AddedMaterialsChecker != null)
+        {
+            foreach (GameObject i in AddedMaterialsChecker)
+            {
+                for (int MergedItems = 0; MergedItems < BaseItemObj.MergedItems.Count; MergedItems++)
+                {
+                    if (i.GetComponent<IInventoryObject>().BaseItemObj == BaseItemObj.MergedItems[MergedItems])
+                    {
+                        Debug.Log(successfulMerges);
+                        successfulMerges++; 
+                        Debug.Log("Merged Successfully");
+                    }
+                }
+            }
+        }
+    }
+
+    void TryAddUpgradedItem()
+    {
+        
+        if (successfulMerges >= BaseItem.MergedItems.Count && gridEnter)
+        {
+            if (!objectsThatAdded.Contains(BaseItemObj))
+            {
+                Debug.Log("ReAdd");
+                CardHandleDataList.HandledObjects.Add(BaseItem.UpgradedItem);
+                objectsThatAdded.Add(BaseItemObj); // bu objeyi ekledi olarak işaretle
+            }
+        }
+    }
     void OutOfGrid()
     {
 
@@ -343,7 +407,7 @@ public class TwobyOne : MonoBehaviour, IInventoryObject, IRotatable, IPowerItem
         }
         else
         {
-            //gridEnter = false;
+            gridEnter = false;
         }
 
     }
@@ -368,6 +432,8 @@ public class TwobyOne : MonoBehaviour, IInventoryObject, IRotatable, IPowerItem
 
 
     }
+
+    
 
     public void RotateRight()
     {

@@ -1,12 +1,14 @@
 ﻿using System;
-
+using System.Collections.Generic;
+using UnityEngine;
 public interface IInventoryObject
 {
     void GridIntegration();
     void RegisterYourself();
     void Consume();
-
     void MoveObjectStarting();
+  
+    public BaseItem BaseItemObj { get; }
     public bool OnUpMiddle { get; }
     public bool OnDownMiddle { get; }
     public bool onRightMiddle { get; }
@@ -28,6 +30,7 @@ public interface IInventoryObject
     public bool onLeftObjectDedect { get; }
     public bool onRightObjectDedect { get; }
 
+    public List<GameObject> AddedMaterialsChecker { get; }
     public bool gridEnter { get; set; }
 
     

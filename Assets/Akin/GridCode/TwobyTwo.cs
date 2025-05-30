@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class TwobyTwo : IInventoryObject
@@ -27,7 +28,7 @@ public class TwobyTwo : IInventoryObject
     public bool onRightObjectDedect => throw new System.NotImplementedException();
 
     public bool gridEnter { get; set; }
-    public bool OffTheGrid { get => throw new System.NotImplementedException(); set => throw new System.NotImplementedException(); }
+    public bool OffTheGrid { get; set; }
 
     public bool OnUpRight => throw new System.NotImplementedException();
 
@@ -38,6 +39,10 @@ public class TwobyTwo : IInventoryObject
     public bool OnDownLeft => throw new System.NotImplementedException();
 
     public bool OnMiddle => throw new System.NotImplementedException();
+
+    public List<GameObject> AddedMaterialsChecker { get; set; }
+
+    public BaseItem BaseItemObj { get; set; }
 
     public void Consume()
     {

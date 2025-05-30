@@ -2,35 +2,29 @@ using UnityEngine;
 using System.Collections.Generic;
 public class GridObjectSideChecker : MonoBehaviour
 {
-    public List<BaseItem> UpgradeObjects;
+    [SerializeField] GameObject ParentObj;
+    bool CanObjectAddable;
     void Start()
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        CanObjectAddable = true;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "InvObject")
+        if (collision.gameObject.tag == "InvObject" && CanObjectAddable == true)
         {
-            Debug.Log("a");
-            foreach (BaseItem i in UpgradeObjects)
-            {
-                if (collision.GetComponent<IInventoryObject>() is IPowerItem)
-                {
-                    if (collision.GetComponent<IPowerItem>().BaseItemObject == i)
-                    {
-                        collision.GetComponent<IPowerItem>().PowerUpBuffs();
-                    }
-                    
-                }
-                
-            }
+            ParentObj.GetComponent<IInventoryObject>().AddedMaterialsChecker.Add(collision.gameObject);
+            CanObjectAddable = false;
+        }
+        else
+            return;
+    }
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "InvObject" && CanObjectAddable == false)
+        {
+            ParentObj.GetComponent<IInventoryObject>().AddedMaterialsChecker.Remove(collision.gameObject);
+            CanObjectAddable = true;
         }
         else
             return;

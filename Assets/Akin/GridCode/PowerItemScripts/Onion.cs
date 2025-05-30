@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Onion : MonoBehaviour,IPowerItem ,IInventoryObject
@@ -37,16 +38,16 @@ public class Onion : MonoBehaviour,IPowerItem ,IInventoryObject
 
     public bool OnDownLeft => throw new System.NotImplementedException();
 
-    public BaseItem BaseItemObject { get; set; }
 
     public bool OnMiddle => throw new System.NotImplementedException();
 
-    public BaseItem baseItem;
+    public List<GameObject> AddedMaterialsChecker { get; set; }
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    public BaseItem BaseItemObj { get; set; }
+
     void Start()
     {
-        BaseItemObject = baseItem;
+       // BaseItemObject = baseItem;
     }
 
     // Update is called once per frame

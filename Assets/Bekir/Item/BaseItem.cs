@@ -5,6 +5,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "New Item", menuName = "Inventory/Item")]
 public class BaseItem : ScriptableObject
 {
+    public BaseItem UpgradedItem;
     /// <summary>
     /// for UI
     /// </summary>

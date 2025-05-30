@@ -12,14 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc1cf9c466ad942db80df514fd5ef238, type: 3}
   m_Name: Blood Drinker
   m_EditorClassIdentifier: 
-  itemName: Blood Drinker
-  description: blood drinker olan item
-  icon: {fileID: -6849179773407893626, guid: 3c8a336d4d3b646c9a57d5e40c02f2bd, type: 3}
+  ItemName: 
+  Description: 
+  ItemSprite: {fileID: 0}
   cellSize: {x: 0, y: 0}
   RootMergeItem: {fileID: 0}
-  MergedItems: []
+  MergedItems:
+  - {fileID: 11400000}
   ItemEffects_OnEveryTour:
   - rid: 1706635773191913542
+  ItemEffects_OnEnemy: []
   ItemEffects_OnPlaced: []
   references:
     version: 2

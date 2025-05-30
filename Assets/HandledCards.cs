@@ -4,7 +4,7 @@ using System.IO;
 
 public class HandledCards : MonoBehaviour
 {
-    public List<GameObject> HandledObjects;
+    public List<BaseItem> HandledObjects;
 
     void Update()
     {
