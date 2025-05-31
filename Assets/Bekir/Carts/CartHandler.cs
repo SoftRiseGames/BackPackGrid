@@ -26,8 +26,8 @@ public class CartHandler : MonoBehaviour
     }
     private void Start()
     {
-     
 
+      
         foreach (string i in LoadedCards.LoadedObjectsList)
         {
             if (!_items.ContainsKey(i)) continue;
@@ -50,6 +50,8 @@ public class CartHandler : MonoBehaviour
                 TotalCardToHand = TotalCardToHand + 1;
             }
         }
+
+        Debug.Log(LastDeck);
     }
     void TotalCardCount()
     {
@@ -67,17 +69,32 @@ public class CartHandler : MonoBehaviour
         Debug.Log(TotalCardToHand);
     }
     //Kart Çekme Eventi;
+    /*
+    public void OtHandToHand(string baseItemName)
+    {
+        if (!_items.ContainsKey(baseItemName)) return;
+        BaseItem selecteItem = _items[baseItemName];
+        Cart tempCreated = Instantiate(_cartPrefab);
+        tempCreated.Init(selecteItem);
+        SpawnedCarts.Add(tempCreated);
+        tempCreated.transform.SetParent(_pivot);
+        tempCreated.transform.localScale = Vector3.one;
+        tempCreated.transform.position = new Vector2(0, 0, 0);
+    }
+    */
     public void AddNewCard()
     {
-        for (int i = LastDeck; i < allCardsToSpawn.Count; i++)
+        if (LastDeck < allCardsToSpawn.Count-1)
         {
-            if (TotalCardToHand < LastDeck)
+            if (TotalCardToHand < MaxHandleCardCount)
             {
-                SpawnCart(allCardsToSpawn[i]);
                 TotalCardToHand = TotalCardToHand + 1;
                 LastDeck = LastDeck + 1;
+                SpawnCart(allCardsToSpawn[LastDeck]);
+                Debug.Log(TotalCardToHand);
             }
         }
+       
        
     }
     public void SpawnCart(string baseItemName)
@@ -91,6 +108,7 @@ public class CartHandler : MonoBehaviour
         tempCreated.transform.localScale = Vector3.one;
         RePos();
     }
+   
     void ShuffleList<T>(List<T> list)
     {
         for (int i = list.Count - 1; i > 0; i--)

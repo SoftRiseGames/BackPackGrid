@@ -4,7 +4,9 @@ public class Blood :IItemEffect
 {
     public void ExecuteEffect(Enemy enemy)
     {
-        enemy._health = enemy._health - 1;
+        if(enemy._health>0)
+            enemy._health = enemy._health - 1;
+        
         Debug.Log(enemy._health);
         Debug.Log("aaaa");
     }
