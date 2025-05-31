@@ -10,6 +10,8 @@ public class CartHandler : MonoBehaviour
     [SerializeField] private Transform _pivot;
     public SerializedDictionary<string, BaseItem> _items = new();
 
+    [SerializeField] List<BaseItem> AddItemList;
+
     public CardLoad LoadedCards;
 
     
@@ -17,15 +19,24 @@ public class CartHandler : MonoBehaviour
     {
         foreach(string i in LoadedCards.LoadedObjectsList)
         {
+
             SpawnCart(i);
         }
     }
     public void SpawnCart(string baseItemName)
     {
         if(!_items.ContainsKey(baseItemName)) return;
-        for(int i = 0; i< _items[baseItemName].HandCardCount; i++)
+        BaseItem selecteItem = null;
+        for (int i = 0; i< _items[baseItemName].HandCardCount; i++)
         {
-            BaseItem selecteItem = _items[baseItemName];
+            AddItemList.Add(_items[baseItemName]);
+        }
+
+        ShuffleList(AddItemList);
+
+        for(int j = 0; j<AddItemList.Count; j++)
+        {
+            selecteItem = AddItemList[j];
             Cart tempCreated = Instantiate(_cartPrefab);
             tempCreated.Init(selecteItem);
             SpawnedCarts.Add(tempCreated);
@@ -33,8 +44,22 @@ public class CartHandler : MonoBehaviour
             tempCreated.transform.localScale = Vector3.one;
             RePos();
         }
-        
+
+
     }
+    void ShuffleList(List<BaseItem> list)
+    {
+        for (int i = list.Count - 1; i > 0; i--)
+        {
+            int randomIndex = Random.Range(0, i + 1);
+
+            // Swap işlemi
+            BaseItem temp = list[i];
+            list[i] = list[randomIndex];
+            list[randomIndex] = temp;
+        }
+    }
+
     /// <summary>
     /// Kartlar spawn olunca hesinin pozisyonunu tekrar ayarlıyor
     /// </summary>

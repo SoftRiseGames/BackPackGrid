@@ -2524,6 +2524,7 @@ MonoBehaviour:
     - {fileID: 11400000, guid: ed4c1189096b847e2867523dc459fa3b, type: 2}
     - {fileID: 11400000, guid: 1f906d82a02cd4da9aca2e49c1d8ea7f, type: 2}
     - {fileID: 11400000, guid: 5108f7abc8414904f933b18b4b4b14b0, type: 2}
+  AddItemList: []
   LoadedCards: {fileID: 5485857}
 --- !u!1 &1346057790
 GameObject:
