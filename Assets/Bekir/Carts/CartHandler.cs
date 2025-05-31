@@ -6,7 +6,7 @@ public class CartHandler : MonoBehaviour
 {
     [SerializeField] private Cart _cartPrefab;
     [SerializeField] private Vector2 _cartDistances;
-    [HideInInspector] public List<Cart> SpawnedCarts = new();
+    [SerializeField] public List<Cart> SpawnedCarts = new();
     [SerializeField] private Transform _pivot;
     public SerializedDictionary<string, BaseItem> _items = new();
 
@@ -17,44 +17,47 @@ public class CartHandler : MonoBehaviour
     
     private void Start()
     {
-        foreach(string i in LoadedCards.LoadedObjectsList)
-        {
 
-            SpawnCart(i);
+        // 1. Tüm kart isimlerini, spawn sayısına göre listele
+        List<string> allCardsToSpawn = new List<string>();
+
+        foreach (string i in LoadedCards.LoadedObjectsList)
+        {
+            if (!_items.ContainsKey(i)) continue;
+
+            for (int b = 0; b < _items[i].HandCardCount; b++)
+            {
+                allCardsToSpawn.Add(i);
+            }
+        }
+
+        ShuffleList(allCardsToSpawn);
+
+      
+        foreach (string cardName in allCardsToSpawn)
+        {
+            SpawnCart(cardName);
         }
     }
     public void SpawnCart(string baseItemName)
     {
-        if(!_items.ContainsKey(baseItemName)) return;
-        BaseItem selecteItem = null;
-        for (int i = 0; i< _items[baseItemName].HandCardCount; i++)
-        {
-            AddItemList.Add(_items[baseItemName]);
-        }
-
-        ShuffleList(AddItemList);
-
-        for(int j = 0; j<AddItemList.Count; j++)
-        {
-            selecteItem = AddItemList[j];
-            Cart tempCreated = Instantiate(_cartPrefab);
-            tempCreated.Init(selecteItem);
-            SpawnedCarts.Add(tempCreated);
-            tempCreated.transform.SetParent(_pivot);
-            tempCreated.transform.localScale = Vector3.one;
-            RePos();
-        }
-
-
+        if (!_items.ContainsKey(baseItemName)) return;
+        BaseItem selecteItem = _items[baseItemName];
+        Cart tempCreated = Instantiate(_cartPrefab);
+        tempCreated.Init(selecteItem);
+        SpawnedCarts.Add(tempCreated);
+        tempCreated.transform.SetParent(_pivot);
+        tempCreated.transform.localScale = Vector3.one;
+        RePos();
+        
     }
-    void ShuffleList(List<BaseItem> list)
+    void ShuffleList<T>(List<T> list)
     {
         for (int i = list.Count - 1; i > 0; i--)
         {
             int randomIndex = Random.Range(0, i + 1);
 
-            // Swap işlemi
-            BaseItem temp = list[i];
+            T temp = list[i];
             list[i] = list[randomIndex];
             list[randomIndex] = temp;
         }
