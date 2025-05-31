@@ -75,6 +75,7 @@ public class CartHandler : MonoBehaviour
             {
                 SpawnCart(allCardsToSpawn[i]);
                 TotalCardToHand = TotalCardToHand + 1;
+                LastDeck = LastDeck + 1;
             }
         }
        
