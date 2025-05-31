@@ -10,17 +10,23 @@ public class CartHandler : MonoBehaviour
     [SerializeField] private Transform _pivot;
     public SerializedDictionary<string, BaseItem> _items = new();
 
-    [SerializeField] List<BaseItem> AddItemList;
-
     public CardLoad LoadedCards;
     [SerializeField] int MaxHandleCardCount;
+    [SerializeField] GameObject CardDeckPivot;
+    private int TotalCardToHand;
     int LastDeck;
-    
+    [SerializeField]List<string> allCardsToSpawn = new List<string>();
+    private void OnEnable()
+    {
+        EventManagerCode.OnEnemyTurn += TotalCardCount;
+    }
+    private void OnDisable()
+    {
+        EventManagerCode.OnEnemyTurn -= TotalCardCount;
+    }
     private void Start()
     {
-
-        // 1. Tüm kart isimlerini, spawn sayısına göre listele
-        List<string> allCardsToSpawn = new List<string>();
+     
 
         foreach (string i in LoadedCards.LoadedObjectsList)
         {
@@ -37,13 +43,31 @@ public class CartHandler : MonoBehaviour
       
         foreach (string cardName in allCardsToSpawn)
         {
-            if (LastDeck < MaxHandleCardCount)
+            if (TotalCardToHand < MaxHandleCardCount)
             {
                 SpawnCart(cardName);
                 LastDeck = LastDeck + 1;
+                TotalCardToHand = TotalCardToHand + 1;
             }
-      
         }
+    }
+    void TotalCardCount()
+    {
+        TotalCardToHand = CardDeckPivot.transform.childCount;
+        Debug.Log(LastDeck);
+    }
+    //Kart Çekme Eventi;
+    void AddNewCard()
+    {
+        for (int i = LastDeck; i < allCardsToSpawn.Count; i++)
+        {
+            if (TotalCardToHand < LastDeck)
+            {
+                SpawnCart(allCardsToSpawn[i]);
+                TotalCardToHand = TotalCardToHand + 1;
+            }
+        }
+       
     }
     public void SpawnCart(string baseItemName)
     {

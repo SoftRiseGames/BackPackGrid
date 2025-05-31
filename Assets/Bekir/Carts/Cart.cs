@@ -141,7 +141,7 @@ public class Cart : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IPoin
     {
         _baseItem.ItemEffects_OnEnemy?.ForEach(effect => effect?.ExecuteEffect(enemy));
         DOTween.Kill(transform);
-        Destroy(gameObject);
+        gameObject.SetActive(false);
     }
 
 }
