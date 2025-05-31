@@ -70,7 +70,7 @@ public class CartHandler : MonoBehaviour
     }
     //Kart Çekme Eventi;
     /*
-    public void OtHandToHand(string baseItemName)
+    public void OutHandToHand(string baseItemName)
     {
         if (!_items.ContainsKey(baseItemName)) return;
         BaseItem selecteItem = _items[baseItemName];

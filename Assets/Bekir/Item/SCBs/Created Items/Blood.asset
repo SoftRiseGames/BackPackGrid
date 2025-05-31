@@ -21,6 +21,7 @@ MonoBehaviour:
   RootMergeItem: {fileID: 0}
   MergedItems:
   - {fileID: 11400000, guid: ceaa4770064244877966e1c2d3e0f8a6, type: 2}
+  - {fileID: 11400000}
   ItemEffects_OnEveryTour:
   - rid: 4778697489712676935
   ItemEffects_OnEnemy:
