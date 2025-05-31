@@ -6,7 +6,7 @@ public class CartHandler : MonoBehaviour
 {
     [SerializeField] private Cart _cartPrefab;
     [SerializeField] private Vector2 _cartDistances;
-    [SerializeField] public List<Cart> SpawnedCarts = new();
+    public List<Cart> SpawnedCarts = new();
     [SerializeField] private Transform _pivot;
     public SerializedDictionary<string, BaseItem> _items = new();
 
@@ -53,11 +53,21 @@ public class CartHandler : MonoBehaviour
     }
     void TotalCardCount()
     {
-        TotalCardToHand = CardDeckPivot.transform.childCount;
-        Debug.Log(LastDeck);
+        int activeChildCount = 0;
+
+        foreach (Transform child in CardDeckPivot.transform)
+        {
+            if (child.gameObject.activeSelf)
+            {
+                activeChildCount++;
+            }
+        }
+
+        TotalCardToHand = activeChildCount;
+        Debug.Log(TotalCardToHand);
     }
     //Kart Çekme Eventi;
-    void AddNewCard()
+    public void AddNewCard()
     {
         for (int i = LastDeck; i < allCardsToSpawn.Count; i++)
         {
@@ -79,7 +89,6 @@ public class CartHandler : MonoBehaviour
         tempCreated.transform.SetParent(_pivot);
         tempCreated.transform.localScale = Vector3.one;
         RePos();
-        
     }
     void ShuffleList<T>(List<T> list)
     {
