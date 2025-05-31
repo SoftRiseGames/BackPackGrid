@@ -2527,6 +2527,7 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 5108f7abc8414904f933b18b4b4b14b0, type: 2}
   AddItemList: []
   LoadedCards: {fileID: 5485857}
+  MaxHandleCardCount: 5
 --- !u!1 &1346057790
 GameObject:
   m_ObjectHideFlags: 0

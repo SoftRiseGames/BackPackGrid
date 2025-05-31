@@ -13,7 +13,8 @@ public class CartHandler : MonoBehaviour
     [SerializeField] List<BaseItem> AddItemList;
 
     public CardLoad LoadedCards;
-
+    [SerializeField] int MaxHandleCardCount;
+    int LastDeck;
     
     private void Start()
     {
@@ -36,7 +37,12 @@ public class CartHandler : MonoBehaviour
       
         foreach (string cardName in allCardsToSpawn)
         {
-            SpawnCart(cardName);
+            if (LastDeck < MaxHandleCardCount)
+            {
+                SpawnCart(cardName);
+                LastDeck = LastDeck + 1;
+            }
+      
         }
     }
     public void SpawnCart(string baseItemName)
