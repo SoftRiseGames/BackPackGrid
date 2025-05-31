@@ -5,11 +5,13 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "New Item", menuName = "Inventory/Item")]
 public class BaseItem : ScriptableObject
 {
-    public BaseItem UpgradedItem;
+    
     /// <summary>
     /// for UI
     /// </summary>
     public string ItemName;
+    public BaseItem UpgradedItem;
+    public int HandCardCount;
     /// <summary>
     /// for giving tip to player and for uI
     /// </summary>

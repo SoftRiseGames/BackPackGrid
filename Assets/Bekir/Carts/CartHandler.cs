@@ -23,14 +23,17 @@ public class CartHandler : MonoBehaviour
     public void SpawnCart(string baseItemName)
     {
         if(!_items.ContainsKey(baseItemName)) return;
-
-        BaseItem selecteItem = _items[baseItemName];
-        Cart tempCreated = Instantiate(_cartPrefab);
-        tempCreated.Init(selecteItem);
-        SpawnedCarts.Add(tempCreated);
-        tempCreated.transform.SetParent(_pivot);
-        tempCreated.transform.localScale = Vector3.one;
-        RePos();
+        for(int i = 0; i< _items[baseItemName].HandCardCount; i++)
+        {
+            BaseItem selecteItem = _items[baseItemName];
+            Cart tempCreated = Instantiate(_cartPrefab);
+            tempCreated.Init(selecteItem);
+            SpawnedCarts.Add(tempCreated);
+            tempCreated.transform.SetParent(_pivot);
+            tempCreated.transform.localScale = Vector3.one;
+            RePos();
+        }
+        
     }
     /// <summary>
     /// Kartlar spawn olunca hesinin pozisyonunu tekrar ayarlıyor
