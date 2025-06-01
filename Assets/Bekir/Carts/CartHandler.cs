@@ -57,14 +57,10 @@ public class CartHandler : MonoBehaviour
     {
         int activeChildCount = 0;
 
-        foreach (Transform child in CardDeckPivot.transform)
+        for(int i = 0;i<SpawnedCarts.Count; i++)
         {
-            if (child.gameObject.activeSelf)
-            {
-                activeChildCount++;
-            }
+            activeChildCount++;
         }
-
         TotalCardToHand = activeChildCount;
         Debug.Log(TotalCardToHand);
     }

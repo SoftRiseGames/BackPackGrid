@@ -13,29 +13,34 @@ public class Cart : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IPoin
     [SerializeField] private float _upScale;
     [SerializeField] private float _speed;
     [SerializeField] private LayerMask _cartPlacementLayer;
-    [SerializeField] 
     private BaseItem _baseItem;
     private bool _mouseHolding;
     private Vector3 _startPosition;
     [SerializeField] private Enemy enemy;
     [SerializeField] bool canMove;
-
+    public int TourCount;
     PlayerHandler player;
+    public bool isPlayed;
+    Collider2D collider;
     private void OnEnable()
     {
         EventManagerCode.OnEnemyTurn += CanMoveFalse;
         EnemyManager.onPlayerTurn += CanMoveTrue;
+        EventManagerCode.OnEnemyTurn += OnTour;
     }
     private void Start()
     {
-        //enemy = GameObject.Find("Enemy").GetComponent<Enemy>();
+        enemy = GameObject.Find("Enemy").GetComponent<Enemy>();
         player = GameObject.Find("Player").GetComponent<PlayerHandler>();
+        TourCount = _baseItem.PassiveTourCount;
     }
 
     private void OnDisable()
     {
         EventManagerCode.OnEnemyTurn -= CanMoveFalse;
         EnemyManager.onPlayerTurn -= CanMoveTrue;
+        EventManagerCode.OnEnemyTurn -= OnTour;
+
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -83,6 +88,7 @@ public class Cart : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IPoin
 
             if (hit2D.collider != null)
             {
+               collider = hit2D.collider;
                OnAttack();
             }
             else
@@ -138,7 +144,18 @@ public class Cart : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IPoin
 
     public void OnTour()
     {
-        _baseItem.ItemEffects_OnEveryTour?.ForEach(effect => effect?.PassiveEffect(player, enemy));
+        if (isPlayed)
+        {
+            if (TourCount > 0 && _baseItem.isHavePassive)
+            {
+                _baseItem.ItemEffects_OnEveryTour?.ForEach(effect => effect?.PassiveEffect(player, enemy,collider));
+                TourCount = TourCount - 1;
+            }
+            else
+                Destroy(gameObject);
+        }
+        
+       
     }
 
     public void OnAttack()
@@ -146,10 +163,12 @@ public class Cart : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IPoin
         _baseItem.ItemEffects_OnEnemy?.ForEach(effect => effect?.ExecuteEffect(enemy));
         DOTween.Kill(transform);
         GameObject.Find("Pool").GetComponent<CartHandler>().SpawnedCarts.Remove(gameObject.GetComponent<Cart>());
+        gameObject.GetComponent<BoxCollider2D>().enabled = false;
         _description.color = new Color(0, 0, 0, 0);
         _name.color = new Color(0, 0, 0, 0);
         _itemBG.color = new Color(0, 0, 0, 0);
         _itemImage.color = new Color(0, 0, 0, 0);
+        isPlayed = true;
     }
 
 }

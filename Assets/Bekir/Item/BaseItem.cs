@@ -11,6 +11,7 @@ public class BaseItem : ScriptableObject
     /// </summary>
     public string ItemName;
     public int HandCardCount;
+    public bool isHavePassive;
     /// <summary>
     /// for giving tip to player and for uI
     /// </summary>

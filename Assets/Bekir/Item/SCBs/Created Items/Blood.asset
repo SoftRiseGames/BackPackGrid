@@ -13,25 +13,27 @@ MonoBehaviour:
   m_Name: Blood
   m_EditorClassIdentifier: 
   ItemName: Blood
-  UpgradedItem: {fileID: 11400000, guid: 9a917e32ac7616842a0a28f244559c37, type: 2}
   HandCardCount: 5
+  isHavePassive: 1
   Description: "Rakibe Kan Hasar\u0131 Vur"
   ItemSprite: {fileID: -1250021020546060479, guid: 410f67d54c6e81b45862e48f2d1f5245, type: 3}
   cellSize: {x: 0, y: 0}
-  RootMergeItem: {fileID: 0}
+  RootMergeItem: {fileID: 11400000, guid: 9a917e32ac7616842a0a28f244559c37, type: 2}
+  PassiveTourCount: 1
   MergedItems:
   - {fileID: 11400000, guid: ceaa4770064244877966e1c2d3e0f8a6, type: 2}
-  ItemEffects_OnEveryTour:
-  - rid: 4778697489712676935
   ItemEffects_OnEnemy:
   - rid: 4778697489712676936
   ItemEffects_OnPlaced: []
+  ItemEffects_OnEveryTour:
+  - rid: 501085968070606923
   references:
     version: 2
     RefIds:
-    - rid: 4778697489712676935
-      type: {class: Blood, ns: , asm: Assembly-CSharp}
+    - rid: 501085968070606923
+      type: {class: Burn, ns: , asm: Assembly-CSharp}
       data: 
     - rid: 4778697489712676936
       type: {class: Blood, ns: , asm: Assembly-CSharp}
-      data: 
+      data:
+        TotalDamage: 2
