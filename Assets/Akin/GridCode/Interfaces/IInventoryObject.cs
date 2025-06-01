@@ -32,7 +32,7 @@ public interface IInventoryObject
 
     public List<GameObject> AddedMaterialsChecker { get; }
     public bool gridEnter { get; set; }
-
-    
+    public bool isAdded { get; set; }
+    public bool CanEnterPosition { get; set; }
 
 }

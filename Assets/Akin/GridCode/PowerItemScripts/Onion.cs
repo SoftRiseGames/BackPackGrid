@@ -44,6 +44,8 @@ public class Onion : MonoBehaviour,IPowerItem ,IInventoryObject
     public List<GameObject> AddedMaterialsChecker { get; set; }
 
     public BaseItem BaseItemObj { get; set; }
+    public bool isAdded { get; set; }
+    public bool CanEnterPosition { get => throw new System.NotImplementedException(); set => throw new System.NotImplementedException(); }
 
     void Start()
     {

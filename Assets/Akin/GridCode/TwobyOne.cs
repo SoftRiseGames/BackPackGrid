@@ -61,7 +61,7 @@ public class TwobyOne : MonoBehaviour, IInventoryObject, IRotatable, IPowerItem
     float pivotOffsetY = 0;
     public Vector2 StartPosition;
     bool isHandle;
-    bool CanEnterPosition = true;
+    public bool CanEnterPosition { get; set; }
     int successfulMerges = 0;
 
     float dragThreshold = 0.11f;
@@ -70,7 +70,9 @@ public class TwobyOne : MonoBehaviour, IInventoryObject, IRotatable, IPowerItem
     float lastlocationY = 0;
 
     Vector3 mouseDelta = new Vector3();
-    bool isAdded = false;
+    public bool isAdded { get; set; }
+    
+
     public HandledCards CardHandleDataList;
     [SerializeField] List<BoxCollider2D> CollideDedectors;
     private HashSet<BaseItem> objectsThatAdded = new HashSet<BaseItem>();
@@ -82,27 +84,14 @@ public class TwobyOne : MonoBehaviour, IInventoryObject, IRotatable, IPowerItem
         isDragging = false;
         CardHandleDataList = GameObject.Find("HandledCardManager").GetComponent<HandledCards>();
         BaseItemObj = BaseItem;
+        CanEnterPosition = true;
         
     }
 
     private void Update()
     {
-        Debug.Log(AddedMaterialsChecker.Count);
-        /*
-        if (this.gameObject.name == "Blood")
-        {
-            Debug.Log("OnDownRight " + OnDownRight);
-            Debug.Log("OnDownLeft " + OnDownLeft);
-            Debug.Log("OnDownMiddle " + OnDownMiddle);
-            Debug.Log("OnUpRight" + OnUpRight);
-            Debug.Log("OnUpLeft " + OnUpLeft);
-            Debug.Log("OnUpMiddle" + OnUpMiddle);
-            Debug.Log("OnLeftMddle " + onLeftMiddle);
-            Debug.Log("OnRightMiddle " + onRightMiddle);
-        }
-            Debug.Log(gridEnter);
-        */
-        Debug.Log(successfulMerges);
+        if (this.gameObject.name == "Sword")
+            Debug.Log(CanEnterPosition);
         MouseDragControl();
         OutOfGrid();
         GridEnterBoolCheck();
@@ -113,7 +102,6 @@ public class TwobyOne : MonoBehaviour, IInventoryObject, IRotatable, IPowerItem
             ListDeleter();
         CombineObject();
         TryAddUpgradedItem();
-        Debug.Log(AddedMaterialsChecker);
         mouseDelta = new Vector3(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"), 0);
         if (isHandle)
         {
@@ -279,8 +267,7 @@ public class TwobyOne : MonoBehaviour, IInventoryObject, IRotatable, IPowerItem
                 if (xAligned || yAligned)
                 {
                     handledObject.transform.position = objectPosition;
-                    if (xAligned) Debug.Log("X Axis Move");
-                    if (yAligned) Debug.Log("Y Axis Move");
+                    
                 }
 
 
@@ -322,15 +309,15 @@ public class TwobyOne : MonoBehaviour, IInventoryObject, IRotatable, IPowerItem
 
             if (objectsThatAdded.Contains(BaseItem))
             {
-                Debug.Log("Gerçekleşti");
                 objectsThatAdded.Remove(BaseItem);
             }
+            
+
         }
 
         
         if (!gridEnter && isAdded)
         {
-            Debug.Log("OutOfGrid");
             BaseItem toRemove = null;
 
             foreach (BaseItem i in CardHandleDataList.HandledObjects)
@@ -357,8 +344,13 @@ public class TwobyOne : MonoBehaviour, IInventoryObject, IRotatable, IPowerItem
     void ListDeleter()
     {
         isAdded = false;
-        Debug.Log(BaseItem.MergedItems.Count);
         CardHandleDataList.HandledObjects.Remove(BaseItemObj);
+
+        foreach (GameObject i in AddedMaterialsChecker)
+        {
+            i.GetComponent<IInventoryObject>().isAdded = false;
+            CardHandleDataList.HandledObjects.Remove(i.GetComponent<IInventoryObject>().BaseItemObj);
+        }
     }
     void CombineObject()
     {
@@ -372,9 +364,7 @@ public class TwobyOne : MonoBehaviour, IInventoryObject, IRotatable, IPowerItem
                 {
                     if (i.GetComponent<IInventoryObject>().BaseItemObj == BaseItemObj.MergedItems[MergedItems])
                     {
-                        Debug.Log(successfulMerges);
                         successfulMerges++; 
-                        Debug.Log("Merged Successfully");
                     }
                 }
             }
@@ -388,9 +378,8 @@ public class TwobyOne : MonoBehaviour, IInventoryObject, IRotatable, IPowerItem
         {
             if (!objectsThatAdded.Contains(BaseItemObj))
             {
-                Debug.Log("ReAdd");
                 CardHandleDataList.HandledObjects.Add(BaseItem.UpgradedItem);
-                objectsThatAdded.Add(BaseItemObj); // bu objeyi ekledi olarak işaretle
+                objectsThatAdded.Add(BaseItemObj); 
             }
         }
     }
@@ -430,6 +419,7 @@ public class TwobyOne : MonoBehaviour, IInventoryObject, IRotatable, IPowerItem
 
         ScaleObjectRechange();
 
+        gridEnter = false;
 
     }
 

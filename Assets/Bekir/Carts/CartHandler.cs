@@ -69,19 +69,7 @@ public class CartHandler : MonoBehaviour
         Debug.Log(TotalCardToHand);
     }
     //Kart Çekme Eventi;
-    /*
-    public void OutHandToHand(string baseItemName)
-    {
-        if (!_items.ContainsKey(baseItemName)) return;
-        BaseItem selecteItem = _items[baseItemName];
-        Cart tempCreated = Instantiate(_cartPrefab);
-        tempCreated.Init(selecteItem);
-        SpawnedCarts.Add(tempCreated);
-        tempCreated.transform.SetParent(_pivot);
-        tempCreated.transform.localScale = Vector3.one;
-        tempCreated.transform.position = new Vector2(0, 0, 0);
-    }
-    */
+    
     public void AddNewCard()
     {
         if (LastDeck < allCardsToSpawn.Count-1)

@@ -43,6 +43,8 @@ public class TwobyTwo : IInventoryObject
     public List<GameObject> AddedMaterialsChecker { get; set; }
 
     public BaseItem BaseItemObj { get; set; }
+    public bool isAdded { get; set; }
+    public bool CanEnterPosition { get; set; }
 
     public void Consume()
     {
