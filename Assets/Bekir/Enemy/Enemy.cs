@@ -9,6 +9,7 @@ public class Enemy : MonoBehaviour, IDamage
     public SOEnemy EnemySettings;
     [SerializeField] private PlayerHandler PlayerObject;
     public int EnemyPatternCounter;
+    [HideInInspector] public int Order;
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.A))
