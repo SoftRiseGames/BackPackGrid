@@ -10,7 +10,6 @@ public class BaseItem : ScriptableObject
     /// for UI
     /// </summary>
     public string ItemName;
-    public BaseItem UpgradedItem;
     public int HandCardCount;
     /// <summary>
     /// for giving tip to player and for uI
@@ -25,15 +24,19 @@ public class BaseItem : ScriptableObject
     /// </summary>
     public Vector2Int cellSize;
     public BaseItem RootMergeItem;
+    public int PassiveTourCount;
     public List<BaseItem> MergedItems;
     [ListDrawerSettings]
-    [SerializeReference, PolymorphicDrawerSettings]
-    public List<IItemEffect> ItemEffects_OnEveryTour = new();
+   
     [ListDrawerSettings]
     [SerializeReference, PolymorphicDrawerSettings]
     public List<IItemEffect> ItemEffects_OnEnemy = new();
     [SerializeReference, PolymorphicDrawerSettings]
     public List<IItemEffect> ItemEffects_OnPlaced = new();
-   
+
+    [SerializeReference, PolymorphicDrawerSettings]
+    public List<IPassive> ItemEffects_OnEveryTour = new();
+
+
 }
 

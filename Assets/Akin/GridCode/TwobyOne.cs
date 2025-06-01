@@ -302,9 +302,9 @@ public class TwobyOne : MonoBehaviour, IInventoryObject, IRotatable, IPowerItem
                 isAdded = true;
             }
 
-            if (CardHandleDataList.HandledObjects.Contains(BaseItem.UpgradedItem))
+            if (CardHandleDataList.HandledObjects.Contains(BaseItem.RootMergeItem))
             {
-                CardHandleDataList.HandledObjects.Remove(BaseItem.UpgradedItem);
+                CardHandleDataList.HandledObjects.Remove(BaseItem.RootMergeItem);
             }
 
             if (objectsThatAdded.Contains(BaseItem))
@@ -378,7 +378,7 @@ public class TwobyOne : MonoBehaviour, IInventoryObject, IRotatable, IPowerItem
         {
             if (!objectsThatAdded.Contains(BaseItemObj))
             {
-                CardHandleDataList.HandledObjects.Add(BaseItem.UpgradedItem);
+                CardHandleDataList.HandledObjects.Add(BaseItem.RootMergeItem);
                 objectsThatAdded.Add(BaseItemObj); 
             }
         }

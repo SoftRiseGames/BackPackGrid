@@ -7,8 +7,9 @@ using UnityEngine.UI;
 public class Cart : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IPointerEnterHandler, IPointerExitHandler, IItem
 {
     [SerializeField] private Image _itemImage;
-    [SerializeField] private TMP_Text _description;
-    [SerializeField] private TMP_Text _name;
+    [SerializeField] private Image _itemBG;
+    [SerializeField] private TextMeshProUGUI _description;
+    [SerializeField] private TextMeshProUGUI _name;
     [SerializeField] private float _upScale;
     [SerializeField] private float _speed;
     [SerializeField] private LayerMask _cartPlacementLayer;
@@ -18,6 +19,8 @@ public class Cart : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IPoin
     private Vector3 _startPosition;
     [SerializeField] private Enemy enemy;
     [SerializeField] bool canMove;
+
+    PlayerHandler player;
     private void OnEnable()
     {
         EventManagerCode.OnEnemyTurn += CanMoveFalse;
@@ -26,6 +29,7 @@ public class Cart : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IPoin
     private void Start()
     {
         //enemy = GameObject.Find("Enemy").GetComponent<Enemy>();
+        player = GameObject.Find("Player").GetComponent<PlayerHandler>();
     }
 
     private void OnDisable()
@@ -134,7 +138,7 @@ public class Cart : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IPoin
 
     public void OnTour()
     {
-        _baseItem.ItemEffects_OnEveryTour?.ForEach(effect => effect?.TourEffect(enemy));
+        _baseItem.ItemEffects_OnEveryTour?.ForEach(effect => effect?.PassiveEffect(player, enemy));
     }
 
     public void OnAttack()
@@ -142,7 +146,10 @@ public class Cart : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IPoin
         _baseItem.ItemEffects_OnEnemy?.ForEach(effect => effect?.ExecuteEffect(enemy));
         DOTween.Kill(transform);
         GameObject.Find("Pool").GetComponent<CartHandler>().SpawnedCarts.Remove(gameObject.GetComponent<Cart>());
-        Destroy(gameObject);
+        _description.color = new Color(0, 0, 0, 0);
+        _name.color = new Color(0, 0, 0, 0);
+        _itemBG.color = new Color(0, 0, 0, 0);
+        _itemImage.color = new Color(0, 0, 0, 0);
     }
 
 }
