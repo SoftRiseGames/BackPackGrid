@@ -30,11 +30,10 @@ public class Cart : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IPoin
     }
     private void Start()
     {
-        enemy = GameObject.Find("Enemy").GetComponent<Enemy>();
         player = GameObject.Find("Player").GetComponent<PlayerHandler>();
         TourCount = _baseItem.PassiveTourCount;
     }
-
+    
     private void OnDisable()
     {
         EventManagerCode.OnEnemyTurn -= CanMoveFalse;
@@ -80,7 +79,6 @@ public class Cart : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IPoin
         mousePos.z = 0;
         */
       
-
         HoldingCard();
 
         if(Input.GetMouseButtonUp(0)){
@@ -146,13 +144,16 @@ public class Cart : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IPoin
     {
         if (isPlayed)
         {
-            if (TourCount > 0 && _baseItem.isHavePassive)
+            if (TourCount > 0 && _baseItem.isHavePassive && collider.GetComponent<Enemy>()._health>0)
             {
                 _baseItem.ItemEffects_OnEveryTour?.ForEach(effect => effect?.PassiveEffect(player, collider.GetComponent<Enemy>())); ;
                 TourCount = TourCount - 1;
             }
             else
+            {
                 Destroy(gameObject);
+            }
+                
         }
         
        

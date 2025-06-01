@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System;
 public class EnemyManager : MonoBehaviour
 {
+    public static EnemyManager instance; 
     public List<Enemy> enemies;
     private bool isEventRunning = false;
     public static Action onPlayerTurn;
@@ -17,8 +18,22 @@ public class EnemyManager : MonoBehaviour
     {
         EventManagerCode.OnEnemyTurn -= StartCoroutineEvent;
     }
-    
-    
+
+    private void Start()
+    {
+        if (instance == null)
+            instance = this;
+
+       
+    }
+
+    private void Update()
+    {
+        for (int i = 0; i < enemies.Count; i++)
+        {
+            enemies[i].Order = i;
+        }
+    }
     void StartCoroutineEvent()
     {
         if (!isEventRunning)

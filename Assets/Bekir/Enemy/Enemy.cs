@@ -8,26 +8,15 @@ public class Enemy : MonoBehaviour, IDamage
     public PlayerHandler player;
     public SOEnemy EnemySettings;
     [SerializeField] private PlayerHandler PlayerObject;
-    public int EnemyPatternCounter;
-    [HideInInspector] public int Order;
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.A))
-            _health = _health - 1;
-    }
-    public void TakeDamage(float value)
-    {
-        
-            if (_health < value){
-            Die();
-            return;
-        }
-        _healtCounter -= value;
-    }
+    [HideInInspector]public int EnemyPatternCounter;
+    public int Order;
+
 
     public void Die()
     {
+        EnemyManager.instance.enemies.Remove(gameObject.GetComponent<Enemy>());
         Debug.Log("I am Dead");
+        gameObject.SetActive(false);
     }
 
     public void AttackOnTour()
@@ -53,5 +42,12 @@ public class Enemy : MonoBehaviour, IDamage
     public void PassiveAttackOnTour()
     {
         return;
+    }
+
+    public void TakeDamage(float value)
+    {
+        _health = _health - value;
+        if (_health <= 0)
+            Die();
     }
 }

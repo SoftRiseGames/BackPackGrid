@@ -644,6 +644,7 @@ MonoBehaviour:
   EnemySettings: {fileID: 11400000, guid: e1edb7e87f775264b93813635089a438, type: 2}
   PlayerObject: {fileID: 1100168319}
   EnemyPatternCounter: 0
+  Order: 0
 --- !u!212 &262483781
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1872,6 +1873,7 @@ MonoBehaviour:
   EnemySettings: {fileID: 11400000, guid: e1edb7e87f775264b93813635089a438, type: 2}
   PlayerObject: {fileID: 1100168319}
   EnemyPatternCounter: 0
+  Order: 0
 --- !u!212 &1019858608
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -3634,53 +3636,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1919098975
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1919098976}
-  - component: {fileID: 1919098977}
-  m_Layer: 0
-  m_Name: EnemyOrderManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1919098976
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1919098975}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1919098977
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1919098975}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 08aa313b9512adb43b7f5e4d84be90c4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  enemyList:
-  - {fileID: 1019858607}
-  - {fileID: 262483780}
 --- !u!1 &1984088203
 GameObject:
   m_ObjectHideFlags: 0
@@ -3868,4 +3823,3 @@ SceneRoots:
   - {fileID: 1843856402}
   - {fileID: 92143207}
   - {fileID: 117776239}
-  - {fileID: 1919098976}

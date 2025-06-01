@@ -62,7 +62,6 @@ public class CartHandler : MonoBehaviour
             activeChildCount++;
         }
         TotalCardToHand = activeChildCount;
-        Debug.Log(TotalCardToHand);
     }
     //Kart Çekme Eventi;
     
