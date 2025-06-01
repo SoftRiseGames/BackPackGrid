@@ -61,17 +61,16 @@ public class Sword : IItemEffect
 public class Bleeding : IPassive
 {
 
-    public void PassiveEffect(PlayerHandler player, Enemy enemy, Collider2D collider)
+    public void PassiveEffect(PlayerHandler player, Enemy enemy)
     {
-      
-        collider.GetComponent<Enemy>()._health = collider.GetComponent<Enemy>()._health - 1;
+        enemy._health = enemy._health - 1;
     }
 }
 
 public class AttackBuff : IPassive
 {
 
-    public void PassiveEffect(PlayerHandler player, Enemy enemy,Collider2D collider)
+    public void PassiveEffect(PlayerHandler player, Enemy enemy)
     {
 
     }
@@ -80,18 +79,21 @@ public class AttackBuff : IPassive
 public class Burn : IPassive
 {
 
-    public void PassiveEffect(PlayerHandler player, Enemy enemy, Collider2D collider)
+    public void PassiveEffect(PlayerHandler player, Enemy enemy)
     {
        
         Debug.Log("Passive Damage Taken");
-        collider.GetComponent<Enemy>()._health = collider.GetComponent<Enemy>()._health - 10;
+        enemy._health = enemy._health - 10;
+
+        GameObject.Find("SelectedEnemy").GetComponent<SelectedEnemy>().selectedEnemy = null;
 
     }
 }
 
 public class LifeSteal : IPassive
 {
-    public void PassiveEffect(PlayerHandler player, Enemy enemy, Collider2D collider ) 
+
+    public void PassiveEffect(PlayerHandler player, Enemy enemy ) 
     {
         float DMGSteal = PlayerPrefs.GetFloat("LastDMG") + ((PlayerPrefs.GetFloat("LastDMG") / 100) * 10);
         PlayerPrefs.SetFloat("BasedDMG", DMGSteal);

@@ -148,7 +148,7 @@ public class Cart : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IPoin
         {
             if (TourCount > 0 && _baseItem.isHavePassive)
             {
-                _baseItem.ItemEffects_OnEveryTour?.ForEach(effect => effect?.PassiveEffect(player, enemy,collider));
+                _baseItem.ItemEffects_OnEveryTour?.ForEach(effect => effect?.PassiveEffect(player, collider.GetComponent<Enemy>())); ;
                 TourCount = TourCount - 1;
             }
             else
