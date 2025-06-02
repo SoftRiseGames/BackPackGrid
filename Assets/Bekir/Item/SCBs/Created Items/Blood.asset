@@ -29,11 +29,11 @@ MonoBehaviour:
   - rid: 4778697489712676936
   ItemEffects_OnPlaced: []
   ItemEffects_OnEveryTour:
-  - rid: 501085989677826120
+  - rid: 501085993762816074
   references:
     version: 2
     RefIds:
-    - rid: 501085989677826120
+    - rid: 501085993762816074
       type: {class: AttackBuff, ns: , asm: Assembly-CSharp}
       data: 
     - rid: 4778697489712676936
