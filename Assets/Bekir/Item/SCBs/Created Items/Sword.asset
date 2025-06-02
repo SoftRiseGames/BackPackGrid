@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ItemName: Sword
   HandCardCount: 5
-  isHavePassive: 1
+  isHavePassive: 0
   TotalDamage: 3
   isAttackDMG: 0
   order: 0

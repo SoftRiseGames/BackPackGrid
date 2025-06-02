@@ -3,5 +3,5 @@ using UnityEngine;
 public interface IItemEffect
 {
     void ExecuteEffect(Enemy enemy,Cart card);
-    void TourEffect(Enemy enemy);
+    void TourEffect(Enemy enemy,Cart card);
 }

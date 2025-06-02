@@ -21,6 +21,7 @@ public class Cart : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IPoin
     public int TourCount;
     PlayerHandler player;
     public bool isPlayed;
+    [HideInInspector] public float CardDamage;
     Collider2D collider;
     private void OnEnable()
     {
@@ -32,6 +33,7 @@ public class Cart : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IPoin
     {
         player = GameObject.Find("Player").GetComponent<PlayerHandler>();
         TourCount = _baseItem.PassiveTourCount;
+        CardDamage = _baseItem.TotalDamage;
     }
     
     private void OnDisable()
@@ -155,13 +157,17 @@ public class Cart : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IPoin
                 Destroy(gameObject);
             }
         }
+        TourPassiveEffect();
         
        
     }
-
+    public void TourPassiveEffect()
+    {
+        _baseItem.ItemEffects_OnEnemy?.ForEach(effect => effect?.TourEffect(enemy, gameObject.transform.GetComponent<Cart>()));
+    }
     public void OnAttack()
     {
-        if(_baseItem.order>= enemy.Order)
+        if(_baseItem.order >= enemy.Order)
         {
             Enemy EnemyCollider = enemy;
 

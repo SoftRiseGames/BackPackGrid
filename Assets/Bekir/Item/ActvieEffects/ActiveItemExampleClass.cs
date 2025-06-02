@@ -7,7 +7,7 @@ public class ActiveItemExampleClass : IItemEffect
     {
     }
 
-    public void TourEffect(Enemy enemy)
+    public void TourEffect(Enemy enemy,Cart card)
     {
         
     }
