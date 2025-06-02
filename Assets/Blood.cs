@@ -2,31 +2,23 @@ using UnityEngine;
 
 public class Blood : IItemEffect
 {
-    public float TotalDamage = 1;
-    public void ExecuteEffect(Enemy enemy)
+    public void ExecuteEffect(Enemy enemy, Cart card)
     {
-        float startingBaseDMG = 2;
-        PlayerPrefs.SetFloat("FirstEnemyHealth", enemy._health);
-        if (PlayerPrefs.HasKey("LastDMG"))
-            TotalDamage = PlayerPrefs.GetInt("LastDMG");
-        else
-            TotalDamage = startingBaseDMG;
+        float TotalDamage = card._baseItem.TotalDamage;
 
         if (enemy._health > 0)
         {
-            enemy.TakeDamage(2);
+            if (PlayerPrefs.HasKey("isHasAttackBuff"))
+                enemy.TakeDamage((TotalDamage) + ((TotalDamage / 100) * 10));
+            else
+                enemy.TakeDamage((TotalDamage));
         }
-        
-
-        PlayerPrefs.SetFloat("LastEnemyHealth", enemy._health);
         GameObject.Find("SelectedEnemy").GetComponent<SelectedEnemy>().selectedEnemy = enemy;
-        PlayerPrefs.DeleteKey("LastDMG");
-        PlayerPrefs.SetFloat("BasedDMG", startingBaseDMG);
     }
 
     public void TourEffect(Enemy enemy)
     {
-        Debug.Log("bbbbb");
+      
     }
 
 
@@ -35,31 +27,25 @@ public class Blood : IItemEffect
 
 public class Sword : IItemEffect
 {
-
-
-    public float TotalDamage = 2;
-    public void ExecuteEffect(Enemy enemy)
+    public void ExecuteEffect(Enemy enemy, Cart Card)
     {
-        PlayerPrefs.SetFloat("FirstEnemyHealth", enemy._health);
-        float startingBaseDMG = 2;
-        if (PlayerPrefs.HasKey("BasedDMG"))
-            TotalDamage = PlayerPrefs.GetInt("BasedDMG");
-        else
-            TotalDamage = startingBaseDMG;
 
-        PlayerPrefs.SetFloat("FirstEnemyHealth", enemy._health);
+        float TotalDamage = Card._baseItem.TotalDamage;
+
         if (enemy._health > 0)
-            enemy.TakeDamage(2);
-
+        {
+            if (PlayerPrefs.HasKey("isHasAttackBuff"))
+                enemy.TakeDamage((TotalDamage) + ((TotalDamage / 100) * 10));
+            else
+                enemy.TakeDamage((TotalDamage));
+        }
         GameObject.Find("SelectedEnemy").GetComponent<SelectedEnemy>().selectedEnemy = enemy;
-        PlayerPrefs.SetFloat("LastEnemyHealth", enemy._health);
-        PlayerPrefs.DeleteKey("BasedDMG");
-        PlayerPrefs.SetFloat("LastDMG", TotalDamage);
+      
     }
 
     public void TourEffect(Enemy enemy)
     {
-        // throw new System.NotImplementedException();
+       
     }
 }
 
@@ -67,7 +53,7 @@ public class Sword : IItemEffect
 public class Bleeding : IPassive
 {
 
-    public void PassiveEffect(PlayerHandler player, Enemy enemy)
+    public void PassiveEffect(PlayerHandler player, Enemy enemy, Cart card)
     {
        enemy.TakeDamage(1);
     }
@@ -75,31 +61,27 @@ public class Bleeding : IPassive
 
 public class AttackBuff : IPassive
 {
-
-    public void PassiveEffect(PlayerHandler player, Enemy enemy)
+    public void PassiveEffect(PlayerHandler player, Enemy enemy,Cart card)
     {
-        float DMGSteal = PlayerPrefs.GetFloat("LastDMG") + ((PlayerPrefs.GetFloat("LastDMG") / 100) * 10);
-        PlayerPrefs.SetFloat("BasedDMG", DMGSteal);
+        int i = 1;
+        PlayerPrefs.SetInt("isHasAttackBuff", i);
     }
 }
 
 public class Burn : IPassive
 {
-    public void PassiveEffect(PlayerHandler player, Enemy enemy)
+    public void PassiveEffect(PlayerHandler player, Enemy enemy, Cart card)
     {
-        Debug.Log("Passive Damage Taken");
         enemy.TakeDamage(10);
-        GameObject.Find("SelectedEnemy").GetComponent<SelectedEnemy>().selectedEnemy = null;
-
     }
 }
 
 public class LifeSteal : IPassive
 {
-    public void PassiveEffect(PlayerHandler player, Enemy enemy ) 
+    public void PassiveEffect(PlayerHandler player, Enemy enemy, Cart card) 
     {
-        float DMGSteal = PlayerPrefs.GetFloat("LastDMG") + (((PlayerPrefs.GetFloat("FirstEnemyHealth")-PlayerPrefs.GetFloat("LastEnemyHealth")/100)*10));
-        PlayerPrefs.SetFloat("BasedDMG", DMGSteal);
+        float DMGSteal = (((PlayerPrefs.GetFloat("FirstEnemyHealth")-PlayerPrefs.GetFloat("LastEnemyHealth")/100)*10));
+        player._health = player._health + DMGSteal;
     }
 }
 

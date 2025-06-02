@@ -12,6 +12,8 @@ public class BaseItem : ScriptableObject
     public string ItemName;
     public int HandCardCount;
     public bool isHavePassive;
+    public float TotalDamage;
+    [HideInInspector]public bool isAttackDMG;
     /// <summary>
     /// for giving tip to player and for uI
     /// </summary>

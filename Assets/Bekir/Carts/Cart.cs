@@ -13,7 +13,7 @@ public class Cart : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IPoin
     [SerializeField] private float _upScale;
     [SerializeField] private float _speed;
     [SerializeField] private LayerMask _cartPlacementLayer;
-    private BaseItem _baseItem;
+    public BaseItem _baseItem;
     private bool _mouseHolding;
     private Vector3 _startPosition;
     [SerializeField] private Enemy enemy;
@@ -68,9 +68,7 @@ public class Cart : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IPoin
         _itemImage.sprite = _baseItem.ItemSprite;
         _description.text = _baseItem.Description;
         _name.text = _baseItem.ItemName;
-
-
-        _baseItem.ItemEffects_OnPlaced?.ForEach(effect => effect?.ExecuteEffect(enemy));
+        _baseItem.ItemEffects_OnPlaced?.ForEach(effect => effect?.ExecuteEffect(enemy,gameObject.GetComponent<Cart>()));
     }
     void Update()
     {
@@ -146,14 +144,18 @@ public class Cart : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IPoin
         {
             if (TourCount > 0 && _baseItem.isHavePassive && collider.GetComponent<Enemy>()._health>0)
             {
-                _baseItem.ItemEffects_OnEveryTour?.ForEach(effect => effect?.PassiveEffect(player, collider.GetComponent<Enemy>())); ;
+                _baseItem.ItemEffects_OnEveryTour?.ForEach(effect => effect?.PassiveEffect(player, collider.GetComponent<Enemy>(), gameObject.GetComponent<Cart>())); ;
                 TourCount = TourCount - 1;
             }
             else
             {
+                if (PlayerPrefs.HasKey("isHasAttackBuff"))
+                    PlayerPrefs.DeleteKey("isHasAttackBuff");
+
                 Destroy(gameObject);
             }
-                
+            PlayerPrefs.DeleteKey("FirstEnemyHealth");
+            PlayerPrefs.DeleteKey("LastEnemyHealth");
         }
         
        
@@ -161,10 +163,14 @@ public class Cart : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IPoin
 
     public void OnAttack()
     {
-        _baseItem.ItemEffects_OnEnemy?.ForEach(effect => effect?.ExecuteEffect(enemy));
+        if (!PlayerPrefs.HasKey("FirstEnemyHealth"))
+            PlayerPrefs.SetFloat("FirstEnemyHealth", enemy._health);
+
+        _baseItem.ItemEffects_OnEnemy?.ForEach(effect => effect?.ExecuteEffect(enemy,gameObject.transform.GetComponent<Cart>()));
         DOTween.Kill(transform);
         GameObject.Find("Pool").GetComponent<CartHandler>().SpawnedCarts.Remove(gameObject.GetComponent<Cart>());
         gameObject.GetComponent<BoxCollider2D>().enabled = false;
+        PlayerPrefs.SetFloat("LastEnemyHealth", enemy._health);
         _description.color = new Color(0, 0, 0, 0);
         _name.color = new Color(0, 0, 0, 0);
         _itemBG.color = new Color(0, 0, 0, 0);
