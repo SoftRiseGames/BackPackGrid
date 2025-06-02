@@ -17,6 +17,7 @@ MonoBehaviour:
   isHavePassive: 1
   TotalDamage: 1
   isAttackDMG: 0
+  order: 10
   Description: "Rakibe Kan Hasar\u0131 Vur"
   ItemSprite: {fileID: -1250021020546060479, guid: 410f67d54c6e81b45862e48f2d1f5245, type: 3}
   cellSize: {x: 0, y: 0}

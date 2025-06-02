@@ -161,17 +161,20 @@ public class Cart : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IPoin
 
     public void OnAttack()
     {
-        Enemy EnemyCollider = enemy;
-    
-        _baseItem.ItemEffects_OnEnemy?.ForEach(effect => effect?.ExecuteEffect(enemy,gameObject.transform.GetComponent<Cart>()));
-        DOTween.Kill(transform);
-        GameObject.Find("Pool").GetComponent<CartHandler>().SpawnedCarts.Remove(gameObject.GetComponent<Cart>());
-        gameObject.GetComponent<BoxCollider2D>().enabled = false;
-        _description.color = new Color(0, 0, 0, 0);
-        _name.color = new Color(0, 0, 0, 0);
-        _itemBG.color = new Color(0, 0, 0, 0);
-        _itemImage.color = new Color(0, 0, 0, 0);
-        isPlayed = true;
+        if(_baseItem.order>= enemy.Order)
+        {
+            Enemy EnemyCollider = enemy;
+
+            _baseItem.ItemEffects_OnEnemy?.ForEach(effect => effect?.ExecuteEffect(enemy, gameObject.transform.GetComponent<Cart>()));
+            DOTween.Kill(transform);
+            GameObject.Find("Pool").GetComponent<CartHandler>().SpawnedCarts.Remove(gameObject.GetComponent<Cart>());
+            gameObject.GetComponent<BoxCollider2D>().enabled = false;
+            _description.color = new Color(0, 0, 0, 0);
+            _name.color = new Color(0, 0, 0, 0);
+            _itemBG.color = new Color(0, 0, 0, 0);
+            _itemImage.color = new Color(0, 0, 0, 0);
+            isPlayed = true;
+        }
     }
 
 }

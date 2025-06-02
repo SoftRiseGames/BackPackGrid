@@ -3798,9 +3798,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   NoiseProfile: {fileID: 11400000, guid: cd5b0bdc9afc44e22b178a28267556e4, type: 2}
   PivotOffset: {x: 0, y: 0, z: 0}
-  AmplitudeGain: 1
-  FrequencyGain: 1
-  m_NoiseOffsets: {x: -510.6151, y: -574.2178, z: 175.58228}
+  AmplitudeGain: 0
+  FrequencyGain: 0
+  m_NoiseOffsets: {x: 957.7689, y: 82.602875, z: -648.5126}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

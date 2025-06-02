@@ -14,9 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ItemName: Sword
   HandCardCount: 5
-  isHavePassive: 0
+  isHavePassive: 1
   TotalDamage: 3
   isAttackDMG: 0
+  order: 0
   Description: Kesici Hasar Vurur
   ItemSprite: {fileID: 21300000, guid: f12203c5def4857469356824ae742fc3, type: 3}
   cellSize: {x: 0, y: 0}
