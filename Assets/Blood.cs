@@ -13,6 +13,7 @@ public class Blood : IItemEffect
             else
                 enemy.TakeDamage((TotalDamage));
         }
+
         GameObject.Find("SelectedEnemy").GetComponent<SelectedEnemy>().selectedEnemy = enemy;
     }
 

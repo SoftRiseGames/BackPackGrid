@@ -13,17 +13,20 @@ MonoBehaviour:
   m_Name: Sword
   m_EditorClassIdentifier: 
   ItemName: Sword
-  UpgradedItem: {fileID: 0}
   HandCardCount: 5
+  isHavePassive: 0
+  TotalDamage: 3
+  isAttackDMG: 0
   Description: Kesici Hasar Vurur
   ItemSprite: {fileID: 21300000, guid: f12203c5def4857469356824ae742fc3, type: 3}
   cellSize: {x: 0, y: 0}
   RootMergeItem: {fileID: 0}
+  PassiveTourCount: 0
   MergedItems: []
-  ItemEffects_OnEveryTour: []
   ItemEffects_OnEnemy:
   - rid: 4778697493287796738
   ItemEffects_OnPlaced: []
+  ItemEffects_OnEveryTour: []
   references:
     version: 2
     RefIds:
