@@ -11,6 +11,10 @@ public class Enemy : MonoBehaviour, IDamage
     [HideInInspector]public int EnemyPatternCounter;
     public int Order;
 
+    [HideInInspector] public bool isBurning;
+    [HideInInspector] public bool isBleeding;
+    
+
 
     public void Die()
     {

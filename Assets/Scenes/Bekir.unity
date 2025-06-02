@@ -374,7 +374,7 @@ GameObject:
   - component: {fileID: 117776239}
   - component: {fileID: 117776238}
   m_Layer: 0
-  m_Name: SelectedEnemy
+  m_Name: MustBeSavedObjects
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -393,6 +393,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   selectedEnemy: {fileID: 0}
+  MustBeSavedCards: {fileID: 0}
 --- !u!4 &117776239
 Transform:
   m_ObjectHideFlags: 0
@@ -645,6 +646,8 @@ MonoBehaviour:
   PlayerObject: {fileID: 1100168319}
   EnemyPatternCounter: 0
   Order: 0
+  isBurning: 0
+  isBleeding: 0
 --- !u!212 &262483781
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1874,6 +1877,8 @@ MonoBehaviour:
   PlayerObject: {fileID: 1100168319}
   EnemyPatternCounter: 0
   Order: 0
+  isBurning: 0
+  isBleeding: 0
 --- !u!212 &1019858608
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2082,6 +2087,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _health: 10
+  isAttackBuffing: 0
 --- !u!1 &1127530131
 GameObject:
   m_ObjectHideFlags: 0

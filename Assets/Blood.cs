@@ -18,7 +18,7 @@ public class Blood : IItemEffect
                 enemy.TakeDamage((TotalDamage));
         }
 
-        GameObject.Find("SelectedEnemy").GetComponent<SelectedEnemy>().selectedEnemy = enemy;
+        GameObject.Find("MustBeSavedObjects").GetComponent<SelectedEnemy>().selectedEnemy = enemy;
     }
 
     public void TourEffect(Enemy enemy,Cart Card)
@@ -48,7 +48,7 @@ public class Sword : IItemEffect
             else
                 enemy.TakeDamage((TotalDamage));
         }
-        GameObject.Find("SelectedEnemy").GetComponent<SelectedEnemy>().selectedEnemy = enemy;
+        GameObject.Find("MustBeSavedObjects").GetComponent<SelectedEnemy>().selectedEnemy = enemy;
       
     }
 
@@ -77,7 +77,7 @@ public class Knife : IItemEffect
             else
                 enemy.TakeDamage((TotalDamage));
         }
-        GameObject.Find("SelectedEnemy").GetComponent<SelectedEnemy>().selectedEnemy = enemy;
+        GameObject.Find("MustBeSavedObjects").GetComponent<SelectedEnemy>().selectedEnemy = enemy;
 
     }
 
@@ -106,7 +106,7 @@ public class Rifle : IItemEffect
             else
                 enemy.TakeDamage((TotalDamage));
         }
-        GameObject.Find("SelectedEnemy").GetComponent<SelectedEnemy>().selectedEnemy = enemy;
+        GameObject.Find("MustBeSavedObjects").GetComponent<SelectedEnemy>().selectedEnemy = enemy;
 
     }
 
@@ -135,7 +135,7 @@ public class FireSword : IItemEffect
             else
                 enemy.TakeDamage((TotalDamage));
         }
-        GameObject.Find("SelectedEnemy").GetComponent<SelectedEnemy>().selectedEnemy = enemy;
+        GameObject.Find("MustBeSavedObjects").GetComponent<SelectedEnemy>().selectedEnemy = enemy;
 
     }
 
@@ -163,7 +163,7 @@ public class BloodSword : IItemEffect
             else
                 enemy.TakeDamage((TotalDamage));
         }
-        GameObject.Find("SelectedEnemy").GetComponent<SelectedEnemy>().selectedEnemy = enemy;
+        GameObject.Find("MustBeSavedObjects").GetComponent<SelectedEnemy>().selectedEnemy = enemy;
 
     }
 
@@ -190,7 +190,7 @@ public class GreatSword : IItemEffect
             else
                 enemy.TakeDamage((TotalDamage));
         }
-        GameObject.Find("SelectedEnemy").GetComponent<SelectedEnemy>().selectedEnemy = enemy;
+        GameObject.Find("MustBeSavedObjects").GetComponent<SelectedEnemy>().selectedEnemy = enemy;
 
     }
 
@@ -219,7 +219,7 @@ public class CursedBloodSword : IItemEffect
             else
                 enemy.TakeDamage((TotalDamage));
         }
-        GameObject.Find("SelectedEnemy").GetComponent<SelectedEnemy>().selectedEnemy = enemy;
+        GameObject.Find("MustBeSavedObjects").GetComponent<SelectedEnemy>().selectedEnemy = enemy;
 
     }
 
@@ -247,24 +247,43 @@ public class ThrowingKnifes : IItemEffect
             else
                 enemy.TakeDamage((TotalDamage));
         }
-        GameObject.Find("SelectedEnemy").GetComponent<SelectedEnemy>().selectedEnemy = enemy;
+        GameObject.Find("MustBeSavedObjects").GetComponent<SelectedEnemy>().selectedEnemy = enemy;
 
     }
 
     public void TourEffect(Enemy enemy,Cart card)
     {
-      
 
     }
 }
 
 
 public class Bleeding : IPassive
-{
-
-    public void PassiveEffect(PlayerHandler player, Enemy enemy, Cart card)
+{   
+    public void PassiveEffect(PlayerHandler player, Enemy enemy, Cart card) 
     {
-       enemy.TakeDamage(1);
+        if (!enemy.isBleeding)
+        {
+            card.isCheckedPassiveSituation = true;
+            enemy.isBleeding = true;
+        }
+            
+
+        if (card.isCheckedPassiveSituation)
+        {
+            enemy.TakeDamage(1);
+            GameObject.Find("MustBeSavedObjects").GetComponent<SelectedEnemy>().MustBeSavedCards = card;
+        }
+        else
+        {
+            GameObject.Find("MustBeSavedObjects").GetComponent<SelectedEnemy>().MustBeSavedCards.TourCount = GameObject.Find("MustBeSavedObjects").GetComponent<SelectedEnemy>().MustBeSavedCards.TourCount + 1;
+            card.TourCount = 0;
+        }
+    }
+
+    public void PassiveReset(PlayerHandler player, Enemy enemy, Cart card)
+    {
+        enemy.isBleeding = false;
     }
 }
 
@@ -272,8 +291,29 @@ public class AttackBuff : IPassive
 {
     public void PassiveEffect(PlayerHandler player, Enemy enemy,Cart card)
     {
-        int i = 1;
-        PlayerPrefs.SetInt("isHasAttackBuff", i);
+        if (!player.isAttackBuffing)
+        {
+            card.isCheckedPassiveSituation = true;
+            player.isAttackBuffing = true;
+        }
+
+        if (card.isCheckedPassiveSituation)
+        {
+            int i = 1;
+            PlayerPrefs.SetInt("isHasAttackBuff", i);
+        }
+        else
+        {
+            card.TourCount = 0;
+        }
+            
+    }
+
+    public void PassiveReset(PlayerHandler player, Enemy enemy, Cart card)
+    {
+        card.isCheckedPassiveSituation = false;
+        player.isAttackBuffing = false;
+        PlayerPrefs.DeleteKey("isHasAttackBuff");
     }
 }
 
@@ -281,7 +321,25 @@ public class Burn : IPassive
 {
     public void PassiveEffect(PlayerHandler player, Enemy enemy, Cart card)
     {
-        enemy.TakeDamage(10);
+        if ((!enemy.isBurning))
+        {
+            card.isCheckedPassiveSituation = true;
+            enemy.isBurning = true;
+        }
+
+
+        if (card.isCheckedPassiveSituation)
+            enemy.TakeDamage(10);
+        else
+        {
+            card.TourCount = 0;
+        }
+            
+    }
+
+    public void PassiveReset(PlayerHandler player, Enemy enemy, Cart card)
+    {
+        enemy.isBurning = false;
     }
 }
 
@@ -289,9 +347,22 @@ public class LifeSteal : IPassive
 {
     public void PassiveEffect(PlayerHandler player, Enemy enemy, Cart card) 
     {
-        player._health = player._health + ((card._baseItem.TotalDamage/100)*10);
+        if (!player.isLifeStealing)
+            card.isCheckedPassiveSituation = true;
+
+        if (card.isCheckedPassiveSituation == true)
+            player._health = player._health + ((card._baseItem.TotalDamage / 100) * 10);
+        else
+            card.TourCount = 0;
+    }
+
+    public void PassiveReset(PlayerHandler player, Enemy enemy, Cart card)
+    {
+        player.isLifeStealing = false;
     }
 }
+
+
 
 
 

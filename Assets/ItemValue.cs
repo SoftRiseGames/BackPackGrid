@@ -12,7 +12,7 @@ public class ItemValue :MonoBehaviour,IItem
         throw new System.NotImplementedException();
     }
 
-    public void OnTour()
+    public void TourPerTime()
     {
         throw new System.NotImplementedException();
     }

@@ -5,7 +5,8 @@ public class PlayerHandler : MonoBehaviour, IDamage
     public float _health;
     private float _healtCounter;
 
-
+    [HideInInspector] public bool isAttackBuffing;
+    [HideInInspector] public bool isLifeStealing;
     void Start()
     {
         _healtCounter = _health;

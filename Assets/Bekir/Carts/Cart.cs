@@ -21,13 +21,15 @@ public class Cart : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IPoin
     public int TourCount;
     PlayerHandler player;
     public bool isPlayed;
+    [HideInInspector] public bool isCheckedPassiveSituation;
     [HideInInspector] public float CardDamage;
+    
     Collider2D collider;
     private void OnEnable()
     {
         EventManagerCode.OnEnemyTurn += CanMoveFalse;
         EnemyManager.onPlayerTurn += CanMoveTrue;
-        EventManagerCode.OnEnemyTurn += OnTour;
+        EventManagerCode.OnEnemyTurn += TourPerTime;
     }
     private void Start()
     {
@@ -40,7 +42,7 @@ public class Cart : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IPoin
     {
         EventManagerCode.OnEnemyTurn -= CanMoveFalse;
         EnemyManager.onPlayerTurn -= CanMoveTrue;
-        EventManagerCode.OnEnemyTurn -= OnTour;
+        EventManagerCode.OnEnemyTurn -= TourPerTime;
 
     }
     private void OnTriggerEnter2D(Collider2D collision)
@@ -140,7 +142,7 @@ public class Cart : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IPoin
         transform.DOLocalMoveY(transform.localPosition.y + _upScale, _speed);
     }
 
-    public void OnTour()
+    public void TourPerTime()
     {
         if (isPlayed)
         {
@@ -151,9 +153,7 @@ public class Cart : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IPoin
             }
             else
             {
-                if (PlayerPrefs.HasKey("isHasAttackBuff"))
-                    PlayerPrefs.DeleteKey("isHasAttackBuff");
-
+                _baseItem.ItemEffects_OnEveryTour?.ForEach(effect => effect?.PassiveReset(player, collider.GetComponent<Enemy>(), gameObject.GetComponent<Cart>()));
                 Destroy(gameObject);
             }
         }
