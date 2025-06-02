@@ -15,7 +15,7 @@ MonoBehaviour:
   ItemName: Blood
   HandCardCount: 5
   isHavePassive: 1
-  TotalDamage: 2
+  TotalDamage: 1
   isAttackDMG: 0
   Description: "Rakibe Kan Hasar\u0131 Vur"
   ItemSprite: {fileID: -1250021020546060479, guid: 410f67d54c6e81b45862e48f2d1f5245, type: 3}
@@ -28,12 +28,12 @@ MonoBehaviour:
   - rid: 4778697489712676936
   ItemEffects_OnPlaced: []
   ItemEffects_OnEveryTour:
-  - rid: 501085968070606924
+  - rid: 501085989677826120
   references:
     version: 2
     RefIds:
-    - rid: 501085968070606924
-      type: {class: Bleeding, ns: , asm: Assembly-CSharp}
+    - rid: 501085989677826120
+      type: {class: AttackBuff, ns: , asm: Assembly-CSharp}
       data: 
     - rid: 4778697489712676936
       type: {class: Blood, ns: , asm: Assembly-CSharp}

@@ -14,6 +14,7 @@ public class BaseItem : ScriptableObject
     public bool isHavePassive;
     public float TotalDamage;
     [HideInInspector]public bool isAttackDMG;
+    public int order;
     /// <summary>
     /// for giving tip to player and for uI
     /// </summary>

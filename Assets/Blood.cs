@@ -81,8 +81,7 @@ public class LifeSteal : IPassive
 {
     public void PassiveEffect(PlayerHandler player, Enemy enemy, Cart card) 
     {
-        float DMGSteal = (((PlayerPrefs.GetFloat("FirstEnemyHealth")-PlayerPrefs.GetFloat("LastEnemyHealth")/100)*10));
-        player._health = player._health + DMGSteal;
+        player._health = player._health + ((card._baseItem.TotalDamage/100)*10);
     }
 }
 

@@ -13,18 +13,24 @@ MonoBehaviour:
   m_Name: Bloody sword_Merged
   m_EditorClassIdentifier: 
   ItemName: Bloody sword
+  HandCardCount: 0
+  isHavePassive: 0
+  TotalDamage: 0
+  isAttackDMG: 0
   Description: smdalksdmlkasmdl
   ItemSprite: {fileID: -6849179773407893626, guid: 3c8a336d4d3b646c9a57d5e40c02f2bd, type: 3}
   cellSize: {x: 0, y: 0}
   RootMergeItem: {fileID: 11400000, guid: 1f906d82a02cd4da9aca2e49c1d8ea7f, type: 2}
+  PassiveTourCount: 0
   MergedItems:
   - {fileID: 11400000, guid: ed4c1189096b847e2867523dc459fa3b, type: 2}
-  ItemEffects_OnEveryTour:
-  - rid: 1414605516635373569
+  ItemEffects_OnEnemy: []
   ItemEffects_OnPlaced: []
+  ItemEffects_OnEveryTour:
+  - rid: 501085989677826119
   references:
     version: 2
     RefIds:
-    - rid: 1414605516635373569
-      type: {class: ActiveItemExampleClass, ns: , asm: Assembly-CSharp}
+    - rid: 501085989677826119
+      type: {class: AttackBuff, ns: , asm: Assembly-CSharp}
       data: 
