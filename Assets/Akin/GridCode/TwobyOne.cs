@@ -3,7 +3,7 @@ using UnityEngine.Events;
 using System;
 using System.Collections.Generic;
 using System.IO;
-public class TwobyOne : MonoBehaviour, IInventoryObject, IRotatable, IPowerItem
+public class TwoByOne : MonoBehaviour, IInventoryObject, IRotatable, IPowerItem
 {
     public bool OnDownMiddle { get; private set; }
     public bool OnUpMiddle { get; private set; }
@@ -90,19 +90,13 @@ public class TwobyOne : MonoBehaviour, IInventoryObject, IRotatable, IPowerItem
 
     private void Update()
     {
-        if (this.gameObject.name == "Sword")
-            Debug.Log(CanEnterPosition);
         MouseDragControl();
         OutOfGrid();
         GridEnterBoolCheck();
         Ray();
-        if(successfulMerges<BaseItemObj.MergedItems.Count)
-            AddList();
-        if (successfulMerges >= BaseItemObj.MergedItems.Count)
-            ListDeleter();
-        CombineObject();
-        TryAddUpgradedItem();
+        AddList();
         mouseDelta = new Vector3(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"), 0);
+
         if (isHandle)
         {
             if (Input.GetMouseButtonUp(0))
@@ -194,97 +188,79 @@ public class TwobyOne : MonoBehaviour, IInventoryObject, IRotatable, IPowerItem
 
         if (handledObject.transform.localScale.x / 2 == 1)
         {
-            pivotOffsetX = .5f * handledObject.GetComponent<TwobyOne>().SidePosXValue;
+            pivotOffsetX = .5f * handledObject.GetComponent<TwoByOne>().SidePosXValue;
         }
         if (handledObject.transform.localScale.y / 2 == 1)
         {
-            pivotOffsetY = .5f * handledObject.GetComponent<TwobyOne>().SidePosYValue;
+            pivotOffsetY = .5f * handledObject.GetComponent<TwoByOne>().SidePosYValue;
         }
     }
 
     public void RegisterYourself()
     {
         isDragging = false;
+
+        // Grid'den seçilen pozisyonu al
         Vector3 selectedPosition = gridInput.GetSelectedMapPosition();
         Vector3Int cellPosition = gridBasement.WorldToCell(selectedPosition);
 
-        if (gridEnter)
-        {
-            inventoryObject = handledObject.GetComponent<IInventoryObject>();
-            objectPosition = handledObject.transform.position;
-            cellCenterPosition = gridBasement.GetCellCenterWorld(cellPosition);
-
-            if (CanEnterPosition)
-            {
-               
-                // Y Ekseni Kontrolleri
-                if (cellPosition.y < (lastlocationY))
-                    objectPosition.y = cellCenterPosition.y - pivotOffsetY;
-                else if (cellPosition.y > (lastlocationY))
-                    objectPosition.y = cellCenterPosition.y + pivotOffsetY;
-
-                // X Ekseni Kontrolleri
-                if (cellPosition.x > (lastlocationX))
-                    objectPosition.x = cellCenterPosition.x + pivotOffsetX;
-                else if (cellPosition.x < (lastlocationX))
-                    objectPosition.x = cellCenterPosition.x - pivotOffsetX;
-
-                handledObject.transform.position = objectPosition;
-
-                CanEnterPosition = false;
-            }
-
-
-            else if (!CanEnterPosition && ((cellPosition.x != objectPosition.x) || (cellPosition.y != objectPosition.y)))
-            {
-
-                bool yAligned = false;
-                bool xAligned = false;
-
-                // Y Ekseni Hizalama
-                if ((inventoryObject.OnDownNext && !inventoryObject.OnUpNext && cellPosition.y < objectPosition.y && !OnDownObjectDedect) ||
-                    (inventoryObject.OnUpNext && !inventoryObject.OnDownNext && cellPosition.y >= objectPosition.y && !OnUpObjectDedect) ||
-                    (inventoryObject.OnUpNext && inventoryObject.OnDownNext &&
-                    ((cellPosition.y >= objectPosition.y && !OnUpObjectDedect) || (cellPosition.y < objectPosition.y && !OnDownObjectDedect))))
-                {
-                    objectPosition.y = cellCenterPosition.y - pivotOffsetY;
-                    yAligned = true;
-                }
-
-                bool twoSided = inventoryObject.onLeftNext && inventoryObject.onRightNext;
-
-                // X Ekseni Hizalama
-                if ((twoSided && !onRightObjectDedect && cellPosition.x >= objectPosition.x) ||
-                    (twoSided && !onLeftObjectDedect && cellPosition.x < objectPosition.x) ||
-                    (!twoSided && inventoryObject.onRightNext && !inventoryObject.onLeftNext && !onRightObjectDedect && cellPosition.x >= objectPosition.x) ||
-                    (!twoSided && inventoryObject.onLeftNext && !inventoryObject.onRightNext && !onLeftObjectDedect && cellPosition.x < objectPosition.x))
-                {
-                    objectPosition.x = cellCenterPosition.x - pivotOffsetX;
-                    xAligned = true;
-                }
-
-                // Her iki eksen de hizalanmışsa pozisyonu güncelle
-                if (xAligned || yAligned)
-                {
-                    handledObject.transform.position = objectPosition;
-                    
-                }
-
-
-            }
-            //handledObject.transform.position = objectPosition;
-        }
-        else
+        if (!gridEnter || handledObject == null)
             return;
 
+        inventoryObject = handledObject.GetComponent<IInventoryObject>();
+        cellCenterPosition = gridBasement.GetCellCenterWorld(cellPosition);
 
+        bool snapped = false;
+
+        if (CanEnterPosition)
+        {
+            // Direkt olarak grid hücresine snaple (pivot offset ile)
+            Vector3 newPosition = cellCenterPosition;
+            newPosition.x -= pivotOffsetX;
+            newPosition.y -= pivotOffsetY;
+
+            handledObject.transform.position = newPosition;
+            CanEnterPosition = false;
+            snapped = true;
+        }
+        else
+        {
+            Vector3 currentPosition = handledObject.transform.position;
+            Vector3 newPosition = currentPosition;
+
+            // Snap X
+            if ((inventoryObject.onRightNext && !onRightObjectDedect && cellPosition.x >= currentPosition.x) ||
+                (inventoryObject.onLeftNext && !onLeftObjectDedect && cellPosition.x < currentPosition.x))
+            {
+                newPosition.x = cellCenterPosition.x - pivotOffsetX;
+            }
+
+            // Snap Y
+            if ((inventoryObject.OnUpNext && !OnUpObjectDedect && cellPosition.y >= currentPosition.y) ||
+                (inventoryObject.OnDownNext && !OnDownObjectDedect && cellPosition.y < currentPosition.y))
+            {
+                newPosition.y = cellCenterPosition.y - pivotOffsetY;
+            }
+
+            if (newPosition != currentPosition)
+            {
+                handledObject.transform.position = newPosition;
+                snapped = true;
+            }
+        }
+
+        if (!snapped)
+        {
+            // Snap yapılamadıysa istenirse burada log/logic eklenebilir
+            Debug.Log("Snap yapılamadı. Engel veya geçersiz pozisyon.");
+        }
     }
 
     void AddList()
     {
         if (gridEnter)
         {
-            foreach (BaseItem i in CardHandleDataList.HandledObjects)
+            foreach (GameObject i in CardHandleDataList.HandledObjects)
             {
                 if (i == gameObject.GetComponent<IInventoryObject>().BaseItemObj)// sabah burayı kontrol et
                 {
@@ -298,49 +274,14 @@ public class TwobyOne : MonoBehaviour, IInventoryObject, IRotatable, IPowerItem
             }
             else
             {
-                CardHandleDataList.HandledObjects.Add(BaseItemObj);
+                CardHandleDataList.HandledObjects.Add(gameObject);
                 isAdded = true;
             }
 
-            if (CardHandleDataList.HandledObjects.Contains(BaseItem.RootMergeItem))
-            {
-                CardHandleDataList.HandledObjects.Remove(BaseItem.RootMergeItem);
-            }
-
-            if (objectsThatAdded.Contains(BaseItem))
-            {
-                objectsThatAdded.Remove(BaseItem);
-            }
-            
-
         }
-
-        
-        if (!gridEnter && isAdded)
-        {
-            BaseItem toRemove = null;
-
-            foreach (BaseItem i in CardHandleDataList.HandledObjects)
-            {
-                if (i.name == gameObject.name)
-                {
-                    toRemove = i;
-                    break;
-                }
-            }
-
-            if (toRemove != null)
-            {
-                CardHandleDataList.HandledObjects.Remove(toRemove);
-            }
-            isAdded = false;
-
-        }
-        else
-            return;
-        
 
     }
+    /*
     void ListDeleter()
     {
         isAdded = false;
@@ -352,6 +293,7 @@ public class TwobyOne : MonoBehaviour, IInventoryObject, IRotatable, IPowerItem
             CardHandleDataList.HandledObjects.Remove(i.GetComponent<IInventoryObject>().BaseItemObj);
         }
     }
+    */
     void CombineObject()
     {
         successfulMerges = 0; // Her çağrıldığında sayaç sıfırlanır
@@ -378,7 +320,7 @@ public class TwobyOne : MonoBehaviour, IInventoryObject, IRotatable, IPowerItem
         {
             if (!objectsThatAdded.Contains(BaseItemObj))
             {
-                CardHandleDataList.HandledObjects.Add(BaseItem.RootMergeItem);
+                //CardHandleDataList.HandledObjects.Add(BaseItem.RootMergeItem);
                 objectsThatAdded.Add(BaseItemObj); 
             }
         }
@@ -419,6 +361,7 @@ public class TwobyOne : MonoBehaviour, IInventoryObject, IRotatable, IPowerItem
 
         ScaleObjectRechange();
 
+        RegisterYourself();
         gridEnter = false;
 
     }

@@ -4,8 +4,8 @@ using System.IO;
 
 public class HandledCards : MonoBehaviour
 {
-    public List<BaseItem> HandledObjects;
-
+    public List<GameObject> HandledObjects;
+   
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.K))
@@ -18,7 +18,7 @@ public class HandledCards : MonoBehaviour
 
         for(int i = 0; i<HandledObjects.Count; i++)
         {
-            SaverList.GameobjectCountLister.Add(HandledObjects[i].name);
+            SaverList.GameobjectCountLister.Add(HandledObjects[i].GetComponent<IInventoryObject>().BaseItemObj.ItemName);
         }
 
         string json = JsonUtility.ToJson(SaverList);

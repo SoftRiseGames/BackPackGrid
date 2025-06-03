@@ -13,6 +13,7 @@ public class GridObjectSideChecker : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        /*
         if (collision.gameObject.tag == "InvObject" && CanObjectAddable == true && collision.GetComponent<IInventoryObject>().CanEnterPosition == false && ParentObj.GetComponent<IInventoryObject>().CanEnterPosition == false)
         {
             Debug.Log("GirdiGirdiGirdi");
@@ -28,9 +29,11 @@ public class GridObjectSideChecker : MonoBehaviour
         }
         else
             return;
+        */
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
+        /*
   
         if (collision.gameObject.tag == "InvObject" && CanObjectAddable == false && collision.GetComponent<IInventoryObject>().CanEnterPosition == false &&ParentObj.GetComponent<IInventoryObject>().CanEnterPosition == false)
         {
@@ -39,10 +42,12 @@ public class GridObjectSideChecker : MonoBehaviour
         }
         else
             return;
+        */
        
     }
     private void Update()
     {
+        /*
         var addedMaterials = ParentObj.GetComponent<IInventoryObject>().AddedMaterialsChecker;
         if(dataHolder.DataHolder != null)
         {
@@ -56,7 +61,7 @@ public class GridObjectSideChecker : MonoBehaviour
                 }
             }
         }
-        
+        */
     }
     void ObjectCheck()
     {
