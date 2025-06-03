@@ -362,7 +362,6 @@ public class TwoByOne : MonoBehaviour, IInventoryObject, IRotatable, IPowerItem
 
         ScaleObjectRechange();
 
-        RegisterYourself();
         gridEnter = false;
 
     }

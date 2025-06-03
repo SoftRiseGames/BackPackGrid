@@ -2,6 +2,7 @@
 using UnityEngine.Rendering;
 using System.Collections.Generic;
 using System.Linq;
+using System.IO;
 public class MergeManager : MonoBehaviour
 {
     public SerializedDictionary<string, BaseItem> _items = new();
@@ -13,89 +14,103 @@ public class MergeManager : MonoBehaviour
 
     }
     // Update is called once per frame
-    void Update()
+  
+    public void SaveAndSkip()
     {
-        if (Input.GetKeyDown(KeyCode.C))
+        AddList();
+        SaveData();
+    }
+    void AddList()
+    {
+        UpgradedMaterialAdd.Clear();
+
+        HashSet<GameObject> upgradeContributorObjects = new HashSet<GameObject>();
+        HashSet<(GameObject, BaseItem)> addedObjects = new HashSet<(GameObject, BaseItem)>();
+
+        foreach (GameObject handleCard in handledCardManager.HandledObjects)
         {
-            UpgradedMaterialAdd.Clear();
+            var handleInventory = handleCard.GetComponent<IInventoryObject>();
+            var thisBaseItem = handleInventory.BaseItemObj;
+            var thisObject = handleCard;
+            var collideList = handleInventory.CollideList;
 
-            HashSet<GameObject> upgradeContributorObjects = new HashSet<GameObject>(); // Artık BaseItem değil, GameObject
-            HashSet<GameObject> addedObjects = new HashSet<GameObject>(); // Aynı objeyi 2 kez eklememek için (isteğe bağlı)
+            List<(GameObject obj, BaseItem item)> collidePairs = collideList
+                .Select(obj => (obj, obj.GetComponent<IInventoryObject>().BaseItemObj))
+                .ToList();
 
-            foreach (GameObject handleCard in handledCardManager.HandledObjects)
+            bool upgraded = false;
+
+            foreach (var kvp in _items)
             {
-                var handleInventory = handleCard.GetComponent<IInventoryObject>();
-                var thisBaseItem = handleInventory.BaseItemObj;
-                var thisObject = handleCard;
-                var collideList = handleInventory.CollideList;
+                if (thisBaseItem != kvp.Value.RootMergeItem)
+                    continue;
 
-                List<(GameObject obj, BaseItem item)> collidePairs = collideList
-                    .Select(obj => (obj, obj.GetComponent<IInventoryObject>().BaseItemObj))
-                    .ToList();
-
-                bool upgraded = false;
-
-                foreach (var kvp in _items)
+                foreach (BaseItem savedMaterial in kvp.Value.MergedItems)
                 {
-                    if (thisBaseItem != kvp.Value.RootMergeItem)
-                        continue;
+                    bool hasAll = savedMaterial.MergedItems.All(
+                        requiredItem =>
+                            collidePairs.Any(pair => pair.item == requiredItem)
+                    );
 
-                    foreach (BaseItem savedMaterial in kvp.Value.MergedItems)
+                    if (hasAll)
                     {
-                        bool hasAll = savedMaterial.MergedItems.All(
-                            requiredItem =>
-                                collidePairs.Any(pair => pair.item == requiredItem)
-                        );
+                        UpgradedMaterialAdd.Add(kvp.Value);
 
-                        if (hasAll)
+                        upgradeContributorObjects.Add(thisObject);
+                        foreach (var requiredItem in savedMaterial.MergedItems)
                         {
-                            // 1. Upgrade sonucu eklensin
-                            UpgradedMaterialAdd.Add(kvp.Value);
+                            var contributorObject = collidePairs
+                                .FirstOrDefault(pair => pair.item == requiredItem).obj;
 
-                            // 2. Upgrade’e katkı sağlayan GameObject’leri işaretle
-                            upgradeContributorObjects.Add(thisObject); // root objeyi işaretle
-                            foreach (var requiredItem in savedMaterial.MergedItems)
-                            {
-                                var contributorObject = collidePairs
-                                    .FirstOrDefault(pair => pair.item == requiredItem).obj;
-
-                                if (contributorObject != null)
-                                    upgradeContributorObjects.Add(contributorObject);
-                            }
-
-                            upgraded = true;
-                            break;
+                            if (contributorObject != null)
+                                upgradeContributorObjects.Add(contributorObject);
                         }
-                    }
 
-                    if (upgraded)
+                        upgraded = true;
                         break;
-                }
-
-                if (!upgraded)
-                {
-                    foreach (var (obj, item) in collidePairs)
-                    {
-                        if (!upgradeContributorObjects.Contains(obj))
-                        {
-                            UpgradedMaterialAdd.Add(item);
-                        }
-                    }
-
-                    if (!upgradeContributorObjects.Contains(thisObject))
-                    {
-                        UpgradedMaterialAdd.Add(thisBaseItem);
                     }
                 }
+
+                if (upgraded)
+                    break;
             }
 
-            Debug.Log("Toplam item havuzu:");
-            foreach (var item in UpgradedMaterialAdd)
+            if (!upgraded)
             {
-                Debug.Log(item.name);
+                foreach (var (obj, item) in collidePairs)
+                {
+                    var key = (obj, item);
+                    if (!upgradeContributorObjects.Contains(obj) && !addedObjects.Contains(key))
+                    {
+                        UpgradedMaterialAdd.Add(item);
+                        addedObjects.Add(key);
+                    }
+                }
+
+                var selfKey = (thisObject, thisBaseItem);
+                if (!upgradeContributorObjects.Contains(thisObject) && !addedObjects.Contains(selfKey))
+                {
+                    UpgradedMaterialAdd.Add(thisBaseItem);
+                    addedObjects.Add(selfKey);
+                }
             }
         }
 
+        Debug.Log("Toplam item havuzu:");
+        foreach (var item in UpgradedMaterialAdd)
+        {
+            Debug.Log(item.name);
+        }
+    }
+    void SaveData()
+    {
+        ObjectListClass SaverList = new ObjectListClass();
 
+        for (int i = 0; i < UpgradedMaterialAdd.Count; i++)
+        {
+            SaverList.GameobjectCountLister.Add(UpgradedMaterialAdd[i].ItemName);
+        }
+        string json = JsonUtility.ToJson(SaverList);
+        File.WriteAllText(Application.dataPath + "/SaveData.json", json);
     }
 }
