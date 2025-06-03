@@ -3,6 +3,7 @@ using UnityEngine.Events;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using Sirenix.OdinInspector;
 public class TwoByOne : MonoBehaviour, IInventoryObject, IRotatable, IPowerItem
 {
     public bool OnDownMiddle { get; private set; }
@@ -38,7 +39,6 @@ public class TwoByOne : MonoBehaviour, IInventoryObject, IRotatable, IPowerItem
     [SerializeField] BaseItem BaseItem;
         
     IInventoryObject inventoryObject;
-    Vector2 objectPosition;
     Vector2 cellCenterPosition;
     public int SidePosXValue;
     public int SidePosYValue;
@@ -71,11 +71,13 @@ public class TwoByOne : MonoBehaviour, IInventoryObject, IRotatable, IPowerItem
 
     Vector3 mouseDelta = new Vector3();
     public bool isAdded { get; set; }
-    
+
+    [ShowInInspector]
+    public List<GameObject> CollideList { get; set; } = new();
 
     public HandledCards CardHandleDataList;
     [SerializeField] List<BoxCollider2D> CollideDedectors;
-    private HashSet<BaseItem> objectsThatAdded = new HashSet<BaseItem>();
+  //  private HashSet<BaseItem> objectsThatAdded = new HashSet<BaseItem>();
     private void Start()
     {
         GridIntegration();
@@ -200,7 +202,6 @@ public class TwoByOne : MonoBehaviour, IInventoryObject, IRotatable, IPowerItem
     {
         isDragging = false;
 
-        // Grid'den seçilen pozisyonu al
         Vector3 selectedPosition = gridInput.GetSelectedMapPosition();
         Vector3Int cellPosition = gridBasement.WorldToCell(selectedPosition);
 
@@ -214,7 +215,6 @@ public class TwoByOne : MonoBehaviour, IInventoryObject, IRotatable, IPowerItem
 
         if (CanEnterPosition)
         {
-            // Direkt olarak grid hücresine snaple (pivot offset ile)
             Vector3 newPosition = cellCenterPosition;
             newPosition.x -= pivotOffsetX;
             newPosition.y -= pivotOffsetY;
@@ -312,7 +312,7 @@ public class TwoByOne : MonoBehaviour, IInventoryObject, IRotatable, IPowerItem
             }
         }
     }
-
+    /*
     void TryAddUpgradedItem()
     {
         
@@ -325,6 +325,7 @@ public class TwoByOne : MonoBehaviour, IInventoryObject, IRotatable, IPowerItem
             }
         }
     }
+    */
     void OutOfGrid()
     {
 

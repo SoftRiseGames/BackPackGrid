@@ -35,4 +35,6 @@ public interface IInventoryObject
     public bool isAdded { get; set; }
     public bool CanEnterPosition { get; set; }
 
+    public List<GameObject> CollideList { get; set; }
+
 }

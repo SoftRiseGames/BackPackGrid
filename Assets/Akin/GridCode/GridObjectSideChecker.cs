@@ -6,62 +6,66 @@ public class GridObjectSideChecker : MonoBehaviour
     public List<GameObject> DataController;
     public DataControllerHolder dataHolder;
     bool CanObjectAddable;
+    public bool isObjectTrueDedect;
+    public GameObject colliderNew;
     void Start()
     {
         CanObjectAddable = true;
     }
-
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        /*
-        if (collision.gameObject.tag == "InvObject" && CanObjectAddable == true && collision.GetComponent<IInventoryObject>().CanEnterPosition == false && ParentObj.GetComponent<IInventoryObject>().CanEnterPosition == false)
-        {
-            Debug.Log("GirdiGirdiGirdi");
-            if(collision.gameObject.name == "Sword")
-                Debug.Log(collision.GetComponent<IInventoryObject>().CanEnterPosition);
+      
+    }
 
-            if (!dataHolder.DataHolder.Contains(collision.gameObject))
-            {
-                ParentObj.GetComponent<IInventoryObject>().AddedMaterialsChecker.Add(collision.gameObject);
-                dataHolder.DataHolder.Add(collision.gameObject);
-            }
-            CanObjectAddable = false;
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "InvObject")
+        {
+            isObjectTrueDedect = true;
+           
         }
         else
-            return;
-        */
+            isObjectTrueDedect = false;
+
+
+        if (isObjectTrueDedect)
+            colliderNew = collision.gameObject;
+
+      
     }
+
     private void OnTriggerExit2D(Collider2D collision)
     {
-        /*
-  
-        if (collision.gameObject.tag == "InvObject" && CanObjectAddable == false && collision.GetComponent<IInventoryObject>().CanEnterPosition == false &&ParentObj.GetComponent<IInventoryObject>().CanEnterPosition == false)
-        {
-            ParentObj.GetComponent<IInventoryObject>().AddedMaterialsChecker.Remove(collision.gameObject);
-            CanObjectAddable = true;
-        }
-        else
-            return;
-        */
+        
        
     }
     private void Update()
     {
-        /*
-        var addedMaterials = ParentObj.GetComponent<IInventoryObject>().AddedMaterialsChecker;
-        if(dataHolder.DataHolder != null)
+        if (isObjectTrueDedect == true)
         {
-            foreach (GameObject obj in new List<GameObject>(dataHolder.DataHolder))
+            Debug.Log("Girdi");
+            Debug.Log(colliderNew.GetComponent<IInventoryObject>().gridEnter);
+            if (colliderNew.GetComponent<IInventoryObject>().gridEnter)
             {
-                if (!addedMaterials.Contains(obj))
+                if (!ParentObj.GetComponent<IInventoryObject>().CollideList.Contains(colliderNew.gameObject))
                 {
-                    GameObject.Find("HandledCardManager").GetComponent<HandledCards>().HandledObjects.Add(obj.GetComponent<IInventoryObject>().BaseItemObj);
-                    ParentObj.GetComponent<IInventoryObject>().AddedMaterialsChecker.Remove(obj);
-                    dataHolder.DataHolder.Remove(obj);
+                    ParentObj.GetComponent<IInventoryObject>().CollideList.Add(colliderNew.gameObject);
                 }
             }
+           
         }
-        */
+       
+
+        else if (isObjectTrueDedect == false && colliderNew != null)
+        {
+            if (ParentObj.GetComponent<IInventoryObject>().CollideList.Contains(colliderNew.gameObject))
+            {
+                ParentObj.GetComponent<IInventoryObject>().CollideList.Remove(colliderNew.gameObject);
+            }
+            colliderNew = null;
+        }
+        else
+            return;
     }
     void ObjectCheck()
     {

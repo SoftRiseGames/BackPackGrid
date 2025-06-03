@@ -45,7 +45,8 @@ public class Onion : MonoBehaviour,IPowerItem ,IInventoryObject
 
     public BaseItem BaseItemObj { get; set; }
     public bool isAdded { get; set; }
-    public bool CanEnterPosition { get => throw new System.NotImplementedException(); set => throw new System.NotImplementedException(); }
+    public bool CanEnterPosition { get; set; }
+    public List<GameObject> CollideList { get => throw new System.NotImplementedException(); set => throw new System.NotImplementedException(); }
 
     void Start()
     {
