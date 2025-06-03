@@ -13,14 +13,21 @@ MonoBehaviour:
   m_Name: newItem2
   m_EditorClassIdentifier: 
   ItemName: newItem2
+  HandCardCount: 0
+  isHavePassive: 0
+  TotalDamage: 0
+  isAttackDMG: 0
+  order: 0
   Description: 
   ItemSprite: {fileID: 0}
   cellSize: {x: 0, y: 0}
-  RootMergeItem: {fileID: 0}
-  MergedItems: []
-  ItemEffects_OnEveryTour: []
+  RootMergeItem: {fileID: 11400000, guid: ed4c1189096b847e2867523dc459fa3b, type: 2}
+  PassiveTourCount: 0
+  MergedItems:
+  - {fileID: 11400000, guid: ceaa4770064244877966e1c2d3e0f8a6, type: 2}
   ItemEffects_OnEnemy: []
   ItemEffects_OnPlaced: []
+  ItemEffects_OnEveryTour: []
   references:
     version: 2
     RefIds: []
