@@ -70,6 +70,7 @@ public class TwoByOne : MonoBehaviour, IInventoryObject, IRotatable, IPowerItem
     float lastlocationY = 0;
 
     Vector3 mouseDelta = new Vector3();
+   
     public bool isAdded { get; set; }
 
     [ShowInInspector]
@@ -77,7 +78,8 @@ public class TwoByOne : MonoBehaviour, IInventoryObject, IRotatable, IPowerItem
 
     public HandledCards CardHandleDataList;
     [SerializeField] List<BoxCollider2D> CollideDedectors;
-  //  private HashSet<BaseItem> objectsThatAdded = new HashSet<BaseItem>();
+    [SerializeField] bool isCollideOtherObject;
+
     private void Start()
     {
         GridIntegration();
@@ -136,11 +138,7 @@ public class TwoByOne : MonoBehaviour, IInventoryObject, IRotatable, IPowerItem
         }
     }
   
-    public void ButtonSkipEvent()
-    {
-        AddList();
-        CombineObject();
-    }
+
     public void Consume()
     {
         throw new System.NotImplementedException();
@@ -152,7 +150,24 @@ public class TwoByOne : MonoBehaviour, IInventoryObject, IRotatable, IPowerItem
         gridInput = GameObject.Find("Grid").GetComponent<GridRaycast>();
         handledObject = gameObject;
     }
+  
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "InvObject")
+        {
+            isCollideOtherObject = true;
 
+        }
+       
+    }
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "InvObject")
+        {
+            isCollideOtherObject = false;
+
+        }
+    }
     void ScaleObjectRechange()
     {
         float offsetDataCollector = pivotOffsetX;
@@ -281,64 +296,31 @@ public class TwoByOne : MonoBehaviour, IInventoryObject, IRotatable, IPowerItem
         }
 
     }
-    /*
-    void ListDeleter()
+    private void OnMouseOver()
     {
-        isAdded = false;
-        CardHandleDataList.HandledObjects.Remove(BaseItemObj);
+        if (gridEnter && Input.GetMouseButtonDown(1))
+        {
+            CardHandleDataList.HandledObjects.Remove(gameObject);
+            transform.position = StartPosition;
+            
+        }
+    }
 
-        foreach (GameObject i in AddedMaterialsChecker)
-        {
-            i.GetComponent<IInventoryObject>().isAdded = false;
-            CardHandleDataList.HandledObjects.Remove(i.GetComponent<IInventoryObject>().BaseItemObj);
-        }
-    }
-    */
-    void CombineObject()
-    {
-        successfulMerges = 0; // Her çağrıldığında sayaç sıfırlanır
 
-        if (AddedMaterialsChecker != null)
-        {
-            foreach (GameObject i in AddedMaterialsChecker)
-            {
-                for (int MergedItems = 0; MergedItems < BaseItemObj.MergedItems.Count; MergedItems++)
-                {
-                    if (i.GetComponent<IInventoryObject>().BaseItemObj == BaseItemObj.MergedItems[MergedItems])
-                    {
-                        successfulMerges++; 
-                    }
-                }
-            }
-        }
-    }
-    /*
-    void TryAddUpgradedItem()
-    {
-        
-        if (successfulMerges >= BaseItem.MergedItems.Count && gridEnter)
-        {
-            if (!objectsThatAdded.Contains(BaseItemObj))
-            {
-                //CardHandleDataList.HandledObjects.Add(BaseItem.RootMergeItem);
-                objectsThatAdded.Add(BaseItemObj); 
-            }
-        }
-    }
-    */
     void OutOfGrid()
     {
+       
 
-     
     }
     void GridEnterBoolCheck()
     {
-        if (OnUpMiddle && OnDownMiddle && onRightMiddle && onLeftMiddle && OnUpRight && OnUpLeft && OnDownRight && OnDownLeft)
+        if (OnUpMiddle && OnDownMiddle && onRightMiddle && onLeftMiddle && OnUpRight && OnUpLeft && OnDownRight && OnDownLeft && isCollideOtherObject == false)
         {
             gridEnter = true;
         }
         else
         {
+            isAdded = false;
             gridEnter = false;
         }
 

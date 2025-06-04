@@ -378,6 +378,7 @@ MonoBehaviour:
   - {fileID: 299287963}
   - {fileID: 2039024218}
   - {fileID: 2102415527}
+  isCollideOtherObject: 0
 --- !u!114 &40776669
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1418,7 +1419,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &261869700
 Transform:
   m_ObjectHideFlags: 0
@@ -1920,7 +1921,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &332003879
 Transform:
   m_ObjectHideFlags: 0
@@ -4274,7 +4275,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &906814575
 Transform:
   m_ObjectHideFlags: 0
@@ -4521,7 +4522,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1144076811
 Transform:
   m_ObjectHideFlags: 0
@@ -5028,6 +5029,7 @@ MonoBehaviour:
   - {fileID: 1273456869}
   - {fileID: 129443303}
   - {fileID: 1928264155}
+  isCollideOtherObject: 0
 --- !u!114 &1204910503
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6197,6 +6199,7 @@ MonoBehaviour:
   - {fileID: 1921786735}
   - {fileID: 1144076812}
   - {fileID: 906814576}
+  isCollideOtherObject: 0
 --- !u!50 &1412027323
 Rigidbody2D:
   serializedVersion: 5
@@ -6817,7 +6820,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1583708811
 Transform:
   m_ObjectHideFlags: 0
@@ -7053,6 +7056,7 @@ MonoBehaviour:
   StartPosition: {x: 0, y: 0}
   CardHandleDataList: {fileID: 0}
   CollideDedectors: []
+  isCollideOtherObject: 0
 --- !u!114 &1648827880
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8191,6 +8195,7 @@ MonoBehaviour:
   - {fileID: 24001195}
   - {fileID: 1907313122}
   - {fileID: 1955680328}
+  isCollideOtherObject: 0
 --- !u!114 &1917864996
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8344,7 +8349,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1921786734
 Transform:
   m_ObjectHideFlags: 0
