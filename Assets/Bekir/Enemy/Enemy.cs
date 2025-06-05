@@ -4,6 +4,7 @@ using System.Collections.Generic;
 public class Enemy : MonoBehaviour, IDamage
 {
     public float _health;
+    public float _shield;
     private float _healtCounter;
     public PlayerHandler player;
     public SOEnemy EnemySettings;
@@ -48,10 +49,23 @@ public class Enemy : MonoBehaviour, IDamage
         return;
     }
 
-    public void TakeDamage(float value)
+    public void TakeDamageWithShield(float value)
     {
         _health = _health - value;
         if (_health <= 0)
             Die();
+    }
+
+    public void TakeDamageWithoutShield(float value)
+    {
+        float shieldScaler = _shield;
+        shieldScaler = shieldScaler - value;
+        _shield = shieldScaler;
+
+        if (_shield < 0)
+            _shield = 0;
+
+        if (shieldScaler < 0)
+            _health = _health - shieldScaler;
     }
 }

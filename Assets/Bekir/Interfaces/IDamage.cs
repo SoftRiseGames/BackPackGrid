@@ -2,7 +2,9 @@ using UnityEngine;
 
 public interface IDamage
 {
-    void TakeDamage(float value);
+    void TakeDamageWithShield(float value);
+
+    void TakeDamageWithoutShield(float value);
     void Die();
 
 }

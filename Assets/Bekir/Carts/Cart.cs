@@ -88,7 +88,7 @@ public class Cart : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IPoin
         if(Input.GetMouseButtonUp(0)){
             RaycastHit2D hit2D = Physics2D.Raycast(transform.position, Vector3.forward, 100, _cartPlacementLayer);
 
-            if (hit2D.collider != null && (GameManagerBekir.instance.ManaCount>ManaCount))
+            if (hit2D.collider != null && (GameManagerBekir.instance.ManaCount>=ManaCount))
             {
                 GameManagerBekir.instance.ManaCount = GameManagerBekir.instance.ManaCount - ManaCount;
                collider = hit2D.collider;
@@ -170,20 +170,24 @@ public class Cart : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IPoin
     }
     public void OnAttack()
     {
-        if(_baseItem.order >= enemy.Order)
+        if(enemy != null)
         {
-            Enemy EnemyCollider = enemy;
+            if (_baseItem.order >= enemy.Order)
+            {
+                Enemy EnemyCollider = enemy;
 
-            _baseItem.ItemEffects_OnEnemy?.ForEach(effect => effect?.ExecuteEffect(enemy, gameObject.transform.GetComponent<Cart>()));
-            DOTween.Kill(transform);
-            GameObject.Find("Pool").GetComponent<CartHandler>().SpawnedCarts.Remove(gameObject.GetComponent<Cart>());
-            gameObject.GetComponent<BoxCollider2D>().enabled = false;
-            _description.color = new Color(0, 0, 0, 0);
-            _name.color = new Color(0, 0, 0, 0);
-            _itemBG.color = new Color(0, 0, 0, 0);
-            _itemImage.color = new Color(0, 0, 0, 0);
-            isPlayed = true;
+                _baseItem.ItemEffects_OnEnemy?.ForEach(effect => effect?.ExecuteEffect(enemy, gameObject.transform.GetComponent<Cart>()));
+                DOTween.Kill(transform);
+                GameObject.Find("Pool").GetComponent<CartHandler>().SpawnedCarts.Remove(gameObject.GetComponent<Cart>());
+                gameObject.GetComponent<BoxCollider2D>().enabled = false;
+                _description.color = new Color(0, 0, 0, 0);
+                _name.color = new Color(0, 0, 0, 0);
+                _itemBG.color = new Color(0, 0, 0, 0);
+                _itemImage.color = new Color(0, 0, 0, 0);
+                isPlayed = true;
+            }
         }
+        
     }
 
 }

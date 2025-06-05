@@ -16,6 +16,7 @@ MonoBehaviour:
   HandCardCount: 5
   isHavePassive: 0
   TotalDamage: 3
+  ManaCount: 1
   isAttackDMG: 0
   order: 0
   Description: Kesici Hasar Vurur

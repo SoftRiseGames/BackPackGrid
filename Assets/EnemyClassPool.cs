@@ -4,7 +4,7 @@ public class Bandit : IEnemy
 {
     public void AttackOnTour(PlayerHandler player)
     {
-        player._health = player._health - 1;
+        player.TakeDamageWithoutShield(1);
     }
 
     public void DefenceOnTour(PlayerHandler player)
@@ -13,6 +13,24 @@ public class Bandit : IEnemy
     }
 
     public void PassiveAttackOnTour(PlayerHandler player)
+    {
+        Debug.Log("Passive");
+    }
+}
+
+public class Wolf : IEnemy
+{
+    public void AttackOnTour(PlayerHandler Player)
+    {
+        Player.TakeDamageWithShield(10);
+    }
+
+    public void DefenceOnTour(PlayerHandler Player)
+    {
+        Debug.Log("Defence");
+    }
+
+    public void PassiveAttackOnTour(PlayerHandler Player)
     {
         Debug.Log("Passive");
     }
