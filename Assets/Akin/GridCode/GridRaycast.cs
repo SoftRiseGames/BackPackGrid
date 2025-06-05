@@ -18,7 +18,7 @@ public class GridRaycast : MonoBehaviour
     {
         Vector3 mousePos = Input.mousePosition;
         Vector3 worldPos = sceneCamera.ScreenToWorldPoint(mousePos);
-        worldPos.z = 0; 
+        worldPos.z = 0;
 
         RaycastHit2D hit = Physics2D.Raycast(worldPos, Vector2.zero, Mathf.Infinity, groundLayerMask);
         Debug.DrawRay(worldPos, Vector2.zero, Color.red);
@@ -29,9 +29,9 @@ public class GridRaycast : MonoBehaviour
             Object = hit.collider.gameObject;
         }
 
-       
 
-       
+
+
         return m_lastPosition;
     }
     public bool GetPlacementInput() => Input.GetMouseButtonDown(0);

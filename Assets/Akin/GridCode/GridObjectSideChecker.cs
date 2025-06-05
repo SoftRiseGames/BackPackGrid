@@ -3,7 +3,6 @@ using System.Collections.Generic;
 public class GridObjectSideChecker : MonoBehaviour
 {
     [SerializeField] GameObject ParentObj;
-    public List<GameObject> DataController;
     public DataControllerHolder dataHolder;
     bool CanObjectAddable;
     public bool isObjectTrueDedect;

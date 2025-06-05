@@ -21,9 +21,14 @@ public class GridSystem : MonoBehaviour
     }
     private void Update()
     {
+        if(Inv != null)
+        {
+            Debug.Log("INV");
+        }
 
         if (Inv != null && Inv.gridEnter)
         {
+            Debug.Log("Sað týk");
             Inv.RegisterYourself();
         }
 
@@ -33,12 +38,22 @@ public class GridSystem : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.R))
             {
                 ((IRotatable)Inv).RotateLeft();
+
                 if (Inv.gridEnter)
                 {
                     Inv.RegisterYourself();
                 }
             }
 
+        }
+
+        if (Inv != null)
+        {
+            if (Input.GetMouseButtonDown(1))
+            {
+                Debug.Log("sol TIk");
+                Inv.ObjectOutOfGrid();
+            }
         }
 
     }

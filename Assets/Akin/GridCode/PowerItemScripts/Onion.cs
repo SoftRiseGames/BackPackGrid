@@ -83,4 +83,9 @@ public class Onion : MonoBehaviour,IPowerItem ,IInventoryObject
     {
         throw new System.NotImplementedException();
     }
+
+    public void ObjectOutOfGrid()
+    {
+        throw new System.NotImplementedException();
+    }
 }

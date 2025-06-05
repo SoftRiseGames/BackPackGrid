@@ -7,6 +7,8 @@ public interface IInventoryObject
     void RegisterYourself();
     void Consume();
     void MoveObjectStarting();
+
+    void ObjectOutOfGrid();
   
     public BaseItem BaseItemObj { get; }
     public bool OnUpMiddle { get; }

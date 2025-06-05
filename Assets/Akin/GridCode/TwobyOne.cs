@@ -153,16 +153,17 @@ public class TwoByOne : MonoBehaviour, IInventoryObject, IRotatable, IPowerItem
   
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "InvObject")
+        if (collision.gameObject.layer == LayerMask.NameToLayer("HandleObjectPlacement") || collision.gameObject.layer == LayerMask.NameToLayer("HandleObjectLocked"))
         {
             isCollideOtherObject = true;
 
         }
        
+       
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "InvObject")
+        if (collision.gameObject.layer == LayerMask.NameToLayer("HandleObjectPlacement") || collision.gameObject.layer == LayerMask.NameToLayer("HandleObjectLocked"))
         {
             isCollideOtherObject = false;
 
@@ -212,7 +213,7 @@ public class TwoByOne : MonoBehaviour, IInventoryObject, IRotatable, IPowerItem
             pivotOffsetY = .5f * handledObject.GetComponent<TwoByOne>().SidePosYValue;
         }
     }
-
+    
     public void RegisterYourself()
     {
         isDragging = false;
@@ -266,10 +267,10 @@ public class TwoByOne : MonoBehaviour, IInventoryObject, IRotatable, IPowerItem
 
         if (!snapped)
         {
-            // Snap yapılamadıysa istenirse burada log/logic eklenebilir
             Debug.Log("Snap yapılamadı. Engel veya geçersiz pozisyon.");
         }
     }
+
 
     void AddList()
     {
@@ -298,12 +299,7 @@ public class TwoByOne : MonoBehaviour, IInventoryObject, IRotatable, IPowerItem
     }
     private void OnMouseOver()
     {
-        if (gridEnter && Input.GetMouseButtonDown(1))
-        {
-            CardHandleDataList.HandledObjects.Remove(gameObject);
-            transform.position = StartPosition;
-            
-        }
+       
     }
 
 
@@ -322,8 +318,8 @@ public class TwoByOne : MonoBehaviour, IInventoryObject, IRotatable, IPowerItem
         {
             isAdded = false;
             gridEnter = false;
+            CanEnterPosition = true;
         }
-
     }
 
     public void RotateLeft()
@@ -459,6 +455,16 @@ public class TwoByOne : MonoBehaviour, IInventoryObject, IRotatable, IPowerItem
     public void PowerUpBuffs()
     {
         Debug.Log("ObjectPowering");
+    }
+
+    public void ObjectOutOfGrid()
+    {
+         if (gridEnter && Input.GetMouseButtonDown(1))
+        {
+            CardHandleDataList.HandledObjects.Remove(gameObject);
+            transform.position = StartPosition;
+            
+        }
     }
 }
 

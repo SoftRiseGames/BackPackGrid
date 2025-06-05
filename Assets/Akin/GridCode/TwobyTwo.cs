@@ -62,6 +62,11 @@ public class TwobyTwo : IInventoryObject
         throw new System.NotImplementedException();
     }
 
+    public void ObjectOutOfGrid()
+    {
+        throw new System.NotImplementedException();
+    }
+
     public void RegisterYourself()
     {
         throw new System.NotImplementedException();
