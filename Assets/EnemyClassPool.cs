@@ -4,7 +4,7 @@ public class Bandit : IEnemy
 {
     public void AttackOnTour(PlayerHandler player)
     {
-        player.TakeDamageWithoutShield(1);
+        player.TakeDamageWithShield(1);
     }
 
     public void DefenceOnTour(PlayerHandler player)
@@ -22,7 +22,7 @@ public class Wolf : IEnemy
 {
     public void AttackOnTour(PlayerHandler Player)
     {
-        Player.TakeDamageWithShield(10);
+        Player.TakeDamageWithoutShield(10);
     }
 
     public void DefenceOnTour(PlayerHandler Player)

@@ -11,11 +11,11 @@ public class Blood : IItemEffect
             if (PlayerPrefs.HasKey("isHasAttackBuff"))
             {
                 Debug.Log("AttackBuff");
-                 enemy.TakeDamageWithShield((TotalDamage) + ((TotalDamage / 100) * 10));
+                 enemy.TakeDamageWithoutShield((TotalDamage) + ((TotalDamage / 100) * 10));
             }
                
             else
-                enemy.TakeDamageWithShield((TotalDamage));
+                enemy.TakeDamageWithoutShield((TotalDamage));
         }
 
         GameObject.Find("MustBeSavedObjects").GetComponent<SelectedEnemy>().selectedEnemy = enemy;
@@ -71,11 +71,11 @@ public class Knife : IItemEffect
             if (PlayerPrefs.HasKey("isHasAttackBuff"))
             {
                 Debug.Log("AttackBuff");
-                enemy.TakeDamageWithShield((TotalDamage) + ((TotalDamage / 100) * 10));
+                enemy.TakeDamageWithoutShield((TotalDamage) + ((TotalDamage / 100) * 10));
             }
 
             else
-                enemy.TakeDamageWithShield((TotalDamage));
+                enemy.TakeDamageWithoutShield((TotalDamage));
         }
         GameObject.Find("MustBeSavedObjects").GetComponent<SelectedEnemy>().selectedEnemy = enemy;
 
@@ -100,11 +100,11 @@ public class Rifle : IItemEffect
             if (PlayerPrefs.HasKey("isHasAttackBuff"))
             {
                 Debug.Log("AttackBuff");
-                enemy.TakeDamageWithShield((TotalDamage) + ((TotalDamage / 100) * 10));
+                enemy.TakeDamageWithoutShield((TotalDamage) + ((TotalDamage / 100) * 10));
             }
 
             else
-                enemy.TakeDamageWithShield((TotalDamage));
+                enemy.TakeDamageWithoutShield((TotalDamage));
         }
         GameObject.Find("MustBeSavedObjects").GetComponent<SelectedEnemy>().selectedEnemy = enemy;
 
@@ -129,11 +129,11 @@ public class FireSword : IItemEffect
             if (PlayerPrefs.HasKey("isHasAttackBuff"))
             {
                 Debug.Log("AttackBuff");
-                enemy.TakeDamageWithShield((TotalDamage) + ((TotalDamage / 100) * 10));
+                enemy.TakeDamageWithoutShield((TotalDamage) + ((TotalDamage / 100) * 10));
             }
 
             else
-                enemy.TakeDamageWithShield((TotalDamage));
+                enemy.TakeDamageWithoutShield((TotalDamage));
         }
         GameObject.Find("MustBeSavedObjects").GetComponent<SelectedEnemy>().selectedEnemy = enemy;
 
@@ -157,11 +157,11 @@ public class BloodSword : IItemEffect
             if (PlayerPrefs.HasKey("isHasAttackBuff"))
             {
                 Debug.Log("AttackBuff");
-                enemy.TakeDamageWithShield((TotalDamage) + ((TotalDamage / 100) * 10));
+                enemy.TakeDamageWithoutShield((TotalDamage) + ((TotalDamage / 100) * 10));
             }
 
             else
-                enemy.TakeDamageWithShield((TotalDamage));
+                enemy.TakeDamageWithoutShield((TotalDamage));
         }
         GameObject.Find("MustBeSavedObjects").GetComponent<SelectedEnemy>().selectedEnemy = enemy;
 
@@ -184,11 +184,11 @@ public class GreatSword : IItemEffect
             if (PlayerPrefs.HasKey("isHasAttackBuff"))
             {
                 Debug.Log("AttackBuff");
-                enemy.TakeDamageWithShield((TotalDamage) + ((TotalDamage / 100) * 10));
+                enemy.TakeDamageWithoutShield((TotalDamage) + ((TotalDamage / 100) * 10));
             }
 
             else
-                enemy.TakeDamageWithShield((TotalDamage));
+                enemy.TakeDamageWithoutShield((TotalDamage));
         }
         GameObject.Find("MustBeSavedObjects").GetComponent<SelectedEnemy>().selectedEnemy = enemy;
 
@@ -213,11 +213,11 @@ public class CursedBloodSword : IItemEffect
             if (PlayerPrefs.HasKey("isHasAttackBuff"))
             {
                 Debug.Log("AttackBuff");
-                enemy.TakeDamageWithShield((TotalDamage) + ((TotalDamage / 100) * 10));
+                enemy.TakeDamageWithoutShield((TotalDamage) + ((TotalDamage / 100) * 10));
             }
 
             else
-                enemy.TakeDamageWithShield((TotalDamage));
+                enemy.TakeDamageWithoutShield((TotalDamage));
         }
         GameObject.Find("MustBeSavedObjects").GetComponent<SelectedEnemy>().selectedEnemy = enemy;
 
@@ -241,11 +241,11 @@ public class ThrowingKnifes : IItemEffect
             if (PlayerPrefs.HasKey("isHasAttackBuff"))
             {
                 Debug.Log("AttackBuff");
-                enemy.TakeDamageWithShield((TotalDamage) + ((TotalDamage / 100) * 10));
+                enemy.TakeDamageWithoutShield((TotalDamage) + ((TotalDamage / 100) * 10));
             }
 
             else
-                enemy.TakeDamageWithShield((TotalDamage));
+                enemy.TakeDamageWithoutShield((TotalDamage));
         }
         GameObject.Find("MustBeSavedObjects").GetComponent<SelectedEnemy>().selectedEnemy = enemy;
 
@@ -271,7 +271,7 @@ public class Bleeding : IPassive
 
         if (card.isCheckedPassiveSituation)
         {
-            enemy.TakeDamageWithShield(1);
+            enemy.TakeDamageWithoutShield(1);
             GameObject.Find("MustBeSavedObjects").GetComponent<SelectedEnemy>().MustBeSavedCards = card;
         }
         else
@@ -329,7 +329,7 @@ public class Burn : IPassive
 
 
         if (card.isCheckedPassiveSituation)
-            enemy.TakeDamageWithShield(10);
+            enemy.TakeDamageWithoutShield(10);
         else
         {
             card.TourCount = 0;

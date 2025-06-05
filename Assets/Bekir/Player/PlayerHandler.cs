@@ -14,7 +14,7 @@ public class PlayerHandler : MonoBehaviour, IDamage
     }
 
 
-    public void TakeDamageWithShield(float value)
+    public void TakeDamageWithoutShield(float value)
     {
         _health = _health - value;
         if (_health <= 0)
@@ -26,7 +26,7 @@ public class PlayerHandler : MonoBehaviour, IDamage
         Debug.Log("I am Dead");
     }
 
-    public void TakeDamageWithoutShield(float value)
+    public void TakeDamageWithShield(float value)
     {
         float shieldScaler = _shield;
         shieldScaler = shieldScaler - value;
@@ -35,7 +35,11 @@ public class PlayerHandler : MonoBehaviour, IDamage
         if (_shield < 0)
             _shield = 0;
 
+
         if (shieldScaler < 0)
-            _health = _health - shieldScaler;
+            _health = _health - Mathf.Abs(shieldScaler);
+
+        if (_health <= 0)
+            Die();
     }
 }
