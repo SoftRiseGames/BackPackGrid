@@ -13,6 +13,7 @@ public class BaseItem : ScriptableObject
     public int HandCardCount;
     public bool isHavePassive;
     public float TotalDamage;
+    public int ManaCount;
     [HideInInspector]public bool isAttackDMG;
     public int order;
     /// <summary>

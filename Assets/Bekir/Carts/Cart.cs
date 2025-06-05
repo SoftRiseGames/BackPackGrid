@@ -23,7 +23,8 @@ public class Cart : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IPoin
     public bool isPlayed;
     [HideInInspector] public bool isCheckedPassiveSituation;
     [HideInInspector] public float CardDamage;
-    
+
+    private int ManaCount;
     Collider2D collider;
     private void OnEnable()
     {
@@ -36,6 +37,7 @@ public class Cart : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IPoin
         player = GameObject.Find("Player").GetComponent<PlayerHandler>();
         TourCount = _baseItem.PassiveTourCount;
         CardDamage = _baseItem.TotalDamage;
+        ManaCount = _baseItem.ManaCount;
     }
     
     private void OnDisable()
@@ -86,8 +88,9 @@ public class Cart : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IPoin
         if(Input.GetMouseButtonUp(0)){
             RaycastHit2D hit2D = Physics2D.Raycast(transform.position, Vector3.forward, 100, _cartPlacementLayer);
 
-            if (hit2D.collider != null)
+            if (hit2D.collider != null && (GameManagerBekir.instance.ManaCount>ManaCount))
             {
+                GameManagerBekir.instance.ManaCount = GameManagerBekir.instance.ManaCount - ManaCount;
                collider = hit2D.collider;
                OnAttack();
             }

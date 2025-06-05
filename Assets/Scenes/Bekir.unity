@@ -2088,6 +2088,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _health: 10
   isAttackBuffing: 0
+  isLifeStealing: 0
 --- !u!1 &1127530131
 GameObject:
   m_ObjectHideFlags: 0
@@ -2432,6 +2433,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   C_CartHandler: {fileID: 1343247815}
   C_PlayerHandler: {fileID: 1100168319}
+  ManaCount: 2
 --- !u!4 &1233893050
 Transform:
   m_ObjectHideFlags: 0
