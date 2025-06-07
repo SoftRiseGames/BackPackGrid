@@ -99,6 +99,7 @@ public class TwoByOne : MonoBehaviour, IInventoryObject, IRotatable, IPowerItem
         GridEnterBoolCheck();
         Ray();
         AddList();
+        ListForcer();
         mouseDelta = new Vector3(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"), 0);
 
         if (isHandle)
@@ -295,8 +296,13 @@ public class TwoByOne : MonoBehaviour, IInventoryObject, IRotatable, IPowerItem
             }
             else
             {
-                CardHandleDataList.HandledObjects.Add(gameObject);
-                isAdded = true;
+                if (!CardHandleDataList.HandledObjects.Contains(gameObject))
+                {
+                    CardHandleDataList.HandledObjects.Add(gameObject);
+                    isAdded = true;
+                }
+                else
+                    return;
             }
 
         }
@@ -464,11 +470,19 @@ public class TwoByOne : MonoBehaviour, IInventoryObject, IRotatable, IPowerItem
 
     public void ObjectOutOfGrid()
     {
+
          if (gridEnter && Input.GetMouseButtonDown(1))
         {
-            CardHandleDataList.HandledObjects.Remove(gameObject);
             transform.position = StartPosition;
-            
+        }
+    }
+
+    void ListForcer()
+    {
+        if (CardHandleDataList.HandledObjects.Contains(gameObject) && gridEnter == false)
+        {
+            CardHandleDataList.HandledObjects.Remove(gameObject);
+
         }
     }
 }
