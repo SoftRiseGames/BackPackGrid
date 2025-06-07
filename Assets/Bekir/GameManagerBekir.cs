@@ -7,7 +7,7 @@ public class GameManagerBekir : MonoBehaviour{
     public int ManaCount;
     public static GameManagerBekir instance;
     [SerializeField] private Button TourButton;
-
+    [SerializeField] private GameObject DMGEffect;
     private void Start()
     {
         if (instance == null)
@@ -18,12 +18,16 @@ public class GameManagerBekir : MonoBehaviour{
         EventManagerCode.OnEnemyTurn += ManaRenew;
         EventManagerCode.OnEnemyTurn += TourButtonClose;
         EnemyManager.onPlayerTurn += TourButtonOpen;
+        EnemyManager.DMGEffectAction += DMGEffectVoid;
+        EnemyManager.DMGEffectStopAction += DMGStopActionVoid;
     }
     private void OnDisable()
     {
         EventManagerCode.OnEnemyTurn -= ManaRenew;
         EventManagerCode.OnEnemyTurn -= TourButtonClose;
         EnemyManager.onPlayerTurn -= TourButtonOpen;
+        EnemyManager.DMGEffectAction -= DMGEffectVoid;
+        EnemyManager.DMGEffectStopAction -= DMGStopActionVoid;
     }
     void ManaRenew()
     {
@@ -36,5 +40,14 @@ public class GameManagerBekir : MonoBehaviour{
     void TourButtonOpen()
     {
         TourButton.interactable = true;
+    }
+    void DMGEffectVoid()
+    {
+        DMGEffect.SetActive(true);
+    }
+
+    void DMGStopActionVoid()
+    {
+        DMGEffect.SetActive(false);
     }
 }

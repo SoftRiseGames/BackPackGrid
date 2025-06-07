@@ -9,8 +9,8 @@ public class EnemyManager : MonoBehaviour
     public List<Enemy> enemies;
     private bool isEventRunning = false;
     public static Action onPlayerTurn;
-
-   
+    public static Action DMGEffectAction;
+    public static Action DMGEffectStopAction;
     private void OnEnable()
     {
         EventManagerCode.OnEnemyTurn += StartCoroutineEvent;
@@ -48,7 +48,10 @@ public class EnemyManager : MonoBehaviour
         isEventRunning = true;
         for (int i = 0; i < enemies.Count; i++)
         {
+           
             yield return new WaitForSeconds(0.5f);
+            DMGEffectAction?.Invoke();
+            
             Enemy enemy = enemies[i];
 
             string currentAction = enemy.EnemySettings.EnemyPattern[enemy.EnemyPatternCounter];
@@ -57,9 +60,10 @@ public class EnemyManager : MonoBehaviour
                 enemy.AttackOnTour();
             else if (currentAction == "Defence")
                 enemy.DefenceOnTour();
-
-            // Her düþman arasýnda 0.5 saniye bekle
+            yield return new WaitForSeconds(0.5f);
+            DMGEffectStopAction.Invoke();
         }
+       
         yield return new WaitForSeconds(.5f);
         isEventRunning = false;
         onPlayerTurn?.Invoke();
