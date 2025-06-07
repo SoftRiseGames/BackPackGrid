@@ -50,14 +50,17 @@ public class EnemyManager : MonoBehaviour
         {
            
             yield return new WaitForSeconds(0.5f);
-            DMGEffectAction?.Invoke();
-            
+           
             Enemy enemy = enemies[i];
 
             string currentAction = enemy.EnemySettings.EnemyPattern[enemy.EnemyPatternCounter];
 
             if (currentAction == "Attack")
+            {
+                DMGEffectAction?.Invoke();
                 enemy.AttackOnTour();
+            }
+                
             else if (currentAction == "Defence")
                 enemy.DefenceOnTour();
             yield return new WaitForSeconds(0.5f);

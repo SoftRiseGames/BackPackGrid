@@ -1,6 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
-
+using Unity.Cinemachine;
 public class GameManagerBekir : MonoBehaviour{
     public CartHandler C_CartHandler;
     public PlayerHandler C_PlayerHandler;
@@ -8,6 +8,7 @@ public class GameManagerBekir : MonoBehaviour{
     public static GameManagerBekir instance;
     [SerializeField] private Button TourButton;
     [SerializeField] private GameObject DMGEffect;
+    [SerializeField] private CinemachineImpulseSource impulse;
     private void Start()
     {
         if (instance == null)
@@ -43,6 +44,8 @@ public class GameManagerBekir : MonoBehaviour{
     }
     void DMGEffectVoid()
     {
+        impulse.DefaultVelocity = new Vector2(Random.Range(-.2f,.2f),Random.Range(-.1f,.1f));
+        impulse.GenerateImpulse();
         DMGEffect.SetActive(true);
     }
 
