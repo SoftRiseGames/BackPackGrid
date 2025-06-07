@@ -16,25 +16,26 @@ MonoBehaviour:
   HandCardCount: 5
   isHavePassive: 1
   TotalDamage: 1
+  ManaCount: 1
   isAttackDMG: 0
   order: 10
   Description: "Rakibe Kan Hasar\u0131 Vur"
   ItemSprite: {fileID: -1250021020546060479, guid: 410f67d54c6e81b45862e48f2d1f5245, type: 3}
   cellSize: {x: 0, y: 0}
   RootMergeItem: {fileID: 0}
-  PassiveTourCount: 1
+  PassiveTourCount: 2
   MergedItems:
   - {fileID: 11400000, guid: ceaa4770064244877966e1c2d3e0f8a6, type: 2}
   ItemEffects_OnEnemy:
   - rid: 4778697489712676936
   ItemEffects_OnPlaced: []
   ItemEffects_OnEveryTour:
-  - rid: 501085993762816074
+  - rid: 1496930272831340614
   references:
     version: 2
     RefIds:
-    - rid: 501085993762816074
-      type: {class: AttackBuff, ns: , asm: Assembly-CSharp}
+    - rid: 1496930272831340614
+      type: {class: Bleeding, ns: , asm: Assembly-CSharp}
       data: 
     - rid: 4778697489712676936
       type: {class: Blood, ns: , asm: Assembly-CSharp}

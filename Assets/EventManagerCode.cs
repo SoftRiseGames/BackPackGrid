@@ -5,7 +5,7 @@ public class EventManagerCode : MonoBehaviour
 {
 
     public static Action OnEnemyTurn;
-
+    
     public void OnEnemyTurnVoid() => OnEnemyTurn.Invoke();
 
     public void PrefDeleter()

@@ -2001,7 +2001,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: -4.3099365, y: 0}
+  m_AnchoredPosition: {x: -4.3098145, y: 0}
   m_SizeDelta: {x: 1.37, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &763404390
@@ -2344,7 +2344,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: -4.3099365, y: 0}
+  m_AnchoredPosition: {x: -4.3098145, y: 0}
   m_SizeDelta: {x: 1.37, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &910524808
@@ -2714,7 +2714,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _health: 10
-  shield: 5
+  _shield: 0
   isAttackBuffing: 0
   isLifeStealing: 0
 --- !u!1 &1139442444
@@ -2961,6 +2961,7 @@ MonoBehaviour:
   C_CartHandler: {fileID: 1343247815}
   C_PlayerHandler: {fileID: 1100168319}
   ManaCount: 2
+  TourButton: {fileID: 1837230901}
 --- !u!4 &1233893050
 Transform:
   m_ObjectHideFlags: 0
@@ -4084,7 +4085,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.833791, y: 0.05}
   m_AnchorMax: {x: 0.9517074, y: 0.17222261}
-  m_AnchoredPosition: {x: 1.9299316, y: 0.8399658}
+  m_AnchoredPosition: {x: 1.9296875, y: 0.83984375}
   m_SizeDelta: {x: -14.140015, y: -16.320007}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1837230901

@@ -2,6 +2,7 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 using System;
+using UnityEngine.UI;
 public class EnemyManager : MonoBehaviour
 {
     public static EnemyManager instance; 
@@ -45,9 +46,9 @@ public class EnemyManager : MonoBehaviour
     IEnumerator EventCoroutine()
     {
         isEventRunning = true;
-
         for (int i = 0; i < enemies.Count; i++)
         {
+            yield return new WaitForSeconds(0.5f);
             Enemy enemy = enemies[i];
 
             string currentAction = enemy.EnemySettings.EnemyPattern[enemy.EnemyPatternCounter];
@@ -57,9 +58,9 @@ public class EnemyManager : MonoBehaviour
             else if (currentAction == "Defence")
                 enemy.DefenceOnTour();
 
-            yield return new WaitForSeconds(0.5f); // Her düþman arasýnda 0.5 saniye bekle
+            // Her düþman arasýnda 0.5 saniye bekle
         }
-        
+        yield return new WaitForSeconds(.3f);
         isEventRunning = false;
         onPlayerTurn?.Invoke();
     }
