@@ -26,12 +26,14 @@ public class Enemy : MonoBehaviour, IDamage
 
     public void AttackOnTour()
     {
+        _shield = 0;
         EnemySettings.EnemyEffects?.ForEach(effect => effect?.AttackOnTour(PlayerObject));
         EnemyPatternCounterManager();
     }
 
     public void DefenceOnTour()
     {
+        _shield = 0;
         EnemySettings.EnemyEffects?.ForEach(effect => effect?.DefenceOnTour(PlayerObject));
         EnemyPatternCounterManager();
     }

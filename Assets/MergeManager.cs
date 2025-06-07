@@ -14,7 +14,7 @@ public class MergeManager : MonoBehaviour
 
     }
     // Update is called once per frame
-  
+
     public void SaveAndSkip()
     {
         AddList();
@@ -34,6 +34,7 @@ public class MergeManager : MonoBehaviour
             var thisObject = handleCard;
             var collideList = handleInventory.CollideList;
 
+            // Bu objeyle çarpışan objeleri ve BaseItem'larını al
             List<(GameObject obj, BaseItem item)> collidePairs = collideList
                 .Select(obj => (obj, obj.GetComponent<IInventoryObject>().BaseItemObj))
                 .ToList();
@@ -47,10 +48,20 @@ public class MergeManager : MonoBehaviour
 
                 foreach (BaseItem savedMaterial in kvp.Value.MergedItems)
                 {
-                    bool hasAll = savedMaterial.MergedItems.All(
-                        requiredItem =>
-                            collidePairs.Any(pair => pair.item == requiredItem)
-                    );
+                    // Aynı item'ı birden çok kez saymayı önlemek için geçici liste
+                    var availablePairs = new List<(GameObject obj, BaseItem item)>(collidePairs);
+                    bool hasAll = true;
+
+                    foreach (var requiredItem in savedMaterial.MergedItems)
+                    {
+                        var match = availablePairs.FirstOrDefault(p => p.item == requiredItem);
+                        if (match == default)
+                        {
+                            hasAll = false;
+                            break;
+                        }
+                        availablePairs.Remove(match);
+                    }
 
                     if (hasAll)
                     {
@@ -75,6 +86,7 @@ public class MergeManager : MonoBehaviour
                     break;
             }
 
+            // Eğer upgrade gerçekleşmediyse, normal item'ları ekle
             if (!upgraded)
             {
                 foreach (var (obj, item) in collidePairs)
@@ -102,6 +114,7 @@ public class MergeManager : MonoBehaviour
             Debug.Log(item.name);
         }
     }
+
     void SaveData()
     {
         ObjectListClass SaverList = new ObjectListClass();

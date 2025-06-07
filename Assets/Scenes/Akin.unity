@@ -558,7 +558,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: -0.0009407401, y: 0.0073149204}
+  m_Offset: {x: -0.0009407401, y: 0.020209491}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -568,7 +568,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 0.9812355, y: 0.93187976}
+  m_Size: {x: 0.9812355, y: 0.9257628}
   m_EdgeRadius: 0
 --- !u!1 &43551378
 GameObject:
@@ -1508,7 +1508,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d7c4bfe1cf1a3854a9c78e82e57766b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ParentObj: {fileID: 1412027316}
+  ParentObj: {fileID: 1411462487}
   dataHolder: {fileID: 566308868}
   isObjectTrueDedect: 0
   colliderNew: {fileID: 0}
@@ -2199,7 +2199,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d7c4bfe1cf1a3854a9c78e82e57766b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ParentObj: {fileID: 1412027316}
+  ParentObj: {fileID: 40776667}
   dataHolder: {fileID: 566308868}
   isObjectTrueDedect: 0
   colliderNew: {fileID: 0}
@@ -2491,7 +2491,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d7c4bfe1cf1a3854a9c78e82e57766b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ParentObj: {fileID: 1412027316}
+  ParentObj: {fileID: 40776667}
   dataHolder: {fileID: 566308868}
   isObjectTrueDedect: 0
   colliderNew: {fileID: 0}
@@ -4127,7 +4127,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d7c4bfe1cf1a3854a9c78e82e57766b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ParentObj: {fileID: 1412027316}
+  ParentObj: {fileID: 1411462487}
   dataHolder: {fileID: 566308868}
   isObjectTrueDedect: 0
   colliderNew: {fileID: 0}
@@ -4219,7 +4219,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d7c4bfe1cf1a3854a9c78e82e57766b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ParentObj: {fileID: 1412027316}
+  ParentObj: {fileID: 40776667}
   dataHolder: {fileID: 566308868}
   isObjectTrueDedect: 0
   colliderNew: {fileID: 0}
@@ -4572,7 +4572,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d7c4bfe1cf1a3854a9c78e82e57766b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ParentObj: {fileID: 1412027316}
+  ParentObj: {fileID: 1411462487}
   dataHolder: {fileID: 566308868}
   isObjectTrueDedect: 0
   colliderNew: {fileID: 0}
@@ -4770,7 +4770,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d7c4bfe1cf1a3854a9c78e82e57766b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ParentObj: {fileID: 1412027316}
+  ParentObj: {fileID: 1411462487}
   dataHolder: {fileID: 566308868}
   isObjectTrueDedect: 0
   colliderNew: {fileID: 0}
@@ -5971,7 +5971,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: -0.0009407401, y: 0.0073149204}
+  m_Offset: {x: -0.0009407401, y: 0.00022798777}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -5981,7 +5981,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 0.9812355, y: 0.93187976}
+  m_Size: {x: 0.9812355, y: 0.95256585}
   m_EdgeRadius: 0
 --- !u!50 &1411462489
 Rigidbody2D:
@@ -6291,7 +6291,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: -0.003707707, y: -0.0029647946}
+  m_Offset: {x: -0.003707707, y: 0.010216236}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -6301,7 +6301,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 0.98666227, y: 0.9805392}
+  m_Size: {x: 0.98666227, y: 0.9205301}
   m_EdgeRadius: 0
 --- !u!114 &1412027321
 MonoBehaviour:
@@ -6334,12 +6334,12 @@ MonoBehaviour:
   gridInput: {fileID: 0}
   handledObject: {fileID: 0}
   grid: {fileID: 0}
-  collisionRadius: 0.15
+  collisionRadius: 0.09
   UpandBottomboxSize: {x: 2.94, y: 0.17}
   SideBoxSize: {x: 0.19, y: 1.83}
   VectorsMiddle:
   - {x: 0, y: 0.9}
-  - {x: 0, y: -0.77}
+  - {x: 0, y: -0.97}
   - {x: 1.22, y: 0}
   - {x: -1.26, y: 0}
   VectorsOutside:
@@ -6349,10 +6349,10 @@ MonoBehaviour:
   - {x: -1.81, y: 0}
   VectorsRight:
   - {x: 1.23, y: 0.87}
-  - {x: 1.21, y: -0.76}
+  - {x: 1.21, y: -0.96}
   VectorsLeft:
   - {x: -1.25, y: 0.89}
-  - {x: -1.24, y: -0.77}
+  - {x: -1.24, y: -0.99}
   Layer:
     serializedVersion: 2
     m_Bits: 1032
@@ -6984,7 +6984,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d7c4bfe1cf1a3854a9c78e82e57766b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ParentObj: {fileID: 1412027316}
+  ParentObj: {fileID: 1411462487}
   dataHolder: {fileID: 566308868}
   isObjectTrueDedect: 0
   colliderNew: {fileID: 0}
@@ -7282,7 +7282,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d7c4bfe1cf1a3854a9c78e82e57766b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ParentObj: {fileID: 1412027316}
+  ParentObj: {fileID: 40776667}
   dataHolder: {fileID: 566308868}
   isObjectTrueDedect: 0
   colliderNew: {fileID: 0}
@@ -7405,7 +7405,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d7c4bfe1cf1a3854a9c78e82e57766b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ParentObj: {fileID: 1412027316}
+  ParentObj: {fileID: 40776667}
   dataHolder: {fileID: 566308868}
   isObjectTrueDedect: 0
   colliderNew: {fileID: 0}
@@ -7866,7 +7866,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d7c4bfe1cf1a3854a9c78e82e57766b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ParentObj: {fileID: 1412027316}
+  ParentObj: {fileID: 40776667}
   dataHolder: {fileID: 566308868}
   isObjectTrueDedect: 0
   colliderNew: {fileID: 0}
@@ -8020,7 +8020,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d7c4bfe1cf1a3854a9c78e82e57766b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ParentObj: {fileID: 1412027316}
+  ParentObj: {fileID: 1411462487}
   dataHolder: {fileID: 566308868}
   isObjectTrueDedect: 0
   colliderNew: {fileID: 0}

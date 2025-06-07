@@ -233,7 +233,12 @@ public class TwoByOne : MonoBehaviour, IInventoryObject, IRotatable, IPowerItem
         {
             Vector3 newPosition = cellCenterPosition;
             newPosition.x -= pivotOffsetX;
-            newPosition.y -= pivotOffsetY;
+
+            if(cellCenterPosition.y>= gameObject.transform.position.y)
+                newPosition.y -= pivotOffsetY;
+            else
+                newPosition.y += pivotOffsetY;
+
 
             handledObject.transform.position = newPosition;
             CanEnterPosition = false;
