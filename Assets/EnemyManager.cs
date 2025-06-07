@@ -60,7 +60,7 @@ public class EnemyManager : MonoBehaviour
 
             // Her düþman arasýnda 0.5 saniye bekle
         }
-        yield return new WaitForSeconds(.3f);
+        yield return new WaitForSeconds(.5f);
         isEventRunning = false;
         onPlayerTurn?.Invoke();
     }

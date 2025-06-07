@@ -276,8 +276,8 @@ public class Bleeding : IPassive
         }
         else
         {
-            GameObject.Find("MustBeSavedObjects").GetComponent<SelectedEnemy>().MustBeSavedCards.TourCount = GameObject.Find("MustBeSavedObjects").GetComponent<SelectedEnemy>().MustBeSavedCards.TourCount + 1;
-            card.TourCount = 0;
+            GameObject.Find("MustBeSavedObjects").GetComponent<SelectedEnemy>().MustBeSavedCards.PassiveTourCount = GameObject.Find("MustBeSavedObjects").GetComponent<SelectedEnemy>().MustBeSavedCards.PassiveTourCount + 1;
+            card.PassiveTourCount = 0;
         }
     }
 
@@ -304,7 +304,7 @@ public class AttackBuff : IPassive
         }
         else
         {
-            card.TourCount = 0;
+            card.PassiveTourCount = 0;
         }
             
     }
@@ -332,7 +332,7 @@ public class Burn : IPassive
             enemy.TakeDamageWithoutShield(10);
         else
         {
-            card.TourCount = 0;
+            card.PassiveTourCount = 0;
         }
             
     }
@@ -353,7 +353,7 @@ public class LifeSteal : IPassive
         if (card.isCheckedPassiveSituation == true)
             player._health = player._health + ((card._baseItem.TotalDamage / 100) * 10);
         else
-            card.TourCount = 0;
+            card.PassiveTourCount = 0;
     }
 
     public void PassiveReset(PlayerHandler player, Enemy enemy, Cart card)

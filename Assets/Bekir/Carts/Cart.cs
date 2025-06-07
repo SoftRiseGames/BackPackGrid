@@ -3,6 +3,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using System.Collections.Generic;
 
 public class Cart : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IPointerEnterHandler, IPointerExitHandler, IItem
 {
@@ -18,12 +19,13 @@ public class Cart : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IPoin
     private Vector3 _startPosition;
     [SerializeField] private Enemy enemy;
     [SerializeField] bool canMove;
-    public int TourCount;
+    public int PassiveTourCount;
     PlayerHandler player;
     public bool isPlayed;
     [HideInInspector] public bool isCheckedPassiveSituation;
     [HideInInspector] public float CardDamage;
 
+    [SerializeField] List<Image> ManaImages;
     private int ManaCount;
     Collider2D collider;
     private void OnEnable()
@@ -35,9 +37,10 @@ public class Cart : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IPoin
     private void Start()
     {
         player = GameObject.Find("Player").GetComponent<PlayerHandler>();
-        TourCount = _baseItem.PassiveTourCount;
+        PassiveTourCount = _baseItem.PassiveTourCount;
         CardDamage = _baseItem.TotalDamage;
         ManaCount = _baseItem.ManaCount;
+        ManaCountImage();
     }
     
     private void OnDisable()
@@ -59,6 +62,13 @@ public class Cart : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IPoin
         if (collision.gameObject.tag == "Enemy")
         {
             enemy = null;
+        }
+    }
+    void ManaCountImage()
+    {
+        for(int i = 0; i< ManaCount; i++)
+        {
+            ManaImages[i].gameObject.SetActive(true);
         }
     }
     void CanMoveFalse()
@@ -149,10 +159,10 @@ public class Cart : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IPoin
     {
         if (isPlayed)
         {
-            if (TourCount > 0 && _baseItem.isHavePassive && collider.GetComponent<Enemy>()._health>0)
+            if (PassiveTourCount > 0 && _baseItem.isHavePassive && collider.GetComponent<Enemy>()._health>0)
             {
                 _baseItem.ItemEffects_OnEveryTour?.ForEach(effect => effect?.PassiveEffect(player, collider.GetComponent<Enemy>(), gameObject.GetComponent<Cart>())); ;
-                TourCount = TourCount - 1;
+                PassiveTourCount = PassiveTourCount - 1;
             }
             else
             {
