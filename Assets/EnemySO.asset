@@ -12,6 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0bb2fd89d7ad398439d477252bbc5252, type: 3}
   m_Name: EnemySO
   m_EditorClassIdentifier: 
+  Health: 10
+  Shield: 0
   EnemyEffects:
   - rid: 4778697969631756365
   EnemyPattern:

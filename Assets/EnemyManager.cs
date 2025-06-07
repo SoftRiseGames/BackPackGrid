@@ -46,29 +46,35 @@ public class EnemyManager : MonoBehaviour
     IEnumerator EventCoroutine()
     {
         isEventRunning = true;
-        for (int i = 0; i < enemies.Count; i++)
+        if (enemies != null)
         {
-           
-            yield return new WaitForSeconds(0.5f);
-           
-            Enemy enemy = enemies[i];
-
-            string currentAction = enemy.EnemySettings.EnemyPattern[enemy.EnemyPatternCounter];
-
-            if (currentAction == "Attack")
+            for (int i = 0; i < enemies.Count; i++)
             {
-                DMGEffectAction?.Invoke();
-                enemy.AttackOnTour();
+
+                yield return new WaitForSeconds(0.5f);
+
+                Enemy enemy = enemies[i];
+
+                string currentAction = enemy.EnemySettings.EnemyPattern[enemy.EnemyPatternCounter];
+
+                if (currentAction == "Attack")
+                {
+                    DMGEffectAction?.Invoke();
+                    enemy.AttackOnTour();
+                }
+
+                else if (currentAction == "Defence")
+                    enemy.DefenceOnTour();
+                yield return new WaitForSeconds(0.5f);
+                DMGEffectStopAction.Invoke();
             }
-                
-            else if (currentAction == "Defence")
-                enemy.DefenceOnTour();
-            yield return new WaitForSeconds(0.5f);
-            DMGEffectStopAction.Invoke();
+            yield return new WaitForSeconds(.5f);
+            isEventRunning = false;
+            onPlayerTurn?.Invoke();
         }
        
-        yield return new WaitForSeconds(.5f);
-        isEventRunning = false;
-        onPlayerTurn?.Invoke();
     }
+        
+       
+       
 }

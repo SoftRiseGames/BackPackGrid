@@ -1,22 +1,55 @@
 using UnityEngine;
 using System.Collections.Generic;
+using UnityEngine.UI;
+using TMPro;
 
 public class Enemy : MonoBehaviour, IDamage
 {
     public float _health;
     public float _shield;
-    private float _healtCounter;
     public PlayerHandler player;
     public SOEnemy EnemySettings;
     [SerializeField] private PlayerHandler PlayerObject;
     [HideInInspector]public int EnemyPatternCounter;
     public int Order;
 
-    [HideInInspector] public bool isBurning;
-    [HideInInspector] public bool isBleeding;
-    
+    public bool isBurning;
+    public bool isBleeding;
 
 
+    [SerializeField] private List<Sprite> TurnIconImageList;
+    [SerializeField] private Image TurnIconImageSet;
+
+    public TextMeshProUGUI BleedingTourText;
+    public TextMeshProUGUI BurningTourText;
+
+
+    public Image BleedingEffect;
+    public Image BurnEffect;
+
+    private void Start()
+    {
+        if (EnemySettings.EnemyPattern[EnemyPatternCounter] == "Attack")
+            TurnIconImageSet.sprite = TurnIconImageList[0];
+        else if (EnemySettings.EnemyPattern[EnemyPatternCounter] == "Defence")
+            TurnIconImageSet.sprite = TurnIconImageList[1];
+        _health = EnemySettings.Health;
+        _shield = EnemySettings.Shield;
+    }
+
+    private void Update()
+    {
+        if (isBleeding)
+            BleedingEffect.gameObject.SetActive(true);
+        else
+            BleedingEffect.gameObject.SetActive(false);
+
+        if (isBurning)
+            BurnEffect.gameObject.SetActive(true);
+        else
+            BurnEffect.gameObject.SetActive(false);
+
+    }
     public void Die()
     {
         EnemyManager.instance.enemies.Remove(gameObject.GetComponent<Enemy>());
@@ -38,12 +71,20 @@ public class Enemy : MonoBehaviour, IDamage
         EnemyPatternCounterManager();
     }
 
+   
     void EnemyPatternCounterManager()
     {
         EnemyPatternCounter = EnemyPatternCounter + 1;
 
         if (EnemyPatternCounter >= EnemySettings.EnemyPattern.Count)
+        {
             EnemyPatternCounter = 0;
+        }
+
+        if (EnemySettings.EnemyPattern[EnemyPatternCounter] == "Attack")
+            TurnIconImageSet.sprite = TurnIconImageList[0];
+        else if (EnemySettings.EnemyPattern[EnemyPatternCounter] == "Defence")
+            TurnIconImageSet.sprite = TurnIconImageList[1];
     }
 
     public void PassiveAttackOnTour()

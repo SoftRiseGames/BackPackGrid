@@ -257,6 +257,18 @@ public class ThrowingKnifes : IItemEffect
     }
 }
 
+public class Shield : IItemEffect
+{
+    public void ExecuteEffect(Enemy enemy, PlayerHandler player, Cart card)
+    {
+        
+    }
+
+    public void TourEffect(Enemy enemy, Cart card)
+    {
+        throw new System.NotImplementedException();
+    }
+}
 
 public class Bleeding : IPassive
 {   
@@ -267,12 +279,12 @@ public class Bleeding : IPassive
             card.isCheckedPassiveSituation = true;
             enemy.isBleeding = true;
         }
-            
-
+      
         if (card.isCheckedPassiveSituation)
         {
             enemy.TakeDamageWithoutShield(1);
             GameObject.Find("MustBeSavedObjects").GetComponent<SelectedEnemy>().MustBeSavedCards = card;
+            enemy.BleedingTourText.text = (card.PassiveTourCount - 1).ToString();
         }
         else
         {
@@ -329,7 +341,10 @@ public class Burn : IPassive
 
 
         if (card.isCheckedPassiveSituation)
+        {
+            enemy.BurningTourText.text = (card.PassiveTourCount-1).ToString();
             enemy.TakeDamageWithoutShield(10);
+        }
         else
         {
             card.PassiveTourCount = 0;
@@ -361,6 +376,8 @@ public class LifeSteal : IPassive
         player.isLifeStealing = false;
     }
 }
+
+
 
 
 
