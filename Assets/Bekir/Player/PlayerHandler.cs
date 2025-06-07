@@ -8,6 +8,14 @@ public class PlayerHandler : MonoBehaviour, IDamage
 
     [HideInInspector] public bool isAttackBuffing;
     [HideInInspector] public bool isLifeStealing;
+    private void OnEnable()
+    {
+        EnemyManager.onPlayerTurn += ShieldRenew;
+    }
+    private void OnDisable()
+    {
+        EnemyManager.onPlayerTurn -= ShieldRenew;
+    }
     void Start()
     {
         _healtCounter = _health;
@@ -41,5 +49,9 @@ public class PlayerHandler : MonoBehaviour, IDamage
 
         if (_health <= 0)
             Die();
+    }
+    void ShieldRenew()
+    {
+        _shield = 0;
     }
 }

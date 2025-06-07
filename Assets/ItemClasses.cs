@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class Blood : IItemEffect
 {
-    public void ExecuteEffect(Enemy enemy, Cart card)
+    public void ExecuteEffect(Enemy enemy,PlayerHandler player, Cart card)
     {
         float TotalDamage = card.CardDamage;
 
@@ -32,7 +32,7 @@ public class Blood : IItemEffect
 
 public class Sword : IItemEffect
 {
-    public void ExecuteEffect(Enemy enemy, Cart Card)
+    public void ExecuteEffect(Enemy enemy,PlayerHandler player, Cart Card)
     {
 
         float TotalDamage = Card.CardDamage;
@@ -61,7 +61,7 @@ public class Sword : IItemEffect
 
 public class Knife : IItemEffect
 {
-    public void ExecuteEffect(Enemy enemy, Cart Card)
+    public void ExecuteEffect(Enemy enemy, PlayerHandler player, Cart Card)
     {
 
         float TotalDamage = Card.CardDamage;
@@ -90,7 +90,7 @@ public class Knife : IItemEffect
 
 public class Rifle : IItemEffect
 {
-    public void ExecuteEffect(Enemy enemy, Cart Card)
+    public void ExecuteEffect(Enemy enemy,PlayerHandler player, Cart Card)
     {
 
         float TotalDamage = Card.CardDamage;
@@ -119,7 +119,7 @@ public class Rifle : IItemEffect
 
 public class FireSword : IItemEffect
 {
-    public void ExecuteEffect(Enemy enemy, Cart Card)
+    public void ExecuteEffect(Enemy enemy,PlayerHandler player, Cart Card)
     {
 
         float TotalDamage = Card.CardDamage;
@@ -147,7 +147,7 @@ public class FireSword : IItemEffect
 
 public class BloodSword : IItemEffect
 {
-    public void ExecuteEffect(Enemy enemy, Cart Card)
+    public void ExecuteEffect(Enemy enemy,PlayerHandler player, Cart Card)
     {
 
         float TotalDamage = Card.CardDamage;
@@ -174,7 +174,7 @@ public class BloodSword : IItemEffect
 }
 public class GreatSword : IItemEffect
 {
-    public void ExecuteEffect(Enemy enemy, Cart Card)
+    public void ExecuteEffect(Enemy enemy,PlayerHandler player, Cart Card)
     {
 
         float TotalDamage = Card.CardDamage;
@@ -203,7 +203,7 @@ public class GreatSword : IItemEffect
 
 public class CursedBloodSword : IItemEffect
 {
-    public void ExecuteEffect(Enemy enemy, Cart Card)
+    public void ExecuteEffect(Enemy enemy,PlayerHandler player, Cart Card)
     {
 
         float TotalDamage = Card.CardDamage;
@@ -231,7 +231,7 @@ public class CursedBloodSword : IItemEffect
 
 public class ThrowingKnifes : IItemEffect
 {
-    public void ExecuteEffect(Enemy enemy, Cart Card)
+    public void ExecuteEffect(Enemy enemy,PlayerHandler player, Cart Card)
     {
 
         float TotalDamage = Card.CardDamage;

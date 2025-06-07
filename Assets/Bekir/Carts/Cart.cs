@@ -20,7 +20,8 @@ public class Cart : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IPoin
     [SerializeField] private Enemy enemy;
     [SerializeField] bool canMove;
     public int PassiveTourCount;
-    PlayerHandler player;
+    private PlayerHandler PlayerExecute;
+    private bool isPlayerCollider;
     public bool isPlayed;
     [HideInInspector] public bool isCheckedPassiveSituation;
     [HideInInspector] public float CardDamage;
@@ -36,7 +37,7 @@ public class Cart : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IPoin
     }
     private void Start()
     {
-        player = GameObject.Find("Player").GetComponent<PlayerHandler>();
+        PlayerExecute = GameObject.Find("Player").GetComponent<PlayerHandler>();
         PassiveTourCount = _baseItem.PassiveTourCount;
         CardDamage = _baseItem.TotalDamage;
         ManaCount = _baseItem.ManaCount;
@@ -56,12 +57,20 @@ public class Cart : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IPoin
         {
             enemy = collision.gameObject.GetComponent<Enemy>();
         }
+        else if (collision.gameObject.tag == "Player")
+        {
+            isPlayerCollider = true;
+        }
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "Enemy")
         {
             enemy = null;
+        }
+        else if(collision.gameObject.tag == "Player")
+        {
+            isPlayerCollider = false;
         }
     }
     void ManaCountImage()
@@ -84,7 +93,7 @@ public class Cart : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IPoin
         _itemImage.sprite = _baseItem.ItemSprite;
         _description.text = _baseItem.Description;
         _name.text = _baseItem.ItemName;
-        _baseItem.ItemEffects_OnPlaced?.ForEach(effect => effect?.ExecuteEffect(enemy,gameObject.GetComponent<Cart>()));
+        _baseItem.ItemEffects_OnPlaced?.ForEach(effect => effect?.ExecuteEffect(enemy,PlayerExecute,gameObject.GetComponent<Cart>()));
     }
     void Update()
     {
@@ -114,14 +123,11 @@ public class Cart : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IPoin
     }
 
     private void HoldingCard(){
-        if (canMove)
-        {
-            if (!_mouseHolding) return;
-            Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            mousePos.z = 0;
-            transform.position = mousePos;
-        }
-      
+
+        if (!_mouseHolding) return;
+        Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        mousePos.z = 0;
+        transform.position = mousePos;
     }
     public void OnPointerDown(PointerEventData eventData)
     {
@@ -130,7 +136,7 @@ public class Cart : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IPoin
             DOTween.Kill(transform);
             _mouseHolding = true;
         }
-       
+      
     }
     public void OnPointerUp(PointerEventData eventData)
     {
@@ -140,19 +146,26 @@ public class Cart : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IPoin
             DOTween.Kill(transform);
             transform.DOLocalMoveY(_startPosition.y, _speed);
         }
-      
+       
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        DOTween.Kill(transform);
-        transform.DOLocalMoveY(_startPosition.y, _speed);
+        if (canMove)
+        {
+            DOTween.Kill(transform);
+            transform.DOLocalMoveY(_startPosition.y, _speed);
+        }
     }
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        DOTween.Kill(transform);
-        transform.DOLocalMoveY(transform.localPosition.y + _upScale, _speed);
+        if (canMove)
+        {
+            DOTween.Kill(transform);
+            transform.DOLocalMoveY(transform.localPosition.y + _upScale, _speed);
+        }
+       
     }
 
     public void TourPerTime()
@@ -161,12 +174,12 @@ public class Cart : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IPoin
         {
             if (PassiveTourCount > 0 && _baseItem.isHavePassive && collider.GetComponent<Enemy>()._health>0)
             {
-                _baseItem.ItemEffects_OnEveryTour?.ForEach(effect => effect?.PassiveEffect(player, collider.GetComponent<Enemy>(), gameObject.GetComponent<Cart>())); ;
+                _baseItem.ItemEffects_OnEveryTour?.ForEach(effect => effect?.PassiveEffect(PlayerExecute, collider.GetComponent<Enemy>(), gameObject.GetComponent<Cart>())); ;
                 PassiveTourCount = PassiveTourCount - 1;
             }
             else
             {
-                _baseItem.ItemEffects_OnEveryTour?.ForEach(effect => effect?.PassiveReset(player, collider.GetComponent<Enemy>(), gameObject.GetComponent<Cart>()));
+                _baseItem.ItemEffects_OnEveryTour?.ForEach(effect => effect?.PassiveReset(PlayerExecute, collider.GetComponent<Enemy>(), gameObject.GetComponent<Cart>()));
                 Destroy(gameObject);
             }
         }
@@ -180,20 +193,27 @@ public class Cart : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IPoin
     }
     public void OnAttack()
     {
-        if(enemy != null)
+        if((enemy != null && _baseItem.isEnemyEffect) || (isPlayerCollider == true && _baseItem.isCharacterEffect))
         {
             if (_baseItem.order >= enemy.Order)
             {
                 Enemy EnemyCollider = enemy;
 
-                _baseItem.ItemEffects_OnEnemy?.ForEach(effect => effect?.ExecuteEffect(enemy, gameObject.transform.GetComponent<Cart>()));
+                _baseItem.ItemEffects_OnEnemy?.ForEach(effect => effect?.ExecuteEffect(enemy,PlayerExecute,gameObject.transform.GetComponent<Cart>()));
                 DOTween.Kill(transform);
                 GameObject.Find("Pool").GetComponent<CartHandler>().SpawnedCarts.Remove(gameObject.GetComponent<Cart>());
                 gameObject.GetComponent<BoxCollider2D>().enabled = false;
-                _description.color = new Color(0, 0, 0, 0);
-                _name.color = new Color(0, 0, 0, 0);
-                _itemBG.color = new Color(0, 0, 0, 0);
-                _itemImage.color = new Color(0, 0, 0, 0);
+                _description.gameObject.SetActive(false);
+                _name.gameObject.SetActive(false);
+                _itemBG.gameObject.SetActive(false);
+                _itemImage.gameObject.SetActive(false);
+                foreach(Image i in ManaImages)
+                {
+                    i.gameObject.SetActive(false);
+                }
+                //canMove = false;
+                transform.position = new Vector2(17.1f, transform.position.y);
+                gameObject.GetComponent<BoxCollider2D>().enabled = false;
                 isPlayed = true;
             }
         }

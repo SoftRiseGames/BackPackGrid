@@ -26,6 +26,8 @@ MonoBehaviour:
   PassiveTourCount: 2
   MergedItems:
   - {fileID: 11400000, guid: ceaa4770064244877966e1c2d3e0f8a6, type: 2}
+  isEnemyEffect: 1
+  isCharacterEffect: 0
   ItemEffects_OnEnemy:
   - rid: 4778697489712676936
   ItemEffects_OnPlaced: []

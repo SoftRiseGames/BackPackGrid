@@ -31,6 +31,8 @@ public class BaseItem : ScriptableObject
     public BaseItem RootMergeItem;
     public int PassiveTourCount;
     public List<BaseItem> MergedItems;
+    public bool isEnemyEffect;
+    public bool isCharacterEffect;
     [ListDrawerSettings]
    
     [ListDrawerSettings]

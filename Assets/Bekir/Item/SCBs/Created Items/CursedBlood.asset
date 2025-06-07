@@ -16,6 +16,7 @@ MonoBehaviour:
   HandCardCount: 0
   isHavePassive: 0
   TotalDamage: 0
+  ManaCount: 0
   isAttackDMG: 0
   order: 0
   Description: 
@@ -24,6 +25,8 @@ MonoBehaviour:
   RootMergeItem: {fileID: 0}
   PassiveTourCount: 0
   MergedItems: []
+  isEnemyEffect: 1
+  isCharacterEffect: 0
   ItemEffects_OnEnemy:
   - rid: 501085993762816084
   ItemEffects_OnPlaced: []

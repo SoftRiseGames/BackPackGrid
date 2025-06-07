@@ -19,15 +19,16 @@ public class CartHandler : MonoBehaviour
     private void OnEnable()
     {
         EventManagerCode.OnEnemyTurn += TotalCardCount;
+        EnemyManager.onPlayerTurn += AddNewCard;
     }
     private void OnDisable()
     {
         EventManagerCode.OnEnemyTurn -= TotalCardCount;
+        EnemyManager.onPlayerTurn -= AddNewCard;
+
     }
     private void Start()
     {
-
-      
         foreach (string i in LoadedCards.LoadedObjectsList)
         {
             if (!_items.ContainsKey(i)) continue;
@@ -65,7 +66,7 @@ public class CartHandler : MonoBehaviour
     }
     //Kart Çekme Eventi;
     
-    public void AddNewCard()
+    void AddNewCard()
     {
         if (LastDeck < allCardsToSpawn.Count-1)
         {
@@ -77,9 +78,8 @@ public class CartHandler : MonoBehaviour
                 Debug.Log(TotalCardToHand);
             }
         }
-       
-       
     }
+    
     public void SpawnCart(string baseItemName)
     {
         if (!_items.ContainsKey(baseItemName)) return;
