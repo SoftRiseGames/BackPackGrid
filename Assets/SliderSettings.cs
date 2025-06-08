@@ -7,7 +7,10 @@ public class SliderSettings : MonoBehaviour
     [SerializeField] bool isHealth;
     void Start()
     {
-
+        if (isHealth)
+            gameObject.GetComponent<Slider>().value = ThisEnemy._health;
+        else
+            gameObject.GetComponent<Slider>().value = ThisEnemy._shield;
     }
 
     

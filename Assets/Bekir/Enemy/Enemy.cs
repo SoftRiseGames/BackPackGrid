@@ -7,7 +7,6 @@ public class Enemy : MonoBehaviour, IDamage
 {
     public float _health;
     public float _shield;
-    public PlayerHandler player;
     public SOEnemy EnemySettings;
     [SerializeField] private PlayerHandler PlayerObject;
     [HideInInspector]public int EnemyPatternCounter;
@@ -24,8 +23,10 @@ public class Enemy : MonoBehaviour, IDamage
     public TextMeshProUGUI BurningTourText;
 
 
-    public Image BleedingEffect;
-    public Image BurnEffect;
+    [HideInInspector]public Image BleedingEffect;
+    [HideInInspector]public Image BurnEffect;
+
+    public ParticleSystem ShieldParticle;
 
     private void Start()
     {
@@ -33,6 +34,8 @@ public class Enemy : MonoBehaviour, IDamage
             TurnIconImageSet.sprite = TurnIconImageList[0];
         else if (EnemySettings.EnemyPattern[EnemyPatternCounter] == "Defence")
             TurnIconImageSet.sprite = TurnIconImageList[1];
+        
+        
         _health = EnemySettings.Health;
         _shield = EnemySettings.Shield;
     }
@@ -60,14 +63,14 @@ public class Enemy : MonoBehaviour, IDamage
     public void AttackOnTour()
     {
         _shield = 0;
-        EnemySettings.EnemyEffects?.ForEach(effect => effect?.AttackOnTour(PlayerObject));
+        EnemySettings.EnemyEffects?.ForEach(effect => effect?.AttackOnTour(PlayerObject,gameObject.GetComponent<Enemy>()));
         EnemyPatternCounterManager();
     }
 
     public void DefenceOnTour()
     {
         _shield = 0;
-        EnemySettings.EnemyEffects?.ForEach(effect => effect?.DefenceOnTour(PlayerObject));
+        EnemySettings.EnemyEffects?.ForEach(effect => effect?.DefenceOnTour(PlayerObject,gameObject.GetComponent<Enemy>()));
         EnemyPatternCounterManager();
     }
 
@@ -114,5 +117,14 @@ public class Enemy : MonoBehaviour, IDamage
 
         if (_health <= 0)
             Die();
+    }
+
+    public void EarnShield(float value)
+    {
+        if (_shield < EnemySettings.shieldMaxValue)
+            _shield = _shield + value;
+        else if (_shield > EnemySettings.shieldMaxValue)
+            _shield = EnemySettings.shieldMaxValue;
+
     }
 }

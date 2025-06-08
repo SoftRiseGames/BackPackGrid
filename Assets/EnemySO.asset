@@ -14,6 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Health: 10
   Shield: 0
+  shieldMaxValue: 5
+  HealthMaxValue: 10
   EnemyEffects:
   - rid: 4778697969631756365
   EnemyPattern:

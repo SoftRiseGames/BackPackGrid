@@ -16,7 +16,7 @@ MonoBehaviour:
   HandCardCount: 5
   isHavePassive: 1
   TotalDamage: 1
-  ManaCount: 1
+  ManaCount: 2
   isAttackDMG: 0
   order: 10
   Description: "Rakibe Kan Hasar\u0131 Vur"

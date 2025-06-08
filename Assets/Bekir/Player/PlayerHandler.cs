@@ -5,7 +5,7 @@ public class PlayerHandler : MonoBehaviour, IDamage
     public float _health;
     private float _healtCounter;
     public float _shield;
-
+    public float _ShieldMaxValue;
     [HideInInspector] public bool isAttackBuffing;
     [HideInInspector] public bool isLifeStealing;
     private void OnEnable()
@@ -53,5 +53,13 @@ public class PlayerHandler : MonoBehaviour, IDamage
     void ShieldRenew()
     {
         _shield = 0;
+    }
+
+    public void EarnShield(float value)
+    {
+        if (_shield < _ShieldMaxValue)
+            _shield = _shield + value;
+        else
+            _shield = _ShieldMaxValue;
     }
 }
