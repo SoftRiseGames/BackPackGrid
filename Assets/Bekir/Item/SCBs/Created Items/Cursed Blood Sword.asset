@@ -24,10 +24,11 @@ MonoBehaviour:
   cellSize: {x: 0, y: 0}
   RootMergeItem: {fileID: 0}
   PassiveTourCount: 0
-  MergedItems: []
+  MergedItems:
+  - {fileID: 11400000}
   isEnemyEffect: 1
   isCharacterEffect: 0
-  ItemEffects_OnEnemy: []
+  ItemEffects_OnEffectedObject: []
   ItemEffects_OnPlaced: []
   ItemEffects_OnEveryTour: []
   references:

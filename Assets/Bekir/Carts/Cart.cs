@@ -21,7 +21,7 @@ public class Cart : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IPoin
     [SerializeField] bool canMove;
     public int PassiveTourCount;
     private PlayerHandler PlayerExecute;
-    private bool isPlayerCollider;
+    public bool isPlayerCollider;
     public bool isPlayed;
     [HideInInspector] public bool isCheckedPassiveSituation;
     [HideInInspector] public float CardDamage;
@@ -189,17 +189,17 @@ public class Cart : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IPoin
     }
     public void TourPassiveEffect()
     {
-        _baseItem.ItemEffects_OnEnemy?.ForEach(effect => effect?.TourEffect(enemy, gameObject.transform.GetComponent<Cart>()));
+        _baseItem.ItemEffects_OnEffectedObject?.ForEach(effect => effect?.TourEffect(enemy, gameObject.transform.GetComponent<Cart>()));
     }
     public void OnAttack()
     {
-        if((enemy != null && _baseItem.isEnemyEffect) || (isPlayerCollider == true && _baseItem.isCharacterEffect))
+        if ((enemy != null && _baseItem.isEnemyEffect))
         {
             if (_baseItem.order >= enemy.Order)
             {
                 Enemy EnemyCollider = enemy;
 
-                _baseItem.ItemEffects_OnEnemy?.ForEach(effect => effect?.ExecuteEffect(enemy,PlayerExecute,gameObject.transform.GetComponent<Cart>()));
+                _baseItem.ItemEffects_OnEffectedObject?.ForEach(effect => effect?.ExecuteEffect(enemy, PlayerExecute, gameObject.transform.GetComponent<Cart>()));
                 DOTween.Kill(transform);
                 GameObject.Find("Pool").GetComponent<CartHandler>().SpawnedCarts.Remove(gameObject.GetComponent<Cart>());
                 gameObject.GetComponent<BoxCollider2D>().enabled = false;
@@ -207,7 +207,7 @@ public class Cart : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IPoin
                 _name.gameObject.SetActive(false);
                 _itemBG.gameObject.SetActive(false);
                 _itemImage.gameObject.SetActive(false);
-                foreach(Image i in ManaImages)
+                foreach (Image i in ManaImages)
                 {
                     i.gameObject.SetActive(false);
                 }
@@ -217,7 +217,27 @@ public class Cart : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IPoin
                 isPlayed = true;
             }
         }
-        
+
+        else if ((isPlayerCollider == true && _baseItem.isCharacterEffect == true))
+        {
+            Debug.Log("Human");
+            _baseItem.ItemEffects_OnEffectedObject?.ForEach(effect => effect?.ExecuteEffect(enemy, PlayerExecute, gameObject.transform.GetComponent<Cart>()));
+            DOTween.Kill(transform);
+            GameObject.Find("Pool").GetComponent<CartHandler>().SpawnedCarts.Remove(gameObject.GetComponent<Cart>());
+            gameObject.GetComponent<BoxCollider2D>().enabled = false;
+            _description.gameObject.SetActive(false);
+            _name.gameObject.SetActive(false);
+            _itemBG.gameObject.SetActive(false);
+            _itemImage.gameObject.SetActive(false);
+            foreach (Image i in ManaImages)
+            {
+                i.gameObject.SetActive(false);
+            }
+            transform.position = new Vector2(17.1f, transform.position.y);
+            gameObject.GetComponent<BoxCollider2D>().enabled = false;
+            isPlayed = true;
+        }
+       
     }
 
 }

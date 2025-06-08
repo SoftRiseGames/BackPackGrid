@@ -598,11 +598,12 @@ MonoBehaviour:
   _speed: 0.25
   _cartPlacementLayer:
     serializedVersion: 2
-    m_Bits: 2048
+    m_Bits: 10240
   _baseItem: {fileID: 0}
   enemy: {fileID: 0}
   canMove: 1
   PassiveTourCount: 0
+  isPlayerCollider: 0
   isPlayed: 0
   isCheckedPassiveSituation: 0
   CardDamage: 0

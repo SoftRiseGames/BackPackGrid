@@ -27,17 +27,17 @@ MonoBehaviour:
   MergedItems: []
   isEnemyEffect: 1
   isCharacterEffect: 0
-  ItemEffects_OnEnemy:
-  - rid: 501085993762816076
+  ItemEffects_OnEffectedObject:
+  - rid: 1496930299588378697
   ItemEffects_OnPlaced: []
   ItemEffects_OnEveryTour:
   - rid: 501085993762816077
   references:
     version: 2
     RefIds:
-    - rid: 501085993762816076
-      type: {class: BloodSword, ns: , asm: Assembly-CSharp}
-      data: 
     - rid: 501085993762816077
       type: {class: LifeSteal, ns: , asm: Assembly-CSharp}
+      data: 
+    - rid: 1496930299588378697
+      type: {class: BloodSword, ns: , asm: Assembly-CSharp}
       data: 

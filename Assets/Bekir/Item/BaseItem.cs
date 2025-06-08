@@ -37,7 +37,7 @@ public class BaseItem : ScriptableObject
    
     [ListDrawerSettings]
     [SerializeReference, PolymorphicDrawerSettings]
-    public List<IItemEffect> ItemEffects_OnEnemy = new();
+    public List<IItemEffect> ItemEffects_OnEffectedObject = new();
     [SerializeReference, PolymorphicDrawerSettings]
     public List<IItemEffect> ItemEffects_OnPlaced = new();
 

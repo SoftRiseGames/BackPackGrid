@@ -28,17 +28,17 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 4e490e1764121d34796740838766cb6e, type: 2}
   isEnemyEffect: 1
   isCharacterEffect: 0
-  ItemEffects_OnEnemy:
-  - rid: 501085993762816080
+  ItemEffects_OnEffectedObject:
+  - rid: 1496930299588378698
   ItemEffects_OnPlaced: []
   ItemEffects_OnEveryTour:
   - rid: 501085993762816081
   references:
     version: 2
     RefIds:
-    - rid: 501085993762816080
-      type: {class: FireSword, ns: , asm: Assembly-CSharp}
-      data: 
     - rid: 501085993762816081
       type: {class: Burn, ns: , asm: Assembly-CSharp}
+      data: 
+    - rid: 1496930299588378698
+      type: {class: FireSword, ns: , asm: Assembly-CSharp}
       data: 

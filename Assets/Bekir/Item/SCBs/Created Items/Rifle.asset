@@ -27,13 +27,13 @@ MonoBehaviour:
   MergedItems: []
   isEnemyEffect: 1
   isCharacterEffect: 0
-  ItemEffects_OnEnemy:
-  - rid: 501085993762816079
+  ItemEffects_OnEffectedObject:
+  - rid: 1496930299588378701
   ItemEffects_OnPlaced: []
   ItemEffects_OnEveryTour: []
   references:
     version: 2
     RefIds:
-    - rid: 501085993762816079
+    - rid: 1496930299588378701
       type: {class: Rifle, ns: , asm: Assembly-CSharp}
       data: 

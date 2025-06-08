@@ -261,12 +261,12 @@ public class Shield : IItemEffect
 {
     public void ExecuteEffect(Enemy enemy, PlayerHandler player, Cart card)
     {
-        
+        player.EarnShield(5);
     }
 
     public void TourEffect(Enemy enemy, Cart card)
     {
-        throw new System.NotImplementedException();
+        //throw new System.NotImplementedException();
     }
 }
 
