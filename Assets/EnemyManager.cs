@@ -59,14 +59,14 @@ public class EnemyManager : MonoBehaviour
 
                 if (currentAction == "Attack")
                 {
-                    DMGEffectAction?.Invoke();
+                    EventManagerCode.DMGEffectAction.Invoke();
                     enemy.AttackOnTour();
                 }
 
                 else if (currentAction == "Defence")
                     enemy.DefenceOnTour();
                 yield return new WaitForSeconds(0.5f);
-                DMGEffectStopAction.Invoke();
+                EventManagerCode.DMGEffectStopAction.Invoke();
             }
             yield return new WaitForSeconds(.5f);
             isEventRunning = false;

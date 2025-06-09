@@ -12,10 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc1cf9c466ad942db80df514fd5ef238, type: 3}
   m_Name: Blood Drinker
   m_EditorClassIdentifier: 
-  ItemName: Sword
+  ItemName: Blood Drinker
   HandCardCount: 0
   isHavePassive: 0
   TotalDamage: 0
+  ManaCount: 0
   isAttackDMG: 0
   order: 0
   Description: 
@@ -25,7 +26,9 @@ MonoBehaviour:
   PassiveTourCount: 0
   MergedItems:
   - {fileID: 11400000}
-  ItemEffects_OnEnemy: []
+  isEnemyEffect: 0
+  isCharacterEffect: 0
+  ItemEffects_OnEffectedObject: []
   ItemEffects_OnPlaced: []
   ItemEffects_OnEveryTour:
   - rid: -2

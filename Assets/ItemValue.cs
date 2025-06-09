@@ -7,7 +7,7 @@ public class ItemValue :MonoBehaviour,IItem
         throw new System.NotImplementedException();
     }
 
-    public void OnAttack()
+    public void Execute()
     {
         throw new System.NotImplementedException();
     }

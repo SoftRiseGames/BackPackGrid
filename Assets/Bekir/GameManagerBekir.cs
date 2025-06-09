@@ -19,16 +19,16 @@ public class GameManagerBekir : MonoBehaviour{
         EventManagerCode.OnEnemyTurn += ManaRenew;
         EventManagerCode.OnEnemyTurn += TourButtonClose;
         EnemyManager.onPlayerTurn += TourButtonOpen;
-        EnemyManager.DMGEffectAction += DMGEffectVoid;
-        EnemyManager.DMGEffectStopAction += DMGStopActionVoid;
+        EventManagerCode.DMGEffectAction += DMGEffectVoid;
+        EventManagerCode.DMGEffectStopAction += DMGStopActionVoid;
     }
     private void OnDisable()
     {
         EventManagerCode.OnEnemyTurn -= ManaRenew;
         EventManagerCode.OnEnemyTurn -= TourButtonClose;
         EnemyManager.onPlayerTurn -= TourButtonOpen;
-        EnemyManager.DMGEffectAction -= DMGEffectVoid;
-        EnemyManager.DMGEffectStopAction -= DMGStopActionVoid;
+        EventManagerCode.DMGEffectAction -= DMGEffectVoid;
+        EventManagerCode.DMGEffectStopAction -= DMGStopActionVoid;
     }
     void ManaRenew()
     {

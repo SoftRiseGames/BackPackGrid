@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc1cf9c466ad942db80df514fd5ef238, type: 3}
   m_Name: CursedBlood
   m_EditorClassIdentifier: 
-  ItemName: CursedBlood
+  ItemName: Cursed Blood
   HandCardCount: 0
   isHavePassive: 0
   TotalDamage: 0
@@ -27,8 +27,7 @@ MonoBehaviour:
   MergedItems: []
   isEnemyEffect: 1
   isCharacterEffect: 0
-  ItemEffects_OnEnemy:
-  - rid: 501085993762816084
+  ItemEffects_OnEffectedObject: []
   ItemEffects_OnPlaced: []
   ItemEffects_OnEveryTour:
   - rid: 501085993762816083
@@ -37,7 +36,4 @@ MonoBehaviour:
     RefIds:
     - rid: 501085993762816083
       type: {class: Bleeding, ns: , asm: Assembly-CSharp}
-      data: 
-    - rid: 501085993762816084
-      type: {class: CursedBloodSword, ns: , asm: Assembly-CSharp}
       data: 

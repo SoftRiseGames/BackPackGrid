@@ -1,13 +1,14 @@
 using UnityEngine;
-
+using System.Threading.Tasks;
 public class Blood : IItemEffect
 {
-    public void ExecuteEffect(Enemy enemy,PlayerHandler player, Cart card)
+    public async void ExecuteEffect(Enemy enemy,PlayerHandler player, Cart card)
     {
         float TotalDamage = card.CardDamage;
 
         if (enemy._health > 0)
         {
+            EventManagerCode.DMGEffectAction.Invoke();
             if (PlayerPrefs.HasKey("isHasAttackBuff"))
             {
                 Debug.Log("AttackBuff");
@@ -19,6 +20,8 @@ public class Blood : IItemEffect
         }
 
         GameObject.Find("MustBeSavedObjects").GetComponent<SelectedEnemy>().selectedEnemy = enemy;
+        await Task.Delay(500);
+        EventManagerCode.DMGEffectStopAction.Invoke();
     }
 
     public void TourEffect(Enemy enemy,Cart Card)
@@ -32,13 +35,14 @@ public class Blood : IItemEffect
 
 public class Sword : IItemEffect
 {
-    public void ExecuteEffect(Enemy enemy,PlayerHandler player, Cart Card)
+    public async void ExecuteEffect(Enemy enemy,PlayerHandler player, Cart Card)
     {
 
         float TotalDamage = Card.CardDamage;
-
+        
         if (enemy._health > 0)
         {
+            EventManagerCode.DMGEffectAction.Invoke();
             if (PlayerPrefs.HasKey("isHasAttackBuff"))
             {
                 Debug.Log("AttackBuff");
@@ -49,7 +53,9 @@ public class Sword : IItemEffect
                 enemy.TakeDamageWithShield((TotalDamage));
         }
         GameObject.Find("MustBeSavedObjects").GetComponent<SelectedEnemy>().selectedEnemy = enemy;
-      
+        await Task.Delay(300);
+        EventManagerCode.DMGEffectStopAction.Invoke();
+
     }
 
     public void TourEffect(Enemy enemy,Cart Card)
@@ -61,13 +67,14 @@ public class Sword : IItemEffect
 
 public class Knife : IItemEffect
 {
-    public void ExecuteEffect(Enemy enemy, PlayerHandler player, Cart Card)
+    public async void ExecuteEffect(Enemy enemy, PlayerHandler player, Cart Card)
     {
 
         float TotalDamage = Card.CardDamage;
-
+       
         if (enemy._health > 0)
         {
+            EventManagerCode.DMGEffectAction.Invoke();
             if (PlayerPrefs.HasKey("isHasAttackBuff"))
             {
                 Debug.Log("AttackBuff");
@@ -78,6 +85,8 @@ public class Knife : IItemEffect
                 enemy.TakeDamageWithoutShield((TotalDamage));
         }
         GameObject.Find("MustBeSavedObjects").GetComponent<SelectedEnemy>().selectedEnemy = enemy;
+        await Task.Delay(300);
+        EventManagerCode.DMGEffectStopAction.Invoke();
 
     }
 
@@ -90,13 +99,14 @@ public class Knife : IItemEffect
 
 public class Rifle : IItemEffect
 {
-    public void ExecuteEffect(Enemy enemy,PlayerHandler player, Cart Card)
+    public async void ExecuteEffect(Enemy enemy,PlayerHandler player, Cart Card)
     {
 
         float TotalDamage = Card.CardDamage;
-
+       
         if (enemy._health > 0)
         {
+            EventManagerCode.DMGEffectAction.Invoke();
             if (PlayerPrefs.HasKey("isHasAttackBuff"))
             {
                 Debug.Log("AttackBuff");
@@ -107,6 +117,8 @@ public class Rifle : IItemEffect
                 enemy.TakeDamageWithoutShield((TotalDamage));
         }
         GameObject.Find("MustBeSavedObjects").GetComponent<SelectedEnemy>().selectedEnemy = enemy;
+        await Task.Delay(300);
+        EventManagerCode.DMGEffectStopAction.Invoke();
 
     }
 
@@ -119,13 +131,14 @@ public class Rifle : IItemEffect
 
 public class FireSword : IItemEffect
 {
-    public void ExecuteEffect(Enemy enemy,PlayerHandler player, Cart Card)
+    public async void ExecuteEffect(Enemy enemy,PlayerHandler player, Cart Card)
     {
 
         float TotalDamage = Card.CardDamage;
-
+        
         if (enemy._health > 0)
         {
+            EventManagerCode.DMGEffectAction.Invoke();
             if (PlayerPrefs.HasKey("isHasAttackBuff"))
             {
                 Debug.Log("AttackBuff");
@@ -136,7 +149,8 @@ public class FireSword : IItemEffect
                 enemy.TakeDamageWithoutShield((TotalDamage));
         }
         GameObject.Find("MustBeSavedObjects").GetComponent<SelectedEnemy>().selectedEnemy = enemy;
-
+        await Task.Delay(300);
+        EventManagerCode.DMGEffectStopAction.Invoke();
     }
 
     public void TourEffect(Enemy enemy,Cart card)
@@ -147,13 +161,14 @@ public class FireSword : IItemEffect
 
 public class BloodSword : IItemEffect
 {
-    public void ExecuteEffect(Enemy enemy,PlayerHandler player, Cart Card)
+    public async void ExecuteEffect(Enemy enemy,PlayerHandler player, Cart Card)
     {
 
         float TotalDamage = Card.CardDamage;
-
+       
         if (enemy._health > 0)
         {
+            EventManagerCode.DMGEffectAction.Invoke();
             if (PlayerPrefs.HasKey("isHasAttackBuff"))
             {
                 Debug.Log("AttackBuff");
@@ -164,7 +179,8 @@ public class BloodSword : IItemEffect
                 enemy.TakeDamageWithoutShield((TotalDamage));
         }
         GameObject.Find("MustBeSavedObjects").GetComponent<SelectedEnemy>().selectedEnemy = enemy;
-
+        await Task.Delay(300);
+        EventManagerCode.DMGEffectStopAction.Invoke();
     }
 
     public void TourEffect(Enemy enemy,Cart card)
@@ -174,13 +190,14 @@ public class BloodSword : IItemEffect
 }
 public class GreatSword : IItemEffect
 {
-    public void ExecuteEffect(Enemy enemy,PlayerHandler player, Cart Card)
+    public async void ExecuteEffect(Enemy enemy,PlayerHandler player, Cart Card)
     {
 
         float TotalDamage = Card.CardDamage;
 
         if (enemy._health > 0)
         {
+            EventManagerCode.DMGEffectAction.Invoke();
             if (PlayerPrefs.HasKey("isHasAttackBuff"))
             {
                 Debug.Log("AttackBuff");
@@ -191,7 +208,8 @@ public class GreatSword : IItemEffect
                 enemy.TakeDamageWithoutShield((TotalDamage));
         }
         GameObject.Find("MustBeSavedObjects").GetComponent<SelectedEnemy>().selectedEnemy = enemy;
-
+        await Task.Delay(300);
+        EventManagerCode.DMGEffectStopAction.Invoke();
     }
 
     public void TourEffect(Enemy enemy,Cart card)
@@ -203,13 +221,14 @@ public class GreatSword : IItemEffect
 
 public class CursedBloodSword : IItemEffect
 {
-    public void ExecuteEffect(Enemy enemy,PlayerHandler player, Cart Card)
+    public async void ExecuteEffect(Enemy enemy,PlayerHandler player, Cart Card)
     {
 
         float TotalDamage = Card.CardDamage;
 
         if (enemy._health > 0)
         {
+            EventManagerCode.DMGEffectAction.Invoke();
             if (PlayerPrefs.HasKey("isHasAttackBuff"))
             {
                 Debug.Log("AttackBuff");
@@ -220,7 +239,8 @@ public class CursedBloodSword : IItemEffect
                 enemy.TakeDamageWithoutShield((TotalDamage));
         }
         GameObject.Find("MustBeSavedObjects").GetComponent<SelectedEnemy>().selectedEnemy = enemy;
-
+        await Task.Delay(300);
+        EventManagerCode.DMGEffectStopAction.Invoke();
     }
 
     public void TourEffect(Enemy enemy,Cart card)
@@ -231,13 +251,14 @@ public class CursedBloodSword : IItemEffect
 
 public class ThrowingKnifes : IItemEffect
 {
-    public void ExecuteEffect(Enemy enemy,PlayerHandler player, Cart Card)
+    public async void ExecuteEffect(Enemy enemy,PlayerHandler player, Cart Card)
     {
 
         float TotalDamage = Card.CardDamage;
 
         if (enemy._health > 0)
         {
+            EventManagerCode.DMGEffectAction.Invoke();
             if (PlayerPrefs.HasKey("isHasAttackBuff"))
             {
                 Debug.Log("AttackBuff");
@@ -248,7 +269,8 @@ public class ThrowingKnifes : IItemEffect
                 enemy.TakeDamageWithoutShield((TotalDamage));
         }
         GameObject.Find("MustBeSavedObjects").GetComponent<SelectedEnemy>().selectedEnemy = enemy;
-
+        await Task.Delay(300);
+        EventManagerCode.DMGEffectStopAction.Invoke();
     }
 
     public void TourEffect(Enemy enemy,Cart card)
@@ -272,7 +294,7 @@ public class Shield : IItemEffect
 
 public class Bleeding : IPassive
 {   
-    public void PassiveEffect(PlayerHandler player, Enemy enemy, Cart card) 
+    public async void PassiveEffect(PlayerHandler player, Enemy enemy, Cart card) 
     {
         if (!enemy.isBleeding)
         {
@@ -282,9 +304,12 @@ public class Bleeding : IPassive
       
         if (card.isCheckedPassiveSituation)
         {
+            EventManagerCode.DMGEffectAction.Invoke();
             enemy.TakeDamageWithoutShield(1);
             GameObject.Find("MustBeSavedObjects").GetComponent<SelectedEnemy>().MustBeSavedCards = card;
             enemy.BleedingTourText.text = (card.PassiveTourCount - 1).ToString();
+            await Task.Delay(300);
+            EventManagerCode.DMGEffectStopAction.Invoke();
         }
         else
         {

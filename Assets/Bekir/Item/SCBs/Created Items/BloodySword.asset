@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc1cf9c466ad942db80df514fd5ef238, type: 3}
   m_Name: BloodySword
   m_EditorClassIdentifier: 
-  ItemName: Blody Sword
+  ItemName: Bloody Sword
   HandCardCount: 0
   isHavePassive: 0
   TotalDamage: 0

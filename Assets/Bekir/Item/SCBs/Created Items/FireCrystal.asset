@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc1cf9c466ad942db80df514fd5ef238, type: 3}
   m_Name: FireCrystal
   m_EditorClassIdentifier: 
-  ItemName: FireCrystal
+  ItemName: Fire Crystal
   HandCardCount: 0
   isHavePassive: 0
   TotalDamage: 0
@@ -27,7 +27,7 @@ MonoBehaviour:
   MergedItems: []
   isEnemyEffect: 1
   isCharacterEffect: 0
-  ItemEffects_OnEnemy: []
+  ItemEffects_OnEffectedObject: []
   ItemEffects_OnPlaced: []
   ItemEffects_OnEveryTour: []
   references:

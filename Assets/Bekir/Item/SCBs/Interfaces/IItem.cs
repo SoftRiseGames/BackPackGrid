@@ -12,6 +12,6 @@ public interface IItem
     /// function of every tour. maybe some passive things might be happend.
     /// </summary>
     void TourPerTime();
-    void OnAttack();
+    void Execute();
 
 }

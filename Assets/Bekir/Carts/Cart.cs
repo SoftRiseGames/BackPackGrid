@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 public class Cart : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IPointerEnterHandler, IPointerExitHandler, IItem
 {
@@ -111,7 +112,7 @@ public class Cart : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IPoin
             {
                 GameManagerBekir.instance.ManaCount = GameManagerBekir.instance.ManaCount - ManaCount;
                collider = hit2D.collider;
-               OnAttack();
+               Execute();
             }
             else
                 return;
@@ -191,14 +192,14 @@ public class Cart : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IPoin
     {
         _baseItem.ItemEffects_OnEffectedObject?.ForEach(effect => effect?.TourEffect(enemy, gameObject.transform.GetComponent<Cart>()));
     }
-    public void OnAttack()
+    public void Execute()
     {
         if ((enemy != null && _baseItem.isEnemyEffect))
         {
             if (_baseItem.order >= enemy.Order)
             {
                 Enemy EnemyCollider = enemy;
-
+                EventManagerCode.DMGEffectAction.Invoke();
                 _baseItem.ItemEffects_OnEffectedObject?.ForEach(effect => effect?.ExecuteEffect(enemy, PlayerExecute, gameObject.transform.GetComponent<Cart>()));
                 DOTween.Kill(transform);
                 GameObject.Find("Pool").GetComponent<CartHandler>().SpawnedCarts.Remove(gameObject.GetComponent<Cart>());
@@ -236,6 +237,8 @@ public class Cart : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IPoin
             transform.position = new Vector2(17.1f, transform.position.y);
             gameObject.GetComponent<BoxCollider2D>().enabled = false;
             isPlayed = true;
+         
+           
         }
        
     }
