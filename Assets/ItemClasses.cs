@@ -356,7 +356,7 @@ public class AttackBuff : IPassive
 
 public class Burn : IPassive
 {
-    public void PassiveEffect(PlayerHandler player, Enemy enemy, Cart card)
+    public async void PassiveEffect(PlayerHandler player, Enemy enemy, Cart card)
     {
         if ((!enemy.isBurning))
         {
@@ -367,8 +367,11 @@ public class Burn : IPassive
 
         if (card.isCheckedPassiveSituation)
         {
+            EventManagerCode.DMGEffectAction.Invoke();
             enemy.BurningTourText.text = (card.PassiveTourCount-1).ToString();
             enemy.TakeDamageWithoutShield(10);
+            await Task.Delay(300);
+            EventManagerCode.DMGEffectStopAction.Invoke();
         }
         else
         {
