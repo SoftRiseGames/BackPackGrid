@@ -19,7 +19,8 @@ MonoBehaviour:
   ManaCount: 2
   isAttackDMG: 0
   order: 0
-  Description: 
+  Description: "En \xF6ndeki rakibe minimum 8 olacak \u015Fekilde her bekletildi\u011Fi
+    tur boyunca +1 hasar puan\u0131 vurur"
   ItemSprite: {fileID: 0}
   cellSize: {x: 0, y: 0}
   RootMergeItem: {fileID: 0}

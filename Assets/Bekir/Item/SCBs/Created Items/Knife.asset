@@ -19,7 +19,7 @@ MonoBehaviour:
   ManaCount: 1
   isAttackDMG: 0
   order: 0
-  Description: "En Yak\u0131ndaki d\xFC\u015Fmana vurur"
+  Description: "En yak\u0131ndaki d\xFC\u015Fmana 4 hasar vurur"
   ItemSprite: {fileID: 0}
   cellSize: {x: 0, y: 0}
   RootMergeItem: {fileID: 0}

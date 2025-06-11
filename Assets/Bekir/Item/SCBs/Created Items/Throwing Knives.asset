@@ -19,7 +19,8 @@ MonoBehaviour:
   ManaCount: 1
   isAttackDMG: 0
   order: 5
-  Description: 
+  Description: "Rakip s\u0131ras\u0131 se\xE7meksizin se\xE7ilen 1 d\xFC\u015Fmana
+    5 hasar vurur."
   ItemSprite: {fileID: 0}
   cellSize: {x: 0, y: 0}
   RootMergeItem: {fileID: 11400000, guid: 19fd073281cb3cc4eb7730b90053abeb, type: 2}

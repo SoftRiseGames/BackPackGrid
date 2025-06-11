@@ -19,7 +19,7 @@ MonoBehaviour:
   ManaCount: 1
   isAttackDMG: 0
   order: 0
-  Description: Kesici Hasar Vurur
+  Description: "En yak\u0131ndaki d\xFC\u015Fmana 5 hasar vurur."
   ItemSprite: {fileID: 21300000, guid: f12203c5def4857469356824ae742fc3, type: 3}
   cellSize: {x: 0, y: 0}
   RootMergeItem: {fileID: 0}

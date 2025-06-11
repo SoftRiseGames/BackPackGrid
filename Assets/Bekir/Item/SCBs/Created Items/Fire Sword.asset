@@ -19,7 +19,8 @@ MonoBehaviour:
   ManaCount: 1
   isAttackDMG: 0
   order: 0
-  Description: 
+  Description: "En \xF6ndeki rakibe 5 hasar b\u0131rak\u0131r ve rakibe pasif tur
+    say\u0131s\u0131 boyunca yanma etkisi uygular."
   ItemSprite: {fileID: 0}
   cellSize: {x: 0, y: 0}
   RootMergeItem: {fileID: 11400000, guid: 1f906d82a02cd4da9aca2e49c1d8ea7f, type: 2}

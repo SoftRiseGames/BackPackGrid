@@ -14,12 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ItemName: Blood Sword
   HandCardCount: 5
-  isHavePassive: 0
+  isHavePassive: 1
   TotalDamage: 5
   ManaCount: 1
   isAttackDMG: 0
   order: 0
-  Description: 
+  Description: "En \xF6ndeki rakibe 5 hasar verir ve pasit turs say\u0131s\u0131
+    boyuna rakibin can\u0131n\u0131 \xE7alarak can kazand\u0131r\u0131r."
   ItemSprite: {fileID: 0}
   cellSize: {x: 0, y: 0}
   RootMergeItem: {fileID: 11400000, guid: 1f906d82a02cd4da9aca2e49c1d8ea7f, type: 2}
