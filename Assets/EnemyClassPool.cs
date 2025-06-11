@@ -24,13 +24,13 @@ public class Wolf : IEnemy
 {
     public void AttackOnTour(PlayerHandler Player, Enemy enemy)
     {
-        Player.TakeDamageWithoutShield(10);
+        Player.TakeDamageWithoutShield(enemy.EnemySettings.TakenDamage);
     }
 
     public void DefenceOnTour(PlayerHandler Player, Enemy enemy)
     {
         enemy.ShieldParticle.Play();
-        enemy.EarnShield(1);
+        enemy.EarnShield(enemy.EnemySettings.EarnShield);
         Debug.Log("Defence");
     }
 

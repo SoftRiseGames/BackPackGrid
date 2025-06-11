@@ -10,20 +10,23 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0bb2fd89d7ad398439d477252bbc5252, type: 3}
-  m_Name: EnemySO
+  m_Name: WolfEnemySO
   m_EditorClassIdentifier: 
-  Health: 10
+  Health: 20
   Shield: 0
-  shieldMaxValue: 5
-  HealthMaxValue: 10
+  shieldMaxValue: 10
+  HealthMaxValue: 20
+  TakenDamage: 4
+  EarnShield: 3
   EnemyEffects:
-  - rid: 4778697969631756365
+  - rid: 1496930368940933195
   EnemyPattern:
+  - Attack
   - Attack
   - Defence
   references:
     version: 2
     RefIds:
-    - rid: 4778697969631756365
-      type: {class: Bandit, ns: , asm: Assembly-CSharp}
+    - rid: 1496930368940933195
+      type: {class: Wolf, ns: , asm: Assembly-CSharp}
       data: 

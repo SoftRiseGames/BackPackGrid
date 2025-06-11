@@ -26,7 +26,7 @@ MonoBehaviour:
   RootMergeItem: {fileID: 11400000, guid: 1f906d82a02cd4da9aca2e49c1d8ea7f, type: 2}
   PassiveTourCount: 1
   MergedItems:
-  - {fileID: 11400000}
+  - {fileID: 11400000, guid: 5b8ff917bb81d064e81167459971a146, type: 2}
   isEnemyEffect: 1
   isCharacterEffect: 0
   ItemEffects_OnEffectedObject:
