@@ -191,6 +191,13 @@ public class Cart : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IPoin
     public void TourPassiveEffect()
     {
         _baseItem.ItemEffects_OnEffectedObject?.ForEach(effect => effect?.TourEffect(enemy, gameObject.transform.GetComponent<Cart>()));
+        
+    }
+    public void PassiveSetup()
+    {
+        if(_baseItem.isHavePassive)
+            _baseItem.ItemEffects_OnEveryTour?.ForEach(effect => effect?.PassiveStartSetting(PlayerExecute, collider.GetComponent<Enemy>(), gameObject.GetComponent<Cart>()));
+
     }
     public void Execute()
     {
@@ -203,6 +210,7 @@ public class Cart : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IPoin
                 _baseItem.ItemEffects_OnEffectedObject?.ForEach(effect => effect?.ExecuteEffect(enemy, PlayerExecute, gameObject.transform.GetComponent<Cart>()));
                 DOTween.Kill(transform);
                 GameObject.Find("Pool").GetComponent<CartHandler>().SpawnedCarts.Remove(gameObject.GetComponent<Cart>());
+                PassiveSetup();
                 gameObject.GetComponent<BoxCollider2D>().enabled = false;
                 _description.gameObject.SetActive(false);
                 _name.gameObject.SetActive(false);

@@ -156,7 +156,6 @@ public class Rifle : IItemEffect
 {
     public async void ExecuteEffect(Enemy enemy,PlayerHandler player, Cart Card)
     {
-
         enemy.GetComponent<Animator>().SetBool("isDamage", true);
         float TotalDamage = Card.CardDamage;
 
@@ -206,11 +205,8 @@ public class FireSword : IItemEffect
             else
                 enemy.TakeDamageWithShield((TotalDamage));
         }
-        if (!enemy.isBurning)
-            enemy.isBurning = true;
         GameObject.Find("MustBeSavedObjects").GetComponent<SelectedEnemy>().selectedEnemy = enemy;
-        await Task.Delay(500);
-        enemy.GetComponent<Animator>().SetBool("isDamage", false);
+        await Task.Delay(300);
         EventManagerCode.DMGEffectStopAction.Invoke();
     }
 
@@ -224,7 +220,6 @@ public class BloodSword : IItemEffect
 {
     public async void ExecuteEffect(Enemy enemy,PlayerHandler player, Cart Card)
     {
-
         enemy.GetComponent<Animator>().SetBool("isDamage", true);
         float TotalDamage = Card.CardDamage;
 
@@ -256,6 +251,7 @@ public class GreatSword : IItemEffect
 {
     public async void ExecuteEffect(Enemy enemy,PlayerHandler player, Cart Card)
     {
+        Debug.Log(Card.CardDamage);
         enemy.GetComponent<Animator>().SetBool("isDamage", true);
         float TotalDamage = Card.CardDamage;
 
@@ -271,9 +267,8 @@ public class GreatSword : IItemEffect
             else
                 enemy.TakeDamageWithShield((TotalDamage));
         }
-
         GameObject.Find("MustBeSavedObjects").GetComponent<SelectedEnemy>().selectedEnemy = enemy;
-        await Task.Delay(500);
+        await Task.Delay(300);
         enemy.GetComponent<Animator>().SetBool("isDamage", false);
         EventManagerCode.DMGEffectStopAction.Invoke();
     }
@@ -289,7 +284,7 @@ public class CursedBloodSword : IItemEffect
 {
     public async void ExecuteEffect(Enemy enemy,PlayerHandler player, Cart Card)
     {
-        enemy.GetComponent<Animator>().SetBool("isDamage", true);
+
         float TotalDamage = Card.CardDamage;
 
         if (enemy._health > 0)
@@ -304,17 +299,8 @@ public class CursedBloodSword : IItemEffect
             else
                 enemy.TakeDamageWithShield((TotalDamage));
         }
-        if (!enemy.isBleeding)
-        {
-            enemy.BleedingTourText.text = (Card.PassiveTourCount).ToString();
-            GameObject.Find("MustBeSavedObjects").GetComponent<SelectedEnemy>().selectedEnemy = enemy;
-            GameObject.Find("MustBeSavedObjects").GetComponent<SelectedEnemy>().MustBeSavedCards = Card;
-            enemy.isBleeding = true;
-        }
-
-       
-        await Task.Delay(500);
-        enemy.GetComponent<Animator>().SetBool("isDamage", false);
+        GameObject.Find("MustBeSavedObjects").GetComponent<SelectedEnemy>().selectedEnemy = enemy;
+        await Task.Delay(300);
         EventManagerCode.DMGEffectStopAction.Invoke();
     }
 
@@ -327,7 +313,8 @@ public class CursedBloodSword : IItemEffect
 public class ThrowingKnifes : IItemEffect
 {
     public async void ExecuteEffect(Enemy enemy,PlayerHandler player, Cart Card)
-    {enemy.GetComponent<Animator>().SetBool("isDamage", true);
+    {
+
         float TotalDamage = Card.CardDamage;
 
         if (enemy._health > 0)
@@ -342,10 +329,8 @@ public class ThrowingKnifes : IItemEffect
             else
                 enemy.TakeDamageWithShield((TotalDamage));
         }
-
         GameObject.Find("MustBeSavedObjects").GetComponent<SelectedEnemy>().selectedEnemy = enemy;
-        await Task.Delay(500);
-        enemy.GetComponent<Animator>().SetBool("isDamage", false);
+        await Task.Delay(300);
         EventManagerCode.DMGEffectStopAction.Invoke();
     }
 
@@ -381,7 +366,7 @@ public class Bleeding : IPassive
         {
             EventManagerCode.DMGEffectAction.Invoke();
             enemy.TakeDamageWithoutShield(1);
-            enemy.BleedingTourText.text = (card.PassiveTourCount-1).ToString();
+            enemy.BleedingTourText.text = (card.PassiveTourCount - 1).ToString();
             await Task.Delay(300);
             EventManagerCode.DMGEffectStopAction.Invoke();
         }
@@ -395,6 +380,17 @@ public class Bleeding : IPassive
     public void PassiveReset(PlayerHandler player, Enemy enemy, Cart card)
     {
         enemy.isBleeding = false;
+    }
+
+    public void PassiveStartSetting(PlayerHandler player, Enemy enemy, Cart card)
+    {
+        if (!enemy.isBleeding)
+        {
+            enemy.BleedingTourText.text = (card.PassiveTourCount).ToString();
+            GameObject.Find("MustBeSavedObjects").GetComponent<SelectedEnemy>().MustBeSavedCards = card;
+            enemy.isBleeding = true;
+          
+        }
     }
 }
 
@@ -426,23 +422,27 @@ public class AttackBuff : IPassive
         player.isAttackBuffing = false;
         PlayerPrefs.DeleteKey("isHasAttackBuff");
     }
+
+    public void PassiveStartSetting(PlayerHandler player, Enemy enemy, Cart card)
+    {
+       
+    }
 }
 
 public class Burn : IPassive
 {
     public async void PassiveEffect(PlayerHandler player, Enemy enemy, Cart card)
     {
-        if ((!enemy.isBurning))
+        if ((!card.isCheckedPassiveSituation))
         {
             card.isCheckedPassiveSituation = true;
-            enemy.isBurning = true;
         }
 
 
         if (card.isCheckedPassiveSituation)
         {
             EventManagerCode.DMGEffectAction.Invoke();
-            enemy.BurningTourText.text = (card.PassiveTourCount).ToString();
+            enemy.BurningTourText.text = (card.PassiveTourCount-1).ToString();
             enemy.TakeDamageWithoutShield(10);
             await Task.Delay(300);
             EventManagerCode.DMGEffectStopAction.Invoke();
@@ -457,6 +457,17 @@ public class Burn : IPassive
     public void PassiveReset(PlayerHandler player, Enemy enemy, Cart card)
     {
         enemy.isBurning = false;
+    }
+
+    public void PassiveStartSetting(PlayerHandler player, Enemy enemy, Cart card)
+    {
+        if ((!enemy.isBurning))
+        {
+
+            enemy.BurningTourText.text = (card.PassiveTourCount).ToString();
+            enemy.isBurning = true;
+        }
+
     }
 }
 
@@ -476,6 +487,11 @@ public class LifeSteal : IPassive
     public void PassiveReset(PlayerHandler player, Enemy enemy, Cart card)
     {
         player.isLifeStealing = false;
+    }
+
+    public void PassiveStartSetting(PlayerHandler player, Enemy enemy, Cart card)
+    {
+        
     }
 }
 
