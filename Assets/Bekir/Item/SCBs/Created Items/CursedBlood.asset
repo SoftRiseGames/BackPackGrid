@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ItemName: Cursed Blood
   HandCardCount: 0
-  isHavePassive: 0
+  isHavePassive: 1
   TotalDamage: 0
   ManaCount: 0
   isAttackDMG: 0
