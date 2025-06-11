@@ -13,24 +13,32 @@ MonoBehaviour:
   m_Name: Cursed Blood Sword
   m_EditorClassIdentifier: 
   ItemName: Cursed Blood Sword
-  HandCardCount: 0
-  isHavePassive: 0
-  TotalDamage: 0
-  ManaCount: 0
+  HandCardCount: 5
+  isHavePassive: 1
+  TotalDamage: 5
+  ManaCount: 1
   isAttackDMG: 0
   order: 0
   Description: 
   ItemSprite: {fileID: 0}
   cellSize: {x: 0, y: 0}
   RootMergeItem: {fileID: 0}
-  PassiveTourCount: 0
+  PassiveTourCount: 1
   MergedItems:
   - {fileID: 11400000}
   isEnemyEffect: 1
   isCharacterEffect: 0
-  ItemEffects_OnEffectedObject: []
+  ItemEffects_OnEffectedObject:
+  - rid: 8806957557658419200
   ItemEffects_OnPlaced: []
-  ItemEffects_OnEveryTour: []
+  ItemEffects_OnEveryTour:
+  - rid: 8806957557658419201
   references:
     version: 2
-    RefIds: []
+    RefIds:
+    - rid: 8806957557658419200
+      type: {class: CursedBloodSword, ns: , asm: Assembly-CSharp}
+      data: 
+    - rid: 8806957557658419201
+      type: {class: Bleeding, ns: , asm: Assembly-CSharp}
+      data: 

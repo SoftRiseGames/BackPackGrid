@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: Knife
   m_EditorClassIdentifier: 
   ItemName: Knife
-  HandCardCount: 0
+  HandCardCount: 4
   isHavePassive: 0
-  TotalDamage: 0
-  ManaCount: 0
+  TotalDamage: 4
+  ManaCount: 1
   isAttackDMG: 0
   order: 0
   Description: "En Yak\u0131ndaki d\xFC\u015Fmana vurur"

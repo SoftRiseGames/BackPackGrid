@@ -13,12 +13,12 @@ MonoBehaviour:
   m_Name: Throwing Knives
   m_EditorClassIdentifier: 
   ItemName: Throwing Knives
-  HandCardCount: 0
+  HandCardCount: 8
   isHavePassive: 0
-  TotalDamage: 0
-  ManaCount: 0
+  TotalDamage: 5
+  ManaCount: 1
   isAttackDMG: 0
-  order: 0
+  order: 5
   Description: 
   ItemSprite: {fileID: 0}
   cellSize: {x: 0, y: 0}
