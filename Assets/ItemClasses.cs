@@ -357,24 +357,16 @@ public class Bleeding : IPassive
 {   
     public async void PassiveEffect(PlayerHandler player, Enemy enemy, Cart card) 
     {
-        if (!card.isCheckedPassiveSituation)
-        {
-            card.isCheckedPassiveSituation = true;
-        }
-      
+       
         if (card.isCheckedPassiveSituation)
         {
             EventManagerCode.DMGEffectAction.Invoke();
             enemy.TakeDamageWithoutShield(1);
-            enemy.BleedingTourText.text = (card.PassiveTourCount - 1).ToString();
+            enemy.BleedingTourText.text = (GameObject.Find("MustBeSavedObjects").GetComponent<SelectedEnemy>().MustBeSavedCards.PassiveTourCount - 1).ToString();
             await Task.Delay(300);
             EventManagerCode.DMGEffectStopAction.Invoke();
         }
-        else
-        {
-            GameObject.Find("MustBeSavedObjects").GetComponent<SelectedEnemy>().MustBeSavedCards.PassiveTourCount = GameObject.Find("MustBeSavedObjects").GetComponent<SelectedEnemy>().MustBeSavedCards.PassiveTourCount + 1;
-            card.PassiveTourCount = 0;
-        }
+       
     }
 
     public void PassiveReset(PlayerHandler player, Enemy enemy, Cart card)
@@ -389,7 +381,14 @@ public class Bleeding : IPassive
             enemy.BleedingTourText.text = (card.PassiveTourCount).ToString();
             GameObject.Find("MustBeSavedObjects").GetComponent<SelectedEnemy>().MustBeSavedCards = card;
             enemy.isBleeding = true;
-          
+            card.isCheckedPassiveSituation = true;
+        }
+        else if(enemy.isBleeding)
+        {
+            Debug.Log("PassiveStart");
+            GameObject.Find("MustBeSavedObjects").GetComponent<SelectedEnemy>().MustBeSavedCards.PassiveTourCount = GameObject.Find("MustBeSavedObjects").GetComponent<SelectedEnemy>().MustBeSavedCards.PassiveTourCount + 1;
+            enemy.BleedingTourText.text = (GameObject.Find("MustBeSavedObjects").GetComponent<SelectedEnemy>().MustBeSavedCards.PassiveTourCount).ToString();
+            card.PassiveTourCount = GameObject.Find("MustBeSavedObjects").GetComponent<SelectedEnemy>().MustBeSavedCards.PassiveTourCount;
         }
     }
 }

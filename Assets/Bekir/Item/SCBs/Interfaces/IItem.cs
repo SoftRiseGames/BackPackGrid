@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
-
+using TMPro;
 public interface IItem
 {
 
@@ -8,6 +8,7 @@ public interface IItem
     /// function called once when cart spawned
     /// </summary>
     void Init(BaseItem baseItem);
+   
     /// <summary>
     /// function of every tour. maybe some passive things might be happend.
     /// </summary>

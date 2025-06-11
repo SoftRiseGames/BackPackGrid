@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 
 public class ItemValue :MonoBehaviour,IItem 
@@ -17,4 +18,13 @@ public class ItemValue :MonoBehaviour,IItem
         throw new System.NotImplementedException();
     }
 
+    public void PassiveCountIncrease(int count, TextMeshProUGUI text)
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public void PassiveCountDecrease(int count, TextMeshProUGUI text)
+    {
+        throw new System.NotImplementedException();
+    }
 }
