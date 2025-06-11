@@ -593,7 +593,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &32983794
 Transform:
   m_ObjectHideFlags: 0
@@ -2277,7 +2277,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &159935505
 Transform:
   m_ObjectHideFlags: 0
@@ -5217,7 +5217,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &447823811
 Transform:
   m_ObjectHideFlags: 0
@@ -6510,7 +6510,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &564843809
 Transform:
   m_ObjectHideFlags: 0
@@ -8253,7 +8253,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &891701238
 Transform:
   m_ObjectHideFlags: 0
@@ -10909,7 +10909,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1272274484
 Transform:
   m_ObjectHideFlags: 0
@@ -11032,7 +11032,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1280024916
 Transform:
   m_ObjectHideFlags: 0
@@ -12149,7 +12149,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da131083fcc464f46bc6f4c03f51117d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BaseItem: {fileID: 11400000, guid: 77ad13f15e78ce845a1af05119fdc2fa, type: 2}
+  BaseItem: {fileID: 11400000, guid: ed4c1189096b847e2867523dc459fa3b, type: 2}
   SidePosXValue: 2
   SidePosYValue: 1
   gridBasement: {fileID: 1859701187}
@@ -12437,13 +12437,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _items:
     m_Keys:
-    - Blood Swordsj
-    - New Item 2
+    - Blood Sword
+    - Cursed Blood Sword
     - Throwing Knives
+    - Fire Sword
     m_Values:
     - {fileID: 11400000, guid: daa51419183e32449a2618cfc7c97fad, type: 2}
-    - {fileID: 11400000, guid: 5108f7abc8414904f933b18b4b4b14b0, type: 2}
+    - {fileID: 11400000, guid: eec4f1ea4092adf44a7ba1dbb4f53886, type: 2}
     - {fileID: 11400000, guid: 68adbf113c0471048aed92df3df5c529, type: 2}
+    - {fileID: 11400000, guid: 539c5259df6986942b2b6e8d13c8a1e7, type: 2}
   handledCardManager: {fileID: 53377304}
   UpgradedMaterialAdd: []
 --- !u!1 &1491009760
@@ -13470,7 +13472,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da131083fcc464f46bc6f4c03f51117d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BaseItem: {fileID: 11400000, guid: 77ad13f15e78ce845a1af05119fdc2fa, type: 2}
+  BaseItem: {fileID: 11400000, guid: ed4c1189096b847e2867523dc459fa3b, type: 2}
   SidePosXValue: 0
   SidePosYValue: 0
   gridBasement: {fileID: 1859701187}

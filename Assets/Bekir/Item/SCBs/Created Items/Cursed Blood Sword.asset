@@ -22,7 +22,7 @@ MonoBehaviour:
   Description: 
   ItemSprite: {fileID: 0}
   cellSize: {x: 0, y: 0}
-  RootMergeItem: {fileID: 0}
+  RootMergeItem: {fileID: 11400000, guid: 1f906d82a02cd4da9aca2e49c1d8ea7f, type: 2}
   PassiveTourCount: 1
   MergedItems:
   - {fileID: 11400000}
