@@ -1,5 +1,5 @@
 using UnityEngine;
-
+using System.Threading.Tasks;
 public class PlayerHandler : MonoBehaviour, IDamage
 {
     public float _health;
@@ -22,11 +22,18 @@ public class PlayerHandler : MonoBehaviour, IDamage
     }
 
 
-    public void TakeDamageWithoutShield(float value)
+    public async void TakeDamageWithoutShield(float value)
     {
+        GetComponent<Animator>().SetBool("isDamage", true);
         _health = _health - value;
         if (_health <= 0)
             Die();
+        else
+        {
+            await Task.Delay(200);
+            GetComponent<Animator>().SetBool("isDamage", false);
+        }
+
     }
 
     public void Die()
@@ -34,8 +41,9 @@ public class PlayerHandler : MonoBehaviour, IDamage
         Debug.Log("I am Dead");
     }
 
-    public void TakeDamageWithShield(float value)
+    public async void TakeDamageWithShield(float value)
     {
+        GetComponent<Animator>().SetBool("isDamage", true);
         float shieldScaler = _shield;
         shieldScaler = shieldScaler - value;
         _shield = shieldScaler;
@@ -49,6 +57,11 @@ public class PlayerHandler : MonoBehaviour, IDamage
 
         if (_health <= 0)
             Die();
+        else
+        {
+            await Task.Delay(200);
+            GetComponent<Animator>().SetBool("isDamage", false);
+        }
     }
     void ShieldRenew()
     {
