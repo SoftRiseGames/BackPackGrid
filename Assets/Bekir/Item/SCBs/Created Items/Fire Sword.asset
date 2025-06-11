@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: Fire Sword
   m_EditorClassIdentifier: 
   ItemName: Fire Sword
-  HandCardCount: 0
+  HandCardCount: 5
   isHavePassive: 1
-  TotalDamage: 0
-  ManaCount: 0
+  TotalDamage: 5
+  ManaCount: 1
   isAttackDMG: 0
   order: 0
   Description: 

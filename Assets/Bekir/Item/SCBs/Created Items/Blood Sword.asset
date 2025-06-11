@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bc1cf9c466ad942db80df514fd5ef238, type: 3}
-  m_Name: BloodySword
+  m_Name: Blood Sword
   m_EditorClassIdentifier: 
-  ItemName: Bloody Sword
+  ItemName: Blood Sword
   HandCardCount: 5
   isHavePassive: 0
   TotalDamage: 5
@@ -22,9 +22,10 @@ MonoBehaviour:
   Description: 
   ItemSprite: {fileID: 0}
   cellSize: {x: 0, y: 0}
-  RootMergeItem: {fileID: 0}
+  RootMergeItem: {fileID: 11400000, guid: 1f906d82a02cd4da9aca2e49c1d8ea7f, type: 2}
   PassiveTourCount: 0
-  MergedItems: []
+  MergedItems:
+  - {fileID: 11400000, guid: 77ad13f15e78ce845a1af05119fdc2fa, type: 2}
   isEnemyEffect: 1
   isCharacterEffect: 0
   ItemEffects_OnEffectedObject:

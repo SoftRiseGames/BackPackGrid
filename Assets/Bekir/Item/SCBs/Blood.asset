@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bc1cf9c466ad942db80df514fd5ef238, type: 3}
-  m_Name: newItem2
+  m_Name: Blood
   m_EditorClassIdentifier: 
-  ItemName: newItem2
+  ItemName: Blood
   HandCardCount: 0
   isHavePassive: 0
   TotalDamage: 0
@@ -22,15 +22,17 @@ MonoBehaviour:
   Description: 
   ItemSprite: {fileID: 0}
   cellSize: {x: 0, y: 0}
-  RootMergeItem: {fileID: 11400000, guid: ed4c1189096b847e2867523dc459fa3b, type: 2}
+  RootMergeItem: {fileID: 0}
   PassiveTourCount: 0
-  MergedItems:
-  - {fileID: 11400000, guid: ceaa4770064244877966e1c2d3e0f8a6, type: 2}
-  isEnemyEffect: 1
+  MergedItems: []
+  isEnemyEffect: 0
   isCharacterEffect: 0
   ItemEffects_OnEffectedObject: []
   ItemEffects_OnPlaced: []
-  ItemEffects_OnEveryTour: []
+  ItemEffects_OnEveryTour:
+  - rid: -2
   references:
     version: 2
-    RefIds: []
+    RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }

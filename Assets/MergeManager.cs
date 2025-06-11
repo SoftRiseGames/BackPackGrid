@@ -17,9 +17,113 @@ public class MergeManager : MonoBehaviour
 
     public void SaveAndSkip()
     {
-        AddList();
+        //AddList();
+
+        AddList2();
         SaveData();
     }
+
+
+    void AddList2()
+    {
+        UpgradedMaterialAdd.Clear();
+        HashSet<GameObject> alreadyProcessedObjects = new HashSet<GameObject>();
+
+        // 1. aşama: Önce merge'e uygun objeler
+        foreach (GameObject handleCard in handledCardManager.HandledObjects)
+        {
+            if (alreadyProcessedObjects.Contains(handleCard))
+                continue;
+
+            var inventoryObj = handleCard.GetComponent<IInventoryObject>();
+
+            foreach (var kvp in _items)
+            {
+                if (inventoryObj.BaseItemObj == kvp.Value.RootMergeItem)
+                {
+                    List<GameObject> collideObjects = inventoryObj.CollideList;
+                    List<BaseItem> mergedItems = kvp.Value.MergedItems;
+                    List<BaseItem> collideBaseItems = new List<BaseItem>();
+                    Dictionary<BaseItem, GameObject> baseItemToObject = new Dictionary<BaseItem, GameObject>();
+
+                    foreach (GameObject obj in collideObjects)
+                    {
+                        var baseItem = obj.GetComponent<IInventoryObject>().BaseItemObj;
+                        collideBaseItems.Add(baseItem);
+                        if (!baseItemToObject.ContainsKey(baseItem))
+                            baseItemToObject[baseItem] = obj;
+                    }
+
+                    bool allRequiredItemsFound = false;
+                    List<BaseItem> tempMerged = new List<BaseItem>(mergedItems);
+                    List<GameObject> matchedCollideObjects = new List<GameObject>();
+
+                    foreach (BaseItem item in tempMerged.ToList())
+                    {
+                        bool found = false;
+                        for (int i = 0; i < collideBaseItems.Count; i++)
+                        {
+                            if (collideBaseItems[i] == item)
+                            {
+                                GameObject matchedObj = baseItemToObject[item];
+                                matchedCollideObjects.Add(matchedObj);
+                                collideBaseItems.RemoveAt(i);
+                                found = true;
+                                break;
+                            }
+                        }
+
+                        if (!found)
+                        {
+                            allRequiredItemsFound = false;
+                            break;
+                        }
+                        else
+                        {
+                            allRequiredItemsFound = true;
+                        }
+                    }
+
+                    if (allRequiredItemsFound && matchedCollideObjects.Count == mergedItems.Count)
+                    {
+                        UpgradedMaterialAdd.Add(kvp.Value);
+                        alreadyProcessedObjects.Add(handleCard);
+
+                        foreach (var matchedObj in matchedCollideObjects)
+                        {
+                            alreadyProcessedObjects.Add(matchedObj);
+                        }
+
+                        foreach (GameObject obj in collideObjects)
+                        {
+                            if (!matchedCollideObjects.Contains(obj) && !alreadyProcessedObjects.Contains(obj))
+                            {
+                                UpgradedMaterialAdd.Add(obj.GetComponent<IInventoryObject>().BaseItemObj);
+                                alreadyProcessedObjects.Add(obj);
+                            }
+                        }
+
+                        break; // Başka kombinasyona bakmaya gerek yok
+                    }
+                }
+            }
+        }
+
+        // 2. aşama: Upgrade'e katılamayanları sıradan şekilde işle
+        foreach (GameObject handleCard in handledCardManager.HandledObjects)
+        {
+            if (alreadyProcessedObjects.Contains(handleCard))
+                continue;
+
+            var inventoryObj = handleCard.GetComponent<IInventoryObject>();
+            UpgradedMaterialAdd.Add(inventoryObj.BaseItemObj);
+            alreadyProcessedObjects.Add(handleCard);
+        }
+    }
+
+
+
+
     void AddList()
     {
         UpgradedMaterialAdd.Clear();
@@ -34,7 +138,7 @@ public class MergeManager : MonoBehaviour
             var thisObject = handleCard;
             var collideList = handleInventory.CollideList;
 
-            // Bu objeyle çarpışan objeleri ve BaseItem'larını al
+            // Bu objeyle çarpışan objelerin BaseItem'larını sırayla al
             List<(GameObject obj, BaseItem item)> collidePairs = collideList
                 .Select(obj => (obj, obj.GetComponent<IInventoryObject>().BaseItemObj))
                 .ToList();
@@ -48,31 +152,33 @@ public class MergeManager : MonoBehaviour
 
                 foreach (BaseItem savedMaterial in kvp.Value.MergedItems)
                 {
-                    // Aynı item'ı birden çok kez saymayı önlemek için geçici liste
-                    var availablePairs = new List<(GameObject obj, BaseItem item)>(collidePairs);
-                    bool hasAll = true;
+                    var requiredItems = savedMaterial.MergedItems;
+                    var collideItems = collidePairs.Select(p => p.item).ToList();
 
-                    foreach (var requiredItem in savedMaterial.MergedItems)
+                    // Sayı kontrolü: yeterli item yoksa devam et
+                    if (collideItems.Count < requiredItems.Count)
+                        continue;
+
+                    // Sıralı karşılaştırma
+                    bool hasAllInOrder = true;
+                    for (int i = 0; i < requiredItems.Count; i++)
                     {
-                        var match = availablePairs.FirstOrDefault(p => p.item == requiredItem);
-                        if (match == default)
+                        if (collideItems[i] != requiredItems[i])
                         {
-                            hasAll = false;
+                            hasAllInOrder = false;
                             break;
                         }
-                        availablePairs.Remove(match);
                     }
 
-                    if (hasAll)
+                    if (hasAllInOrder)
                     {
                         UpgradedMaterialAdd.Add(kvp.Value);
-
                         upgradeContributorObjects.Add(thisObject);
-                        foreach (var requiredItem in savedMaterial.MergedItems)
-                        {
-                            var contributorObject = collidePairs
-                                .FirstOrDefault(pair => pair.item == requiredItem).obj;
 
+                        // Contributer objeleri topla
+                        for (int i = 0; i < requiredItems.Count; i++)
+                        {
+                            var contributorObject = collidePairs[i].obj;
                             if (contributorObject != null)
                                 upgradeContributorObjects.Add(contributorObject);
                         }
@@ -86,7 +192,7 @@ public class MergeManager : MonoBehaviour
                     break;
             }
 
-            // Eğer upgrade gerçekleşmediyse, normal item'ları ekle
+            // Eğer upgrade yoksa, normal BaseItem'ları ekle
             if (!upgraded)
             {
                 foreach (var (obj, item) in collidePairs)
@@ -114,6 +220,7 @@ public class MergeManager : MonoBehaviour
             Debug.Log(item.name);
         }
     }
+
 
     void SaveData()
     {
