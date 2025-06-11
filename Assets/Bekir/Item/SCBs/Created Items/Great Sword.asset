@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: Great Sword
   m_EditorClassIdentifier: 
   ItemName: Great Sword
-  HandCardCount: 0
-  isHavePassive: 0
-  TotalDamage: 0
-  ManaCount: 0
+  HandCardCount: 3
+  isHavePassive: 1
+  TotalDamage: 8
+  ManaCount: 2
   isAttackDMG: 0
   order: 0
   Description: 
