@@ -4,6 +4,7 @@ public class Blood : IItemEffect
 {
     public async void ExecuteEffect(Enemy enemy,PlayerHandler player, Cart card)
     {
+        enemy.GetComponent<Animator>().SetBool("isDamage", true);
         float TotalDamage = card.CardDamage;
 
         if (enemy._health > 0)
@@ -12,15 +13,16 @@ public class Blood : IItemEffect
             if (PlayerPrefs.HasKey("isHasAttackBuff"))
             {
                 Debug.Log("AttackBuff");
-                 enemy.TakeDamageWithoutShield((TotalDamage) + ((TotalDamage / 100) * 10));
+                enemy.TakeDamageWithShield((TotalDamage) + ((TotalDamage / 100) * 10));
             }
-               
+
             else
-                enemy.TakeDamageWithoutShield((TotalDamage));
+                enemy.TakeDamageWithShield((TotalDamage));
         }
 
         GameObject.Find("MustBeSavedObjects").GetComponent<SelectedEnemy>().selectedEnemy = enemy;
         await Task.Delay(500);
+        enemy.GetComponent<Animator>().SetBool("isDamage", false);
         EventManagerCode.DMGEffectStopAction.Invoke();
     }
 
@@ -31,15 +33,64 @@ public class Blood : IItemEffect
 
 
 }
+/*
+void ZýrhFaktoruYok()
+{
+    public async void ExecuteEffect(Enemy enemy, PlayerHandler player, Cart Card)
+    {
 
+        float TotalDamage = Card.CardDamage;
 
+        if (enemy._health > 0)
+        {
+            EventManagerCode.DMGEffectAction.Invoke();
+            if (PlayerPrefs.HasKey("isHasAttackBuff"))
+            {
+                Debug.Log("AttackBuff");
+                enemy.TakeDamageWithoutShield((TotalDamage) + ((TotalDamage / 100) * 10));
+            }
+
+            else
+                enemy.TakeDamageWithoutShield((TotalDamage));
+        }
+        GameObject.Find("MustBeSavedObjects").GetComponent<SelectedEnemy>().selectedEnemy = enemy;
+        await Task.Delay(300);
+        EventManagerCode.DMGEffectStopAction.Invoke();
+
+    }
+}
+*/
+/*
+void ZýrhaVurur()
+{
+    float TotalDamage = Card.CardDamage;
+
+    if (enemy._health > 0)
+    {
+        EventManagerCode.DMGEffectAction.Invoke();
+        if (PlayerPrefs.HasKey("isHasAttackBuff"))
+        {
+            Debug.Log("AttackBuff");
+            enemy.TakeDamageWithShield((TotalDamage) + ((TotalDamage / 100) * 10));
+        }
+
+        else
+            enemy.TakeDamageWithShield((TotalDamage));
+    }
+    GameObject.Find("MustBeSavedObjects").GetComponent<SelectedEnemy>().selectedEnemy = enemy;
+    await Task.Delay(300);
+    EventManagerCode.DMGEffectStopAction.Invoke();
+
+}
+*/
 public class Sword : IItemEffect
 {
     public async void ExecuteEffect(Enemy enemy,PlayerHandler player, Cart Card)
     {
 
+        enemy.GetComponent<Animator>().SetBool("isDamage", true);
         float TotalDamage = Card.CardDamage;
-        
+
         if (enemy._health > 0)
         {
             EventManagerCode.DMGEffectAction.Invoke();
@@ -48,12 +99,14 @@ public class Sword : IItemEffect
                 Debug.Log("AttackBuff");
                 enemy.TakeDamageWithShield((TotalDamage) + ((TotalDamage / 100) * 10));
             }
-                
+
             else
                 enemy.TakeDamageWithShield((TotalDamage));
         }
+
         GameObject.Find("MustBeSavedObjects").GetComponent<SelectedEnemy>().selectedEnemy = enemy;
-        await Task.Delay(300);
+        await Task.Delay(500);
+        enemy.GetComponent<Animator>().SetBool("isDamage", false);
         EventManagerCode.DMGEffectStopAction.Invoke();
 
     }
@@ -69,23 +122,25 @@ public class Knife : IItemEffect
 {
     public async void ExecuteEffect(Enemy enemy, PlayerHandler player, Cart Card)
     {
-
+        enemy.GetComponent<Animator>().SetBool("isDamage", true);
         float TotalDamage = Card.CardDamage;
-       
+
         if (enemy._health > 0)
         {
             EventManagerCode.DMGEffectAction.Invoke();
             if (PlayerPrefs.HasKey("isHasAttackBuff"))
             {
                 Debug.Log("AttackBuff");
-                enemy.TakeDamageWithoutShield((TotalDamage) + ((TotalDamage / 100) * 10));
+                enemy.TakeDamageWithShield((TotalDamage) + ((TotalDamage / 100) * 10));
             }
 
             else
-                enemy.TakeDamageWithoutShield((TotalDamage));
+                enemy.TakeDamageWithShield((TotalDamage));
         }
+
         GameObject.Find("MustBeSavedObjects").GetComponent<SelectedEnemy>().selectedEnemy = enemy;
-        await Task.Delay(300);
+        await Task.Delay(500);
+        enemy.GetComponent<Animator>().SetBool("isDamage", false);
         EventManagerCode.DMGEffectStopAction.Invoke();
 
     }
@@ -102,24 +157,26 @@ public class Rifle : IItemEffect
     public async void ExecuteEffect(Enemy enemy,PlayerHandler player, Cart Card)
     {
 
+        enemy.GetComponent<Animator>().SetBool("isDamage", true);
         float TotalDamage = Card.CardDamage;
-       
+
         if (enemy._health > 0)
         {
             EventManagerCode.DMGEffectAction.Invoke();
             if (PlayerPrefs.HasKey("isHasAttackBuff"))
             {
                 Debug.Log("AttackBuff");
-                enemy.TakeDamageWithoutShield((TotalDamage) + ((TotalDamage / 100) * 10));
+                enemy.TakeDamageWithShield((TotalDamage) + ((TotalDamage / 100) * 10));
             }
 
             else
-                enemy.TakeDamageWithoutShield((TotalDamage));
+                enemy.TakeDamageWithShield((TotalDamage));
         }
-        GameObject.Find("MustBeSavedObjects").GetComponent<SelectedEnemy>().selectedEnemy = enemy;
-        await Task.Delay(300);
-        EventManagerCode.DMGEffectStopAction.Invoke();
 
+        GameObject.Find("MustBeSavedObjects").GetComponent<SelectedEnemy>().selectedEnemy = enemy;
+        await Task.Delay(500);
+        enemy.GetComponent<Animator>().SetBool("isDamage", false);
+        EventManagerCode.DMGEffectStopAction.Invoke();
     }
 
     public void TourEffect(Enemy enemy,Cart Card)
@@ -134,22 +191,25 @@ public class FireSword : IItemEffect
     public async void ExecuteEffect(Enemy enemy,PlayerHandler player, Cart Card)
     {
 
+        enemy.GetComponent<Animator>().SetBool("isDamage", true);
         float TotalDamage = Card.CardDamage;
-        
+
         if (enemy._health > 0)
         {
             EventManagerCode.DMGEffectAction.Invoke();
             if (PlayerPrefs.HasKey("isHasAttackBuff"))
             {
                 Debug.Log("AttackBuff");
-                enemy.TakeDamageWithoutShield((TotalDamage) + ((TotalDamage / 100) * 10));
+                enemy.TakeDamageWithShield((TotalDamage) + ((TotalDamage / 100) * 10));
             }
 
             else
-                enemy.TakeDamageWithoutShield((TotalDamage));
+                enemy.TakeDamageWithShield((TotalDamage));
         }
+
         GameObject.Find("MustBeSavedObjects").GetComponent<SelectedEnemy>().selectedEnemy = enemy;
-        await Task.Delay(300);
+        await Task.Delay(500);
+        enemy.GetComponent<Animator>().SetBool("isDamage", false);
         EventManagerCode.DMGEffectStopAction.Invoke();
     }
 
@@ -164,22 +224,25 @@ public class BloodSword : IItemEffect
     public async void ExecuteEffect(Enemy enemy,PlayerHandler player, Cart Card)
     {
 
+        enemy.GetComponent<Animator>().SetBool("isDamage", true);
         float TotalDamage = Card.CardDamage;
-       
+
         if (enemy._health > 0)
         {
             EventManagerCode.DMGEffectAction.Invoke();
             if (PlayerPrefs.HasKey("isHasAttackBuff"))
             {
                 Debug.Log("AttackBuff");
-                enemy.TakeDamageWithoutShield((TotalDamage) + ((TotalDamage / 100) * 10));
+                enemy.TakeDamageWithShield((TotalDamage) + ((TotalDamage / 100) * 10));
             }
 
             else
-                enemy.TakeDamageWithoutShield((TotalDamage));
+                enemy.TakeDamageWithShield((TotalDamage));
         }
+
         GameObject.Find("MustBeSavedObjects").GetComponent<SelectedEnemy>().selectedEnemy = enemy;
-        await Task.Delay(300);
+        await Task.Delay(500);
+        enemy.GetComponent<Animator>().SetBool("isDamage", false);
         EventManagerCode.DMGEffectStopAction.Invoke();
     }
 
@@ -192,7 +255,7 @@ public class GreatSword : IItemEffect
 {
     public async void ExecuteEffect(Enemy enemy,PlayerHandler player, Cart Card)
     {
-
+        enemy.GetComponent<Animator>().SetBool("isDamage", true);
         float TotalDamage = Card.CardDamage;
 
         if (enemy._health > 0)
@@ -201,14 +264,16 @@ public class GreatSword : IItemEffect
             if (PlayerPrefs.HasKey("isHasAttackBuff"))
             {
                 Debug.Log("AttackBuff");
-                enemy.TakeDamageWithoutShield((TotalDamage) + ((TotalDamage / 100) * 10));
+                enemy.TakeDamageWithShield((TotalDamage) + ((TotalDamage / 100) * 10));
             }
 
             else
-                enemy.TakeDamageWithoutShield((TotalDamage));
+                enemy.TakeDamageWithShield((TotalDamage));
         }
+
         GameObject.Find("MustBeSavedObjects").GetComponent<SelectedEnemy>().selectedEnemy = enemy;
-        await Task.Delay(300);
+        await Task.Delay(500);
+        enemy.GetComponent<Animator>().SetBool("isDamage", false);
         EventManagerCode.DMGEffectStopAction.Invoke();
     }
 
@@ -223,7 +288,7 @@ public class CursedBloodSword : IItemEffect
 {
     public async void ExecuteEffect(Enemy enemy,PlayerHandler player, Cart Card)
     {
-
+        enemy.GetComponent<Animator>().SetBool("isDamage", true);
         float TotalDamage = Card.CardDamage;
 
         if (enemy._health > 0)
@@ -232,14 +297,16 @@ public class CursedBloodSword : IItemEffect
             if (PlayerPrefs.HasKey("isHasAttackBuff"))
             {
                 Debug.Log("AttackBuff");
-                enemy.TakeDamageWithoutShield((TotalDamage) + ((TotalDamage / 100) * 10));
+                enemy.TakeDamageWithShield((TotalDamage) + ((TotalDamage / 100) * 10));
             }
 
             else
-                enemy.TakeDamageWithoutShield((TotalDamage));
+                enemy.TakeDamageWithShield((TotalDamage));
         }
+
         GameObject.Find("MustBeSavedObjects").GetComponent<SelectedEnemy>().selectedEnemy = enemy;
-        await Task.Delay(300);
+        await Task.Delay(500);
+        enemy.GetComponent<Animator>().SetBool("isDamage", false);
         EventManagerCode.DMGEffectStopAction.Invoke();
     }
 
@@ -253,7 +320,7 @@ public class ThrowingKnifes : IItemEffect
 {
     public async void ExecuteEffect(Enemy enemy,PlayerHandler player, Cart Card)
     {
-
+        enemy.GetComponent<Animator>().SetBool("isDamage", true);
         float TotalDamage = Card.CardDamage;
 
         if (enemy._health > 0)
@@ -262,14 +329,16 @@ public class ThrowingKnifes : IItemEffect
             if (PlayerPrefs.HasKey("isHasAttackBuff"))
             {
                 Debug.Log("AttackBuff");
-                enemy.TakeDamageWithoutShield((TotalDamage) + ((TotalDamage / 100) * 10));
+                enemy.TakeDamageWithShield((TotalDamage) + ((TotalDamage / 100) * 10));
             }
 
             else
-                enemy.TakeDamageWithoutShield((TotalDamage));
+                enemy.TakeDamageWithShield((TotalDamage));
         }
+
         GameObject.Find("MustBeSavedObjects").GetComponent<SelectedEnemy>().selectedEnemy = enemy;
-        await Task.Delay(300);
+        await Task.Delay(500);
+        enemy.GetComponent<Animator>().SetBool("isDamage", false);
         EventManagerCode.DMGEffectStopAction.Invoke();
     }
 
