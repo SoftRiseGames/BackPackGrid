@@ -23,8 +23,8 @@ public class Enemy : MonoBehaviour, IDamage
     public TextMeshProUGUI BurningTourText;
 
 
-    [HideInInspector]public Image BleedingEffect;
-    [HideInInspector]public Image BurnEffect;
+    public Image BleedingEffect;
+    public Image BurnEffect;
 
     public ParticleSystem ShieldParticle;
 
