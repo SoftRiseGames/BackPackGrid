@@ -462,7 +462,6 @@ public class Burn : IPassive
     {
         if ((!enemy.isBurning))
         {
-
             enemy.BurningTourText.text = (card.PassiveTourCount).ToString();
             enemy.isBurning = true;
         }

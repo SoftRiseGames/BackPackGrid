@@ -11,6 +11,7 @@ public class EnemyManager : MonoBehaviour
     public static Action onPlayerTurn;
     public static Action DMGEffectAction;
     public static Action DMGEffectStopAction;
+    Coroutine CoroutineTimerControl;
     private void OnEnable()
     {
         EventManagerCode.OnEnemyTurn += StartCoroutineEvent;
@@ -46,35 +47,45 @@ public class EnemyManager : MonoBehaviour
     IEnumerator EventCoroutine()
     {
         isEventRunning = true;
-        if (enemies != null)
-        {
-            for (int i = 0; i < enemies.Count; i++)
-            {
 
+        // Liste null mu ya da boþ mu kontrolü
+        if (enemies != null && enemies.Count > 0)
+        {
+            // Kopyasýný alýyoruz. Böylece orijinal liste deðiþse bile hata almayýz.
+            List<Enemy> enemiesCopy = new List<Enemy>(enemies);
+
+            for (int i = 0; i < enemiesCopy.Count; i++)
+            {
                 yield return new WaitForSeconds(0.5f);
 
-                Enemy enemy = enemies[i];
+                Enemy enemy = enemiesCopy[i];
+                if (enemy == null) continue;
 
-                string currentAction = enemy.EnemySettings.EnemyPattern[enemy.EnemyPatternCounter];
-
-                if (currentAction == "Attack")
+                if (enemy.EnemySettings.EnemyPattern.Count > enemy.EnemyPatternCounter)
                 {
-                    EventManagerCode.DMGEffectAction.Invoke();
-                    enemy.AttackOnTour();
+                    string currentAction = enemy.EnemySettings.EnemyPattern[enemy.EnemyPatternCounter];
+
+                    if (currentAction == "Attack")
+                    {
+                        EventManagerCode.DMGEffectAction?.Invoke();
+                        enemy.AttackOnTour();
+                    }
+                    else if (currentAction == "Defence")
+                    {
+                        enemy.DefenceOnTour();
+                    }
                 }
 
-                else if (currentAction == "Defence")
-                    enemy.DefenceOnTour();
                 yield return new WaitForSeconds(0.5f);
-                EventManagerCode.DMGEffectStopAction.Invoke();
+                EventManagerCode.DMGEffectStopAction?.Invoke();
             }
-            yield return new WaitForSeconds(.5f);
-            isEventRunning = false;
-            onPlayerTurn?.Invoke();
         }
-       
+
+        yield return new WaitForSeconds(0.5f);
+        isEventRunning = false;
+        onPlayerTurn?.Invoke();
     }
-        
-       
-       
+
+
+
 }
