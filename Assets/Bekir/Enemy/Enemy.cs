@@ -26,6 +26,8 @@ public class Enemy : MonoBehaviour, IDamage
     public Image BleedingEffect;
     public Image BurnEffect;
 
+    public Image OrderImage;
+
     public ParticleSystem ShieldParticle;
 
     private void Start()

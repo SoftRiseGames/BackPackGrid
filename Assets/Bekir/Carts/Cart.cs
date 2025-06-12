@@ -30,6 +30,8 @@ public class Cart : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IPoin
     [SerializeField] List<Image> ManaImages;
     private int ManaCount;
     Collider2D collider;
+
+    public EnemyManager EnemyOrder;
     private void OnEnable()
     {
         EventManagerCode.OnEnemyTurn += CanMoveFalse;
@@ -43,6 +45,7 @@ public class Cart : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IPoin
         CardDamage = _baseItem.TotalDamage;
         ManaCount = _baseItem.ManaCount;
         ManaCountImage();
+        EnemyOrder = GameObject.Find("EnemyManager").GetComponent<EnemyManager>();
     }
     
     private void OnDisable()
@@ -129,6 +132,8 @@ public class Cart : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IPoin
         Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         mousePos.z = 0;
         transform.position = mousePos;
+
+        
     }
     public void OnPointerDown(PointerEventData eventData)
     {
@@ -156,6 +161,9 @@ public class Cart : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IPoin
         {
             DOTween.Kill(transform);
             transform.DOLocalMoveY(_startPosition.y, _speed);
+
+            foreach (Enemy e in EnemyOrder.enemies)
+                e.GetComponent<Enemy>().OrderImage.gameObject.SetActive(false);
         }
     }
 
@@ -165,6 +173,19 @@ public class Cart : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IPoin
         {
             DOTween.Kill(transform);
             transform.DOLocalMoveY(transform.localPosition.y + _upScale, _speed);
+
+            if (_baseItem.order > EnemyOrder.enemies.Count)
+            {
+                foreach (Enemy e in EnemyOrder.enemies)
+                    e.GetComponent<Enemy>().OrderImage.gameObject.SetActive(true);
+            }
+            else
+            {
+                for (int i = 0; i <= _baseItem.order; i++)
+                {
+                    EnemyOrder.enemies[i].GetComponent<Enemy>().OrderImage.gameObject.SetActive(true);
+                }
+            }
         }
        
     }

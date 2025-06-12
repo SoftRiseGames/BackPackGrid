@@ -16,7 +16,7 @@ MonoBehaviour:
   Shield: 0
   shieldMaxValue: 10
   HealthMaxValue: 20
-  TakenDamage: 4
+  TakenDamage: 10
   EarnShield: 3
   EnemyEffects:
   - rid: 1496930368940933195
