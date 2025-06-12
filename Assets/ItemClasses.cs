@@ -477,7 +477,11 @@ public class LifeSteal : IPassive
             card.isCheckedPassiveSituation = true;
 
         if (card.isCheckedPassiveSituation == true)
+        {
             player._health = player._health + ((card._baseItem.TotalDamage / 100) * 10);
+            enemy.TakeDamageWithoutShield((card._baseItem.TotalDamage / 100) * 10);
+        }
+           
         else
             card.PassiveTourCount = 0;
     }
