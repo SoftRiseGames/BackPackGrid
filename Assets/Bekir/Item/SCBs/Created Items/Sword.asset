@@ -20,7 +20,7 @@ MonoBehaviour:
   isAttackDMG: 0
   order: 0
   Description: "En yak\u0131ndaki d\xFC\u015Fmana 5 hasar vurur."
-  ItemSprite: {fileID: 21300000, guid: f12203c5def4857469356824ae742fc3, type: 3}
+  ItemSprite: {fileID: 20524582310125759, guid: 3526d75772a761145b56a70695105ea9, type: 3}
   cellSize: {x: 0, y: 0}
   RootMergeItem: {fileID: 0}
   PassiveTourCount: 0

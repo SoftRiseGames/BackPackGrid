@@ -21,7 +21,7 @@ MonoBehaviour:
   order: 5
   Description: "Rakip s\u0131ras\u0131 se\xE7meksizin se\xE7ilen 1 d\xFC\u015Fmana
     5 hasar vurur."
-  ItemSprite: {fileID: 0}
+  ItemSprite: {fileID: -5553384735937799777, guid: 3526d75772a761145b56a70695105ea9, type: 3}
   cellSize: {x: 0, y: 0}
   RootMergeItem: {fileID: 11400000, guid: 19fd073281cb3cc4eb7730b90053abeb, type: 2}
   PassiveTourCount: 0
