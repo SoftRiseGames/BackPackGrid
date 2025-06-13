@@ -140,7 +140,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 2784468965456250579, guid: 3356479a2d2a3ad459661ba34cc7abbe, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -351,7 +351,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 2784468965456250579, guid: 3356479a2d2a3ad459661ba34cc7abbe, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -611,6 +611,7 @@ MonoBehaviour:
   - {fileID: 5515294392875757756}
   - {fileID: 4632893482325049522}
   - {fileID: 8546920204050523968}
+  EnemyOrder: {fileID: 0}
 --- !u!61 &219486662269549411
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -824,7 +825,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 2784468965456250579, guid: 3356479a2d2a3ad459661ba34cc7abbe, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1

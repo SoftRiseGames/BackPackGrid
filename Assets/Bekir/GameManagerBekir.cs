@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using Unity.Cinemachine;
+using System.Collections.Generic;
 public class GameManagerBekir : MonoBehaviour{
     public CartHandler C_CartHandler;
     public PlayerHandler C_PlayerHandler;
@@ -9,6 +10,8 @@ public class GameManagerBekir : MonoBehaviour{
     [SerializeField] private Button TourButton;
     [SerializeField] private GameObject DMGEffect;
     [SerializeField] private CinemachineImpulseSource impulse;
+
+    [SerializeField] List<Image> ManaImages;
     private void Start()
     {
         if (instance == null)
@@ -30,6 +33,10 @@ public class GameManagerBekir : MonoBehaviour{
         EventManagerCode.DMGEffectAction -= DMGEffectVoid;
         EventManagerCode.DMGEffectStopAction -= DMGStopActionVoid;
     }
+    private void Update()
+    {
+        ManaListControl();
+    }
     void ManaRenew()
     {
         ManaCount = 3;
@@ -48,7 +55,16 @@ public class GameManagerBekir : MonoBehaviour{
         impulse.GenerateImpulse();
         DMGEffect.SetActive(true);
     }
-
+    void ManaListControl()
+    {
+        for(int i = 0; i<ManaImages.Count; i++)
+        {
+            if (i < ManaCount)
+                ManaImages[i].gameObject.SetActive(true);
+            else
+                ManaImages[i].gameObject.SetActive(false);
+        }
+    }
     void DMGStopActionVoid()
     {
         DMGEffect.SetActive(false);
