@@ -15,6 +15,7 @@ public class EnemyManager : MonoBehaviour
     private void OnEnable()
     {
         EventManagerCode.OnEnemyTurn += StartCoroutineEvent;
+       
     }
     private void OnDisable()
     {
@@ -35,6 +36,13 @@ public class EnemyManager : MonoBehaviour
         {
             enemies[i].Order = i;
         }
+
+        if (enemies.Count == 0)
+        {
+            EventManagerCode.WarisOver?.Invoke();
+        }
+
+
     }
     void StartCoroutineEvent()
     {
@@ -80,7 +88,7 @@ public class EnemyManager : MonoBehaviour
                 EventManagerCode.DMGEffectStopAction?.Invoke();
             }
         }
-
+       
         yield return new WaitForSeconds(0.5f);
         isEventRunning = false;
         onPlayerTurn?.Invoke();

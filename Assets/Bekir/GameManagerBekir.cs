@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using Unity.Cinemachine;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 public class GameManagerBekir : MonoBehaviour{
     public CartHandler C_CartHandler;
     public PlayerHandler C_PlayerHandler;
@@ -12,6 +13,7 @@ public class GameManagerBekir : MonoBehaviour{
     [SerializeField] private CinemachineImpulseSource impulse;
 
     [SerializeField] List<Image> ManaImages;
+    public GameObject CollectGamematerial;
     private void Start()
     {
         if (instance == null)
@@ -24,6 +26,7 @@ public class GameManagerBekir : MonoBehaviour{
         EnemyManager.onPlayerTurn += TourButtonOpen;
         EventManagerCode.DMGEffectAction += DMGEffectVoid;
         EventManagerCode.DMGEffectStopAction += DMGStopActionVoid;
+        EventManagerCode.WarisOver += WarOver;
     }
     private void OnDisable()
     {
@@ -32,6 +35,7 @@ public class GameManagerBekir : MonoBehaviour{
         EnemyManager.onPlayerTurn -= TourButtonOpen;
         EventManagerCode.DMGEffectAction -= DMGEffectVoid;
         EventManagerCode.DMGEffectStopAction -= DMGStopActionVoid;
+        EventManagerCode.WarisOver -= WarOver;
     }
     private void Update()
     {
@@ -40,6 +44,12 @@ public class GameManagerBekir : MonoBehaviour{
     void ManaRenew()
     {
         ManaCount = 3;
+    }
+    async void  WarOver()
+    {
+        TourButton.interactable = false;
+        await Task.Delay(400);
+        CollectGamematerial.SetActive(true);
     }
     void TourButtonClose()
     {

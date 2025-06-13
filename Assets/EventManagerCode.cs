@@ -7,6 +7,7 @@ public class EventManagerCode : MonoBehaviour
     public static Action OnEnemyTurn;
     public static Action DMGEffectAction;
     public static Action DMGEffectStopAction;
+    public static Action WarisOver;
     public void OnEnemyTurnVoid() => OnEnemyTurn.Invoke();
 
     public void PrefDeleter()
