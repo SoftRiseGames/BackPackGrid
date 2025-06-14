@@ -11,6 +11,7 @@ public class MergeManager : MonoBehaviour
     public List<BaseItem> UpgradedMaterialAdd;
     void Start()
     {
+       
 
     }
     // Update is called once per frame
@@ -22,14 +23,40 @@ public class MergeManager : MonoBehaviour
         AddList2();
         SaveData();
     }
+    string GetSavePath()
+    {
+#if UNITY_EDITOR
+        return Application.dataPath + "/upgrade_log.json";
+#else
+    return Application.persistentDataPath + "/upgrade_log.json";
+#endif
+    }
 
+    void SaveUpgradeLog(UpgradeLogData data)
+    {
+        string path = GetSavePath();
+        string json = JsonUtility.ToJson(data, true);
+        File.WriteAllText(path, json);
+    }
+
+    UpgradeLogData LoadUpgradeLog()
+    {
+        string path = GetSavePath();
+        if (File.Exists(path))
+        {
+            string json = File.ReadAllText(path);
+            return JsonUtility.FromJson<UpgradeLogData>(json);
+        }
+        return new UpgradeLogData();
+    }
 
     void AddList2()
     {
         UpgradedMaterialAdd.Clear();
         HashSet<GameObject> alreadyProcessedObjects = new HashSet<GameObject>();
 
-        // 1. Aşama: Upgrade olabilecek objeler
+        UpgradeLogData logData = LoadUpgradeLog();
+
         foreach (GameObject handleCard in handledCardManager.HandledObjects)
         {
             if (alreadyProcessedObjects.Contains(handleCard))
@@ -45,10 +72,9 @@ public class MergeManager : MonoBehaviour
                 List<GameObject> collideObjects = inventoryObj.CollideList;
                 List<BaseItem> mergedItems = kvp.Value.MergedItems;
 
-                // Tüm objeleri (ana obje + çarpışanlar) topla
                 List<BaseItem> availableItems = new List<BaseItem>
             {
-                inventoryObj.BaseItemObj // ana obje
+                inventoryObj.BaseItemObj
             };
                 Dictionary<BaseItem, List<GameObject>> itemToGameObjects = new();
 
@@ -63,7 +89,6 @@ public class MergeManager : MonoBehaviour
                     itemToGameObjects[baseItem].Add(obj);
                 }
 
-                // MergedItems’teki item’ların gereksinimini kontrol et
                 List<BaseItem> requiredItems = new List<BaseItem>(mergedItems);
                 List<GameObject> usedColliders = new List<GameObject>();
                 bool allMatch = true;
@@ -75,7 +100,6 @@ public class MergeManager : MonoBehaviour
                         availableItems.Remove(req);
                         requiredItems.Remove(req);
 
-                        // CollideList’ten geldiyse objeyi yakala
                         if (itemToGameObjects.ContainsKey(req) && itemToGameObjects[req].Count > 0)
                         {
                             GameObject go = itemToGameObjects[req][0];
@@ -92,14 +116,12 @@ public class MergeManager : MonoBehaviour
 
                 if (allMatch && requiredItems.Count == 0)
                 {
-                    // Upgrade yapılabilir
                     UpgradedMaterialAdd.Add(kvp.Value);
                     alreadyProcessedObjects.Add(handleCard);
 
                     foreach (var go in usedColliders)
                         alreadyProcessedObjects.Add(go);
 
-                    // Geriye kalan CollideList'tekileri ekle
                     foreach (GameObject obj in collideObjects)
                     {
                         if (!usedColliders.Contains(obj) && !alreadyProcessedObjects.Contains(obj))
@@ -109,12 +131,22 @@ public class MergeManager : MonoBehaviour
                         }
                     }
 
-                    break; // Başka kombinasyona gerek yok
+                    // ✅ JSON LOG ENTRY OLUŞTUR
+                    UpgradeLogEntry entry = new UpgradeLogEntry();
+                    entry.mainObjectName = inventoryObj.BaseItemObj.name;
+                    entry.upgradedToName = kvp.Value.name;
+                    entry.touchingObjectNames = usedColliders
+                        .Select(go => go.GetComponent<IInventoryObject>().BaseItemObj.name)
+                        .ToList();
+
+                    logData.upgradeLogs.Add(entry);
+                    SaveUpgradeLog(logData);
+
+                    break;
                 }
             }
         }
 
-        // 2. Aşama: Upgrade’e katılamayanlar
         foreach (GameObject handleCard in handledCardManager.HandledObjects)
         {
             if (alreadyProcessedObjects.Contains(handleCard))
@@ -124,6 +156,7 @@ public class MergeManager : MonoBehaviour
             alreadyProcessedObjects.Add(handleCard);
         }
     }
+
 
 
 
@@ -237,4 +270,18 @@ public class MergeManager : MonoBehaviour
         string json = JsonUtility.ToJson(SaverList);
         File.WriteAllText(Application.dataPath + "/SaveData.json", json);
     }
+}
+
+[System.Serializable]
+public class UpgradeLogEntry
+{
+    public string mainObjectName;              // Ana obje
+    public List<string> touchingObjectNames;   // Temas eden objeler (upgrade için kullanılanlar)
+    public string upgradedToName;              // Ortaya çıkan upgrade'li item ismi
+}
+
+[System.Serializable]
+public class UpgradeLogData
+{
+    public List<UpgradeLogEntry> upgradeLogs = new();
 }

@@ -61,13 +61,11 @@ public class Cart : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IPoin
         {
             enemy = collision.gameObject.GetComponent<Enemy>();
             enemy.GetComponent<Animator>().SetBool("isEnemyHighlight", true);
-            gameObject.transform.DOScale(.5f,.2f);
+            gameObject.transform.DOScale(.5f, .25f);
         }
         else if (collision.gameObject.tag == "Player")
         {
-            gameObject.transform.DOScale(.5f, .2f);
             isPlayerCollider = true;
-
         }
     }
     private void OnTriggerExit2D(Collider2D collision)
@@ -75,12 +73,11 @@ public class Cart : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IPoin
         if (collision.gameObject.tag == "Enemy")
         {
             enemy.GetComponent<Animator>().SetBool("isEnemyHighlight", false);
-            gameObject.transform.DOScale(1f, .2f);
+            gameObject.transform.DOScale(1, .25f);
             enemy = null;
         }
         else if(collision.gameObject.tag == "Player")
         {
-            gameObject.transform.DOScale(1f, .2f);
             isPlayerCollider = false;
         }
     }

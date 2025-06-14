@@ -718,6 +718,63 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &173980255
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1440891616410594432, guid: b91bdbc95d553454fad7b7868435fb73, type: 3}
+      propertyPath: m_Name
+      value: CursedBlood
+      objectReference: {fileID: 0}
+    - target: {fileID: 8953474868111996086, guid: b91bdbc95d553454fad7b7868435fb73, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 7.49
+      objectReference: {fileID: 0}
+    - target: {fileID: 8953474868111996086, guid: b91bdbc95d553454fad7b7868435fb73, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.68
+      objectReference: {fileID: 0}
+    - target: {fileID: 8953474868111996086, guid: b91bdbc95d553454fad7b7868435fb73, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 8953474868111996086, guid: b91bdbc95d553454fad7b7868435fb73, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8953474868111996086, guid: b91bdbc95d553454fad7b7868435fb73, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8953474868111996086, guid: b91bdbc95d553454fad7b7868435fb73, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8953474868111996086, guid: b91bdbc95d553454fad7b7868435fb73, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8953474868111996086, guid: b91bdbc95d553454fad7b7868435fb73, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8953474868111996086, guid: b91bdbc95d553454fad7b7868435fb73, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8953474868111996086, guid: b91bdbc95d553454fad7b7868435fb73, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: b91bdbc95d553454fad7b7868435fb73, type: 3}
 --- !u!1 &282732193
 GameObject:
   m_ObjectHideFlags: 0
@@ -1002,7 +1059,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 21.05
+  m_fontSize: 18
   m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -2145,6 +2202,51 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &679609116
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 679609118}
+  - component: {fileID: 679609117}
+  m_Layer: 0
+  m_Name: StartMerge
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &679609117
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 679609116}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f31ea5a859c294b4e8498a1613df8105, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PoolObjects: []
+--- !u!4 &679609118
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 679609116}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.7722732, y: 0.3396661, z: 4804.5034}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3608,11 +3710,13 @@ MonoBehaviour:
     - Cursed Blood Sword
     - Throwing Knives
     - Fire Sword
+    - Great Sword
     m_Values:
     - {fileID: 11400000, guid: daa51419183e32449a2618cfc7c97fad, type: 2}
     - {fileID: 11400000, guid: eec4f1ea4092adf44a7ba1dbb4f53886, type: 2}
     - {fileID: 11400000, guid: 68adbf113c0471048aed92df3df5c529, type: 2}
     - {fileID: 11400000, guid: 539c5259df6986942b2b6e8d13c8a1e7, type: 2}
+    - {fileID: 11400000, guid: f1552ea55b33cca4e8535a59a4f8ca12, type: 2}
   handledCardManager: {fileID: 53377304}
   UpgradedMaterialAdd: []
 --- !u!1 &1556323718
@@ -4797,3 +4901,5 @@ SceneRoots:
   - {fileID: 1250706093}
   - {fileID: 1428962037}
   - {fileID: 1254888015}
+  - {fileID: 173980255}
+  - {fileID: 679609118}
