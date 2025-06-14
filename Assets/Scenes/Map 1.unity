@@ -203,7 +203,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 2101206054}
         m_TargetAssemblyTypeName: MapSceneLoader, Assembly-CSharp
-        m_MethodName: QuestionCombatBeforeBag
+        m_MethodName: Selectionable
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -852,6 +852,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 850c239e222cbf94f82bfba53d5d1af4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  SceneVariableForSelection: 11
 --- !u!4 &2101206055
 Transform:
   m_ObjectHideFlags: 0

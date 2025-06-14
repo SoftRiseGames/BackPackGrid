@@ -24,7 +24,7 @@ public class DialogueManager : MonoBehaviour
         await Task.Delay(2000);
         DialogueTextPoint.text = Dialogues[2];
         await Task.Delay(2000);
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        SceneManager.LoadScene(5);
 
     }
     public async void LeaveEvent()
@@ -32,7 +32,7 @@ public class DialogueManager : MonoBehaviour
         Button1.interactable = false;
         Button2.interactable = false;
         await Task.Delay(2000);
-        //SceneManager.LoadScene();
+        SceneManager.LoadScene(4);
 
     }
 
