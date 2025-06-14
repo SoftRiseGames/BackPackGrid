@@ -10,6 +10,7 @@ public class Enemy : MonoBehaviour, IDamage
     public SOEnemy EnemySettings;
     [SerializeField] private PlayerHandler PlayerObject;
     [HideInInspector]public int EnemyPatternCounter;
+    
     public int Order;
 
     public bool isBurning;
@@ -18,7 +19,7 @@ public class Enemy : MonoBehaviour, IDamage
 
     [SerializeField] private List<Sprite> TurnIconImageList;
     [SerializeField] private Image TurnIconImageSet;
-
+    [SerializeField] TextMeshProUGUI DMGText;
     public TextMeshProUGUI BleedingTourText;
     public TextMeshProUGUI BurningTourText;
 
@@ -54,6 +55,7 @@ public class Enemy : MonoBehaviour, IDamage
         else
             BurnEffect.gameObject.SetActive(false);
 
+       
     }
     public void Die()
     {
@@ -67,6 +69,7 @@ public class Enemy : MonoBehaviour, IDamage
         _shield = 0;
         EnemySettings.EnemyEffects?.ForEach(effect => effect?.AttackOnTour(PlayerObject,gameObject.GetComponent<Enemy>()));
         EnemyPatternCounterManager();
+       
     }
 
     public void DefenceOnTour()
@@ -74,6 +77,7 @@ public class Enemy : MonoBehaviour, IDamage
         _shield = 0;
         EnemySettings.EnemyEffects?.ForEach(effect => effect?.DefenceOnTour(PlayerObject,gameObject.GetComponent<Enemy>()));
         EnemyPatternCounterManager();
+       
     }
 
    
@@ -87,9 +91,18 @@ public class Enemy : MonoBehaviour, IDamage
         }
 
         if (EnemySettings.EnemyPattern[EnemyPatternCounter] == "Attack")
+        {
             TurnIconImageSet.sprite = TurnIconImageList[0];
+            DMGText.text = EnemySettings.TakenDamage.ToString();
+        }
+            
         else if (EnemySettings.EnemyPattern[EnemyPatternCounter] == "Defence")
+        {
+           
             TurnIconImageSet.sprite = TurnIconImageList[1];
+            DMGText.text = EnemySettings.EarnShield.ToString();
+        }
+          
     }
 
     public void PassiveAttackOnTour()

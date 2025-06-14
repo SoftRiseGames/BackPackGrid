@@ -4416,6 +4416,10 @@ PrefabInstance:
       propertyPath: dataHolder
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 3913982937147050040, guid: c0d937fef6d9976479fb9e77cad53ae8, type: 3}
+      propertyPath: m_Color.a
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5558806301061932220, guid: c0d937fef6d9976479fb9e77cad53ae8, type: 3}
       propertyPath: dataHolder
       value: 
@@ -4468,6 +4472,10 @@ PrefabInstance:
     - target: {fileID: 6174571927531095964, guid: 3006470959c6e2e4dbfab2f049fbc650, type: 3}
       propertyPath: dataHolder
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 7073573515016934203, guid: 3006470959c6e2e4dbfab2f049fbc650, type: 3}
+      propertyPath: m_Color.a
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7853500030818927898, guid: 3006470959c6e2e4dbfab2f049fbc650, type: 3}
       propertyPath: m_LocalPosition.x

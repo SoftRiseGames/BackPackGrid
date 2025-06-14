@@ -4,13 +4,13 @@ public class Bandit : IEnemy
 {
     public void AttackOnTour(PlayerHandler player,Enemy enemy)
     {
-        player.TakeDamageWithShield(1);
+        player.TakeDamageWithShield(enemy.EnemySettings.TakenDamage);
     }
 
     public void DefenceOnTour(PlayerHandler player, Enemy enemy)
     {
         enemy.ShieldParticle.Play();
-        enemy.EarnShield(1);
+        enemy.EarnShield(enemy.EnemySettings.EarnShield);
         Debug.Log("Defence");
     }
 

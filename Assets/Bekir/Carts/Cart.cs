@@ -163,7 +163,11 @@ public class Cart : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IPoin
             transform.DOLocalMoveY(_startPosition.y, _speed);
 
             foreach (Enemy e in EnemyOrder.enemies)
+            {
                 e.GetComponent<Enemy>().OrderImage.gameObject.SetActive(false);
+                e.GetComponent<Animator>().SetBool("isEnemyOrder", false);
+            }
+              
         }
     }
 
@@ -177,13 +181,18 @@ public class Cart : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IPoin
             if (_baseItem.order > EnemyOrder.enemies.Count)
             {
                 foreach (Enemy e in EnemyOrder.enemies)
+                {
                     e.GetComponent<Enemy>().OrderImage.gameObject.SetActive(true);
+                    e.GetComponent<Animator>().SetBool("isEnemyOrder", true);
+                }
+                    
             }
             else
             {
                 for (int i = 0; i <= _baseItem.order; i++)
                 {
                     EnemyOrder.enemies[i].GetComponent<Enemy>().OrderImage.gameObject.SetActive(true);
+                    EnemyOrder.enemies[i].GetComponent<Animator>().SetBool("isEnemyOrder", true);
                 }
             }
         }

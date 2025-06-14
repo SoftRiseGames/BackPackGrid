@@ -3,19 +3,24 @@ using UnityEngine.UI;
 using Unity.Cinemachine;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using TMPro;
 public class GameManagerBekir : MonoBehaviour{
     public CartHandler C_CartHandler;
     public PlayerHandler C_PlayerHandler;
     public int ManaCount;
+    public int MaxMana;
     public static GameManagerBekir instance;
     [SerializeField] private Button TourButton;
     [SerializeField] private GameObject DMGEffect;
     [SerializeField] private CinemachineImpulseSource impulse;
+    [SerializeField] private TextMeshProUGUI OurMana;
+    [SerializeField] private TextMeshProUGUI TotalMana;
 
-    [SerializeField] List<Image> ManaImages;
+    //[SerializeField] List<Image> ManaImages;
     public GameObject CollectGamematerial;
     private void Start()
     {
+        ManaCount = MaxMana;
         if (instance == null)
             instance = this;
     }
@@ -67,13 +72,8 @@ public class GameManagerBekir : MonoBehaviour{
     }
     void ManaListControl()
     {
-        for(int i = 0; i<ManaImages.Count; i++)
-        {
-            if (i < ManaCount)
-                ManaImages[i].gameObject.SetActive(true);
-            else
-                ManaImages[i].gameObject.SetActive(false);
-        }
+        OurMana.text = ManaCount.ToString();
+        TotalMana.text = "/"+MaxMana.ToString();
     }
     void DMGStopActionVoid()
     {
