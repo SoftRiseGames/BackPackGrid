@@ -1,16 +1,19 @@
 using UnityEngine;
 using UnityEngine.UI;
-public class SliderSettings : MonoBehaviour
+using TMPro;
+public class EnemyUISettings : MonoBehaviour
 {
     [SerializeField] Enemy ThisEnemy;
     [SerializeField] bool isShield;
     [SerializeField] bool isHealth;
+
+    [SerializeField] TextMeshProUGUI ShieldText;
     void Start()
     {
         if (isHealth)
             gameObject.GetComponent<Slider>().value = ThisEnemy._health;
         else
-            gameObject.GetComponent<Slider>().value = ThisEnemy._shield;
+            ShieldText.text = ThisEnemy._shield.ToString();
     }
 
     
@@ -19,6 +22,6 @@ public class SliderSettings : MonoBehaviour
         if(isHealth)
             gameObject.GetComponent<Slider>().value = ThisEnemy._health;
         else
-            gameObject.GetComponent<Slider>().value = ThisEnemy._shield;
+            ShieldText.text = ThisEnemy._shield.ToString();
     }
 }
