@@ -1,11 +1,11 @@
 {
     "upgradeLogs": [
         {
-            "mainObjectName": "Sword",
+            "mainObjectName": "Knife",
             "touchingObjectNames": [
-                "Blood"
+                "Knife"
             ],
-            "upgradedToName": "Blood Sword"
+            "upgradedToName": "Throwing Knives"
         }
     ]
 }

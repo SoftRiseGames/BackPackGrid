@@ -65,43 +65,64 @@ public class StartMerge : MonoBehaviour
         {
             if (entry == null) continue;
 
+            // ✅ Upgrade edilen item
             if (!string.IsNullOrEmpty(entry.upgradedToName))
                 upgradedList.Add(entry.upgradedToName);
 
+            // ❌ Temas eden objeler (collider objeler)
             if (entry.touchingObjectNames != null && entry.touchingObjectNames.Count > 0)
             {
                 foreach (var name in entry.touchingObjectNames)
                 {
                     if (!string.IsNullOrEmpty(name))
-                        toBeDeletedList.Add(name); 
+                        toBeDeletedList.Add(name);
                 }
             }
+
+            // ❌ Ana obje de silinecekler listesine ekleniyor
+            if (!string.IsNullOrEmpty(entry.mainObjectName))
+                toBeDeletedList.Add(entry.mainObjectName);
         }
     }
 
     void ListChecker()
     {
+        // 1. deleted listesindeki her ismin kaç defa silineceğini say
+        Dictionary<string, int> deleteCounts = new();
+        foreach (string name in deleted)
+        {
+            if (!deleteCounts.ContainsKey(name))
+                deleteCounts[name] = 0;
+            deleteCounts[name]++;
+        }
+
+        // 2. Sahnedeki silinen obje sayısını takip et
+        Dictionary<string, int> deletedSoFar = new();
+
         foreach (GameObject b in PoolObjects)
         {
-            //Debug.Log(b.name);
-            foreach (string i in upgraded)
-            {
-                if (i == b.name)
-                    b.SetActive(true);
-            }
+            string pureName = b.name.Replace("(Clone)", "").Trim();
 
-            foreach(string a in deleted)
+            // Silme işlemi
+            if (deleteCounts.ContainsKey(pureName))
             {
-                Debug.Log(a);
-                if(a == b.name)
+                if (!deletedSoFar.ContainsKey(pureName))
+                    deletedSoFar[pureName] = 0;
+
+                if (deletedSoFar[pureName] < deleteCounts[pureName])
                 {
                     b.SetActive(false);
+                    deletedSoFar[pureName]++;
+                    continue; // Silindiyse artık upgrade edilmesine gerek yok
                 }
-                   
             }
-            
+
+            // Aktif etme işlemi
+            if (upgraded.Contains(pureName))
+            {
+                b.SetActive(true);
+            }
         }
-       
 
     }
 

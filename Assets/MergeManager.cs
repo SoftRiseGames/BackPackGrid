@@ -130,8 +130,6 @@ public class MergeManager : MonoBehaviour
                             alreadyProcessedObjects.Add(obj);
                         }
                     }
-
-                    // ✅ JSON LOG ENTRY OLUŞTUR
                     UpgradeLogEntry entry = new UpgradeLogEntry();
                     entry.mainObjectName = inventoryObj.BaseItemObj.name;
                     entry.upgradedToName = kvp.Value.name;
