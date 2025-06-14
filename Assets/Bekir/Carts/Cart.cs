@@ -178,22 +178,14 @@ public class Cart : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IPoin
             DOTween.Kill(transform);
             transform.DOLocalMoveY(transform.localPosition.y + _upScale, _speed);
 
-            if (_baseItem.order > EnemyOrder.enemies.Count)
+
+            foreach (Enemy e in EnemyOrder.enemies)
             {
-                foreach (Enemy e in EnemyOrder.enemies)
+                if (_baseItem.order < e.Order)
                 {
-                    e.GetComponent<Enemy>().OrderImage.gameObject.SetActive(true);
                     e.GetComponent<Animator>().SetBool("isEnemyOrder", true);
                 }
-                    
-            }
-            else
-            {
-                for (int i = 0; i <= _baseItem.order; i++)
-                {
-                    EnemyOrder.enemies[i].GetComponent<Enemy>().OrderImage.gameObject.SetActive(true);
-                    EnemyOrder.enemies[i].GetComponent<Animator>().SetBool("isEnemyOrder", true);
-                }
+             
             }
         }
        
