@@ -474,12 +474,19 @@ public class LifeSteal : IPassive
     public void PassiveEffect(PlayerHandler player, Enemy enemy, Cart card) 
     {
         if (!player.isLifeStealing)
+        {
             card.isCheckedPassiveSituation = true;
+            player.isLifeStealing = true;
+        }
+            
 
         if (card.isCheckedPassiveSituation == true)
         {
-            player._health = player._health + ((card._baseItem.TotalDamage / 100) * 10);
-            enemy.TakeDamageWithoutShield((card._baseItem.TotalDamage / 100) * 10);
+            Debug.Log("Life Steal");
+            if (player._health + ((card._baseItem.TotalDamage)) <= player.HealthMaxValue)
+                player._health = player._health + ((card._baseItem.TotalDamage));
+            else
+                player._health = player.HealthMaxValue;
         }
            
         else

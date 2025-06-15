@@ -2,12 +2,13 @@ using UnityEngine;
 using System.Threading.Tasks;
 public class PlayerHandler : MonoBehaviour, IDamage
 {
-    public float _health;
+    [HideInInspector]public float _health;
     private float _healtCounter;
     public float _shield;
     public float _ShieldMaxValue;
     [HideInInspector] public bool isAttackBuffing;
     [HideInInspector] public bool isLifeStealing;
+    public float HealthMaxValue;
     private void OnEnable()
     {
         EnemyManager.onPlayerTurn += ShieldRenew;
@@ -18,6 +19,7 @@ public class PlayerHandler : MonoBehaviour, IDamage
     }
     void Start()
     {
+        _health = HealthMaxValue;
         _healtCounter = _health;
     }
 

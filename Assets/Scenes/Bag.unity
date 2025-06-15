@@ -4218,11 +4218,13 @@ MonoBehaviour:
     - Cursed Blood Sword
     - Throwing Knives
     - Fire Sword
+    - Great Sword
     m_Values:
     - {fileID: 11400000, guid: daa51419183e32449a2618cfc7c97fad, type: 2}
     - {fileID: 11400000, guid: eec4f1ea4092adf44a7ba1dbb4f53886, type: 2}
     - {fileID: 11400000, guid: 68adbf113c0471048aed92df3df5c529, type: 2}
     - {fileID: 11400000, guid: 539c5259df6986942b2b6e8d13c8a1e7, type: 2}
+    - {fileID: 11400000, guid: f1552ea55b33cca4e8535a59a4f8ca12, type: 2}
   handledCardManager: {fileID: 53377304}
   UpgradedMaterialAdd: []
 --- !u!1001 &1431295985
