@@ -10,22 +10,22 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0bb2fd89d7ad398439d477252bbc5252, type: 3}
-  m_Name: BanditEnemy
+  m_Name: Upgradedbandit
   m_EditorClassIdentifier: 
-  Health: 20
+  Health: 25
   Shield: 0
-  shieldMaxValue: 7
+  shieldMaxValue: 5
   HealthMaxValue: 20
   TakenDamage: 4
-  EarnShield: 5
+  EarnShield: 0
   EnemyEffects:
-  - rid: 4778697969631756365
+  - rid: 1496930454296068167
   EnemyPattern:
   - Attack
   - Defence
   references:
     version: 2
     RefIds:
-    - rid: 4778697969631756365
+    - rid: 1496930454296068167
       type: {class: Bandit, ns: , asm: Assembly-CSharp}
       data: 
