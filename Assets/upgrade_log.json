@@ -1,0 +1,11 @@
+{
+    "upgradeLogs": [
+        {
+            "mainObjectName": "Sword",
+            "touchingObjectNames": [
+                "FireCrystal"
+            ],
+            "upgradedToName": "Fire Sword"
+        }
+    ]
+}

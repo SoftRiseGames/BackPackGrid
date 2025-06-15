@@ -940,7 +940,11 @@ PrefabInstance:
       objectReference: {fileID: 1339408198}
     - target: {fileID: 6270588966319270657, guid: aaae1212a58e41148a3458238361796d, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: FourthMapLoader
+      value: Map
+      objectReference: {fileID: 0}
+    - target: {fileID: 6270588966319270657, guid: aaae1212a58e41148a3458238361796d, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: MapSceneLoader, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 6595249619369923322, guid: aaae1212a58e41148a3458238361796d, type: 3}
       propertyPath: m_AnchorMax.x
@@ -6403,7 +6407,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 20524582310125759, guid: 3526d75772a761145b56a70695105ea9, type: 3}
+  m_Sprite: {fileID: -3338749442709606003, guid: 0037d650e692fbf44b937b44b4875a5d, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1

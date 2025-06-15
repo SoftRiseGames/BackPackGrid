@@ -5,7 +5,7 @@ using Sirenix.OdinInspector;
 [CreateAssetMenu(fileName = "EnemySO",menuName ="EnemySO")]
 public class SOEnemy : ScriptableObject
 {
-    public float Health;
+   
     public float Shield;
     public float shieldMaxValue;
     public float HealthMaxValue;

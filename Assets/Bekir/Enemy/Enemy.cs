@@ -40,7 +40,7 @@ public class Enemy : MonoBehaviour, IDamage
             TurnIconImageSet.sprite = TurnIconImageList[1];
         
         
-        _health = EnemySettings.Health;
+        _health = EnemySettings.HealthMaxValue;
         HealthSlider.maxValue = EnemySettings.HealthMaxValue;
         _shield = EnemySettings.Shield;
     }

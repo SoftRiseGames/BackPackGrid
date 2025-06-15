@@ -12,12 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0bb2fd89d7ad398439d477252bbc5252, type: 3}
   m_Name: BanditEnemy
   m_EditorClassIdentifier: 
-  Health: 20
   Shield: 0
   shieldMaxValue: 7
-  HealthMaxValue: 20
+  HealthMaxValue: 10
   TakenDamage: 4
-  EarnShield: 5
+  EarnShield: 2
   EnemyEffects:
   - rid: 4778697969631756365
   EnemyPattern:

@@ -26,15 +26,17 @@ public class DialogueManager : MonoBehaviour
         await Task.Delay(2000);
         DialogueTextPoint.text = Dialogues[2];
         await Task.Delay(2000);
-        SceneManager.LoadScene(5);
+        SceneManager.LoadScene(2);
 
     }
     public async void LeaveEvent()
     {
         Button1.interactable = false;
         Button2.interactable = false;
+        int prefNumber = 1;
+        PlayerPrefs.SetInt("ListNumber", prefNumber);
         await Task.Delay(2000);
-        SceneManager.LoadScene(4);
+        SceneManager.LoadScene(1);
 
     }
 

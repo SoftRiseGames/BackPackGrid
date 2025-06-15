@@ -52,9 +52,13 @@ public class GameManagerBekir : MonoBehaviour{
     }
     async void  WarOver()
     {
-        TourButton.interactable = false;
+        if (TourButton != null)
+            TourButton.interactable = false;
+
         await Task.Delay(400);
-        CollectGamematerial.SetActive(true);
+
+        if (CollectGamematerial != null)
+            CollectGamematerial.SetActive(true);
     }
     void TourButtonClose()
     {
