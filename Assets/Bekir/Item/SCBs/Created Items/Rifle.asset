@@ -13,12 +13,12 @@ MonoBehaviour:
   m_Name: Rifle
   m_EditorClassIdentifier: 
   ItemName: Rifle
-  HandCardCount: 0
+  HandCardCount: 5
   isHavePassive: 0
-  TotalDamage: 0
-  ManaCount: 0
+  TotalDamage: 7
+  ManaCount: 1
   isAttackDMG: 0
-  order: 0
+  order: 5
   Description: 
   ItemSprite: {fileID: 6125039751915926978, guid: 3526d75772a761145b56a70695105ea9, type: 3}
   cellSize: {x: 0, y: 0}

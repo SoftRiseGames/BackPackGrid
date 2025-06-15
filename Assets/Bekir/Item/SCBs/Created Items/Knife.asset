@@ -15,7 +15,7 @@ MonoBehaviour:
   ItemName: Knife
   HandCardCount: 4
   isHavePassive: 0
-  TotalDamage: 4
+  TotalDamage: 5
   ManaCount: 1
   isAttackDMG: 0
   order: 0
