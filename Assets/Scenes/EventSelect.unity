@@ -1119,9 +1119,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 492260436}
-        m_TargetAssemblyTypeName: DialogueManager, Assembly-CSharp
-        m_MethodName: LeaveEvent
+      - m_Target: {fileID: 992567010}
+        m_TargetAssemblyTypeName: MapSceneLoader, Assembly-CSharp
+        m_MethodName: Map
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

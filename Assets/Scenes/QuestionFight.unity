@@ -13386,6 +13386,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1158443702253956851, guid: aaae1212a58e41148a3458238361796d, type: 3}
+      propertyPath: 'EarnedItems.Array.data[0]'
+      value: Cursed Blood
+      objectReference: {fileID: 0}
     - target: {fileID: 5520855528383390994, guid: aaae1212a58e41148a3458238361796d, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0.7458334
@@ -13504,7 +13508,11 @@ PrefabInstance:
       objectReference: {fileID: 156270447}
     - target: {fileID: 6270588966319270657, guid: aaae1212a58e41148a3458238361796d, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: ThirdMapLoader
+      value: Map
+      objectReference: {fileID: 0}
+    - target: {fileID: 6270588966319270657, guid: aaae1212a58e41148a3458238361796d, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: MapSceneLoader, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 6795702522177941240, guid: aaae1212a58e41148a3458238361796d, type: 3}
       propertyPath: m_Name

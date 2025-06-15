@@ -195,9 +195,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: MapSceneLoader, Assembly-CSharp
-        m_MethodName: SecondMapLoader
+      - m_Target: {fileID: 1158443702253956851}
+        m_TargetAssemblyTypeName: Buttonloader, Assembly-CSharp
+        m_MethodName: AddedItem
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -294,6 +294,7 @@ GameObject:
   - component: {fileID: 1203239700267248481}
   - component: {fileID: 7361579687111158254}
   - component: {fileID: 6730820393916914963}
+  - component: {fileID: 1158443702253956851}
   m_Layer: 5
   m_Name: EndGameButton
   m_TagString: Untagged
@@ -388,6 +389,21 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 16383
+--- !u!114 &1158443702253956851
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6795702522177941240}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8bb582ce7ee3b304cba998b0b2866836, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  EarnedItems:
+  - Fire Crystal
+  - Knife
 --- !u!1 &7436636843806571194
 GameObject:
   m_ObjectHideFlags: 0

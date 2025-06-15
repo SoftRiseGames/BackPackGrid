@@ -36,6 +36,10 @@ public class MapSceneLoader : MonoBehaviour
     {
         SceneManager.LoadScene(2);
     }
+    public void Map()
+    {
+        SceneManager.LoadScene(1);
+    }
 
     public void SecondMapLoader()
     {

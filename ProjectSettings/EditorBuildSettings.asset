@@ -29,9 +29,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/FourthFight.unity
     guid: 6ac7db41f773827448fc98b316965ee7
-  - enabled: 1
-    path: Assets/Scenes/FifthFight.unity
-    guid: b8f68f58e6c12ab45abd78a821a5e284
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   m_UseUCBPForAssetBundles: 0
