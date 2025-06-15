@@ -8,27 +8,40 @@ public class ButtonOpenerEvent : MonoBehaviour
     public Button WayFinderButtonLockerButton;
     public bool WayFinder;
 
-    
-    
-    void Start()
+
+    private void Awake()
     {
         if (PlayerPrefs.HasKey("isPressed" + gameObject.name))
-            ButtonUnlocker(); 
+        {
+            Debug.Log("isPressed" + gameObject.name);
+            ButtonUnlocker();
+        }
+    }
+    void Start()
+    {
+            
     }
 
-    // Update is called once per frame
+  
     void Update()
     {
         
     }
     public void ButtonUnlocker()
     {
+        Debug.Log("girdi");
+        gameObject.GetComponent<Button>().interactable = false;
+        
         if (WayFinder)
             WayFinderButtonLockerButton.interactable = false;
-
+        
         string Path = "isPressed";
         PlayerPrefs.SetString("isPressed"+gameObject.name, Path);
-        gameObject.GetComponent<Button>().interactable = false;
-        AfterButtons.interactable = true;
+        Debug.Log("isPressed" + gameObject.name);
+
+
+       if(!PlayerPrefs.HasKey("isPressed" + AfterButtons.gameObject.name))
+            AfterButtons.interactable = true;
+
     }
 }

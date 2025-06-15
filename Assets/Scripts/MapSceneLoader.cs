@@ -32,6 +32,11 @@ public class MapSceneLoader : MonoBehaviour
         SceneManager.LoadScene(SceneVariableForSelection);
     }
 
+    public void Bag()
+    {
+        SceneManager.LoadScene(2);
+    }
+
     public void SecondMapLoader()
     {
         SceneManager.LoadScene(4);

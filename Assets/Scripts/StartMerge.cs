@@ -12,10 +12,11 @@ public class StartMerge : MonoBehaviour
 
     private void Awake()
     {
-        ApplySavedItemsToPool();
+       
     }
     void Start()
     {
+        ApplySavedItemsToPool();
         LoadUpgradeLists(out upgraded, out deleted);
         ListChecker();
     }

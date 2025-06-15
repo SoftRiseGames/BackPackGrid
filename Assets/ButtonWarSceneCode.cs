@@ -23,7 +23,7 @@ public class ButtonWarSceneCode : MonoBehaviour
             int prefNumber = ListSceneSelect + 1;
             PlayerPrefs.SetInt("ListNumber", prefNumber);
         }
-        SceneManager.LoadScene(ListSceneSelect);
+        SceneManager.LoadScene(SceneLoader[ListSceneSelect]);
        
         
     }

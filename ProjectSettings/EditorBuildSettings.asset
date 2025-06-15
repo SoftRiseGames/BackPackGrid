@@ -12,6 +12,9 @@ EditorBuildSettings:
     path: Assets/Scenes/Map.unity
     guid: db21ca112bd56104baa0876085c91644
   - enabled: 1
+    path: Assets/Scenes/Bag.unity
+    guid: 8c9cfa26abfee488c85f1582747f6a02
+  - enabled: 1
     path: Assets/Scenes/EventSelect.unity
     guid: 8b02f69e354161447a66f18edb1c0d65
   - enabled: 1

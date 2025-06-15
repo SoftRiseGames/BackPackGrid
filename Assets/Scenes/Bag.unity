@@ -1001,7 +1001,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6dd5bd3b03346ab40b4712aa21d3ca0d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SceneLoader: 0300000004000000050000000600000007000000
+  SceneLoader: 0400000005000000060000000700000008000000
   ListSceneSelect: 0
 --- !u!1 &282732193
 GameObject:
