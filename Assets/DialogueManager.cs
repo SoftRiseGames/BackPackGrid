@@ -11,6 +11,8 @@ public class DialogueManager : MonoBehaviour
 
     [SerializeField] Button Button1;
     [SerializeField] Button Button2;
+
+    [SerializeField] List<Sprite> list;
     void Start()
     {
         DialogueTextPoint.text = Dialogues[0];

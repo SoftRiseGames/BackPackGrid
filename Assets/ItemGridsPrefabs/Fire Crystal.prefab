@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 4168127576461213596}
   - component: {fileID: 1559875987888815290}
   m_Layer: 8
-  m_Name: FireCrystal
+  m_Name: Fire Crystal
   m_TagString: InvObject
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

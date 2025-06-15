@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 4664460828917267013}
   - component: {fileID: 5811252427940581995}
   m_Layer: 8
-  m_Name: CursedBlood
+  m_Name: Cursed Blood
   m_TagString: InvObject
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
