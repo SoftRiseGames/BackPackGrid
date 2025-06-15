@@ -65,21 +65,30 @@ public class CartHandler : MonoBehaviour
         TotalCardToHand = activeChildCount;
     }
     //Kart Çekme Eventi;
-    
+
     void AddNewCard()
     {
-        if (LastDeck < allCardsToSpawn.Count-1)
+        int remainingCards = allCardsToSpawn.Count - LastDeck - 1;
+
+        int cardsToDraw = 2;
+
+        if (remainingCards == 1)
         {
-            if (TotalCardToHand < MaxHandleCardCount)
+            cardsToDraw = 1;
+        }
+
+        for (int i = 0; i < cardsToDraw; i++)
+        {
+            if (TotalCardToHand < MaxHandleCardCount && LastDeck < allCardsToSpawn.Count - 1)
             {
-                TotalCardToHand = TotalCardToHand + 1;
-                LastDeck = LastDeck + 1;
+                LastDeck++;
+                TotalCardToHand++;
                 SpawnCart(allCardsToSpawn[LastDeck]);
-                Debug.Log(TotalCardToHand);
+                Debug.Log($"Kart çekildi. Toplam el: {TotalCardToHand}");
             }
         }
     }
-    
+
     public void SpawnCart(string baseItemName)
     {
         if (!_items.ContainsKey(baseItemName)) return;
