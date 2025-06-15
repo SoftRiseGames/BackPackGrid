@@ -10,7 +10,10 @@ public class StartMerge : MonoBehaviour
     public List<string> upgraded;
     public List<string> deleted;
 
-    
+    private void Awake()
+    {
+        ApplySavedItemsToPool();
+    }
     void Start()
     {
         LoadUpgradeLists(out upgraded, out deleted);
@@ -22,6 +25,48 @@ public class StartMerge : MonoBehaviour
     {
 
     }
+    void ApplySavedItemsToPool()
+    {
+        // Json dosyasından kayıtlı string item listesi alınır
+        List<string> savedItems = JsonAppendSystem.GetAllItems();
+
+        // 1. Her item'in kaç adet gerektiğini say
+        Dictionary<string, int> neededCounts = new();
+        foreach (string item in savedItems)
+        {
+            if (!neededCounts.ContainsKey(item))
+                neededCounts[item] = 0;
+            neededCounts[item]++;
+        }
+
+        // 2. Sahnedeki objeleri tek tek kontrol et
+        Dictionary<string, int> activatedSoFar = new();
+
+        foreach (GameObject obj in PoolObjects)
+        {
+            string pureName = obj.name.Replace("(Clone)", "").Trim();
+
+            if (!neededCounts.ContainsKey(pureName))
+            {
+                obj.SetActive(false); // İhtiyaç yoksa kapat
+                continue;
+            }
+
+            if (!activatedSoFar.ContainsKey(pureName))
+                activatedSoFar[pureName] = 0;
+
+            if (activatedSoFar[pureName] < neededCounts[pureName])
+            {
+                obj.SetActive(true);  // Gereken kadarını aç
+                activatedSoFar[pureName]++;
+            }
+            else
+            {
+                obj.SetActive(false); // Fazlaysa kapat
+            }
+        }
+    }
+
     string GetSavePath()
     {
 #if UNITY_EDITOR

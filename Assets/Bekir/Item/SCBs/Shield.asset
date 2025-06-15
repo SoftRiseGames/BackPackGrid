@@ -20,7 +20,7 @@ MonoBehaviour:
   isAttackDMG: 0
   order: 0
   Description: "Karaktere Kalkan Sa\u011Flar\n"
-  ItemSprite: {fileID: 0}
+  ItemSprite: {fileID: 8571874566628505999, guid: 3526d75772a761145b56a70695105ea9, type: 3}
   cellSize: {x: 0, y: 0}
   RootMergeItem: {fileID: 0}
   PassiveTourCount: 0
