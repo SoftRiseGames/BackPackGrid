@@ -10,6 +10,7 @@ public class Enemy : MonoBehaviour, IDamage
     public SOEnemy EnemySettings;
     [SerializeField] private PlayerHandler PlayerObject;
     [HideInInspector]public int EnemyPatternCounter;
+    [SerializeField] Slider HealthSlider;
     
     public int Order;
 
@@ -40,6 +41,7 @@ public class Enemy : MonoBehaviour, IDamage
         
         
         _health = EnemySettings.Health;
+        HealthSlider.maxValue = EnemySettings.HealthMaxValue;
         _shield = EnemySettings.Shield;
     }
 

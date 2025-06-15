@@ -6469,6 +6469,7 @@ MonoBehaviour:
   EnemySettings: {fileID: 11400000, guid: 432abf8e65509d54ca456d1a83d4d4ef, type: 2}
   PlayerObject: {fileID: 0}
   EnemyPatternCounter: 0
+  HealthSlider: {fileID: 4979216823105309056}
   Order: 0
   isBurning: 0
   isBleeding: 0

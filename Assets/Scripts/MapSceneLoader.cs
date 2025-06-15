@@ -41,6 +41,12 @@ public class MapSceneLoader : MonoBehaviour
         SceneManager.LoadScene(1);
     }
 
+    public void EventSceneLeaveEvent()
+    {
+        int prefNumber = 1;
+        PlayerPrefs.SetInt("ListNumber", prefNumber);
+    }
+
     public void SecondMapLoader()
     {
         SceneManager.LoadScene(4);
