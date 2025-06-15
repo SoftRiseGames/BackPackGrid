@@ -23,6 +23,7 @@ public class Enemy : MonoBehaviour, IDamage
     [SerializeField] TextMeshProUGUI DMGText;
     public TextMeshProUGUI BleedingTourText;
     public TextMeshProUGUI BurningTourText;
+    [SerializeField] Animator ShieldAnimator;
 
 
     public Image BleedingEffect;
@@ -78,6 +79,7 @@ public class Enemy : MonoBehaviour, IDamage
     {
         _shield = 0;
         EnemySettings.EnemyEffects?.ForEach(effect => effect?.DefenceOnTour(PlayerObject,gameObject.GetComponent<Enemy>()));
+        ShieldAnimator.SetBool("isShield", true);
         EnemyPatternCounterManager();
        
     }

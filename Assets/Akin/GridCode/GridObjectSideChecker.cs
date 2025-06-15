@@ -7,6 +7,9 @@ public class GridObjectSideChecker : MonoBehaviour
     bool CanObjectAddable;
     public bool isObjectTrueDedect;
     public GameObject colliderNew;
+
+    public Sprite StartOn;
+    public Sprite StarOff;
     void Start()
     {
         CanObjectAddable = true;
