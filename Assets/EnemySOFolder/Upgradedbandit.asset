@@ -14,10 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Health: 25
   Shield: 0
-  shieldMaxValue: 5
+  shieldMaxValue: 7
   HealthMaxValue: 20
   TakenDamage: 4
-  EarnShield: 0
+  EarnShield: 5
   EnemyEffects:
   - rid: 1496930454296068167
   EnemyPattern:
