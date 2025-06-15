@@ -96,6 +96,8 @@ MonoBehaviour:
   dataHolder: {fileID: 0}
   isObjectTrueDedect: 0
   colliderNew: {fileID: 0}
+  StartOn: {fileID: 0}
+  StarOff: {fileID: 0}
 --- !u!50 &938767045041285575
 Rigidbody2D:
   serializedVersion: 5
@@ -219,6 +221,8 @@ MonoBehaviour:
   dataHolder: {fileID: 0}
   isObjectTrueDedect: 0
   colliderNew: {fileID: 0}
+  StartOn: {fileID: 0}
+  StarOff: {fileID: 0}
 --- !u!50 &1921148684718440665
 Rigidbody2D:
   serializedVersion: 5
@@ -342,6 +346,8 @@ MonoBehaviour:
   dataHolder: {fileID: 0}
   isObjectTrueDedect: 0
   colliderNew: {fileID: 0}
+  StartOn: {fileID: 0}
+  StarOff: {fileID: 0}
 --- !u!50 &1485221744395791245
 Rigidbody2D:
   serializedVersion: 5
@@ -465,6 +471,8 @@ MonoBehaviour:
   dataHolder: {fileID: 0}
   isObjectTrueDedect: 0
   colliderNew: {fileID: 0}
+  StartOn: {fileID: 0}
+  StarOff: {fileID: 0}
 --- !u!50 &2864047794917628589
 Rigidbody2D:
   serializedVersion: 5
@@ -669,7 +677,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 20
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 1, g: 0, b: 0, a: 1}
+  m_Color: {r: 1, g: 0, b: 0, a: 0}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -963,6 +971,8 @@ MonoBehaviour:
   dataHolder: {fileID: 0}
   isObjectTrueDedect: 0
   colliderNew: {fileID: 0}
+  StartOn: {fileID: 0}
+  StarOff: {fileID: 0}
 --- !u!50 &658685467160164916
 Rigidbody2D:
   serializedVersion: 5
@@ -1086,6 +1096,8 @@ MonoBehaviour:
   dataHolder: {fileID: 0}
   isObjectTrueDedect: 0
   colliderNew: {fileID: 0}
+  StartOn: {fileID: 0}
+  StarOff: {fileID: 0}
 --- !u!50 &737458639240192516
 Rigidbody2D:
   serializedVersion: 5
@@ -1209,6 +1221,8 @@ MonoBehaviour:
   dataHolder: {fileID: 0}
   isObjectTrueDedect: 0
   colliderNew: {fileID: 0}
+  StartOn: {fileID: 0}
+  StarOff: {fileID: 0}
 --- !u!50 &7621595644745700123
 Rigidbody2D:
   serializedVersion: 5

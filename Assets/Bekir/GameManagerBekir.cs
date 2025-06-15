@@ -4,7 +4,8 @@ using Unity.Cinemachine;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using TMPro;
-public class GameManagerBekir : MonoBehaviour{
+public class GameManagerBekir : MonoBehaviour
+{
     public CartHandler C_CartHandler;
     public PlayerHandler C_PlayerHandler;
     public int ManaCount;
@@ -50,7 +51,7 @@ public class GameManagerBekir : MonoBehaviour{
     {
         ManaCount = 3;
     }
-    async void  WarOver()
+    async void WarOver()
     {
         if (TourButton != null)
             TourButton.interactable = false;
@@ -70,14 +71,14 @@ public class GameManagerBekir : MonoBehaviour{
     }
     void DMGEffectVoid()
     {
-        impulse.DefaultVelocity = new Vector2(Random.Range(-.2f,.2f),Random.Range(-.1f,.1f));
-        impulse.GenerateImpulse();
+        //impulse.DefaultVelocity = new Vector2(Random.Range(-.2f,.2f),Random.Range(-.1f,.1f));
+        //impulse.GenerateImpulse();
         DMGEffect.SetActive(true);
     }
     void ManaListControl()
     {
         OurMana.text = ManaCount.ToString();
-        TotalMana.text = "/"+MaxMana.ToString();
+        TotalMana.text = "/" + MaxMana.ToString();
     }
     void DMGStopActionVoid()
     {

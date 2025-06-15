@@ -20,7 +20,7 @@ MonoBehaviour:
   isAttackDMG: 0
   order: 0
   Description: 
-  ItemSprite: {fileID: 0}
+  ItemSprite: {fileID: -7573354855677281409, guid: 1fa3ec02f9fac41bea29968369c2e6ce, type: 3}
   cellSize: {x: 0, y: 0}
   RootMergeItem: {fileID: 0}
   PassiveTourCount: 0

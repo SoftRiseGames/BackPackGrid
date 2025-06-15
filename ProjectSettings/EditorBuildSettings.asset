@@ -29,6 +29,12 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/FourthFight.unity
     guid: 6ac7db41f773827448fc98b316965ee7
+  - enabled: 1
+    path: Assets/Scenes/YouDead.unity
+    guid: a9d9aab93757cbf489231b5a3c2613d5
+  - enabled: 1
+    path: Assets/Scenes/YouWin.unity
+    guid: f0d7205990eb4044999c61fedd0e6d61
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   m_UseUCBPForAssetBundles: 0

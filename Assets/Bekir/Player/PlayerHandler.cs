@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Threading.Tasks;
+using UnityEngine.SceneManagement;
 public class PlayerHandler : MonoBehaviour, IDamage
 {
     [HideInInspector]public float _health;
@@ -40,6 +41,7 @@ public class PlayerHandler : MonoBehaviour, IDamage
 
     public void Die()
     {
+        SceneManager.LoadScene(8);
         Debug.Log("I am Dead");
     }
 

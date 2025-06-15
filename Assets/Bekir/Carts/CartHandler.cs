@@ -1,9 +1,13 @@
+using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
 using UnityEngine;
 using UnityEngine.Rendering;
 
 public class CartHandler : MonoBehaviour
 {
+    [SerializeField] private float _cartSpawnDelay;
+    [SerializeField] private Transform _spawnPoint;
     [SerializeField] private Cart _cartPrefab;
     [SerializeField] private Vector2 _cartDistances;
     public List<Cart> SpawnedCarts = new();
@@ -15,19 +19,19 @@ public class CartHandler : MonoBehaviour
     [SerializeField] GameObject CardDeckPivot;
     private int TotalCardToHand;
     int LastDeck;
-    [SerializeField]List<string> allCardsToSpawn = new List<string>();
+    [SerializeField] List<string> allCardsToSpawn = new List<string>();
     private void OnEnable()
     {
         EventManagerCode.OnEnemyTurn += TotalCardCount;
-        EnemyManager.onPlayerTurn += AddNewCard;
+        EnemyManager.onPlayerTurn += CallAddNewCardCoroutine;
     }
     private void OnDisable()
     {
         EventManagerCode.OnEnemyTurn -= TotalCardCount;
-        EnemyManager.onPlayerTurn -= AddNewCard;
+        EnemyManager.onPlayerTurn -= CallAddNewCardCoroutine;
 
     }
-    private void Start()
+    private IEnumerator Start()
     {
         foreach (string i in LoadedCards.LoadedObjectsList)
         {
@@ -41,12 +45,13 @@ public class CartHandler : MonoBehaviour
 
         ShuffleList(allCardsToSpawn);
 
-      
+
         foreach (string cardName in allCardsToSpawn)
         {
             if (TotalCardToHand < MaxHandleCardCount)
             {
                 SpawnCart(cardName);
+                yield return new WaitForSeconds(_cartSpawnDelay);
                 LastDeck = LastDeck + 1;
                 TotalCardToHand = TotalCardToHand + 1;
             }
@@ -58,15 +63,16 @@ public class CartHandler : MonoBehaviour
     {
         int activeChildCount = 0;
 
-        for(int i = 0;i<SpawnedCarts.Count; i++)
+        for (int i = 0; i < SpawnedCarts.Count; i++)
         {
             activeChildCount++;
         }
         TotalCardToHand = activeChildCount;
     }
     //Kart Çekme Eventi;
+    void CallAddNewCardCoroutine() => StartCoroutine(AddNewCard());
 
-    void AddNewCard()
+    IEnumerator AddNewCard()
     {
         AudioManager.instance.SoundSfx(AudioManager.instance.audioClips[1]);
 
@@ -79,6 +85,7 @@ public class CartHandler : MonoBehaviour
                 LastDeck++;
                 TotalCardToHand++; // Takip amaçlı kalabilir
                 SpawnCart(allCardsToSpawn[LastDeck]);
+                yield return new WaitForSeconds(_cartSpawnDelay);
                 Debug.Log($"Kart çekildi. Toplam el: {TotalCardToHand}");
             }
             else
@@ -93,14 +100,14 @@ public class CartHandler : MonoBehaviour
     {
         if (!_items.ContainsKey(baseItemName)) return;
         BaseItem selecteItem = _items[baseItemName];
-        Cart tempCreated = Instantiate(_cartPrefab);
+        Cart tempCreated = Instantiate(_cartPrefab, _spawnPoint.position, Quaternion.identity);
         tempCreated.Init(selecteItem);
         SpawnedCarts.Add(tempCreated);
         tempCreated.transform.SetParent(_pivot);
         tempCreated.transform.localScale = Vector3.one;
         RePos();
     }
-   
+
     void ShuffleList<T>(List<T> list)
     {
         for (int i = list.Count - 1; i > 0; i--)
@@ -112,7 +119,6 @@ public class CartHandler : MonoBehaviour
             list[randomIndex] = temp;
         }
     }
-
     /// <summary>
     /// Kartlar spawn olunca hesinin pozisyonunu tekrar ayarlıyor
     /// </summary>
@@ -122,7 +128,7 @@ public class CartHandler : MonoBehaviour
         float plusY = _cartDistances.y / SpawnedCarts.Count;
 
         float stepY = 0;
-        for(int i = 0; i < SpawnedCarts.Count; i++)
+        for (int i = 0; i < SpawnedCarts.Count; i++)
         {
             Vector3 newPos = new Vector3(stepX, _pivot.transform.position.y + stepY, 0);
             SpawnedCarts[i].SetStartPosition(newPos);
@@ -131,7 +137,7 @@ public class CartHandler : MonoBehaviour
             {
                 stepY += plusY;
             }
-            else if(i > 0)
+            else if (i > 0)
             {
                 stepY -= plusY;
             }

@@ -1,58 +1,58 @@
 fileFormatVersion: 2
-guid: 3526d75772a761145b56a70695105ea9
+guid: 1fa3ec02f9fac41bea29968369c2e6ce
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 6125039751915926978
-    second: ItemCardLogos_0
+      213: 8033092973025764044
+    second: Items_0
   - first:
-      213: -2213822366878887879
-    second: ItemCardLogos_1
+      213: 4337684191699249041
+    second: Items_1
   - first:
-      213: -4336706948241506040
-    second: ItemCardLogos_2
+      213: -488721925442295091
+    second: Items_2
   - first:
-      213: -1702539954764139750
-    second: ItemCardLogos_3
+      213: -7573354855677281409
+    second: Items_3
   - first:
-      213: 7187961571429423385
-    second: ItemCardLogos_4
+      213: 1801263428120863714
+    second: Items_4
   - first:
-      213: 6403206173563228276
-    second: ItemCardLogos_5
+      213: -5971942374765049077
+    second: Items_5
   - first:
-      213: -761502240062464494
-    second: ItemCardLogos_6
+      213: 4639506938558671751
+    second: Items_6
   - first:
-      213: -5553384735937799777
-    second: ItemCardLogos_7
+      213: -6099050445329199328
+    second: Items_7
   - first:
-      213: -6670780069519781083
-    second: ItemCardLogos_8
+      213: -7855203551248514480
+    second: Items_8
   - first:
-      213: 7479641355787121735
-    second: ItemCardLogos_9
+      213: -2064859774160998932
+    second: Items_9
   - first:
-      213: -7069966468947128199
-    second: ItemCardLogos_10
+      213: -3694533877916086887
+    second: Items_10
   - first:
-      213: -5329961936610267777
-    second: ItemCardLogos_11
+      213: 2029542551908640097
+    second: Items_11
   - first:
-      213: 8571874566628505999
-    second: ItemCardLogos_12
+      213: -2821042892349479055
+    second: Items_12
   - first:
-      213: 7447156490224332280
-    second: ItemCardLogos_13
+      213: -4261047623482395726
+    second: Items_13
   - first:
-      213: 20524582310125759
-    second: ItemCardLogos_14
+      213: 3719068211130651045
+    second: Items_14
   - first:
-      213: 251094088383924304
-    second: ItemCardLogos_15
+      213: 5248844365648247204
+    second: Items_15
   - first:
-      213: -1092994551530129736
-    second: ItemCardLogos_16
+      213: -7652154954077232485
+    second: Items_16
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -122,8 +122,8 @@ TextureImporter:
     buildTarget: DefaultTexturePlatform
     maxTextureSize: 2048
     resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 0
+    textureFormat: 4
+    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -145,37 +145,11 @@ TextureImporter:
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 4
-    buildTarget: Android
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 4
-    buildTarget: WindowsStoreApps
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 4
     buildTarget: WebGL
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 0
+    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -187,7 +161,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: ItemCardLogos_0
+      name: Rifle
       rect:
         serializedVersion: 2
         x: 0
@@ -195,21 +169,21 @@ TextureImporter:
         width: 64
         height: 64
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 2c57818d333800550800000000000000
-      internalID: 6125039751915926978
+      spriteID: cc223e07f774b7f60800000000000000
+      internalID: 8033092973025764044
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ItemCardLogos_1
+      name: Gloves
       rect:
         serializedVersion: 2
         x: 64
@@ -217,21 +191,21 @@ TextureImporter:
         width: 64
         height: 64
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 9309e52694ce641e0800000000000000
-      internalID: -2213822366878887879
+      spriteID: 197af025acc823c30800000000000000
+      internalID: 4337684191699249041
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ItemCardLogos_2
+      name: BodyArmor
       rect:
         serializedVersion: 2
         x: 128
@@ -239,21 +213,21 @@ TextureImporter:
         width: 64
         height: 64
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 801c817e10ce0d3c0800000000000000
-      internalID: -4336706948241506040
+      spriteID: dca21188ff5b739f0800000000000000
+      internalID: -488721925442295091
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ItemCardLogos_3
+      name: CursedBloodAmulet
       rect:
         serializedVersion: 2
         x: 192
@@ -261,21 +235,21 @@ TextureImporter:
         width: 64
         height: 64
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: a13bf5c7eec5f58e0800000000000000
-      internalID: -1702539954764139750
+      spriteID: f7b306552e906e690800000000000000
+      internalID: -7573354855677281409
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ItemCardLogos_4
+      name: FireCrystal
       rect:
         serializedVersion: 2
         x: 256
@@ -283,21 +257,43 @@ TextureImporter:
         width: 64
         height: 64
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 919953c37f4c0c360800000000000000
-      internalID: 7187961571429423385
+      spriteID: 2e3eb0c5b8f5ff810800000000000000
+      internalID: 1801263428120863714
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ItemCardLogos_5
+      name: BloodCrystal
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 128
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b0bc6050d066f1da0800000000000000
+      internalID: -5971942374765049077
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MetalShield
       rect:
         serializedVersion: 2
         x: 0
@@ -305,21 +301,21 @@ TextureImporter:
         width: 64
         height: 64
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 47013d6d612ccd850800000000000000
-      internalID: 6403206173563228276
+      spriteID: 78befbdbaf6d26040800000000000000
+      internalID: 4639506938558671751
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ItemCardLogos_6
+      name: ThrowingKnifes
       rect:
         serializedVersion: 2
         x: 64
@@ -327,21 +323,21 @@ TextureImporter:
         width: 64
         height: 64
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 21e996d4fb99e65f0800000000000000
-      internalID: -761502240062464494
+      spriteID: 02f07f22fe1db5ba0800000000000000
+      internalID: -6099050445329199328
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ItemCardLogos_7
+      name: Knife
       rect:
         serializedVersion: 2
         x: 128
@@ -349,21 +345,21 @@ TextureImporter:
         width: 64
         height: 64
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: f99d959710a6ee2b0800000000000000
-      internalID: -5553384735937799777
+      spriteID: 05202712df5bcf290800000000000000
+      internalID: -7855203551248514480
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ItemCardLogos_8
+      name: ThrowingKnifes2
       rect:
         serializedVersion: 2
         x: 192
@@ -371,21 +367,21 @@ TextureImporter:
         width: 64
         height: 64
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 523948dbed0ac63a0800000000000000
-      internalID: -6670780069519781083
+      spriteID: cede32ab9f42853e0800000000000000
+      internalID: -2064859774160998932
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ItemCardLogos_9
+      name: FireSword
       rect:
         serializedVersion: 2
         x: 256
@@ -393,21 +389,43 @@ TextureImporter:
         width: 64
         height: 64
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 744330b2f260dc760800000000000000
-      internalID: 7479641355787121735
+      spriteID: 99d4a2433016abcc0800000000000000
+      internalID: -3694533877916086887
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ItemCardLogos_10
+      name: ArmorPlate
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 64
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 165ed0fa2326a2c10800000000000000
+      internalID: 2029542551908640097
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WoodenShield
       rect:
         serializedVersion: 2
         x: 0
@@ -415,21 +433,21 @@ TextureImporter:
         width: 64
         height: 64
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 970db7c64fe62ed90800000000000000
-      internalID: -7069966468947128199
+      spriteID: 1776e599f64a9d8d0800000000000000
+      internalID: -2821042892349479055
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ItemCardLogos_11
+      name: CursedSword
       rect:
         serializedVersion: 2
         x: 64
@@ -437,21 +455,21 @@ TextureImporter:
         width: 64
         height: 64
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: f7dedf5abdb2806b0800000000000000
-      internalID: -5329961936610267777
+      spriteID: 2b33f4f23c7bdd4c0800000000000000
+      internalID: -4261047623482395726
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ItemCardLogos_12
+      name: Sword
       rect:
         serializedVersion: 2
         x: 128
@@ -459,21 +477,21 @@ TextureImporter:
         width: 64
         height: 64
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: f89f81ba08a65f670800000000000000
-      internalID: 8571874566628505999
+      spriteID: 5a1d3e365d8cc9330800000000000000
+      internalID: 3719068211130651045
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ItemCardLogos_13
+      name: BoldSword
       rect:
         serializedVersion: 2
         x: 192
@@ -481,21 +499,21 @@ TextureImporter:
         width: 64
         height: 64
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 8fde0920f5d995760800000000000000
-      internalID: 7447156490224332280
+      spriteID: 4a936c71424a7d840800000000000000
+      internalID: 5248844365648247204
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ItemCardLogos_14
+      name: BloodSword
       rect:
         serializedVersion: 2
         x: 256
@@ -503,15 +521,15 @@ TextureImporter:
         width: 64
         height: 64
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: fb022c5bffae84000800000000000000
-      internalID: 20524582310125759
+      spriteID: b922bf3bc951ec590800000000000000
+      internalID: -7652154954077232485
       vertices: []
       indices: 
       edges: []
@@ -520,7 +538,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: c52f72dd5a6d7c1438c61107ddb0aae8
+    spriteID: 81ff70d5847d14132bf10a7202361f69
     internalID: 0
     vertices: []
     indices: 
@@ -530,21 +548,23 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      ItemCardLogos_0: 6125039751915926978
-      ItemCardLogos_1: -2213822366878887879
-      ItemCardLogos_10: -7069966468947128199
-      ItemCardLogos_11: -5329961936610267777
-      ItemCardLogos_12: 8571874566628505999
-      ItemCardLogos_13: 7447156490224332280
-      ItemCardLogos_14: 20524582310125759
-      ItemCardLogos_2: -4336706948241506040
-      ItemCardLogos_3: -1702539954764139750
-      ItemCardLogos_4: 7187961571429423385
-      ItemCardLogos_5: 6403206173563228276
-      ItemCardLogos_6: -761502240062464494
-      ItemCardLogos_7: -5553384735937799777
-      ItemCardLogos_8: -6670780069519781083
-      ItemCardLogos_9: 7479641355787121735
+      ArmorPlate: 2029542551908640097
+      BloodCrystal: -5971942374765049077
+      BloodSword: -7652154954077232485
+      BodyArmor: -488721925442295091
+      BoldSword: 5248844365648247204
+      CursedBloodAmulet: -7573354855677281409
+      CursedSword: -4261047623482395726
+      FireCrystal: 1801263428120863714
+      FireSword: -3694533877916086887
+      Gloves: 4337684191699249041
+      Knife: -7855203551248514480
+      MetalShield: 4639506938558671751
+      Rifle: 8033092973025764044
+      Sword: 3719068211130651045
+      ThrowingKnifes: -6099050445329199328
+      ThrowingKnifes2: -2064859774160998932
+      WoodenShield: -2821042892349479055
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

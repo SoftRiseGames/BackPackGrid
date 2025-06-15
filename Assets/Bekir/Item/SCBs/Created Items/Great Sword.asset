@@ -21,7 +21,7 @@ MonoBehaviour:
   order: 0
   Description: "En \xF6ndeki rakibe minimum 8 olacak \u015Fekilde her bekletildi\u011Fi
     tur boyunca +1 hasar puan\u0131 vurur"
-  ItemSprite: {fileID: 251094088383924304, guid: 3526d75772a761145b56a70695105ea9, type: 3}
+  ItemSprite: {fileID: 5248844365648247204, guid: 1fa3ec02f9fac41bea29968369c2e6ce, type: 3}
   cellSize: {x: 0, y: 0}
   RootMergeItem: {fileID: 11400000, guid: 1f906d82a02cd4da9aca2e49c1d8ea7f, type: 2}
   PassiveTourCount: 0
