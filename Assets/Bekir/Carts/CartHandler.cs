@@ -68,23 +68,23 @@ public class CartHandler : MonoBehaviour
 
     void AddNewCard()
     {
-        int remainingCards = allCardsToSpawn.Count - LastDeck - 1;
+        AudioManager.instance.SoundSfx(AudioManager.instance.audioClips[1]);
 
         int cardsToDraw = 2;
 
-        if (remainingCards == 1)
-        {
-            cardsToDraw = 1;
-        }
-
         for (int i = 0; i < cardsToDraw; i++)
         {
-            if (TotalCardToHand < MaxHandleCardCount && LastDeck < allCardsToSpawn.Count - 1)
+            if (LastDeck < allCardsToSpawn.Count - 1)
             {
                 LastDeck++;
-                TotalCardToHand++;
+                TotalCardToHand++; // Takip amaçlı kalabilir
                 SpawnCart(allCardsToSpawn[LastDeck]);
                 Debug.Log($"Kart çekildi. Toplam el: {TotalCardToHand}");
+            }
+            else
+            {
+                Debug.Log("Kart destesi bitti, daha fazla kart çekilemiyor.");
+                break; // Liste bittiğinde döngüyü sonlandır
             }
         }
     }
