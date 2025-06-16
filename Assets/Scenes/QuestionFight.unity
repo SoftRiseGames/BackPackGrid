@@ -2803,7 +2803,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2202db2986bd4d89a3fc1b5c2c31ba8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _cartSpawnDelay: 0
+  _cartSpawnDelay: 0.3
   _spawnPoint: {fileID: 1140258001}
   _cartPrefab: {fileID: 8225065965057976084, guid: 9689ded77174f6f4386de72ecb57fc53, type: 3}
   _cartDistances: {x: 1.06, y: 1.06}

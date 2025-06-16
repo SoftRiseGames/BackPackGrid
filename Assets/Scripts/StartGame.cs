@@ -11,11 +11,11 @@ public class StartGame : MonoBehaviour
 #if UNITY_EDITOR
         EditorSil("Upgrade_log.json");
         EditorSil("SaveData.json");
-        EditorSil("BaseItemData,json");
+        EditorSil("BaseItemData.json");
 #else
         OyunSil("Upgrade_log.json");
         OyunSil("SaveData.json");
-         OyunSil("BaseItemData.json");
+        OyunSil("BaseItemData.json");
 #endif
     }
 

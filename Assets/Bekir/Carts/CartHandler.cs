@@ -50,19 +50,19 @@ public class CartHandler : MonoBehaviour
         {
             if (TotalCardToHand < MaxHandleCardCount)
             {
+                AudioManager.instance.SoundSfx(AudioManager.instance.audioClips[0]);
                 SpawnCart(cardName);
                 yield return new WaitForSeconds(_cartSpawnDelay);
                 LastDeck = LastDeck + 1;
                 TotalCardToHand = TotalCardToHand + 1;
             }
         }
-
         Debug.Log(LastDeck);
     }
     void TotalCardCount()
     {
         int activeChildCount = 0;
-
+     
         for (int i = 0; i < SpawnedCarts.Count; i++)
         {
             activeChildCount++;
@@ -93,12 +93,12 @@ public class CartHandler : MonoBehaviour
                 Debug.Log("Kart destesi bitti, daha fazla kart çekilemiyor.");
                 break; // Liste bittiğinde döngüyü sonlandır
             }
+            AudioManager.instance.SoundSfx(AudioManager.instance.audioClips[0]);
         }
     }
 
-    public async void SpawnCart(string baseItemName)
+    public void SpawnCart(string baseItemName)
     {
-        await Task.Delay(1000);
         if (!_items.ContainsKey(baseItemName)) return;
         BaseItem selecteItem = _items[baseItemName];
         Cart tempCreated = Instantiate(_cartPrefab, _spawnPoint.position, Quaternion.identity);

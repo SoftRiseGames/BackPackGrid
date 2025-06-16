@@ -28,6 +28,7 @@ public class PlayerHandler : MonoBehaviour, IDamage
 
     public async void TakeDamageWithoutShield(float value)
     {
+        AudioManager.instance.SoundSfx(AudioManager.instance.audioClips[4]);
         GetComponent<Animator>().SetBool("isDamage", true);
         _health = _health - value;
         if (_health <= 0)
@@ -48,6 +49,7 @@ public class PlayerHandler : MonoBehaviour, IDamage
 
     public async void TakeDamageWithShield(float value)
     {
+        AudioManager.instance.SoundSfx(AudioManager.instance.audioClips[4]);
         GetComponent<Animator>().SetBool("isDamage", true);
         float shieldScaler = _shield;
         shieldScaler = shieldScaler - value;
@@ -75,6 +77,7 @@ public class PlayerHandler : MonoBehaviour, IDamage
 
     public void EarnShield(float value)
     {
+        AudioManager.instance.SoundSfx(AudioManager.instance.audioClips[2]);
         if (_shield < _ShieldMaxValue)
             _shield = _shield + value;
         else

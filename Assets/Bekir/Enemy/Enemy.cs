@@ -70,6 +70,7 @@ public class Enemy : MonoBehaviour, IDamage
     public void AttackOnTour()
     {
         _shield = 0;
+        AudioManager.instance.SoundSfx(AudioManager.instance.audioClips[4]);
         EnemySettings.EnemyEffects?.ForEach(effect => effect?.AttackOnTour(PlayerObject,gameObject.GetComponent<Enemy>()));
         EnemyPatternCounterManager();
        
@@ -78,6 +79,7 @@ public class Enemy : MonoBehaviour, IDamage
     public void DefenceOnTour()
     {
         _shield = 0;
+        AudioManager.instance.SoundSfx(AudioManager.instance.audioClips[2]);
         EnemySettings.EnemyEffects?.ForEach(effect => effect?.DefenceOnTour(PlayerObject,gameObject.GetComponent<Enemy>()));
         ShieldAnimator.SetBool("isShield", true);
         EnemyPatternCounterManager();

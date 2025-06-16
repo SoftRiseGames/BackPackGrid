@@ -32,6 +32,8 @@ public class ButtonOpenerEvent : MonoBehaviour
     }
     public void ButtonUnlocker()
     {
+       
+        AudioManager.instance.SoundSfx(AudioManager.instance.audioClips[1]);
         Debug.Log("girdi");
         gameObject.GetComponent<Button>().interactable = false;
         
