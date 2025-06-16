@@ -24,6 +24,8 @@ public class GameManagerBekir : MonoBehaviour
         ManaCount = MaxMana;
         if (instance == null)
             instance = this;
+
+        AudioManager.instance.SoundSfx(AudioManager.instance.audioClips[0]);
     }
     private void OnEnable()
     {

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using DG.Tweening;
 using UnityEngine;
 using UnityEngine.Rendering;
-
+using System.Threading.Tasks;
 public class CartHandler : MonoBehaviour
 {
     [SerializeField] private float _cartSpawnDelay;
@@ -74,7 +74,7 @@ public class CartHandler : MonoBehaviour
 
     IEnumerator AddNewCard()
     {
-        AudioManager.instance.SoundSfx(AudioManager.instance.audioClips[1]);
+        //AudioManager.instance.SoundSfx(AudioManager.instance.audioClips[1]);
 
         int cardsToDraw = 2;
 
@@ -96,8 +96,9 @@ public class CartHandler : MonoBehaviour
         }
     }
 
-    public void SpawnCart(string baseItemName)
+    public async void SpawnCart(string baseItemName)
     {
+        await Task.Delay(1000);
         if (!_items.ContainsKey(baseItemName)) return;
         BaseItem selecteItem = _items[baseItemName];
         Cart tempCreated = Instantiate(_cartPrefab, _spawnPoint.position, Quaternion.identity);
@@ -106,6 +107,7 @@ public class CartHandler : MonoBehaviour
         tempCreated.transform.SetParent(_pivot);
         tempCreated.transform.localScale = Vector3.one;
         RePos();
+       
     }
 
     void ShuffleList<T>(List<T> list)

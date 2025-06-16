@@ -50,6 +50,7 @@ public class Cart : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IPoin
         ManaCount = _baseItem.ManaCount;
         ManaCountImage();
         EnemyOrder = GameObject.Find("EnemyManager").GetComponent<EnemyManager>();
+
     }
 
     private void OnDisable()
@@ -134,6 +135,7 @@ public class Cart : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IPoin
     public Tween SetStartPosition(Vector3 startPosition)
     {
         _startPosition = startPosition;
+        
         return transform.DOMove(startPosition, _cartSlideSpeed).SetEase(_cartEaseType);
         //transform.position = startPosition;
     }
@@ -240,6 +242,7 @@ public class Cart : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IPoin
         {
             if (_baseItem.order >= enemy.Order)
             {
+                AudioManager.instance.SoundSfx(AudioManager.instance.audioClips[4]);
                 Enemy EnemyCollider = enemy;
                 EventManagerCode.DMGEffectAction.Invoke();
                 _baseItem.ItemEffects_OnEffectedObject?.ForEach(effect => effect?.ExecuteEffect(enemy, PlayerExecute, gameObject.transform.GetComponent<Cart>()));
@@ -264,6 +267,7 @@ public class Cart : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IPoin
 
         else if ((isPlayerCollider == true && _baseItem.isCharacterEffect == true))
         {
+            AudioManager.instance.SoundSfx(AudioManager.instance.audioClips[2]);
             Debug.Log("Human");
             _baseItem.ItemEffects_OnEffectedObject?.ForEach(effect => effect?.ExecuteEffect(enemy, PlayerExecute, gameObject.transform.GetComponent<Cart>()));
             DOTween.Kill(transform);

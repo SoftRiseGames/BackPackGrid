@@ -22,6 +22,7 @@ public class PlayerHandler : MonoBehaviour, IDamage
     {
         _health = HealthMaxValue;
         _healtCounter = _health;
+      
     }
 
 
