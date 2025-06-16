@@ -7,12 +7,15 @@ public class StartGame : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        PlayerPrefs.DeleteAll();
 #if UNITY_EDITOR
         EditorSil("Upgrade_log.json");
         EditorSil("SaveData.json");
+        EditorSil("BaseItemData,json");
 #else
         OyunSil("Upgrade_log.json");
-        OyunSil("SaveData.json")
+        OyunSil("SaveData.json");
+         OyunSil("BaseItemData.json");
 #endif
     }
 

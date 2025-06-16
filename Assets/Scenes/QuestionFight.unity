@@ -2547,7 +2547,7 @@ MonoBehaviour:
   _ShieldMaxValue: 10
   isAttackBuffing: 0
   isLifeStealing: 0
-  HealthMaxValue: 0
+  HealthMaxValue: 20
 --- !u!61 &1100168320
 BoxCollider2D:
   m_ObjectHideFlags: 0

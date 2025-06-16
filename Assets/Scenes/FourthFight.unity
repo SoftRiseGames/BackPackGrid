@@ -2230,7 +2230,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 850c239e222cbf94f82bfba53d5d1af4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SceneVariableForSelection: 9
+  SceneVariableForSelection: 0
 --- !u!4 &1339408199
 Transform:
   m_ObjectHideFlags: 0
@@ -8479,6 +8479,10 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7621886864046568751, guid: 863412995a6496b4eb15b55e9edfd643, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8007201058007119801, guid: 863412995a6496b4eb15b55e9edfd643, type: 3}
       propertyPath: m_Name
       value: UICanvas
@@ -8561,6 +8565,10 @@ PrefabInstance:
     - target: {fileID: 6728800414430398793, guid: a3fe9a84a96028b4ba3af4542c797654, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8920179081163731949, guid: a3fe9a84a96028b4ba3af4542c797654, type: 3}
+      propertyPath: HealthMaxValue
+      value: 20
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -8661,6 +8669,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8271642927175702457, guid: 01a0e743614d88644b7e8e089670b005, type: 3}
       propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8271642927175702457, guid: 01a0e743614d88644b7e8e089670b005, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8271642927175702457, guid: 01a0e743614d88644b7e8e089670b005, type: 3}
+      propertyPath: m_LocalPosition.y
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8828173214569051625, guid: 01a0e743614d88644b7e8e089670b005, type: 3}
