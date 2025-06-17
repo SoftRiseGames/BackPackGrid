@@ -43,7 +43,7 @@ public class PlayerHandler : MonoBehaviour, IDamage
 
     public void Die()
     {
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene(8);
         Debug.Log("I am Dead");
     }
 

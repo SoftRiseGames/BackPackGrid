@@ -8,8 +8,8 @@ public class HandledCards : MonoBehaviour
    
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.K))
-            SaveData();
+        
+
     }
 
     void SaveData()
@@ -22,7 +22,11 @@ public class HandledCards : MonoBehaviour
         }
 
         string json = JsonUtility.ToJson(SaverList);
+#if UNITY_EDITOR
         File.WriteAllText(Application.dataPath + "/SaveData.json", json);
+#else
+        File.WriteAllText(Application.persistentDataPath + "/SaveData.json", json);
+#endif
     }
 }
 

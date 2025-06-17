@@ -9,11 +9,11 @@ public class StartGame : MonoBehaviour
     {
         PlayerPrefs.DeleteAll();
 #if UNITY_EDITOR
-        EditorSil("Upgrade_log.json");
+        EditorSil("upgrade_log.json");
         EditorSil("SaveData.json");
         EditorSil("BaseItemData.json");
 #else
-        OyunSil("Upgrade_log.json");
+        OyunSil("upgrade_log.json");
         OyunSil("SaveData.json");
         OyunSil("BaseItemData.json");
 #endif
@@ -35,7 +35,7 @@ public class StartGame : MonoBehaviour
     }
     void OyunSil(string fileName)
     {
-        string path = Application.persistentDataPath+"/" + fileName;
+        string path = Application.persistentDataPath+ "/" + fileName;
 
         if (File.Exists(path))
             File.Delete(path);

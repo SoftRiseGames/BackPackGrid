@@ -821,7 +821,7 @@ GameObject:
   - component: {fileID: 783517880}
   - component: {fileID: 783517879}
   m_Layer: 0
-  m_Name: MusicManager
+  m_Name: GamePlayMusic
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -988,6 +988,10 @@ PrefabInstance:
     - target: {fileID: 1158443702253956851, guid: aaae1212a58e41148a3458238361796d, type: 3}
       propertyPath: 'EarnedItems.Array.data[0]'
       value: Sword
+      objectReference: {fileID: 0}
+    - target: {fileID: 2636772034332487746, guid: aaae1212a58e41148a3458238361796d, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5520855528383390994, guid: aaae1212a58e41148a3458238361796d, type: 3}
       propertyPath: m_AnchorMax.x
@@ -1293,7 +1297,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 152
+  orthographic size: 168
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -1521,7 +1525,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 20524582310125759, guid: 3526d75772a761145b56a70695105ea9, type: 3}
+  m_Sprite: {fileID: -5971942374765049077, guid: 1fa3ec02f9fac41bea29968369c2e6ce, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1

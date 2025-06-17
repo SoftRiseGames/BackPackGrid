@@ -266,7 +266,12 @@ public class MergeManager : MonoBehaviour
             SaverList.GameobjectCountLister.Add(UpgradedMaterialAdd[i].ItemName);
         }
         string json = JsonUtility.ToJson(SaverList);
+#if UNITY_EDITOR
         File.WriteAllText(Application.dataPath + "/SaveData.json", json);
+#else
+        File.WriteAllText(Application.persistentDataPath + "/SaveData.json", json);
+#endif
+      
     }
 }
 

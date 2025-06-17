@@ -59,6 +59,7 @@ public class EnemyManager : MonoBehaviour
         // Liste null mu ya da boþ mu kontrolü
         if (enemies != null && enemies.Count > 0)
         {
+            yield return new WaitForSeconds(.2f);
             // Kopyasýný alýyoruz. Böylece orijinal liste deðiþse bile hata almayýz.
             List<Enemy> enemiesCopy = new List<Enemy>(enemies);
 

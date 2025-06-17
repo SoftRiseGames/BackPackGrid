@@ -10,7 +10,12 @@ public class CardLoad : MonoBehaviour
     }
     void LoadGuns()
     {
+        Debug.Log("LoadGuns");
+#if UNITY_EDITOR
         string json = File.ReadAllText(Application.dataPath + "/SaveData.json");
+#else
+        string json = File.ReadAllText(Application.persistentDataPath + "/SaveData.json");
+#endif
         ObjectListClass objectListClass = JsonUtility.FromJson<ObjectListClass>(json);
 
         foreach(string i in objectListClass.GameobjectCountLister)

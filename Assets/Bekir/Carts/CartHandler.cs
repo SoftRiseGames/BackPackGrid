@@ -31,8 +31,13 @@ public class CartHandler : MonoBehaviour
         EnemyManager.onPlayerTurn -= CallAddNewCardCoroutine;
 
     }
+    private void Awake()
+    {
+        
+    }
     private IEnumerator Start()
     {
+        yield return new WaitForSeconds(.5f);
         foreach (string i in LoadedCards.LoadedObjectsList)
         {
             if (!_items.ContainsKey(i)) continue;
@@ -62,7 +67,7 @@ public class CartHandler : MonoBehaviour
     void TotalCardCount()
     {
         int activeChildCount = 0;
-     
+
         for (int i = 0; i < SpawnedCarts.Count; i++)
         {
             activeChildCount++;
@@ -107,7 +112,7 @@ public class CartHandler : MonoBehaviour
         tempCreated.transform.SetParent(_pivot);
         tempCreated.transform.localScale = Vector3.one;
         RePos();
-       
+
     }
 
     void ShuffleList<T>(List<T> list)

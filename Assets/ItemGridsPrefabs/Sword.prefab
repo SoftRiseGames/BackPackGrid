@@ -972,8 +972,8 @@ MonoBehaviour:
   dataHolder: {fileID: 0}
   isObjectTrueDedect: 0
   colliderNew: {fileID: 0}
-  StartOn: {fileID: 0}
-  StarOff: {fileID: 0}
+  StartOn: {fileID: 5199979006384268662, guid: 253c1d2c47120e5428c556a87c7de7c5, type: 3}
+  StarOff: {fileID: -7978211336232270038, guid: 253c1d2c47120e5428c556a87c7de7c5, type: 3}
 --- !u!50 &5143321139678201525
 Rigidbody2D:
   serializedVersion: 5

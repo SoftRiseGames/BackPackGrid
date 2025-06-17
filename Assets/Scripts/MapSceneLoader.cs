@@ -95,7 +95,7 @@ public class MapSceneLoader : MonoBehaviour
     {
         ButtonSound();
         await Task.Delay(400);
-        SceneManager.LoadScene(12);
+        SceneManager.LoadScene(1);
         
     }
     public async void FourthFightBeforeBag()

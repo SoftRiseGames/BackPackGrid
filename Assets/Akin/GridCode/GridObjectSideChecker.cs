@@ -24,10 +24,14 @@ public class GridObjectSideChecker : MonoBehaviour
         if (collision.gameObject.tag == "InvObject")
         {
             isObjectTrueDedect = true;
-           
+            GetComponent<SpriteRenderer>().sprite = StartOn;
         }
         else
+        {
             isObjectTrueDedect = false;
+            GetComponent<SpriteRenderer>().sprite = StarOff;
+        }
+            
 
 
         if (isObjectTrueDedect)
@@ -40,6 +44,7 @@ public class GridObjectSideChecker : MonoBehaviour
     {
         if (collision.gameObject.tag == "InvObject")
         {
+            GetComponent<SpriteRenderer>().sprite = StarOff;
             isObjectTrueDedect = false;
         }
     }
