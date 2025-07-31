@@ -16,7 +16,7 @@ public class GameManager : MonoBehaviour
             {
                 if (hit.collider.tag == "InvObject")
                 {
-                    hit.collider.GetComponent<IInventoryObject>().MoveObjectStarting();
+                    hit.collider.GetComponent<IObjectSetting>().ObjectStarterCaller();
                 }
 
                 else

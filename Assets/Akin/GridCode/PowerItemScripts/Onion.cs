@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Onion : MonoBehaviour,IPowerItem ,IInventoryObject
+public class Onion : MonoBehaviour
 {
     public bool OnUpMiddle => throw new System.NotImplementedException();
 

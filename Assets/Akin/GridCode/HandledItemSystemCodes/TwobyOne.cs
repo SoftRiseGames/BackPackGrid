@@ -4,7 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using Sirenix.OdinInspector;
-public class TwoByOne : MonoBehaviour, IInventoryObject, IRotatable, IPowerItem
+public class TwoByOne : MonoBehaviour, IInventoryObject, IRotatable, IPowerItem,IObjectSetting
 {
     public bool OnDownMiddle { get; private set; }
     public bool OnUpMiddle { get; private set; }
@@ -76,13 +76,24 @@ public class TwoByOne : MonoBehaviour, IInventoryObject, IRotatable, IPowerItem
     [ShowInInspector]
     public List<GameObject> CollideList { get; set; } = new();
 
+
+    [SerializeField, SerializeReference]
+    private IInventoryObject _inventoryObjectData;
+
+    [ShowInInspector]
+    public IInventoryObject InventoryObjectData
+    {
+        get => _inventoryObjectData;
+        set => _inventoryObjectData = value;
+    }
+
     public HandledCards CardHandleDataList;
     [SerializeField] List<BoxCollider2D> CollideDedectors;
     [SerializeField] bool isCollideOtherObject;
 
     private void Start()
     {
-        GridIntegration();
+        GridIntegration(gameObject);
         ScaleObject();
         StartPosition = transform.position;
         isDragging = false;
@@ -145,7 +156,7 @@ public class TwoByOne : MonoBehaviour, IInventoryObject, IRotatable, IPowerItem
         throw new System.NotImplementedException();
     }
 
-    public void GridIntegration()
+    public void GridIntegration(GameObject GameObject)
     {
         gridBasement = GameObject.Find("Grid").GetComponent<Grid>();
         gridInput = GameObject.Find("Grid").GetComponent<GridRaycast>();
@@ -215,7 +226,7 @@ public class TwoByOne : MonoBehaviour, IInventoryObject, IRotatable, IPowerItem
         }
     }
     
-    public void RegisterYourself()
+    public void RegisterYourself(GameObject GameObject)
     {
         isDragging = false;
 
@@ -455,7 +466,7 @@ public class TwoByOne : MonoBehaviour, IInventoryObject, IRotatable, IPowerItem
 
     }
 
-    public void MoveObjectStarting()
+    public void MoveObjectStarting(GameObject GameObject)
     {
         gridBasement.GetComponent<GridSystem>().Inv = this;
 
@@ -473,7 +484,7 @@ public class TwoByOne : MonoBehaviour, IInventoryObject, IRotatable, IPowerItem
         Debug.Log("ObjectPowering");
     }
 
-    public void ObjectOutOfGrid()
+    public void ObjectOutOfGrid(Transform transform, Vector3 vector)
     {
 
          if (gridEnter && Input.GetMouseButtonDown(1))
@@ -489,6 +500,26 @@ public class TwoByOne : MonoBehaviour, IInventoryObject, IRotatable, IPowerItem
             CardHandleDataList.HandledObjects.Remove(gameObject);
 
         }
+    }
+
+    public void IntegrationCaller()
+    {
+        //throw new NotImplementedException();
+    }
+
+    public void RegisterCaller()
+    {
+        //throw new NotImplementedException();
+    }
+
+    public void ObjectStarterCaller()
+    {
+        //throw new NotImplementedException();
+    }
+
+    public void ObjectOutOfGridCaller()
+    {
+        //throw new NotImplementedException();
     }
 }
 

@@ -40,7 +40,7 @@ public class BaseItem : ScriptableObject
     public List<IItemEffect> ItemEffects_OnEffectedObject = new();
     [SerializeReference, PolymorphicDrawerSettings]
     public List<IItemEffect> ItemEffects_OnPlaced = new();
-
+    
     [SerializeReference, PolymorphicDrawerSettings]
     public List<IPassive> ItemEffects_OnEveryTour = new();
 

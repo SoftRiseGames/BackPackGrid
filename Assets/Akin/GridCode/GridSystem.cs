@@ -7,7 +7,7 @@ public class GridSystem : MonoBehaviour
     public GridRaycast gridInput;
     float PivotDistanceX;
     float PivotDistancey;
-    public IInventoryObject Inv;
+    public IObjectSetting Inv;
 
 
     private void Start()
@@ -26,10 +26,10 @@ public class GridSystem : MonoBehaviour
             Debug.Log("INV");
         }
 
-        if (Inv != null && Inv.gridEnter)
+        if (Inv != null && Inv.InventoryObjectData.gridEnter)
         {
             Debug.Log("Sað týk");
-            Inv.RegisterYourself();
+            Inv.RegisterCaller();
         }
 
 
@@ -39,9 +39,9 @@ public class GridSystem : MonoBehaviour
             {
                 ((IRotatable)Inv).RotateLeft();
 
-                if (Inv.gridEnter)
+                if (Inv.InventoryObjectData.gridEnter)
                 {
-                    Inv.RegisterYourself();
+                    Inv.RegisterCaller();
                 }
             }
 
@@ -52,7 +52,7 @@ public class GridSystem : MonoBehaviour
             if (Input.GetMouseButtonDown(1))
             {
                 Debug.Log("sol TIk");
-                Inv.ObjectOutOfGrid();
+                Inv.ObjectOutOfGridCaller();
             }
         }
 

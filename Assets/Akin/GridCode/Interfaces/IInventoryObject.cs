@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 public interface IInventoryObject
 {
-    void GridIntegration();
-    void RegisterYourself();
+    void GridIntegration(GameObject gameObject);
+    void RegisterYourself(GameObject gameObject);
     void Consume();
-    void MoveObjectStarting();
+    void MoveObjectStarting(GameObject gameObject);
 
-    void ObjectOutOfGrid();
+    void ObjectOutOfGrid(Transform transform, Vector3 StartPosition);
   
     public BaseItem BaseItemObj { get; }
     public bool OnUpMiddle { get; }

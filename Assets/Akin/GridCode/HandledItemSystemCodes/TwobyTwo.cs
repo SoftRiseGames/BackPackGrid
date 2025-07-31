@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TwobyTwo : IInventoryObject
+public class TwobyTwo : MonoBehaviour
 {
     public bool OnUpMiddle => throw new System.NotImplementedException();
 
