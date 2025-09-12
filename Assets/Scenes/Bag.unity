@@ -1380,6 +1380,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2102313085610527177, guid: 3006470959c6e2e4dbfab2f049fbc650, type: 3}
+      propertyPath: gridInput
+      value: 
+      objectReference: {fileID: 1859701189}
+    - target: {fileID: 2102313085610527177, guid: 3006470959c6e2e4dbfab2f049fbc650, type: 3}
+      propertyPath: _inventoryObjectData
+      value: 1948628887152099406
+      objectReference: {fileID: 0}
+    - target: {fileID: 2102313085610527177, guid: 3006470959c6e2e4dbfab2f049fbc650, type: 3}
+      propertyPath: 'managedReferences[1948628887152099406]'
+      value: Assembly-CSharp TwoByOneData
+      objectReference: {fileID: 0}
     - target: {fileID: 3254537650321539879, guid: 3006470959c6e2e4dbfab2f049fbc650, type: 3}
       propertyPath: m_Name
       value: Knife
@@ -2424,7 +2436,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1440891616410594432, guid: b91bdbc95d553454fad7b7868435fb73, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7769973732951469827, guid: b91bdbc95d553454fad7b7868435fb73, type: 3}
+      propertyPath: _inventoryObjectData
+      value: 1948628887152099405
+      objectReference: {fileID: 0}
+    - target: {fileID: 7769973732951469827, guid: b91bdbc95d553454fad7b7868435fb73, type: 3}
+      propertyPath: 'managedReferences[1948628887152099405]'
+      value: Assembly-CSharp TwoByOneData
       objectReference: {fileID: 0}
     - target: {fileID: 8953474868111996086, guid: b91bdbc95d553454fad7b7868435fb73, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2785,6 +2805,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2313189613514337322, guid: 01a6e6996da45a34eb609dbd6c955e9b, type: 3}
+      propertyPath: _inventoryObjectData
+      value: 8472682709000388679
+      objectReference: {fileID: 0}
+    - target: {fileID: 2313189613514337322, guid: 01a6e6996da45a34eb609dbd6c955e9b, type: 3}
+      propertyPath: 'managedReferences[8472682709000388679]'
+      value: Assembly-CSharp TwoByOneData
+      objectReference: {fileID: 0}
     - target: {fileID: 5055329269536286624, guid: 01a6e6996da45a34eb609dbd6c955e9b, type: 3}
       propertyPath: m_LocalPosition.x
       value: 4.06
@@ -4294,6 +4322,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8652633476284736711, guid: 83490c43f2a05cb49a6caea0396edb27, type: 3}
+      propertyPath: gridBasement
+      value: 
+      objectReference: {fileID: 1859701187}
+    - target: {fileID: 8652633476284736711, guid: 83490c43f2a05cb49a6caea0396edb27, type: 3}
+      propertyPath: _inventoryObjectData
+      value: 1948628887152099407
+      objectReference: {fileID: 0}
+    - target: {fileID: 8652633476284736711, guid: 83490c43f2a05cb49a6caea0396edb27, type: 3}
+      propertyPath: 'managedReferences[1948628887152099407]'
+      value: Assembly-CSharp TwoByOneData
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -4312,6 +4352,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2979461853947370921, guid: d791b8aa393bd7049abba8b1e38a8e8f, type: 3}
+      propertyPath: _inventoryObjectData
+      value: 1948628887152099404
+      objectReference: {fileID: 0}
+    - target: {fileID: 2979461853947370921, guid: d791b8aa393bd7049abba8b1e38a8e8f, type: 3}
+      propertyPath: 'managedReferences[1948628887152099403]'
+      value: Assembly-CSharp TwoByOneData
+      objectReference: {fileID: 0}
+    - target: {fileID: 2979461853947370921, guid: d791b8aa393bd7049abba8b1e38a8e8f, type: 3}
+      propertyPath: 'managedReferences[1948628887152099404]'
+      value: Assembly-CSharp TwoByOneData
+      objectReference: {fileID: 0}
     - target: {fileID: 3369238783923413999, guid: d791b8aa393bd7049abba8b1e38a8e8f, type: 3}
       propertyPath: m_Name
       value: Fire Crystal

@@ -9,7 +9,7 @@ public interface IInventoryObject
     void MoveObjectStarting(GameObject gameObject);
 
     void ObjectOutOfGrid(Transform transform, Vector3 StartPosition);
-  
+    void MoveObjectStopping(GameObject gameObject, Vector3 StartingPosition);
     public BaseItem BaseItemObj { get; }
     public bool OnUpMiddle { get; }
     public bool OnDownMiddle { get; }

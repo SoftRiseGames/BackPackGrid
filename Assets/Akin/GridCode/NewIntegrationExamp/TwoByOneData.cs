@@ -12,6 +12,7 @@ public class DataClass
     public float pivotOffsetX = 0;
     public float pivotOffsetY = 0;
     public IInventoryObject inventoryObject;
+    public bool gridEnter;
 }
 
 [Serializable]
@@ -20,6 +21,8 @@ public class TwoByOneData : IInventoryObject/* IRotatable, IPowerItem*/
     bool isDragging;
     bool isHandle;
     public DataClass data = new DataClass();
+
+    
     public bool OnDownMiddle { get; private set; }
     public bool OnUpMiddle { get; private set; }
     public bool onLeftMiddle { get; private set; }
@@ -52,23 +55,39 @@ public class TwoByOneData : IInventoryObject/* IRotatable, IPowerItem*/
 
     public List<GameObject> CollideList { get; set; } = new();
     public bool isAdded { get; set; }
-
+    
     public void GridIntegration(GameObject gameObject)
     {
         data.gridBasement = GameObject.Find("Grid").GetComponent<Grid>();
         data.gridInput = GameObject.Find("Grid").GetComponent<GridRaycast>();
         data.handledObject = gameObject;
+
     }
 
     public void RegisterYourself(GameObject gameObject)
     {
+        if (!gridEnter)
+            CanEnterPosition = true;
+        else
+            CanEnterPosition = false;
         isDragging = false;
+        Debug.Log("gridEnter " + gridEnter);
+       
+        data.gridInput = GameObject.Find("Grid").GetComponent<GridRaycast>();
+        data.gridBasement = GameObject.Find("Grid").GetComponent<Grid>();
+        data.handledObject = gameObject;
 
+        Debug.Log(data.handledObject.name);
         Vector3 selectedPosition = data.gridInput.GetSelectedMapPosition();
         Vector3Int cellPosition = data.gridBasement.WorldToCell(selectedPosition);
 
         if (!gridEnter || data.handledObject == null)
+        {
             return;
+        }
+
+        if (!gridEnter)
+            CanEnterPosition = true;
 
         data.inventoryObject = data.handledObject.GetComponent<IInventoryObject>();
         data.cellCenterPosition = data.gridBasement.GetCellCenterWorld(cellPosition);
@@ -77,8 +96,8 @@ public class TwoByOneData : IInventoryObject/* IRotatable, IPowerItem*/
 
         if (CanEnterPosition)
         {
+            Debug.Log("CanEnter");
             Vector3 newPosition = data.cellCenterPosition;
-
 
             if (data.cellCenterPosition.x >= gameObject.transform.position.x)
                 newPosition.x -= data.pivotOffsetX;
@@ -99,7 +118,7 @@ public class TwoByOneData : IInventoryObject/* IRotatable, IPowerItem*/
         {
             Vector3 currentPosition = data.handledObject.transform.position;
             Vector3 newPosition = currentPosition;
-
+            Debug.Log("CanNotEnter");
             // Snap X
             if ((data.inventoryObject.onRightNext && !onRightObjectDedect && cellPosition.x >= currentPosition.x) ||
                 (data.inventoryObject.onLeftNext && !onLeftObjectDedect && cellPosition.x < currentPosition.x))
@@ -125,6 +144,7 @@ public class TwoByOneData : IInventoryObject/* IRotatable, IPowerItem*/
         {
             Debug.Log("Snap yapýlamadý. Engel veya geçersiz pozisyon.");
         }
+      
     }
 
     public void Consume()
@@ -133,15 +153,43 @@ public class TwoByOneData : IInventoryObject/* IRotatable, IPowerItem*/
     }
     public void MoveObjectStarting(GameObject gameObject)
     {
-        data.gridBasement.GetComponent<GridSystem>().Inv.InventoryObjectData = this;
+        Debug.Log("girdi");
+        data.gridBasement = GameObject.Find("Grid").GetComponent<Grid>();
+        Debug.Log(data.gridBasement.name);
+
+        data.gridBasement.GetComponent<GridSystem>().Inv = gameObject.GetComponent<IObjectSetting>();
 
         gameObject.layer = LayerMask.NameToLayer("HandleObjectPlacement");
         gameObject.GetComponent<SpriteRenderer>().sortingOrder = 3;
 
 
         isHandle = true;
+        
+        
+
+    }
+    public void MoveObjectStopping(GameObject gameObject,Vector3 StartingPosition)
+    {
+        Debug.Log("Çýktý");
+        data.gridBasement = null;
+        gameObject.layer = LayerMask.NameToLayer("HandleObjectPlacement");
+        gameObject.GetComponent<SpriteRenderer>().sortingOrder = 1;
+        data.gridBasement = GameObject.Find("Grid").GetComponent<Grid>();
+        data.gridBasement.GetComponent<GridSystem>().Inv = null;
 
 
+        if (gridEnter)
+        {
+            gameObject.GetComponent<SpriteRenderer>().sortingOrder = 2;
+        }
+
+
+        if (!gridEnter)
+        {
+            gameObject.transform.position = StartingPosition;
+            CanEnterPosition = true;
+        }
+       
     }
 
     public void ObjectOutOfGrid(Transform transform, Vector3 StartPosition)

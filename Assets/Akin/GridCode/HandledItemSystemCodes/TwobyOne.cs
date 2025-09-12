@@ -77,19 +77,23 @@ public class TwoByOne : MonoBehaviour, IInventoryObject, IRotatable, IPowerItem,
     public List<GameObject> CollideList { get; set; } = new();
 
 
+  
+
+    public HandledCards CardHandleDataList;
+  
+    [SerializeField] List<BoxCollider2D> CollideDedectors;
+    [SerializeField] bool isCollideOtherObject;
+
     [SerializeField, SerializeReference]
+    [InlineProperty, HideLabel]
+    [ShowInInspector]
     private IInventoryObject _inventoryObjectData;
 
-    [ShowInInspector]
     public IInventoryObject InventoryObjectData
     {
         get => _inventoryObjectData;
         set => _inventoryObjectData = value;
     }
-
-    public HandledCards CardHandleDataList;
-    [SerializeField] List<BoxCollider2D> CollideDedectors;
-    [SerializeField] bool isCollideOtherObject;
 
     private void Start()
     {
@@ -99,8 +103,8 @@ public class TwoByOne : MonoBehaviour, IInventoryObject, IRotatable, IPowerItem,
         isDragging = false;
         CardHandleDataList = GameObject.Find("HandledCardManager").GetComponent<HandledCards>();
         BaseItemObj = BaseItem;
-        CanEnterPosition = true;
-        
+        InventoryObjectData.CanEnterPosition = true;
+        Debug.Log(InventoryObjectData.CanEnterPosition);
     }
 
     private void Update()
@@ -117,23 +121,10 @@ public class TwoByOne : MonoBehaviour, IInventoryObject, IRotatable, IPowerItem,
         {
             if (Input.GetMouseButtonUp(0))
             {
+                Debug.Log("Çıktı2");
                 isDragging = false;
-
-                gridBasement.GetComponent<GridSystem>().Inv = null;
-                gameObject.layer = LayerMask.NameToLayer("HandleObjectLocked");
-
-                if (gridEnter)
-                {
-                    gameObject.GetComponent<SpriteRenderer>().sortingOrder = 2;
-                }
-
-
-                if (!gridEnter)
-                {
-                    transform.position = StartPosition;
-                    CanEnterPosition = true;
-                }
-
+                InventoryObjectData.MoveObjectStopping(gameObject, StartPosition);
+                
                 isHandle = false;
             }
 
@@ -194,14 +185,14 @@ public class TwoByOne : MonoBehaviour, IInventoryObject, IRotatable, IPowerItem,
         if (isHandle)
         {
 
-            if (mouseDelta.magnitude > dragThreshold && !gridEnter)
+            if (mouseDelta.magnitude > dragThreshold && !InventoryObjectData.gridEnter)
             {
                 isDragging = true;
             }
 
-            if (mouseDelta.magnitude > dragThreshold && gridEnter)
+            if (mouseDelta.magnitude > dragThreshold && InventoryObjectData.gridEnter)
             {
-                CanEnterPosition = false;
+                InventoryObjectData.CanEnterPosition = false;
             }
 
             if (isDragging)
@@ -233,7 +224,7 @@ public class TwoByOne : MonoBehaviour, IInventoryObject, IRotatable, IPowerItem,
         Vector3 selectedPosition = gridInput.GetSelectedMapPosition();
         Vector3Int cellPosition = gridBasement.WorldToCell(selectedPosition);
 
-        if (!gridEnter || handledObject == null)
+        if (!InventoryObjectData.gridEnter || handledObject == null)
             return;
 
         inventoryObject = handledObject.GetComponent<IInventoryObject>();
@@ -241,7 +232,7 @@ public class TwoByOne : MonoBehaviour, IInventoryObject, IRotatable, IPowerItem,
 
         bool snapped = false;
 
-        if (CanEnterPosition)
+        if (InventoryObjectData.CanEnterPosition)
         {
             Vector3 newPosition = cellCenterPosition;
          
@@ -258,7 +249,7 @@ public class TwoByOne : MonoBehaviour, IInventoryObject, IRotatable, IPowerItem,
 
 
             handledObject.transform.position = newPosition;
-            CanEnterPosition = false;
+            InventoryObjectData.CanEnterPosition = false;
             snapped = true;
         }
         else
@@ -296,7 +287,7 @@ public class TwoByOne : MonoBehaviour, IInventoryObject, IRotatable, IPowerItem,
 
     void AddList()
     {
-        if (gridEnter)
+        if (InventoryObjectData.gridEnter)
         {
             foreach (GameObject i in CardHandleDataList.HandledObjects)
             {
@@ -339,13 +330,13 @@ public class TwoByOne : MonoBehaviour, IInventoryObject, IRotatable, IPowerItem,
     {
         if (OnUpMiddle && OnDownMiddle && onRightMiddle && onLeftMiddle && OnUpRight && OnUpLeft && OnDownRight && OnDownLeft && isCollideOtherObject == false)
         {
-            gridEnter = true;
+            InventoryObjectData.gridEnter = true;
         }
         else
         {
             isAdded = false;
-            gridEnter = false;
-            CanEnterPosition = true;
+            InventoryObjectData.gridEnter = false;
+            InventoryObjectData.CanEnterPosition = true;
         }
     }
 
@@ -367,7 +358,7 @@ public class TwoByOne : MonoBehaviour, IInventoryObject, IRotatable, IPowerItem,
 
         ScaleObjectRechange();
 
-        gridEnter = false;
+        InventoryObjectData.gridEnter = false;
 
     }
 
@@ -487,7 +478,7 @@ public class TwoByOne : MonoBehaviour, IInventoryObject, IRotatable, IPowerItem,
     public void ObjectOutOfGrid(Transform transform, Vector3 vector)
     {
 
-         if (gridEnter && Input.GetMouseButtonDown(1))
+         if (InventoryObjectData.gridEnter && Input.GetMouseButtonDown(1))
         {
             transform.position = StartPosition;
         }
@@ -495,7 +486,7 @@ public class TwoByOne : MonoBehaviour, IInventoryObject, IRotatable, IPowerItem,
 
     void ListForcer()
     {
-        if (CardHandleDataList.HandledObjects.Contains(gameObject) && gridEnter == false)
+        if (CardHandleDataList.HandledObjects.Contains(gameObject) && InventoryObjectData.gridEnter == false)
         {
             CardHandleDataList.HandledObjects.Remove(gameObject);
 
@@ -505,19 +496,27 @@ public class TwoByOne : MonoBehaviour, IInventoryObject, IRotatable, IPowerItem,
     public void IntegrationCaller()
     {
         //throw new NotImplementedException();
+        InventoryObjectData.GridIntegration(gameObject);
     }
 
     public void RegisterCaller()
     {
-        //throw new NotImplementedException();
+        InventoryObjectData.RegisterYourself(gameObject);
     }
 
     public void ObjectStarterCaller()
     {
-        //throw new NotImplementedException();
+        isHandle = true;
+        InventoryObjectData.MoveObjectStarting(gameObject);
     }
 
     public void ObjectOutOfGridCaller()
+    {
+        //throw new NotImplementedException();
+        InventoryObjectData.ObjectOutOfGrid(gameObject.transform,StartPosition);
+    }
+
+    public void MoveObjectStopping(GameObject gameObject, Vector3 StartingPosition)
     {
         //throw new NotImplementedException();
     }
